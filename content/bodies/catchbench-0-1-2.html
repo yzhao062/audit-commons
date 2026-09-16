@@ -1,0 +1,32 @@
+<section class="section">
+  <h2>Release overview</h2>
+  <p>
+    CatchBench version 0.1.2 was released on September 13, 2026. The update addresses packaging and clean installation issues identified in earlier releases. The published release notes state that all benchmark scores reported in the research paper and produced by the offline command <code>catchbench --task pre</code> remain identical to version 0.1.1.
+  </p>
+  <div class="callout">
+    <p>
+      <strong>Maintainer disclosure:</strong> CatchBench is maintained by Yue Zhao, who also maintains Audit Commons.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Packaging and setup repairs</h2>
+  <p>
+    Version 0.1.2 resolves three installation obstacles:
+  </p>
+  <ul>
+    <li>
+      <strong>Missing checkout handling:</strong> Running the package without an optional GRADE repository now prints an informative setup note and exits cleanly with status 2, rather than raising an unhandled import error.
+    </li>
+    <li>
+      <strong>Working directory discovery:</strong> The package now resolves checkouts directly within the active working directory.
+    </li>
+    <li>
+      <strong>Bundled license files:</strong> Distribution wheels now package license manifests referenced by the package notice file.
+    </li>
+  </ul>
+  <p>
+    The release notes record that the tag verification workflow failed due to a documentation parsing error while the board generation workflow passed. For release artifacts, see the <a href="https://github.com/yzhao062/catchbench/releases/tag/v0.1.2">CatchBench 0.1.2 release on GitHub</a>.
+  </p>
+</section>

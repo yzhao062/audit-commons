@@ -1,0 +1,37 @@
+<section class="section">
+  <h2>Three complementary questions</h2>
+  <p>
+    When teams build and evaluate AI agents, they often treat evaluation, monitoring, and auditing as interchangeable words. They are not. Each addresses a different question and relies on different evidence:
+  </p>
+  <ul>
+    <li>
+      <strong>Evaluation:</strong> How does the system behave under specified tests? Evaluation measures behavior against predefined benchmarks, synthetic scenarios, or red-teaming suites. It yields aggregate performance statistics across trials.
+    </li>
+    <li>
+      <strong>Monitoring:</strong> What signals appear over time? Monitoring tracks live telemetry such as latency, token throughput, error frequencies, and filter alerts while agents operate.
+    </li>
+    <li>
+      <strong>Auditing:</strong> Does inspectable evidence substantiate a specified claim about what occurred? Auditing examines records of a specific run or action against designated criteria.
+    </li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Shared boundaries and overlap</h2>
+  <p>
+    These activities do not follow an exclusive timeline. Teams evaluate before deployment, during staging, and after major updates. Teams monitor long-running background tasks and pilot trials. Teams audit single actions, recurring automated decisions, or entire incident windows.
+  </p>
+  <p>
+    The boundaries overlap because an audit often relies on logs produced by monitoring, and evaluation suites often draw on traces preserved from audits. None of these practices guarantees accountability by itself. An evaluation can miss real-world edge cases. A monitoring dashboard can aggregate away critical anomalies. An audit cannot prove that an unobserved system boundary behaved correctly.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Evidence beyond internal text</h2>
+  <p>
+    Auditing becomes urgent when AI agents obtain access to external tools. An agent does not only generate sentences; it sends network requests, modifies records, and executes transactions.
+  </p>
+  <p>
+    An internal model trace stating that an action occurred is only a claim. It is not an audited fact. Establishing what happened requires examining whether the agent issued the action request, whether valid authorization covered that exact action, and whether the receiving external system recorded acceptance.
+  </p>
+</section>

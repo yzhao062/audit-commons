@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Audit Commons: Claims need evidence. AI is no exception.">
+<rect width="1200" height="630" fill="#fff"/>
+<text x="72" y="94" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="600" fill="#232323">Audit Commons</text>
+<text x="1128" y="91" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#65676c">auditcommons.org</text>
+<path d="M72 126H1128" stroke="#dcdde0"/>
+<text x="72" y="203" font-family="Arial,Helvetica,sans-serif" font-size="14" letter-spacing="2" fill="#254fc4">AI AUDITING, IN PRACTICE</text>
+<g font-family="Georgia,serif" font-size="80" fill="#161616"><text x="68" y="304">Claims need evidence.</text><text x="68" y="399">AI is no exception.</text></g>
+<text x="72" y="470" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#585b62">Research, tools, and community for AI auditing.</text>
+<path d="M72 549H1128" stroke="#232323"/>
+<text x="72" y="584" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#585b62">GUIDES / RESOURCES / FIELD UPDATES</text>
+</svg>

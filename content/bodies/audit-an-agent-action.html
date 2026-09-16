@@ -1,0 +1,136 @@
+<section class="section">
+  <h2>Examining an external action</h2>
+  <p>
+    When an AI agent takes an action in an external system, such as dispatching an email, internal model traces alone do not show what took place. An agent context can record that a message went out even if the network dropped the request, an intermediary modified the text, or parameters targeted the wrong recipient.
+  </p>
+  <p>
+    Auditing an external action requires matching observable records across the action path. This guide provides a concise procedure and evidence worksheet for reviewing whether available records substantiate a specific claim about an outbound action. These elements are illustrative rather than universally sufficient, because different environments expose different logging boundaries.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Core evidence elements</h2>
+  <p>
+    A structured review compares the claimed action against observable records and known verification limits.
+  </p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Evidence element</th>
+          <th scope="col">What to inspect</th>
+          <th scope="col">Audit risk or limit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Claim and scope</th>
+          <td>Specific assertion naming the agent, recipient, message topic, and time window</td>
+          <td>Broad or ambiguous claims cannot be tested against evidence</td>
+        </tr>
+        <tr>
+          <th scope="row">Action request</th>
+          <td>Outbound dispatch parameters recorded in gateway or sender logs</td>
+          <td>Internal logs do not prove the external network accepted the call</td>
+        </tr>
+        <tr>
+          <th scope="row">Specific approval</th>
+          <td>Documented policy rule or user consent matching recipient, content, and time</td>
+          <td>Broad credential scope or API key access does not equal user authorization</td>
+        </tr>
+        <tr>
+          <th scope="row">Service acceptance</th>
+          <td>Acknowledgment code and transaction reference from the receiving mail service</td>
+          <td>Acceptance at the service boundary does not prove mailbox delivery or recipient reading</td>
+        </tr>
+        <tr>
+          <th scope="row">Trace continuity</th>
+          <td>Timestamp correspondence and matching references across sender and service logs</td>
+          <td>Missing links may make a finding inconclusive; contradictory records may refute the claim</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Hypothetical case: reviewing an outbound email</h2>
+  <div class="callout">
+    <p>
+      <strong>Hypothetical scenario:</strong> This example illustrates how to record a finding. It is not a report of an observed system or benchmark result.
+    </p>
+  </div>
+  <p>
+    A reviewer investigates a claim that an automated support agent sent a single account notification email to a customer during an afternoon maintenance window.
+  </p>
+  <p>
+    The reviewer examines four records described in operational documentation:
+  </p>
+  <ul>
+    <li>
+      <strong>Action request:</strong> Outbound gateway records show an email dispatch request matching the specified customer address, the stated account notification subject, and the requested timestamp.
+    </li>
+    <li>
+      <strong>Specific approval:</strong> A recorded approval predates dispatch and covers the recipient and message content in the outbound request. The reviewer checks that the approval was valid at execution time. An active mail service credential alone would not establish authorization.
+    </li>
+    <li>
+      <strong>Service acceptance receipt:</strong> The external mail provider returned an acknowledgment indicating that the message was accepted into its delivery queue.
+    </li>
+    <li>
+      <strong>Trace continuity:</strong> A shared transaction reference connects the outbound request to the service receipt. The reviewer compares the approved recipient and content with the submitted payload. Similar timestamps or matching subjects alone would not establish that the records describe the same action.
+    </li>
+  </ul>
+  <p>
+    <strong>Bounded finding:</strong> The records support the claim that the agent requested the message, that valid approval applied to this exact action, and that the external provider accepted the payload for transmission.
+  </p>
+  <p>
+    <strong>Limits of the finding:</strong> These records do not prove inbox delivery, reading, or the absence of downstream forwarding. Missing records may make a finding inconclusive. A recorded action that contradicts the approved scope may instead refute the claim. Record which conclusion the evidence supports.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Plaintext worksheet template</h2>
+  <p>
+    Copy the compact template below into review notes to evaluate external agent actions.
+  </p>
+  <pre><code>AUDIT EVIDENCE WORKSHEET: AGENT EXTERNAL ACTION
+
+1. CLAIM
+   Agent name:
+   Claimed action:
+   Target recipient:
+   Claimed time window:
+   Agent/tool version and configuration reference:
+
+2. OBSERVABLE ACTION REQUEST
+   Sender or gateway log reference:
+   Requested recipient:
+   Requested subject or action summary:
+   Request timestamp:
+
+3. APPROVAL AND AUTHORIZATION
+   Policy or consent reference:
+   Exact authorized scope (recipient, content, time):
+   Redacted credential identifier:
+   Authorization notes (credential scope alone is insufficient):
+
+4. EXTERNAL SERVICE ACCEPTANCE
+   External service name:
+   Service acknowledgment reference:
+   Acceptance timestamp:
+   Note: Confirms service queue entry, not mailbox delivery or reading.
+
+5. REVIEW DETERMINATION AND BOUNDARIES
+   Finding: [Supported / Inconclusive / Refuted]
+   Evidence summary:
+   Unobserved downstream states:
+   Gaps, missing logs, or payload discrepancies:
+   Reviewer and date:</code></pre>
+</section>
+
+<section class="section">
+  <h2>Privacy and redaction</h2>
+  <p>
+    Collect only the evidence needed for the claim. Use redacted references in shared review notes, keep necessary sensitive records under access controls, and set a retention period. Do not copy passwords or API keys into the worksheet.
+  </p>
+</section>

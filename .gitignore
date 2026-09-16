@@ -1,0 +1,7 @@
+_site/
+__pycache__/
+*.pyc
+Review-*.md
+.agent-config/
+.claude/
+AGENTS.md

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "nist-ai-rmf",
+    "name": "NIST AI Risk Management Framework (AI RMF 1.0)",
+    "category": "Governance",
+    "summary": "A voluntary framework for organizing AI risks, responsibilities, measurement, and management. Use it to frame the questions your audit needs to answer.",
+    "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "owner": "National Institute of Standards and Technology (NIST)",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://www.nist.gov/itl/ai-risk-management-framework"
+    ],
+    "checked": "2026-09-15"
+  },
+  {
+    "id": "inspect-aisi",
+    "name": "Inspect",
+    "category": "Evaluation",
+    "summary": "A framework for evaluating models and agents, with reusable tasks, tools, scorers, and evaluation logs. Start here to design repeatable tests.",
+    "url": "https://inspect.aisi.org.uk/",
+    "owner": "UK AI Security Institute and Meridian Labs",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://inspect.aisi.org.uk/"
+    ],
+    "checked": "2026-09-15"
+  },
+  {
+    "id": "agentdojo",
+    "name": "AgentDojo",
+    "category": "Security",
+    "summary": "A benchmark environment for testing prompt-injection attacks and defenses on tool-using agents. Check its tasks and threat model before comparing results.",
+    "url": "https://github.com/ethz-spylab/agentdojo",
+    "owner": "ETH Zurich (SPY Lab) and Invariant Labs",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/ethz-spylab/agentdojo"
+    ],
+    "checked": "2026-09-15"
+  },
+  {
+    "id": "awesome-auditable-ai",
+    "name": "Awesome Auditable AI",
+    "category": "Reading",
+    "summary": "A maintained reading list of papers, tools, benchmarks, and standards covering agent reliability, monitoring, failure attribution, and accountability.",
+    "url": "https://github.com/yzhao062/awesome-auditable-ai",
+    "owner": "Yue Zhao",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai"
+    ],
+    "checked": "2026-09-15"
+  },
+  {
+    "id": "catchbench",
+    "name": "CatchBench",
+    "category": "Evaluation",
+    "summary": "A benchmark for auditing agent failures. The offline PRE quickstart runs without model API keys; other benchmark paths have additional setup requirements.",
+    "url": "https://github.com/yzhao062/catchbench",
+    "owner": "CatchBench contributors",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/yzhao062/catchbench/releases/tag/v0.1.2"
+    ],
+    "checked": "2026-09-15"
+  },
+  {
+    "id": "auditable-agents",
+    "name": "Auditable Agents Ecosystem",
+    "category": "Tools",
+    "summary": "An ecosystem page connecting tools for inspecting, enforcing policies on, and reviewing agent actions. Follow the component repositories for current capabilities.",
+    "url": "https://auditable-agents.github.io/",
+    "owner": "Auditable Agents contributors",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/auditable-agents/auditable-agents.github.io"
+    ],
+    "checked": "2026-09-15"
+  }
+]
