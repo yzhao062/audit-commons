@@ -1,0 +1,97 @@
+<nav class="article-toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  <ol>
+    <li><a href="#the-gap">The gap between score and safety argument</a></li>
+    <li><a href="#compute-budget">Scores depend on compute budget</a></li>
+    <li><a href="#what-evaluation-shows">What evaluation does and does not show</a></li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h2 id="the-gap">The gap between score and safety argument</h2>
+  <p>
+    When a team publishes an agent evaluation result, a high score on a capability benchmark or a low
+    score on a safety-relevant benchmark invites conclusions that the evidence may not fully support.
+    Understanding the gap matters for anyone deciding whether evaluation evidence is sufficient for a
+    deployment or audit claim.
+  </p>
+  <p>
+    An evaluation score is a summary statistic over a set of trials under specific conditions. A safety
+    argument is a claim that a system meets specified risk thresholds and is acceptable for deployment
+    under defined conditions. These are not the same claim, and benchmark scores are not universal
+    safety grades. The distinction matters for at least three reasons.
+  </p>
+  <p>
+    First, benchmark tasks are not deployment conditions. Benchmark designers make deliberate choices
+    about what tasks to include, how to phrase prompts, and what counts as success. A score describes
+    model behaviour under those specific choices, not the open-ended distribution of inputs a deployed
+    agent will encounter.
+  </p>
+  <p>
+    Second, rare failures can be difficult to estimate precisely even when some failures appear in a
+    trial set. AISI's work on
+    <a href="https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts">optimal stopping</a>
+    discusses the related problem of rare successes: stopping too soon can miss evidence of a
+    capability. For safety evaluations, rare failures call for similar care when interpreting a finite
+    set of trials. This analogy does not establish that optstop's safeguard validates safety claims.
+  </p>
+  <p>
+    Third, agent evaluation scores are sensitive to compute budget. In a July 2026 analysis,
+    <a href="https://www.aisi.gov.uk/blog/more-compute-more-capability-why-ai-agent-evals-need-to-account-for-test-time-compute">AISI researchers varied token budgets</a>
+    and found that measured capability changed with budget, plateauing on some benchmarks and continuing
+    to rise on others. Their analysis argues that an agent's capability score must be interpreted
+    alongside the compute budget used to measure it.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="compute-budget">Scores depend on compute budget</h2>
+  <p>
+    Budget dependence matters for safety arguments because a deployment decision implicitly relies on
+    the compute configuration used in evaluation being representative of deployment conditions. If the
+    deployed system operates under different compute constraints or uses a different inference strategy,
+    the benchmark score may not transfer.
+  </p>
+  <p>
+    A responsible evaluation report will disclose the compute budget used, note score sensitivity where
+    it has been tested, and avoid generalising results beyond the conditions of the evaluation. When a
+    report lacks these disclosures, the reader cannot assess how much the score reflects intrinsic model
+    behaviour versus measurement conditions.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="what-evaluation-shows">What evaluation does and does not show</h2>
+  <p>
+    Evaluation is a rigorous and valuable part of the evidence base for AI system development. The
+    question is what conclusions evaluation evidence can support, and what additional evidence a safety
+    argument requires.
+  </p>
+  <p>
+    Evaluation evidence supports:
+  </p>
+  <ul>
+    <li>Claims about model performance on specific tasks under specific conditions.</li>
+    <li>Comparisons between models or configurations when the evaluation design is held constant.</li>
+    <li>Identification of failure modes that appear in the benchmark, which can motivate mitigation.</li>
+  </ul>
+  <p>
+    Evaluation evidence alone does not support:
+  </p>
+  <ul>
+    <li>Claims that a system meets specified risk thresholds for deployment, without additional evidence
+    about deployment conditions and their relationship to the evaluation design.</li>
+    <li>Claims that a failure mode does not exist, based only on its absence in a finite trial set.</li>
+    <li>Claims about behaviour under compute configurations not tested.</li>
+  </ul>
+  <p>
+    An audit of an agent deployment should distinguish between what evaluation evidence establishes and
+    what additional evidence is needed to support a suitability claim for specified conditions. Treating
+    a benchmark score as a proxy for a safety argument without examining that gap leaves the connection
+    between the benchmark and the deployment context unexamined.
+  </p>
+  <p>
+    <em>The analysis in this feature reflects editorial interpretation drawing on the AISI research
+    cited above. It is not a formal standard or regulatory guidance.</em>
+  </p>
+</section>

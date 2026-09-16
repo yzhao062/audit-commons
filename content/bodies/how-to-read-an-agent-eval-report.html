@@ -1,0 +1,123 @@
+<nav class="article-toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  <ol>
+    <li><a href="#orientation">Getting oriented in a report</a></li>
+    <li><a href="#five-questions">Five questions to ask</a></li>
+    <li><a href="#worked-example">Worked hypothetical example</a></li>
+    <li><a href="#further-reading">Further reading</a></li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h2 id="orientation">Getting oriented in a report</h2>
+  <p>
+    Most agent evaluation reports share the same structural elements: what was evaluated, how the
+    evaluation was conducted, and summary results. Reading critically means checking whether those
+    elements are present, whether they are sufficient, and whether conclusions follow from the evidence.
+    This guide walks through five questions, then applies them to an invented example that does not
+    represent any real evaluation or measured result.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="five-questions">Five questions to ask</h2>
+
+  <h3>1. What tasks were used, and are they described in enough detail to assess relevance?</h3>
+  <p>
+    Benchmark tasks should be described precisely enough that a reader can judge whether they resemble
+    the deployment context. A report that describes tasks only as "agentic reasoning problems" without
+    specifying the tool environment, the action space, or the success criteria leaves open whether the
+    benchmark is relevant to any particular application. Look for task descriptions, the tools the agent
+    had access to, and what counted as a correct or safe outcome.
+  </p>
+
+  <h3>2. What compute budget was used, and was sensitivity to that budget tested?</h3>
+  <p>
+    Agent scores can depend significantly on the token budget or inference-time compute allocated
+    (see <a href="https://www.aisi.gov.uk/blog/more-compute-more-capability-why-ai-agent-evals-need-to-account-for-test-time-compute">AISI, July 2026</a>).
+    A report that provides a single score without disclosing the compute budget, or without noting whether
+    the score changes at different budgets, gives incomplete information.
+  </p>
+
+  <h3>3. How many trials were run, and how is uncertainty in the score quantified?</h3>
+  <p>
+    Larger samples from comparable independent trials with the same test design generally support more
+    stable estimates, but more trials do not automatically improve evidence if samples are correlated or
+    biased. Look for sample sizes, confidence or credible intervals, and a discussion of run-to-run
+    variance. Reports that present only point estimates without uncertainty bounds make it harder to
+    assess how stable the score is.
+  </p>
+
+  <h3>4. What failure modes were observed, and how were rare events treated?</h3>
+  <p>
+    Safety-relevant failures may be rare. Rare failures can be difficult to estimate precisely even when
+    some failures appear in a trial set. Ask whether the report discusses specific failure categories,
+    and whether any observed failures were investigated further or mitigated.
+  </p>
+
+  <h3>5. What claims does the report make, and do those claims follow from the evidence?</h3>
+  <p>
+    Read the conclusion alongside the methods section. If a report concludes that a model is "safe for
+    deployment" or "passes safety evaluation," check whether the evidence actually supports that
+    conclusion or whether it supports a narrower claim about performance on specific tasks under specific
+    conditions. These are different claims.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="worked-example">Worked hypothetical example</h2>
+  <p>
+    <em>The following scenario, model names, scores, and figures are entirely invented for illustration.</em>
+  </p>
+  <p>Suppose you receive a one-page summary that reads:</p>
+  <blockquote>
+    <p>
+      "Model X was evaluated on the TravelDesk benchmark, a set of 50 tasks requiring web search and
+      calendar management. Each task was run once. Model X achieved a 78% task completion rate. The
+      evaluation team concludes that Model X is appropriate for deployment in customer-facing scheduling
+      applications."
+    </p>
+  </blockquote>
+  <p>Applying the five questions:</p>
+  <ol>
+    <li>
+      <strong>Task description:</strong> "Web search and calendar management" is described, but there
+      is no information about the tool environment, the action space, or whether adversarial inputs were
+      tested. A scheduling application receives untrusted user input; the benchmark may not reflect that.
+    </li>
+    <li>
+      <strong>Compute budget:</strong> Not mentioned. It is unclear whether the 78% figure holds at
+      different inference configurations.
+    </li>
+    <li>
+      <strong>Trials and uncertainty:</strong> The summary states 50 tasks each run once, giving 50
+      observed outcomes; their independence is not established. No confidence interval is provided. The score may vary across task samples,
+      and without repeated trials per task there is no within-task variance estimate.
+    </li>
+    <li>
+      <strong>Failure modes:</strong> The 22% non-completion rate is not characterised. Were those
+      failures benign (model declined) or consequential (model attempted an incorrect action)? The
+      summary does not say.
+    </li>
+    <li>
+      <strong>Claim scope:</strong> The conclusion that Model X is "appropriate for deployment" goes
+      beyond what the evidence shows. The evidence is 78% task completion on 50 benchmark tasks at an
+      unspecified compute configuration, with no characterisation of failures.
+    </li>
+  </ol>
+  <p>
+    A more defensible conclusion from the same evidence: "Model X completed 78% of tasks in the
+    TravelDesk benchmark (50 tasks, one trial each, compute budget unspecified). Before deployment,
+    further evaluation should characterise the remaining 22% of failures, test across compute
+    configurations, and assess behaviour on adversarial or out-of-distribution inputs."
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="further-reading">Further reading</h2>
+  <ul>
+    <li><a href="https://inspect.aisi.org.uk/">AISI Inspect framework documentation</a></li>
+    <li><a href="https://www.aisi.gov.uk/blog/more-compute-more-capability-why-ai-agent-evals-need-to-account-for-test-time-compute">AISI on test-time compute and agent evals (July 2026)</a></li>
+    <li><a href="https://arxiv.org/abs/2608.14425">Pilditch, T.D. (2026). Knowing When to Stop: Bayesian Optimal Stopping for LLM Evaluations</a></li>
+  </ul>
+</section>

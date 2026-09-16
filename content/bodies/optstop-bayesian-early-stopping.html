@@ -1,0 +1,60 @@
+<nav class="article-toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  <ol>
+    <li><a href="#what-happened">What AISI released</a></li>
+    <li><a href="#how-it-works">How optstop works</a></li>
+    <li><a href="#limits">Limits</a></li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h2 id="what-happened">What AISI released</h2>
+  <p>
+    On 27 August 2026, the UK AI Security Institute published a
+    <a href="https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts">blog post</a>
+    introducing <code>optstop</code>, an open-source Python package that applies Bayesian optimal stopping
+    to LLM evaluations. The release accompanied a pre-print paper,
+    <a href="https://arxiv.org/abs/2608.14425"><em>Knowing When to Stop: Bayesian Optimal Stopping for LLM Evaluations</em></a>
+    by Toby D. Pilditch, submitted to arXiv on 14 August 2026, and a
+    <a href="https://github.com/UKGovernmentBEIS/optstop">public code repository</a>.
+  </p>
+  <p>
+    The tool integrates with AISI's <a href="https://inspect.aisi.org.uk/early-stopping.html">Inspect</a>
+    evaluation framework via a small configuration addition. The motivation is a practical resource
+    problem: fixed-budget evaluations spend compute on task-model combinations that are already well
+    characterised, while potentially exhausting resources before harder cases are resolved.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="how-it-works">How optstop works</h2>
+  <p>
+    <code>optstop</code> tracks a credible interval around the current performance estimate. It stops
+    sampling when the interval narrows to a pre-specified threshold (precision rule) or stops changing
+    (stabilisation rule). If neither rule is met, the evaluation runs to its full planned budget. A
+    conservatism mechanism requires additional data when estimated success rates fall below one percent,
+    guarding against premature stopping in rare-event scenarios. Every stopping decision is logged.
+  </p>
+  <p>
+    Across nine validation settings with 200 items and 10 epochs, the
+    <a href="https://arxiv.org/abs/2608.14425">paper</a> reports savings of 57% to 97% of planned trials,
+    with evaluation conclusions consistent with full runs. These are reported validation results,
+    not guaranteed savings for other evaluations. Adoption can be incremental: post-hoc (run on a completed
+    evaluation to verify agreement), shadow mode (record what stopping would have done without acting),
+    then live.
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="limits">Limits</h2>
+  <p>
+    Savings depend on evaluation design, model, and precision thresholds. The tool currently requires
+    randomised task ordering; non-randomised queues could bias early estimates. The rare-success safeguard
+    addresses one important edge case but does not eliminate all risks from adaptive stopping.
+  </p>
+  <ul>
+    <li>Blog: <a href="https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts">AISI, 27 August 2026</a></li>
+    <li>Paper: <a href="https://arxiv.org/abs/2608.14425">arXiv:2608.14425</a> (submitted 14 August 2026)</li>
+    <li>Code: <a href="https://github.com/UKGovernmentBEIS/optstop">github.com/UKGovernmentBEIS/optstop</a></li>
+  </ul>
+</section>

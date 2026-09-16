@@ -21,6 +21,7 @@ import sys
 import tempfile
 from typing import Any, Dict, List, Optional, Set, Tuple
 from urllib.parse import urlparse
+from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 
 
@@ -40,10 +41,12 @@ class HtmlStructureExtractor(HTMLParser):
         self.has_site_nav: bool = False
         self.has_site_footer: bool = False
         self.brand_uses_mark_svg: bool = False
-        self.hero_uses_audit_lens: bool = False
         self.json_ld_scripts: List[str] = []
         self.has_h1: bool = False
         self.h1_count: int = 0
+        self.title: str = ""
+        self.canonicals: List[str] = []
+        self._in_title: bool = False
 
         # Resource page specific elements
         self.has_resource_controls: bool = False
@@ -59,12 +62,15 @@ class HtmlStructureExtractor(HTMLParser):
         self._in_script_json_ld: bool = False
         self._current_script_buffer: List[str] = []
         self._in_brand: bool = False
-        self._in_hero_visual: bool = False
 
     def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
         attr_dict = {k.lower(): (v or "") for k, v in attrs}
         elem_id = attr_dict.get("id")
         elem_classes = attr_dict.get("class", "").split()
+        if tag == "title":
+            self._in_title = True
+        if tag == "link" and attr_dict.get("rel") == "canonical":
+            self.canonicals.append(attr_dict.get("href", ""))
 
         if elem_id:
             self.element_ids.add(elem_id)
@@ -93,14 +99,6 @@ class HtmlStructureExtractor(HTMLParser):
             src = urlparse(attr_dict.get("src", "")).path
             if src.endswith("mark.svg") or src == "/assets/mark.svg":
                 self.brand_uses_mark_svg = True
-
-        # Hero visual tracking
-        if "hero-visual" in elem_classes:
-            self._in_hero_visual = True
-        if self._in_hero_visual and tag == "img":
-            src = urlparse(attr_dict.get("src", "")).path
-            if src.endswith("audit-lens.svg") or src == "/assets/audit-lens.svg":
-                self.hero_uses_audit_lens = True
 
         # Headings
         if tag == "h1":
@@ -151,16 +149,18 @@ class HtmlStructureExtractor(HTMLParser):
             self.resource_cards.append(attr_dict)
 
     def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
         if tag == "a" and self._in_brand:
             self._in_brand = False
-        if tag == "div" and self._in_hero_visual:
-            self._in_hero_visual = False
         if tag == "script" and self._in_script_json_ld:
             self._in_script_json_ld = False
             self.json_ld_scripts.append("".join(self._current_script_buffer))
             self._current_script_buffer = []
 
     def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title += data
         if self._in_script_json_ld:
             self._current_script_buffer.append(data)
 
@@ -223,8 +223,8 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
         if field not in site_data:
             report.error(f"site.json missing required property '{field}'")
 
-    if site_data.get("tagline") != "Research, tools, and community for AI auditing.":
-        report.error(f"site.json tagline must match exact contract: 'Research, tools, and community for AI auditing.', got: '{site_data.get('tagline')}'")
+    if site_data.get("tagline") != "News, analysis, and learning about AI auditing.":
+        report.error(f"site.json tagline must match exact contract: 'News, analysis, and learning about AI auditing.', got: '{site_data.get('tagline')}'")
 
     validate_base_url_origin(site_data.get("base_url", ""), report)
 
@@ -246,7 +246,7 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
         return
 
     seen_slugs = set()
-    valid_kinds = {"introduction", "guide", "release", "about"}
+    valid_kinds = {"introduction", "guide", "release", "about", "news", "feature"}
     for idx, page in enumerate(pages):
         report.check()
         slug = page.get("slug")
@@ -265,8 +265,16 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
         kind = page.get("kind")
         if kind not in valid_kinds:
             report.error(f"Page '{slug}' kind must be one of {valid_kinds}, got '{kind}'")
+        prefix = {"news": "news/", "feature": "features/", "guide": "guides/", "release": "updates/"}.get(kind)
+        if prefix and not slug.startswith(prefix):
+            report.error(f"Page '{slug}' of kind '{kind}' must live under '{prefix}'")
 
         # Validate dates
+        if kind in {"news", "release"}:
+            try:
+                datetime.strptime(page.get("event_date", ""), "%Y-%m-%d")
+            except (ValueError, TypeError):
+                report.error(f"Page '{slug}' requires a valid event_date in YYYY-MM-DD format")
         pub = page.get("published")
         if not pub:
             report.error(f"Page '{slug}' missing 'published' date")
@@ -366,6 +374,9 @@ def validate_output_directory(
         "updates/index.html",
         "updates/catchbench-0-1-2/index.html",
         "about/index.html",
+        "latest/index.html",
+        "features/index.html",
+        "learn/index.html",
         "404.html",
     ]
 
@@ -513,11 +524,6 @@ def validate_output_directory(
         if not ext.brand_uses_mark_svg:
             report.error(f"{rel_path}: .brand must use /assets/mark.svg")
 
-        # On index.html, verify hero uses /assets/audit-lens.svg
-        if rel_path == "index.html":
-            if not ext.hero_uses_audit_lens:
-                report.error("index.html: .hero-visual must reference /assets/audit-lens.svg")
-
         # Check required metadata
         meta_names = {m.get("name"): m.get("content") for m in ext.meta_tags if "name" in m}
         meta_props = {m.get("property"): m.get("content") for m in ext.meta_tags if "property" in m}
@@ -553,13 +559,13 @@ def validate_output_directory(
             if not has_website:
                 report.error("index.html must include JSON-LD WebSite structured data")
 
-        if "guides/" in rel_path or "updates/" in rel_path:
-            if rel_path not in ("guides/index.html", "updates/index.html"):
+        if "guides/" in rel_path or "updates/" in rel_path or "news/" in rel_path or "features/" in rel_path:
+            if rel_path not in ("guides/index.html", "updates/index.html", "features/index.html"):
                 has_article = False
                 for s in ext.json_ld_scripts:
                     try:
                         data = json.loads(s)
-                        if data.get("@type") == "Article":
+                        if data.get("@type") in ("Article", "NewsArticle"):
                             has_article = True
                     except Exception:
                         pass
@@ -731,6 +737,114 @@ def run_output_safety_tests(repo_root: Path, content_dir: Path, assets_dir: Path
             report.error("Safety FAIL: Second build failed to regenerate valid index.html")
 
 
+def validate_search_metadata(output_dir: Path, content_dir: Path, base_url: str, report: ValidationReport) -> None:
+    """Catch indexing regressions and disagreement between editorial and search metadata."""
+    base_url = base_url.rstrip("/")
+    robots = RobotFileParser()
+    robots_path = output_dir / "robots.txt"
+    if not robots_path.exists():
+        report.error("Search checks require robots.txt")
+        return
+    robots.parse(robots_path.read_text(encoding="utf-8").splitlines())
+    report.check()
+    if base_url + "/sitemap.xml" not in (robots.site_maps() or []):
+        report.error("robots.txt must advertise the canonical sitemap")
+
+    titles: Dict[str, str] = {}
+    descriptions: Dict[str, str] = {}
+    for path in output_dir.rglob("*.html"):
+        rel = path.relative_to(output_dir).as_posix()
+        route = "/" if rel == "index.html" else "/" + rel.removesuffix("index.html")
+        ext = HtmlStructureExtractor()
+        ext.feed(path.read_text(encoding="utf-8"))
+        meta = {m.get("name"): m.get("content", "") for m in ext.meta_tags}
+        report.check()
+        if ext.canonicals != [base_url + route]:
+            report.error(f"{rel}: Expected one self-referencing canonical URL")
+        for label, value, seen in (("title", ext.title.strip(), titles), ("description", meta.get("description", "").strip(), descriptions)):
+            report.check()
+            if not value or value in seen:
+                report.error(f"{rel}: Missing or duplicate {label}; previous={seen.get(value)}")
+            seen[value] = rel
+        report.check()
+        directives = {s.strip() for s in meta.get("robots", "").lower().split(",")}
+        if rel == "404.html":
+            if "noindex" not in directives:
+                report.error("404.html: Must remain noindex")
+            continue
+        if {"noindex", "nofollow", "none", "nosnippet"} & directives:
+            report.error(f"{rel}: Search discovery or snippets are blocked")
+        for bot in ("Googlebot", "Bingbot", "OAI-SearchBot"):
+            report.check()
+            if not robots.can_fetch(bot, base_url + route):
+                report.error(f"{rel}: robots.txt blocks {bot}")
+
+    registry = content_dir / "pages.json"
+    if not registry.exists():
+        return
+    pages = json.loads(registry.read_text(encoding="utf-8"))
+    for page in pages:
+        if any(not page.get(key) for key in ("slug", "kind", "title", "summary", "published", "author")):
+            report.error(f"Search metadata requires a complete article record: {page.get('slug', 'unknown')}")
+            continue
+        path = output_dir / page["slug"] / "index.html"
+        if not path.exists():
+            continue  # The output-route check reports missing files.
+        text = path.read_text(encoding="utf-8")
+        ext = HtmlStructureExtractor()
+        ext.feed(text)
+        try:
+            data = [json.loads(s) for s in ext.json_ld_scripts]
+        except ValueError:
+            continue  # The JSON-LD parser check reports malformed scripts.
+        url = base_url + "/" + page["slug"] + "/"
+        breadcrumbs = [d for d in data if d.get("@type") == "BreadcrumbList"]
+        report.check()
+        if len(breadcrumbs) != 1:
+            report.error(f"{page['slug']}: Expected one BreadcrumbList")
+        else:
+            trail = breadcrumbs[0].get("itemListElement", [])
+            nav = re.search(r'<nav class="breadcrumbs"[^>]*>(.*?)</nav>', text, re.S)
+            if len(trail) < 2 or trail[-1].get("item") != url or not nav:
+                report.error(f"{page['slug']}: Breadcrumb trail must be visible and end at the canonical page")
+            for i, item in enumerate(trail, 1):
+                report.check()
+                if item.get("position") != i or not item.get("name"):
+                    report.error(f"{page['slug']}: Invalid breadcrumb position or label")
+                if nav and html.escape(item.get("name", ""), quote=True) not in nav.group(1):
+                    report.error(f"{page['slug']}: Breadcrumb schema label is absent from visible trail")
+                if i < len(trail) and nav and f'href="{urlparse(item.get("item", "")).path}"' not in nav.group(1):
+                    report.error(f"{page['slug']}: Breadcrumb must link locally to its parent")
+        if page["kind"] == "about":
+            continue
+        articles = [d for d in data if d.get("@type") in {"Article", "NewsArticle"}]
+        report.check()
+        if len(articles) != 1:
+            report.error(f"{page['slug']}: Expected one article schema")
+            continue
+        article = articles[0]
+        expected = {
+            "@type": "NewsArticle" if page["kind"] == "news" else "Article",
+            "url": url, "mainEntityOfPage": url, "headline": page["title"],
+            "description": page["summary"], "datePublished": page["published"],
+            "dateModified": page.get("updated") or page["published"],
+            "citation": page.get("source_urls", []),
+        }
+        for key, value in expected.items():
+            report.check()
+            if article.get(key) != value:
+                report.error(f"{page['slug']}: Article {key} disagrees with editorial record")
+        for role in ("author", "publisher"):
+            report.check()
+            identity = article.get(role, {})
+            if identity.get("name") != page["author"] or identity.get("url") != base_url + "/about/":
+                report.error(f"{page['slug']}: {role} must identify the visible editorial byline")
+        for related in page.get("related_slugs", []):
+            report.check()
+            if f"/{related}/" not in {href for href, _ in ext.links}:
+                report.error(f"{page['slug']}: Related reading link missing for {related}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Audit Commons output & content verification suite")
     parser.add_argument("--content-dir", default="content", help="Path to source content directory")
@@ -780,6 +894,7 @@ def main() -> int:
     # 3. Output directory checks
     print("Checking output files, links, fragments, accessibility, and sitemap...")
     validate_output_directory(output_dir, base_url, report)
+    validate_search_metadata(output_dir, content_dir, base_url, report)
 
     # Print summary
     print()

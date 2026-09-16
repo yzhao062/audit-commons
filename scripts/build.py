@@ -26,12 +26,23 @@ MARKER_FILENAME = ".generator-owned"
 MARKER_SIGNATURE = "Audit Commons Static Site Generator Ownership Marker\nversion=1\n"
 
 REQUIRED_NAV_ITEMS = [
-    ("Start here", "/start-here/"),
+    ("Latest", "/latest/"),
+    ("Features", "/features/"),
+    ("Learn", "/learn/"),
     ("Resources", "/resources/"),
-    ("Guides", "/guides/"),
-    ("Updates", "/updates/"),
     ("About", "/about/"),
 ]
+
+# Slug prefixes that activate each nav item for sub-pages.
+# Exact match takes priority; this map handles children of each section.
+NAV_SLUG_PREFIXES: dict[str, list[str]] = {
+    "latest":    ["latest", "news/", "updates/"],
+    "features":  ["features/"],
+    "learn":     ["learn", "guides/", "start-here"],
+    "resources": ["resources"],
+    "about":     ["about"],
+}
+
 
 
 def escape(val: Any) -> str:
@@ -51,6 +62,20 @@ def parse_date(date_str: str) -> datetime:
         return datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError as e:
         raise ValueError(f"Invalid calendar date '{date_str}': {e}") from e
+
+
+def display_date(date_str: str) -> str:
+    date = parse_date(date_str)
+    return f"{date.day} {date.strftime('%b')} {date.year}"
+
+
+def publication_identity(site_data: Dict[str, Any], base_url: str) -> Dict[str, Any]:
+    return {
+        "@type": "Organization",
+        "@id": canonical_for(base_url, "about") + "#publication",
+        "name": site_data.get("name", "Audit Commons"),
+        "url": canonical_for(base_url, "about"),
+    }
 
 
 def validate_base_url(url_str: Optional[str]) -> str:
@@ -252,18 +277,30 @@ def render_html_page(
     social_png_url = f"{base_url.rstrip('/')}/assets/social-preview.png"
 
     # Robots tag: 404 must not be indexed
-    robots_tag = '<meta name="robots" content="noindex, nofollow">' if is_404 else '<meta name="robots" content="index, follow">'
+    robots_tag = '<meta name="robots" content="noindex, follow">' if is_404 else '<meta name="robots" content="index, follow, max-image-preview:large">'
 
-    # Navigation links
+    # Navigation links - use exact match + explicit prefix map to avoid substring collisions
     nav_links_html = []
     clean_current = current_slug.strip("/")
     for label, target in REQUIRED_NAV_ITEMS:
         target_slug = target.strip("/")
-        is_active = (clean_current == target_slug) or (target_slug and clean_current.startswith(target_slug))
+        # Exact match
+        is_active = (clean_current == target_slug)
+        if not is_active:
+            # Check via prefix map
+            prefixes = NAV_SLUG_PREFIXES.get(target_slug, [])
+            for pfx in prefixes:
+                if pfx.endswith("/"):
+                    is_active = clean_current.startswith(pfx) or clean_current + "/" == pfx
+                else:
+                    is_active = (clean_current == pfx) or clean_current.startswith(pfx + "/")
+                if is_active:
+                    break
         current_value = "page" if clean_current == target_slug else "true"
         active_attr = f' class="active" aria-current="{current_value}"' if is_active else ""
         nav_links_html.append(f'<a href="{target}"{active_attr}>{escape(label)}</a>')
     nav_html = "\n        ".join(nav_links_html)
+
 
     # JSON-LD Structured Data with script breakout protection
     json_ld_html = ""
@@ -288,6 +325,9 @@ def render_html_page(
   <meta property="og:description" content="{escaped_desc}">
   <meta property="og:url" content="{escaped_canonical}">
   <meta property="og:image" content="{social_png_url}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{site_name}: {site_tagline}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -312,7 +352,7 @@ def render_html_page(
         <img src="/assets/mark.svg?v=graphite" alt="" width="38" height="38" class="brand-icon">
         <span class="brand-text">
           <span class="brand-title">Audit Commons</span>
-          <span class="brand-subtitle">Research &amp; Verification</span>
+          <span class="brand-subtitle">AI Auditing</span>
         </span>
       </a>
       <nav class="site-nav" aria-label="Main Navigation">
@@ -334,12 +374,12 @@ def render_html_page(
       </div>
 
       <div class="footer-col footer-links">
-        <h2>Portal Routes</h2>
+        <h2>Editorial Sections</h2>
         <ul>
-          <li><a href="/start-here/">Start here</a></li>
-          <li><a href="/resources/">Auditing Resources</a></li>
-          <li><a href="/guides/">Practical Guides</a></li>
-          <li><a href="/updates/">Field Updates</a></li>
+          <li><a href="/latest/">Latest additions</a></li>
+          <li><a href="/features/">Features</a></li>
+          <li><a href="/learn/">Learn</a></li>
+          <li><a href="/resources/">Resources</a></li>
           <li><a href="/about/">About</a></li>
         </ul>
       </div>
@@ -350,6 +390,7 @@ def render_html_page(
           <li><a href="/about/#contribute">Contribution Guide</a></li>
           <li><a href="/about/#corrections">Submit Corrections</a></li>
           <li><a href="/feed.xml">Atom Feed</a></li>
+          <li><a href="https://github.com/yzhao062/audit-commons">Website source</a></li>
           <li><a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a></li>
         </ul>
       </div>
@@ -362,198 +403,175 @@ def render_html_page(
 </html>"""
 
 
+def _kind_label(kind: str) -> str:
+    """Human-readable label for an article kind."""
+    return {
+        "introduction": "Orientation",
+        "guide": "Guide",
+        "release": "Release",
+        "news": "News",
+        "feature": "Feature",
+        "about": "About",
+    }.get(kind, "Article")
+
+
 def build_homepage(
     site_data: Dict[str, Any],
     pages: List[Dict[str, Any]],
     resources: List[Dict[str, Any]],
     base_url: str,
 ) -> str:
-    """Generates the rich homepage fulfilling all contract requirements."""
-    site_desc = escape(site_data.get("description", "An open field portal providing research, evidence worksheets, and curated tooling for auditing autonomous AI agents and systems."))
+    """Build editorial publication front page."""
+    description = site_data.get("description", "Editorial coverage of AI auditing practice and research.")
 
-    # Find featured practical guide (guides/audit-an-agent-action or first guide)
-    featured_guide = next((p for p in pages if p.get("slug") == "guides/audit-an-agent-action"), None)
-    if not featured_guide:
-        featured_guide = next((p for p in pages if p.get("kind") == "guide"), None)
+    editorial_kinds_priority = ["feature", "news", "guide", "introduction", "release"]
+    editorial_pages = [p for p in pages if p.get("kind") not in ("about",)]
+    lead_page = None
+    for kind in editorial_kinds_priority:
+        candidates = sorted(
+            [p for p in editorial_pages if p.get("kind") == kind],
+            key=lambda p: p.get("published", ""),
+            reverse=True,
+        )
+        if candidates:
+            lead_page = candidates[0]
+            break
 
-    # Find latest update (updates/catchbench-0-1-2 or first release)
-    latest_update = next((p for p in pages if p.get("slug") == "updates/catchbench-0-1-2"), None)
-    if not latest_update:
-        latest_update = next((p for p in pages if p.get("kind") == "release"), None)
-
-    # Curated resource preview (up to 4-6 resources)
-    preview_resources = resources[:3]
-
-    # Build Featured Guide Card
-    featured_guide_html = ""
-    if featured_guide:
-        fg_slug = featured_guide["slug"]
-        fg_title = escape(featured_guide["title"])
-        fg_summary = escape(featured_guide["summary"])
-        fg_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in featured_guide.get("topics", []))
-        featured_guide_html = f"""
-    <section class="section featured-guide-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Methodology</span>
-          <h2>Featured Practical Guide</h2>
-        </div>
-        <article class="article-card featured-guide-card">
-          <div class="article-card-header">
-            <span class="tag tag-featured">Practical Guide</span>
-            <h3><a href="/{fg_slug}/">{fg_title}</a></h3>
-          </div>
-          <p class="article-summary">{fg_summary}</p>
-          <div class="article-card-meta">
-            <div class="tags">{fg_topics}</div>
-            <a href="/{fg_slug}/" class="button">Read practical worksheet &rarr;</a>
-          </div>
-        </article>
+    lead_html = ""
+    if lead_page:
+        lp = lead_page
+        lp_kind = lp.get("kind", "article")
+        lp_label = _kind_label(lp_kind)
+        lp_event_date = lp.get("event_date", "")
+        lp_pub = lp.get("published", "")
+        event_date_html = ""
+        if lp_event_date and lp_event_date != lp_pub:
+            event_date_html = f'<span class="pub-lead-event-date">Announced <time datetime="{escape(lp_event_date)}">{display_date(lp_event_date)}</time></span>'
+        lead_html = f"""
+    <section class="pub-lead-section" aria-labelledby="pub-lead-heading">
+      <div class="pub-lead-meta">
+        <span class="pub-lead-label">{escape(lp_label)}</span>
+        {event_date_html}
+        <span class="pub-lead-date">Published <time datetime="{escape(lp_pub)}">{display_date(lp_pub)}</time></span>
       </div>
+      <h1 class="pub-lead-headline" id="pub-lead-heading">
+        <a href="{route_href(lp['slug'])}">{escape(lp['title'])}</a>
+      </h1>
+      <p class="pub-lead-summary">{escape(lp.get('summary', ''))}</p>
+      <p class="pub-lead-byline">By {escape(lp.get('author', 'Audit Commons'))}</p>
+      <a class="pub-section-more" href="{route_href(lp['slug'])}">Read article &rarr;</a>
     </section>"""
 
-    # Build Selected Resources Preview
-    resource_cards_html = []
-    for r in preview_resources:
-        r_name = escape(r.get("name", ""))
-        r_url = escape(r.get("url", "#"))
-        r_cat = escape(r.get("category", ""))
-        r_rel = escape(r.get("relationship", ""))
-        r_sum = escape(r.get("summary", ""))
-        r_owner = escape(r.get("owner", ""))
-        card = f"""
-          <article class="resource-card preview-card">
-            <div class="resource-card-header">
-              <div class="tags">
-                <span class="tag tag-category" data-category="{r_cat}">{r_cat}</span>
-                <span class="tag tag-relationship">{r_rel}</span>
-              </div>
-              <h3><a href="{r_url}">{r_name} <span class="external-arrow" aria-hidden="true">&nearr;</span></a></h3>
-            </div>
-            <p class="resource-summary">{r_sum}</p>
-            <div class="resource-meta">
-              <span class="resource-owner">Owner: {r_owner}</span>
-            </div>
-          </article>"""
-        resource_cards_html.append(card)
-    resources_grid_html = "\n".join(resource_cards_html)
+    # Compact news list (news + release, sorted by published desc, exclude lead)
+    news_kinds = {"news", "release"}
+    news_items = sorted(
+        [p for p in pages if p.get("kind") in news_kinds and p is not lead_page],
+        key=lambda p: p.get("published", ""),
+        reverse=True,
+    )[:5]
+    news_rows = ""
+    for item in news_items:
+        item_label = _kind_label(item.get("kind", ""))
+        item_event = item.get("event_date", "")
+        item_pub = item.get("published", "")
+        event_bit = ""
+        if item_event and item_event != item_pub:
+            event_bit = f'<span class="news-list-event">Announced <time datetime="{escape(item_event)}">{display_date(item_event)}</time></span> '
+        disclosure_bit = f'<p class="news-list-disclosure">{escape(item.get("affiliation_disclosure", ""))}</p>' if item.get("kind") == "release" else ""
+        news_rows += f"""
+        <li class="news-list-item">
+          <div class="news-list-meta"><span class="news-list-label">{escape(item_label)}</span>
+          <span class="news-list-date">Published <time datetime="{escape(item_pub)}">{display_date(item_pub)}</time></span></div>
+          <a class="news-list-title" href="{route_href(item['slug'])}">{escape(item['title'])}</a>
+          {event_bit}{disclosure_bit}
+        </li>"""
 
-    # Build Latest Update Preview
-    latest_update_html = ""
-    if latest_update:
-        up_slug = latest_update["slug"]
-        up_title = escape(latest_update["title"])
-        up_summary = escape(latest_update["summary"])
-        up_date = escape(latest_update.get("published", ""))
-        latest_update_html = f"""
-    <section class="section latest-update-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Dispatches</span>
-          <h2>Latest Field Update</h2>
-        </div>
-        <article class="article-card update-preview-card">
-          <div class="article-card-header">
-            <time class="update-date" datetime="{up_date}">{up_date}</time>
-            <h3><a href="/{up_slug}/">{up_title}</a></h3>
-          </div>
-          <p class="article-summary">{up_summary}</p>
-          <div class="article-card-footer">
-            <a href="/{up_slug}/" class="button button-secondary">Read release note &rarr;</a>
-            <a href="/updates/" class="all-updates-link">All updates archive &rarr;</a>
-          </div>
-        </article>
+    news_section_html = ""
+    if news_rows:
+        news_section_html = f"""
+    <section class="pub-news-section" aria-labelledby="news-list-heading">
+      <div class="pub-section-bar">
+        <h2 id="news-list-heading" class="pub-section-title">News &amp; Releases</h2>
+        <a class="pub-section-more" href="/latest/">See all &rarr;</a>
       </div>
+      <ul class="news-list">{news_rows}
+      </ul>
+    </section>"""
+
+    # Learning articles (introduction + guide, not the lead)
+    learn_items = [p for p in pages if p.get("kind") in ("introduction", "guide") and p is not lead_page]
+    learn_entries = ""
+    for p in learn_items:
+        plabel = _kind_label(p.get("kind", ""))
+        learn_entries += f"""
+        <article class="reading-entry">
+          <span class="eyebrow">{escape(plabel)}</span>
+          <h3><a href="{route_href(p['slug'])}">{escape(p['title'])}</a></h3>
+          <p>{escape(p.get('summary', ''))}</p>
+        </article>"""
+
+    learn_html = ""
+    if learn_entries:
+        learn_html = f"""
+    <section class="pub-learn-section" aria-labelledby="learn-heading">
+      <div class="pub-section-bar">
+        <h2 id="learn-heading" class="pub-section-title">Learn</h2>
+        <a class="pub-section-more" href="/learn/">All guides &rarr;</a>
+      </div>
+      <div class="pub-learning-grid">{learn_entries}</div>
+    </section>"""
+
+    # Selected resources (compact, top 6)
+    res_rows = ""
+    for res in resources[:6]:
+        res_rows += f"""
+        <li class="home-res-item">
+          <a href="{escape(res['url'])}" class="home-res-link">{escape(res['name'])} <span aria-hidden="true">&nearr;</span></a>
+          <span class="home-res-cat">{escape(res.get('category', ''))}{' · Maintainer project' if res.get('relationship') == 'Maintainer project' else ''}</span>
+        </li>"""
+
+    res_section_html = f"""
+    <section class="pub-resources-section" aria-labelledby="res-heading">
+      <div class="pub-section-bar">
+        <h2 id="res-heading" class="pub-section-title">Selected Resources</h2>
+        <a class="pub-section-more" href="/resources/">Full catalog &rarr;</a>
+      </div>
+      <ul class="home-res-list">{res_rows}
+      </ul>
     </section>"""
 
     body_content = f"""
-    <section class="hero">
-      <div class="container hero-container">
-        <div class="hero-copy">
-          <span class="eyebrow">Field Portal for Auditable AI</span>
-          <h1 class="hero-title">Claims need evidence.<br>AI is no exception.</h1>
-          <p class="hero-lead">{site_desc}</p>
-          <div class="hero-actions">
-            <a href="/start-here/" class="button">Start here</a>
-            <a href="/resources/" class="button button-secondary">Browse resources</a>
-          </div>
+    <div class="container pub-home">
+      <header class="pub-masthead">
+        {'<p class="pub-site-name">AI auditing</p>' if lead_page else '<h1 class="pub-site-name">Audit Commons</h1>'}
+        <p class="pub-scope">News, analysis &amp; learning</p>
+      </header>
+
+      <div class="pub-front-grid">
+        <div class="pub-front-main">
+          {lead_html}
         </div>
-        <div class="hero-visual">
-          <img src="/assets/audit-lens.svg?v=graphite" alt="Auditing Workflow: Claim, Evidence, and Finding" width="520" height="420" class="hero-schematic">
+        <div class="pub-front-sidebar">
+          {news_section_html}
         </div>
       </div>
-    </section>
-
-    <section class="section routes-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Orientation</span>
-          <h2>Start with your task</h2>
-          <p class="section-lead">Three pathways designed for researchers, evaluators, and system auditors.</p>
-        </div>
-        <div class="routes">
-          <article class="route-card">
-            <span class="route-number">01</span>
-            <h3><a href="/start-here/">Understand the field</a></h3>
-            <p>Explore how evaluation, monitoring, and auditing answer different questions and work together.</p>
-            <a href="/start-here/" class="button button-secondary">Start here &rarr;</a>
-          </article>
-
-          <article class="route-card">
-            <span class="route-number">02</span>
-            <h3><a href="/guides/audit-an-agent-action/">Audit an Agent Action</a></h3>
-            <p>Use a practical worksheet to connect an action request, its authorization, and a service receipt to a bounded finding.</p>
-            <a href="/guides/audit-an-agent-action/" class="button button-secondary">View practical guide &rarr;</a>
-          </article>
-
-          <article class="route-card">
-            <span class="route-number">03</span>
-            <h3><a href="/resources/">Explore Toolchains</a></h3>
-            <p>Search and filter curated primary-source benchmarks, evaluation harnesses, security sandboxes, and auditable governance specifications.</p>
-            <a href="/resources/" class="button button-secondary">Explore resources &rarr;</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    {featured_guide_html}
-
-    <section class="section resources-preview-section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Curated Directory</span>
-          <h2>Selected Resources &amp; Toolchains</h2>
-          <p class="section-lead">Selected tools and references with maintainer disclosures. Sources are listed in the full directory.</p>
-        </div>
-        <div class="resource-grid">
-          {resources_grid_html}
-        </div>
-        <div class="section-footer">
-          <a href="/resources/" class="button button-secondary">View full directory ({len(resources)} resources) &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    {latest_update_html}
+      {learn_html}
+      {res_section_html}
+    </div>
 """
-
     json_ld = {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": canonical_for(base_url, "") + "#website",
+        "inLanguage": "en",
         "name": site_data.get("name", "Audit Commons"),
-        "headline": "Audit Commons",
         "url": f"{base_url.rstrip('/')}/",
-        "description": site_desc,
-        "publisher": {
-            "@type": "Organization",
-            "name": site_data.get("name", "Audit Commons"),
-            "url": f"{base_url.rstrip('/')}/",
-        },
+        "description": description,
+        "publisher": publication_identity(site_data, base_url),
     }
-
     return render_html_page(
-        title=site_data.get("name", "Audit Commons"),
-        description=site_desc,
+        title="AI Auditing News, Guides & Resources",
+        description=description,
         canonical_url=canonical_for(base_url, ""),
         base_url=base_url,
         site_data=site_data,
@@ -562,6 +580,7 @@ def build_homepage(
         og_type="website",
         json_ld=json_ld,
     )
+
 
 
 def build_resources_page(
@@ -671,57 +690,11 @@ def build_guides_index(
     pages: List[Dict[str, Any]],
     base_url: str,
 ) -> str:
-    """Generates the guides index page."""
-    guides = [p for p in pages if p.get("kind") == "guide" or p.get("slug", "").startswith("guides/")]
-
-    cards_html = []
-    for g in guides:
-        g_slug = g["slug"]
-        g_title = escape(g["title"])
-        g_summary = escape(g["summary"])
-        g_date = escape(g.get("published", ""))
-        g_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in g.get("topics", []))
-
-        card = f"""
-        <article class="article-card">
-          <div class="article-card-header">
-            <span class="eyebrow">Practical Guide</span>
-            <h2><a href="/{g_slug}/">{g_title}</a></h2>
-          </div>
-          <p class="article-summary">{g_summary}</p>
-          <div class="article-card-meta">
-            <span class="date">Published: <time datetime="{g_date}">{g_date}</time></span>
-            <div class="tags">{g_topics}</div>
-          </div>
-          <a href="/{g_slug}/" class="button button-secondary">Read practical guide &rarr;</a>
-        </article>"""
-        cards_html.append(card)
-
-    cards_markup = "\n".join(cards_html) if cards_html else '<p class="empty-state">No guides published yet.</p>'
-
-    body_content = f"""
-    <div class="container">
-      <header class="page-header">
-        <span class="eyebrow">Methodology</span>
-        <h1>Practical Auditing Guides</h1>
-        <p class="page-lead">Actionable procedures, empirical worksheets, and verification checklists for auditing AI agent behavior.</p>
-      </header>
-
-      <div class="article-list">
-        {cards_markup}
-      </div>
-    </div>
-"""
-
-    return render_html_page(
-        title="Practical Auditing Guides",
-        description="Actionable procedures, empirical worksheets, and verification checklists for auditing AI agent behavior.",
-        canonical_url=canonical_for(base_url, "guides"),
-        base_url=base_url,
-        site_data=site_data,
-        body_content=body_content,
-        current_slug="guides",
-        og_type="website",
+    return _render_article_list_index(
+        site_data=site_data, pages=[p for p in pages if p.get("kind") == "guide"],
+        base_url=base_url, title="Guides", slug="guides", eyebrow="Learn",
+        description="Practical guides to reading evidence and auditing AI systems.",
+        empty_msg="No guides published yet.",
     )
 
 
@@ -730,57 +703,133 @@ def build_updates_index(
     pages: List[Dict[str, Any]],
     base_url: str,
 ) -> str:
-    """Generates the updates index page."""
-    updates = [p for p in pages if p.get("kind") == "release" or p.get("slug", "").startswith("updates/")]
+    return _render_article_list_index(
+        site_data=site_data, pages=[p for p in pages if p.get("kind") == "release"],
+        base_url=base_url, title="Releases", slug="updates", eyebrow="Latest",
+        description="Release notes, sources, and maintainer disclosures.",
+        empty_msg="No release notes published yet.",
+    )
 
+
+def _render_article_list_index(
+    *,
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+    title: str,
+    description: str,
+    eyebrow: str,
+    slug: str,
+    empty_msg: str,
+) -> str:
+    """Generic list-style index page for editorial article sections."""
     cards_html = []
-    for u in updates:
-        u_slug = u["slug"]
-        u_title = escape(u["title"])
-        u_summary = escape(u["summary"])
-        u_date = escape(u.get("published", ""))
-        u_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in u.get("topics", []))
-
+    for p in sorted(pages, key=lambda x: x.get("published", ""), reverse=True):
+        p_slug = p["slug"]
+        p_title = escape(p["title"])
+        p_summary = escape(p.get("summary", ""))
+        p_pub = escape(p.get("published", ""))
+        p_event = p.get("event_date", "")
+        p_kind = _kind_label(p.get("kind", ""))
+        p_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in p.get("topics", []))
+        event_bit = ""
+        if p_event and p_event != p.get("published", ""):
+            event_bit = f'<span class="date">Announced <time datetime="{escape(p_event)}">{display_date(p_event)}</time></span> '
+        disclosure_bit = f'<p class="catalog-attribution">{escape(p["affiliation_disclosure"])}</p>' if p.get("kind") == "release" and p.get("affiliation_disclosure") else ""
         card = f"""
         <article class="article-card">
           <div class="article-card-header">
-            <span class="eyebrow">Field Update</span>
-            <h2><a href="/{u_slug}/">{u_title}</a></h2>
+            <span class="eyebrow">{escape(p_kind)}</span>
+            <h2><a href="/{p_slug}/">{p_title}</a></h2>
           </div>
-          <p class="article-summary">{u_summary}</p>
+          <p class="article-summary">{p_summary}</p>
           <div class="article-card-meta">
-            <span class="date">Published: <time datetime="{u_date}">{u_date}</time></span>
-            <div class="tags">{u_topics}</div>
+            <span class="date">Published <time datetime="{p_pub}">{display_date(p_pub)}</time></span>{event_bit}
+            <div class="tags">{p_topics}</div>
           </div>
-          <a href="/{u_slug}/" class="button button-secondary">Read full update &rarr;</a>
+          {disclosure_bit}
+          <a href="/{p_slug}/" class="article-read-link">Read article &rarr;</a>
         </article>"""
         cards_html.append(card)
-
-    cards_markup = "\n".join(cards_html) if cards_html else '<p class="empty-state">No updates published yet.</p>'
-
+    cards_markup = "\n".join(cards_html) if cards_html else f'<p class="empty-state">{empty_msg}</p>'
     body_content = f"""
     <div class="container">
       <header class="page-header">
-        <span class="eyebrow">Dispatches</span>
-        <h1>Field Updates &amp; Releases</h1>
-        <p class="page-lead">Notices, release evaluations, and primary-source progress updates across the AI auditing ecosystem.</p>
+        <span class="eyebrow">{escape(eyebrow)}</span>
+        <h1>{escape(title)}</h1>
+        <p class="page-lead">{escape(description)}</p>
       </header>
-
       <div class="article-list">
         {cards_markup}
       </div>
     </div>
 """
-
     return render_html_page(
-        title="Field Updates & Releases",
-        description="Announcements, toolchain updates, and releases from the AI auditing ecosystem.",
-        canonical_url=canonical_for(base_url, "updates"),
+        title=title,
+        description=description,
+        canonical_url=canonical_for(base_url, slug),
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug="updates",
+        current_slug=slug,
         og_type="website",
+    )
+
+
+def build_latest_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+) -> str:
+    """Generates /latest/ — all editorial additions sorted most-recent-first, excluding About."""
+    editorial = [p for p in pages if p.get("kind") not in ("about",)]
+    return _render_article_list_index(
+        site_data=site_data,
+        pages=editorial,
+        base_url=base_url,
+        title="Latest Additions",
+        description="All editorial content added to Audit Commons, most recently published first.",
+        eyebrow="Publication index",
+        slug="latest",
+        empty_msg="No articles published yet.",
+    )
+
+
+def build_features_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+) -> str:
+    """Generates /features/ — feature-kind articles."""
+    features = [p for p in pages if p.get("kind") == "feature"]
+    return _render_article_list_index(
+        site_data=site_data,
+        pages=features,
+        base_url=base_url,
+        title="Features",
+        description="In-depth editorial features on AI auditing research, practice, and policy.",
+        eyebrow="Features",
+        slug="features",
+        empty_msg="No features published yet.",
+    )
+
+
+def build_learn_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+) -> str:
+    """Generates /learn/ — introduction and guide kinds."""
+    learn = [p for p in pages if p.get("kind") in ("introduction", "guide")]
+    return _render_article_list_index(
+        site_data=site_data,
+        pages=learn,
+        base_url=base_url,
+        title="Learn",
+        description="Orienting introductions and practical auditing guides for working with AI systems.",
+        eyebrow="Learning resources",
+        slug="learn",
+        empty_msg="No guides published yet.",
     )
 
 
@@ -789,6 +838,7 @@ def build_article_page(
     site_data: Dict[str, Any],
     body_html: str,
     base_url: str,
+    related_pages: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
     """Generates an individual article / content page."""
     slug = page["slug"]
@@ -798,24 +848,57 @@ def build_article_page(
     published = page.get("published", "")
     updated = page.get("updated", "")
     kind = page.get("kind", "article")
+    event_date = page.get("event_date", "")
     topics = page.get("topics", [])
     source_urls = page.get("source_urls", [])
     disclosure = page.get("affiliation_disclosure", "")
 
     canonical_url = canonical_for(base_url, slug)
+    section_name, section_slug = {
+        "news": ("Latest", "latest"), "release": ("Latest", "latest"),
+        "feature": ("Features", "features"), "guide": ("Learn", "learn"),
+        "introduction": ("Learn", "learn"), "about": ("About", "about"),
+    }[kind]
+    trail = [("Home", canonical_for(base_url, ""))]
+    if section_slug != slug:
+        trail.append((section_name, canonical_for(base_url, section_slug)))
+    trail.append((title, canonical_url))
+    crumbs = "".join(
+        f'<li><a href="{escape(urlparse(url).path)}">{escape(label)}</a></li>'
+        if i < len(trail) - 1 else f'<li aria-current="page">{escape(label)}</li>'
+        for i, (label, url) in enumerate(trail)
+    )
+    breadcrumbs = f'<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>{crumbs}</ol></nav>'
+    breadcrumb_data = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": label, "item": url}
+            for i, (label, url) in enumerate(trail, 1)
+        ],
+    }
+    extra_meta = f'<script type="application/ld+json">{serialize_json_ld(breadcrumb_data)}</script>'
+    related_html = ""
+    if related_pages:
+        related_links = "".join(
+            f'<li><a href="{route_href(p["slug"])}">{escape(p["title"])}</a></li>'
+            for p in related_pages
+        )
+        related_html = f'<section class="related-reading" aria-labelledby="related-reading"><h2 id="related-reading">Continue reading</h2><ul>{related_links}</ul></section>'
 
     kind_labels = {
         "introduction": "Orientation",
         "guide": "Practical Guide",
         "release": "Field Update",
-        "about": "Portal Overview",
+        "news": "News",
+        "feature": "Feature",
+        "about": "About",
     }
     eyebrow_text = kind_labels.get(kind, "Article")
 
     topics_markup = "".join(f'<span class="tag">{escape(t)}</span>' for t in topics)
 
     sources_section = ""
-    source_heading = "Primary sources" if kind == "release" else "Related resources"
+    source_heading = "Primary sources" if kind in ("release", "news") else "Related resources"
     if source_urls:
         items = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
         sources_section = f"""
@@ -835,30 +918,48 @@ def build_article_page(
     updated_markup = ""
     if updated and updated != published:
         updated_markup = f"""
-        <dt>Last Reviewed</dt>
-        <dd><time datetime="{escape(updated)}">{escape(updated)}</time></dd>"""
+        <dt>Updated</dt>
+        <dd><time datetime="{escape(updated)}">{display_date(updated)}</time></dd>"""
+
+    # Event date: shown for news and release kinds, separate from published date
+    event_date_markup = ""
+    if event_date and event_date != published:
+        event_date_markup = f"""
+        <dt>Announced</dt>
+        <dd><time datetime="{escape(event_date)}">{display_date(event_date)}</time></dd>"""
+
+    header_meta = ""
+    if kind != "about":
+        event_text = f' &middot; Announced <time datetime="{escape(event_date)}">{display_date(event_date)}</time>' if event_date else ""
+        header_meta = f'<p class="article-header-meta">By <a href="/about/">{escape(author)}</a> &middot; Published <time datetime="{escape(published)}">{display_date(published)}</time>{event_text}</p>'
 
     body_content = f"""
     <div class="container">
       <header class="page-header">
+        {breadcrumbs}
         <span class="eyebrow">{escape(eyebrow_text)}</span>
         <h1>{escape(title)}</h1>
+        {header_meta}
         <p class="page-lead">{escape(summary)}</p>
       </header>
 
       <div class="article-layout">
         <article class="article-body">
           {body_html}
+          {related_html}
         </article>
 
         <aside class="article-aside">
           <div class="article-meta">
             <h3>Document Details</h3>
             <dl class="meta-list">
+              <dt>Type</dt>
+              <dd>{escape(eyebrow_text)}</dd>
               <dt>Editorial Identity</dt>
               <dd>{escape(author)}</dd>
               <dt>Published</dt>
-              <dd><time datetime="{escape(published)}">{escape(published)}</time></dd>
+              <dd><time datetime="{escape(published)}">{display_date(published)}</time></dd>
+              {event_date_markup}
               {updated_markup}
             </dl>
 
@@ -871,24 +972,24 @@ def build_article_page(
     </div>
 """
 
-    og_type = "article" if kind in ("guide", "release") else "website"
+    og_type = "article" if kind != "about" else "website"
     json_ld: Dict[str, Any]
-    if kind in ("guide", "release"):
+    if kind != "about":
         json_ld = {
             "@context": "https://schema.org",
-            "@type": "Article",
+            "@type": "NewsArticle" if kind == "news" else "Article",
+            "@id": canonical_url + "#article",
+            "url": canonical_url,
+            "inLanguage": "en",
+            "isPartOf": {"@id": canonical_for(base_url, "") + "#website"},
+            "articleSection": section_name,
+            "keywords": topics,
+            "citation": source_urls,
+            "isAccessibleForFree": True,
             "headline": title,
             "description": summary,
-            "author": {
-                "@type": "Organization",
-                "name": author,
-                "url": f"{base_url.rstrip('/')}/",
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": site_data.get("name", "Audit Commons"),
-                "url": f"{base_url.rstrip('/')}/",
-            },
+            "author": publication_identity(site_data, base_url),
+            "publisher": publication_identity(site_data, base_url),
             "datePublished": published,
             "dateModified": updated or published,
             "mainEntityOfPage": canonical_url,
@@ -896,7 +997,8 @@ def build_article_page(
     else:
         json_ld = {
             "@context": "https://schema.org",
-            "@type": "WebPage",
+            "@type": "AboutPage",
+            "mainEntity": publication_identity(site_data, base_url),
             "name": title,
             "description": summary,
             "url": canonical_url,
@@ -911,6 +1013,7 @@ def build_article_page(
         body_content=body_content,
         current_slug=slug,
         og_type=og_type,
+        extra_meta=extra_meta,
         json_ld=json_ld,
     )
 
@@ -922,17 +1025,17 @@ def build_404_page(site_data: Dict[str, Any], base_url: str) -> str:
       <header class="page-header error-header">
         <span class="eyebrow">Error 404</span>
         <h1>Page Not Found</h1>
-        <p class="page-lead">The requested route does not exist in the Audit Commons field portal.</p>
+        <p class="page-lead">We could not find this page on Audit Commons.</p>
       </header>
 
       <div class="empty-state error-content">
         <p>The page may have moved or the URL may contain a typographical error. You can navigate directly to one of the primary sections below:</p>
         <ul class="error-nav-list">
-          <li><a href="/">Portal Home</a>: Overview, schematic, and core tasks</li>
-          <li><a href="/start-here/">Start Here</a>: Distinctions between evaluation, monitoring, and auditing</li>
+          <li><a href="/">Home</a>: The publication front page</li>
+          <li><a href="/latest/">Latest</a>: Recent articles and news briefs</li>
+          <li><a href="/features/">Features</a>: Research explainers and analysis</li>
+          <li><a href="/learn/">Learn</a>: Introductions, guides, and worked examples</li>
           <li><a href="/resources/">Resources</a>: Searchable directory of benchmarks, sandboxes, and specifications</li>
-          <li><a href="/guides/">Practical Guides</a>: Step-by-step auditing worksheets and execution checks</li>
-          <li><a href="/updates/">Field Updates</a>: Sourced research and software updates</li>
           <li><a href="/about/">About</a>: Scope, maintainer disclosures, and contributions</li>
         </ul>
       </div>
@@ -941,7 +1044,7 @@ def build_404_page(site_data: Dict[str, Any], base_url: str) -> str:
 
     return render_html_page(
         title="Page Not Found",
-        description="The requested page could not be located in the Audit Commons portal.",
+        description="The requested page could not be found on Audit Commons.",
         canonical_url=canonical_for(base_url, "404.html"),
         base_url=base_url,
         site_data=site_data,
@@ -1013,7 +1116,7 @@ def build_atom_feed(
         sources_html = ""
         if source_urls:
             s_list = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
-            source_label = "Primary sources" if p.get("kind") == "release" else "Related resources"
+            source_label = "Primary sources" if p.get("kind") in ("release", "news") else "Related resources"
             sources_html = f"<p><strong>{source_label}:</strong></p><ul>{s_list}</ul>"
 
         entry_content = html.escape(f'<p>{summary}</p>{sources_html}<p><a href="{escape(item_canonical)}">Read complete article at Audit Commons</a></p>')
@@ -1127,7 +1230,7 @@ def build_site(
             raise ValueError(f"Page record #{idx} missing required 'slug'")
         if not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*(?:/[a-z0-9]+(?:-[a-z0-9]+)*)*", slug):
             raise ValueError(f"Invalid page slug: {slug!r}")
-        if slug.split('/')[0] in {'assets', 'resources', 'index', '404'} or slug in {'guides', 'updates'}:
+        if slug.split('/')[0] in {'assets', 'resources', 'index', '404'} or slug in {'guides', 'updates', 'latest', 'features', 'learn'}:
             raise ValueError(f"Page slug collides with a generated route: {slug}")
         if slug in seen_slugs:
             raise ValueError(f"Duplicate slug detected in pages.json: '{slug}'")
@@ -1137,15 +1240,33 @@ def build_site(
             if req_field not in page:
                 raise ValueError(f"Page '{slug}' missing required field '{req_field}'")
 
+        if page["kind"] not in {"introduction", "guide", "release", "about", "news", "feature"}:
+            raise ValueError(f"Page '{slug}' has unsupported kind: {page['kind']}")
+        prefix = {"news": "news/", "feature": "features/", "guide": "guides/", "release": "updates/"}.get(page["kind"])
+        if prefix and not slug.startswith(prefix):
+            raise ValueError(f"Page '{slug}' of kind '{page['kind']}' must live under '{prefix}'")
+
         parse_date(page["published"])
+        if page["kind"] in {"news", "release"} and not page.get("event_date"):
+            raise ValueError(f"News or release '{slug}' must identify its event_date")
         if page.get("updated"):
             parse_date(page["updated"])
+        if page.get("event_date"):
+            parse_date(page["event_date"])
 
         body_file = (content_dir / page["body_file"]).resolve()
         if not body_file.is_relative_to(content_dir.resolve()) or body_file.suffix != '.html':
             raise ValueError(f"Body path must be HTML inside content: {page['body_file']}")
         if not body_file.is_file():
             raise FileNotFoundError(f"Body file not found for page '{slug}': {body_file}")
+
+    page_lookup = {p["slug"]: p for p in pages}
+    for page in pages:
+        related = page.get("related_slugs", [])
+        if not isinstance(related, list) or any(not isinstance(slug, str) for slug in related):
+            raise ValueError(f"related_slugs must be a list of slugs: {page['slug']}")
+        if len(related) != len(set(related)) or any(slug not in page_lookup or slug == page["slug"] for slug in related):
+            raise ValueError(f"Unknown, duplicate or self-related article: {page['slug']}")
 
     # 4. Validate and load resources.json
     resources_file = content_dir / "resources.json"
@@ -1198,26 +1319,45 @@ def build_site(
     res_dir.mkdir(parents=True, exist_ok=True)
     (res_dir / "index.html").write_text(res_html, encoding="utf-8")
 
-    # 8. Render Guides Index (/guides/)
+    # 8. Render Guides Index (/guides/) — legacy URL kept
     guides_html = build_guides_index(site_data, pages, effective_base_url)
     guides_dir = output_dir / "guides"
     guides_dir.mkdir(parents=True, exist_ok=True)
     (guides_dir / "index.html").write_text(guides_html, encoding="utf-8")
 
-    # 9. Render Updates Index (/updates/)
+    # 9. Render Updates Index (/updates/) — legacy URL kept
     updates_html = build_updates_index(site_data, pages, effective_base_url)
     updates_dir = output_dir / "updates"
     updates_dir.mkdir(parents=True, exist_ok=True)
     (updates_dir / "index.html").write_text(updates_html, encoding="utf-8")
 
+    # 9b. New editorial section indices
+    latest_html = build_latest_index(site_data, pages, effective_base_url)
+    latest_dir = output_dir / "latest"
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    (latest_dir / "index.html").write_text(latest_html, encoding="utf-8")
+
+    features_html = build_features_index(site_data, pages, effective_base_url)
+    features_dir = output_dir / "features"
+    features_dir.mkdir(parents=True, exist_ok=True)
+    (features_dir / "index.html").write_text(features_html, encoding="utf-8")
+
+    learn_html_page = build_learn_index(site_data, pages, effective_base_url)
+    learn_dir = output_dir / "learn"
+    learn_dir.mkdir(parents=True, exist_ok=True)
+    (learn_dir / "index.html").write_text(learn_html_page, encoding="utf-8")
+
     # 10. Render Individual Content Pages from pages.json
-    all_sitemap_routes = ["", "resources", "guides", "updates"]
+    all_sitemap_routes = ["", "resources", "guides", "updates", "latest", "features", "learn"]
     for page in pages:
         slug = page["slug"].strip("/")
         body_file = content_dir / page["body_file"]
         body_html = body_file.read_text(encoding="utf-8")
 
-        article_html = build_article_page(page, site_data, body_html, effective_base_url)
+        article_html = build_article_page(
+            page, site_data, body_html, effective_base_url,
+            [page_lookup[slug] for slug in page.get("related_slugs", [])],
+        )
         target_dir = output_dir / slug
         target_dir.mkdir(parents=True, exist_ok=True)
         (target_dir / "index.html").write_text(article_html, encoding="utf-8")
@@ -1235,11 +1375,14 @@ def build_site(
     route_dates['resources'] = max((r['checked'] for r in resources), default=latest_date)
     route_dates['guides'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'guide' or p['slug'].startswith('guides/')), default=latest_date)
     route_dates['updates'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'release' or p['slug'].startswith('updates/')), default=latest_date)
+    route_dates['latest'] = latest_date
+    route_dates['features'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'feature' or p['slug'].startswith('features/')), default=latest_date)
+    route_dates['learn'] = max((article_dates[p['slug']] for p in pages if p.get('kind') in ('guide', 'introduction') or p['slug'].startswith('guides/')), default=latest_date)
     sitemap_xml = build_sitemap(route_dates, effective_base_url)
     (output_dir / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
 
-    # 13. Render Feed (/feed.xml) - Articles with kind release or guide
-    feed_pages = [p for p in pages if p.get("kind") in ("release", "guide")]
+    # 13. Render Feed (/feed.xml) - Editorial articles (all kinds except about); exclude About
+    feed_pages = sorted([p for p in pages if p.get("kind") != "about"], key=lambda p: p["published"], reverse=True)
     feed_xml = build_atom_feed(site_data, feed_pages, effective_base_url)
     (output_dir / "feed.xml").write_text(feed_xml, encoding="utf-8")
 
@@ -1248,6 +1391,8 @@ def build_site(
     (output_dir / "robots.txt").write_text(robots_txt, encoding="utf-8")
 
     print(f"Build complete. Emitted {len(all_sitemap_routes) + 1} routes and assets to {output_dir}")
+
+
 
 
 def main() -> int:

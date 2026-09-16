@@ -1,8 +1,10 @@
-# Audit Commons Field Portal
+# Audit Commons
 
-Research, tools, and community for AI auditing.
+News, analysis, and learning about AI auditing.
 
-Audit Commons introduces AI auditing through practical guides, selected resources, and sourced updates. The first edition focuses on AI agents.
+Audit Commons is an editorial publication with Latest, Features, Learn, Resources, and About sections. It publishes source-dated news briefs, research explainers, and practical guides, with an initial focus on AI agents. Existing article URLs remain canonical; the original guides and updates indexes remain available.
+
+The homepage leads with the newest feature, while its news column and Latest index are ordered by publication date. This keeps an explanatory article alongside current coverage; the lead is not labelled as the latest news. If no feature exists, the lead falls back to news, guides, introductions, then releases. Dates remain visible, and editors should refresh the featured coverage as the publication grows.
 
 ---
 
@@ -16,7 +18,7 @@ This repository uses a standard-library Python 3.12 static generator without ext
 
 ### 1. Build the Static Site
 
-Generate the static portal into `_site/`:
+Generate the static site into `_site/`:
 
 ```bash
 python scripts/build.py
@@ -40,6 +42,8 @@ Validate source schemas, date formats, internal hyperlinks, in-page fragment tar
 ```bash
 python scripts/check.py
 ```
+
+The same suite checks search metadata: unique titles and descriptions, canonical URLs, crawler access, article schema consistency, and visible breadcrumbs. Setup receipts and the ongoing measurement routine are in [Search visibility](docs/search-visibility.md).
 
 #### Verification Options
 
@@ -74,17 +78,21 @@ Visit `http://127.0.0.1:8765/`. All routes and content remain fully readable wit
 │   ├── site.js                 # Filter and search enhancement for /resources/
 │   ├── mark.svg                # Brand icon mark
 │   ├── favicon.svg             # Browser favicon
-│   ├── audit-lens.svg          # Auditing workflow schematic
+│   ├── audit-lens.svg          # Retained workflow illustration (not used on the homepage)
 │   ├── social-preview.svg      # Vector social preview card
 │   └── social-preview.png      # Raster card for link previews
 ├── content/                    # Structured editorial data & HTML bodies
 │   ├── site.json               # Site identity, maintainer info, and base URL
-│   ├── pages.json              # Route registry (start-here, guides, updates, about)
+│   ├── pages.json              # Article registry (news, features, guides, start-here, about)
 │   ├── resources.json          # Curated benchmarks, toolchains, and specifications
 │   └── bodies/                 # Editorial HTML fragments
 │       ├── start-here.html
 │       ├── audit-an-agent-action.html
 │       ├── catchbench-0-1-2.html
+│       ├── optstop-bayesian-early-stopping.html
+│       ├── nist-nccoe-agent-identity-concept-paper.html
+│       ├── benchmark-scores-and-agent-safety.html
+│       ├── how-to-read-an-agent-eval-report.html
 │       └── about.html
 ├── scripts/
 │   ├── build.py                # Standard-library static site generator

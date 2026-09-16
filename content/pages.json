@@ -5,7 +5,7 @@
     "summary": "An editorial introduction explaining how evaluation, monitoring, and auditing differ by the questions they ask and the evidence they require.",
     "author": "Audit Commons",
     "published": "2026-09-15",
-    "updated": "2026-09-15",
+    "updated": "2026-09-16",
     "kind": "introduction",
     "topics": [
       "Evaluation",
@@ -18,7 +18,8 @@
     ],
     "canonical_url": "https://auditcommons.org/start-here/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article presents an editorial framing rather than an official standard.",
-    "body_file": "bodies/start-here.html"
+    "body_file": "bodies/start-here.html",
+    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "guides/audit-an-agent-action"]
   },
   {
     "slug": "guides/audit-an-agent-action",
@@ -26,7 +27,7 @@
     "summary": "A practical worksheet and procedure for examining whether inspectable evidence supports a claim about an AI agent action.",
     "author": "Audit Commons",
     "published": "2026-09-15",
-    "updated": "2026-09-15",
+    "updated": "2026-09-16",
     "kind": "guide",
     "topics": [
       "Agent auditing",
@@ -39,7 +40,8 @@
     ],
     "canonical_url": "https://auditcommons.org/guides/audit-an-agent-action/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. The procedures described here reflect practical evidence gathering and do not constitute formal certification.",
-    "body_file": "bodies/audit-an-agent-action.html"
+    "body_file": "bodies/audit-an-agent-action.html",
+    "related_slugs": ["start-here", "news/nist-nccoe-agent-identity-concept-paper"]
   },
   {
     "slug": "updates/catchbench-0-1-2",
@@ -60,15 +62,16 @@
     ],
     "canonical_url": "https://auditcommons.org/updates/catchbench-0-1-2/",
     "affiliation_disclosure": "CatchBench is maintained by Yue Zhao, who also maintains Audit Commons.",
-    "body_file": "bodies/catchbench-0-1-2.html"
+    "body_file": "bodies/catchbench-0-1-2.html",
+    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "guides/audit-an-agent-action"]
   },
   {
     "slug": "about",
     "title": "About Audit Commons",
-    "summary": "Scope, maintainer disclosures, catalog policies, and contribution routes.",
+    "summary": "Coverage, editorial policies, sources, disclosures, and contributions.",
     "author": "Audit Commons",
     "published": "2026-09-15",
-    "updated": "2026-09-15",
+    "updated": "2026-09-16",
     "kind": "about",
     "topics": [
       "About",
@@ -82,5 +85,104 @@
     "canonical_url": "https://auditcommons.org/about/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. It represents no commercial consortium or certification agency.",
     "body_file": "bodies/about.html"
+  },
+  {
+    "slug": "news/optstop-bayesian-early-stopping",
+    "title": "AISI introduces optstop for adaptive evaluation stopping",
+    "summary": "The open-source tool uses statistical stopping rules to allocate evaluation trials. Its August announcement describes how evaluators can inspect and validate those decisions.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "event_date": "2026-08-27",
+    "kind": "news",
+    "topics": [
+      "Evaluation",
+      "Benchmarks",
+      "Compute efficiency",
+      "AISI",
+      "Inspect"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts",
+      "https://arxiv.org/abs/2608.14425",
+      "https://github.com/UKGovernmentBEIS/optstop"
+    ],
+    "canonical_url": "https://auditcommons.org/news/optstop-bayesian-early-stopping/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources.",
+    "body_file": "bodies/optstop-bayesian-early-stopping.html",
+    "related_slugs": ["features/benchmark-scores-and-agent-safety", "guides/how-to-read-an-agent-eval-report"]
+  },
+  {
+    "slug": "news/nist-nccoe-agent-identity-concept-paper",
+    "title": "NIST examines identity and authorization for AI agents",
+    "summary": "A February concept paper asks how identity standards apply to agent actions. The public comment period has closed; NCCoE is reviewing the responses.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "event_date": "2026-02-05",
+    "kind": "news",
+    "topics": [
+      "Agent identity",
+      "Authorization",
+      "NIST",
+      "Cybersecurity",
+      "Prompt injection"
+    ],
+    "source_urls": [
+      "https://www.nist.gov/news-events/news/2026/02/new-concept-paper-identity-and-authority-software-agents",
+      "https://www.nccoe.nist.gov/projects/software-and-ai-agent-identity-and-authorization"
+    ],
+    "canonical_url": "https://auditcommons.org/news/nist-nccoe-agent-identity-concept-paper/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources.",
+    "body_file": "bodies/nist-nccoe-agent-identity-concept-paper.html",
+    "related_slugs": ["guides/audit-an-agent-action", "start-here"]
+  },
+  {
+    "slug": "features/benchmark-scores-and-agent-safety",
+    "title": "Why a benchmark score does not establish agent safety",
+    "summary": "Tasks, tools, and compute budgets shape every evaluation score. Understanding those choices is the first step toward judging what a result says about deployment.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "kind": "feature",
+    "topics": [
+      "Evaluation",
+      "Agent safety",
+      "Benchmarks",
+      "Compute budget",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/more-compute-more-capability-why-ai-agent-evals-need-to-account-for-test-time-compute",
+      "https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts"
+    ],
+    "canonical_url": "https://auditcommons.org/features/benchmark-scores-and-agent-safety/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This feature presents editorial analysis and does not represent an official standard or certification framework.",
+    "body_file": "bodies/benchmark-scores-and-agent-safety.html",
+    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "news/optstop-bayesian-early-stopping"]
+  },
+  {
+    "slug": "guides/how-to-read-an-agent-eval-report",
+    "title": "How to read an agent evaluation report",
+    "summary": "Five questions about tasks, budgets, uncertainty, failures, and claims, applied to a worked example.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "kind": "guide",
+    "topics": [
+      "Evaluation",
+      "Agent auditing",
+      "Benchmarks",
+      "Evidence assessment"
+    ],
+    "source_urls": [
+      "https://inspect.aisi.org.uk/",
+      "https://www.aisi.gov.uk/blog/more-compute-more-capability-why-ai-agent-evals-need-to-account-for-test-time-compute",
+      "https://arxiv.org/abs/2608.14425"
+    ],
+    "canonical_url": "https://auditcommons.org/guides/how-to-read-an-agent-eval-report/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This guide presents practical editorial guidance and does not constitute formal audit methodology, regulatory advice, or a certification framework.",
+    "body_file": "bodies/how-to-read-an-agent-eval-report.html",
+    "related_slugs": ["features/benchmark-scores-and-agent-safety", "guides/audit-an-agent-action"]
   }
 ]

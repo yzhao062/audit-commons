@@ -1,5 +1,16 @@
+<nav class="article-toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  <ol>
+    <li><a href="#overview">Examining an external action</a></li>
+    <li><a href="#evidence">Core evidence elements</a></li>
+    <li><a href="#worked-example">Hypothetical case</a></li>
+    <li><a href="#worksheet">Worksheet template</a></li>
+    <li><a href="#privacy">Privacy and redaction</a></li>
+  </ol>
+</nav>
+
 <section class="section">
-  <h2>Examining an external action</h2>
+  <h2 id="overview">Examining an external action</h2>
   <p>
     When an AI agent takes an action in an external system, such as dispatching an email, internal model traces alone do not show what took place. An agent context can record that a message went out even if the network dropped the request, an intermediary modified the text, or parameters targeted the wrong recipient.
   </p>
@@ -9,7 +20,7 @@
 </section>
 
 <section class="section">
-  <h2>Core evidence elements</h2>
+  <h2 id="evidence">Core evidence elements</h2>
   <p>
     A structured review compares the claimed action against observable records and known verification limits.
   </p>
@@ -54,7 +65,7 @@
 </section>
 
 <section class="section">
-  <h2>Hypothetical case: reviewing an outbound email</h2>
+  <h2 id="worked-example">Hypothetical case: reviewing an outbound email</h2>
   <div class="callout">
     <p>
       <strong>Hypothetical scenario:</strong> This example illustrates how to record a finding. It is not a report of an observed system or benchmark result.
@@ -89,7 +100,7 @@
 </section>
 
 <section class="section">
-  <h2>Plaintext worksheet template</h2>
+  <h2 id="worksheet">Plaintext worksheet template</h2>
   <p>
     Copy the compact template below into review notes to evaluate external agent actions.
   </p>
@@ -129,7 +140,7 @@
 </section>
 
 <section class="section">
-  <h2>Privacy and redaction</h2>
+  <h2 id="privacy">Privacy and redaction</h2>
   <p>
     Collect only the evidence needed for the claim. Use redacted references in shared review notes, keep necessary sensitive records under access controls, and set a retention period. Do not copy passwords or API keys into the worksheet.
   </p>

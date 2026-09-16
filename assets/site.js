@@ -248,6 +248,7 @@
       });
 
       pre.style.position = 'relative';
+      pre.classList.add('has-copy-button');
       pre.appendChild(button);
     });
   }

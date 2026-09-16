@@ -18,6 +18,7 @@ from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 import json
 import os
+from pathlib import Path
 import sys
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin
@@ -26,6 +27,9 @@ from playwright.sync_api import sync_playwright, Browser, BrowserContext, Page, 
 
 CONTRACT_ROUTES = [
     "/",
+    "/latest/",
+    "/features/",
+    "/learn/",
     "/start-here/",
     "/resources/",
     "/guides/",
@@ -35,6 +39,11 @@ CONTRACT_ROUTES = [
     "/about/",
     "/404.html",
 ]
+
+for article in json.loads((Path(__file__).resolve().parents[1] / "content/pages.json").read_text(encoding="utf-8")):
+    article_route = f"/{article['slug']}/"
+    if article_route not in CONTRACT_ROUTES:
+        CONTRACT_ROUTES.append(article_route)
 
 VIEWPORTS = [
     {"name": "desktop", "width": 1440, "height": 1000},
@@ -338,7 +347,7 @@ class BrowserAcceptanceChecker:
             # Internal navigation check on header nav
             nav_links = page.locator("nav.site-nav a, header nav a")
             link_hrefs = [nav_links.nth(i).get_attribute("href") or "" for i in range(nav_links.count())]
-            expected_destinations = ["start-here", "resources", "guides", "updates", "about"]
+            expected_destinations = ["latest", "features", "learn", "resources", "about"]
             missing_links = []
             for dest in expected_destinations:
                 matched = any(dest in href for href in link_hrefs)

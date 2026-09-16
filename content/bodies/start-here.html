@@ -1,5 +1,14 @@
+<nav class="article-toc" aria-label="On this page">
+  <p class="toc-label">On this page</p>
+  <ol>
+    <li><a href="#three-questions">Evaluation, monitoring, and auditing</a></li>
+    <li><a href="#boundaries">Shared boundaries</a></li>
+    <li><a href="#evidence">Evidence beyond internal text</a></li>
+  </ol>
+</nav>
+
 <section class="section">
-  <h2>Three complementary questions</h2>
+  <h2 id="three-questions">Three complementary questions</h2>
   <p>
     When teams build and evaluate AI agents, they often treat evaluation, monitoring, and auditing as interchangeable words. They are not. Each addresses a different question and relies on different evidence:
   </p>
@@ -17,7 +26,7 @@
 </section>
 
 <section class="section">
-  <h2>Shared boundaries and overlap</h2>
+  <h2 id="boundaries">Shared boundaries and overlap</h2>
   <p>
     These activities do not follow an exclusive timeline. Teams evaluate before deployment, during staging, and after major updates. Teams monitor long-running background tasks and pilot trials. Teams audit single actions, recurring automated decisions, or entire incident windows.
   </p>
@@ -27,7 +36,7 @@
 </section>
 
 <section class="section">
-  <h2>Evidence beyond internal text</h2>
+  <h2 id="evidence">Evidence beyond internal text</h2>
   <p>
     Auditing becomes urgent when AI agents obtain access to external tools. An agent does not only generate sentences; it sends network requests, modifies records, and executes transactions.
   </p>
@@ -35,3 +44,9 @@
     An internal model trace stating that an action occurred is only a claim. It is not an audited fact. Establishing what happened requires examining whether the agent issued the action request, whether valid authorization covered that exact action, and whether the receiving external system recorded acceptance.
   </p>
 </section>
+
+<div class="reading-next">
+  <span class="eyebrow">Put it into practice</span>
+  <p><a href="/guides/audit-an-agent-action/">Audit an agent action &rarr;</a></p>
+  <p>Follow a worked example, then use the evidence worksheet for your own review.</p>
+</div>

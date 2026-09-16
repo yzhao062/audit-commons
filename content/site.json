@@ -1,7 +1,7 @@
 {
   "name": "Audit Commons",
-  "tagline": "Research, tools, and community for AI auditing.",
-  "description": "A field portal providing evidence worksheets, reading lists, and curated tools for auditing AI agents.",
+  "tagline": "News, analysis, and learning about AI auditing.",
+  "description": "Read AI auditing news, research explainers, and practical guides, with primary sources and a selected resource library.",
   "maintainer": {
     "name": "Yue Zhao",
     "url": "https://viterbi-web.usc.edu/~yzhao010/"

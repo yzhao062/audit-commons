@@ -1,8 +1,6 @@
 # Contributing to Audit Commons
 
-Thank you for your interest in contributing to the **Audit Commons** field portal.
-
-Audit Commons introduces AI auditing through practical guides, selected resources, and sourced updates, with an initial emphasis on AI agents.
+Audit Commons publishes news briefs, explainers, practical learning materials, and selected resources about AI auditing, with an initial emphasis on AI agents.
 
 ---
 
@@ -59,13 +57,16 @@ To propose a benchmark, sandbox, or framework:
 
 Permitted categories: `Evaluation`, `Security`, `Governance`, `Reading`, `Tools`.
 
-### 2. Proposing Practical Guides or Field Updates
+### 2. Proposing Articles
 
-Practical guides and field updates provide step-by-step methodologies and release notes.
+News briefs report source-dated developments. Features explain research and its implications. Guides teach concepts or walk readers through practical methods. Release notes document specific changes to tools and benchmarks.
 
 - **Author Field**: All records must set `"author": "Audit Commons"` to reflect the shared editorial identity (no personal bylines).
 - **Body HTML**: Placed under `content/bodies/{slug}.html`. Must contain clean semantic HTML with `<h2>`, `<h3>`, `<p>`, `<table>`, and `<pre><code>` blocks. Do **not** include an outer `<article>` tag or a duplicate `<h1>` heading (page templates supply the primary header).
-- **Dates**: Must follow `YYYY-MM-DD`. Review dates reflect the editorial verification date.
+- **Dates**: Must follow `YYYY-MM-DD`. `published` is the date an article first appears on Audit Commons; `updated` records an editorial revision. News and release entries also include `event_date`, the date of the reported development. Do not present older work as newly released.
+- **Kinds and routes**: Use `news` under `news/`, `feature` under `features/`, and `guide` under `guides/`. Existing `release` entries under `updates/` and the `introduction` page retain their canonical URLs. Section indexes and the feed are generated from the registry.
+- **Evidence**: Link factual claims to primary sources in the article body and list those sources in `source_urls`. Separate a source's findings from editorial interpretation; state limitations and label hypothetical examples.
+- **Discovery**: Give each article a distinct title and summary that describe the question or development it covers. Answer the central question early. Optional `related_slugs` lists existing article slugs for a short Continue reading section; use relevant connections, not duplicate keyword pages. Keep canonical URLs stable and update dates only after meaningful revisions. See [Search visibility](docs/search-visibility.md) for the measurement routine.
 
 ---
 
