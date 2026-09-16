@@ -676,6 +676,144 @@ class BrowserAcceptanceChecker:
                 details={"all_pressed": all_pressed, "other_buttons": other_pressed_states},
             )
 
+        # 4b. Verify Format Tabs and Tabpanel ARIA Contract
+        tablist = page.locator("[role='tablist']")
+        tabs = page.locator("[role='tab']")
+        panels = page.locator("[role='tabpanel']")
+
+        tablist_label = tablist.first.get_attribute("aria-label") if tablist.count() > 0 else None
+        tab_count = tabs.count()
+        panel_count = panels.count()
+        panel_id = panels.first.get_attribute("id") if panel_count > 0 else None
+        panel_tabindex = panels.first.get_attribute("tabindex") if panel_count > 0 else None
+        panel_labelled = panels.first.get_attribute("aria-labelledby") if panel_count > 0 else None
+
+        all_tab = page.locator("#tab-all")
+        all_tab_selected = all_tab.first.get_attribute("aria-selected") if all_tab.count() > 0 else None
+        all_tab_tabindex = all_tab.first.get_attribute("tabindex") if all_tab.count() > 0 else None
+
+        if (
+            tablist.count() > 0
+            and tablist_label
+            and tab_count >= 1
+            and panel_count == 1
+            and panel_id == "resources-panel"
+            and panel_tabindex == "0"
+            and panel_labelled == "tab-all"
+            and all_tab_selected == "true"
+            and all_tab_tabindex == "0"
+        ):
+            self.add_check(
+                check_id="resources_format_tabs_aria_contract",
+                category="resources",
+                name="Format tabs and single tabpanel ARIA contract",
+                status="PASS",
+                observation=f"Tablist has aria-label='{tablist_label}', {tab_count} tabs, single panel#resources-panel with aria-labelledby='tab-all', tabindex='0'",
+                details={"tabs": tab_count, "panels": panel_count, "tablist_label": tablist_label},
+            )
+        else:
+            self.add_check(
+                check_id="resources_format_tabs_aria_contract",
+                category="resources",
+                name="Format tabs and single tabpanel ARIA contract",
+                status="FAIL",
+                observation=f"Tab ARIA contract violation: tablist={tablist.count()}, label={tablist_label}, tabs={tab_count}, panels={panel_count}, panel_id={panel_id}, panel_tabindex={panel_tabindex}, panel_labelled={panel_labelled}, all_selected={all_tab_selected}, all_tabindex={all_tab_tabindex}",
+            )
+
+        # 4c. Format Tabs Keyboard Navigation
+        if tab_count > 1:
+            all_tab.first.focus()
+            page.wait_for_timeout(50)
+
+            # Press ArrowRight to move to next tab
+            page.keyboard.press("ArrowRight")
+            page.wait_for_timeout(50)
+
+            kb_state_1 = page.evaluate("""() => {
+                const active = document.activeElement;
+                const panel = document.getElementById('resources-panel');
+                return {
+                    activeId: active ? active.id : null,
+                    activeRole: active ? active.getAttribute('role') : null,
+                    activeSelected: active ? active.getAttribute('aria-selected') : null,
+                    activeTabindex: active ? active.getAttribute('tabindex') : null,
+                    panelLabelledBy: panel ? panel.getAttribute('aria-labelledby') : null
+                };
+            }""")
+
+            # Press ArrowLeft to move back to tab-all
+            page.keyboard.press("ArrowLeft")
+            page.wait_for_timeout(50)
+
+            kb_state_2 = page.evaluate("""() => {
+                const active = document.activeElement;
+                const panel = document.getElementById('resources-panel');
+                return {
+                    activeId: active ? active.id : null,
+                    activeRole: active ? active.getAttribute('role') : null,
+                    activeSelected: active ? active.getAttribute('aria-selected') : null,
+                    panelLabelledBy: panel ? panel.getAttribute('aria-labelledby') : null
+                };
+            }""")
+
+            # Test Home and End keys
+            page.keyboard.press("End")
+            page.wait_for_timeout(50)
+            end_active_id = page.evaluate("""() => document.activeElement ? document.activeElement.id : null""")
+
+            page.keyboard.press("Home")
+            page.wait_for_timeout(50)
+            home_active_id = page.evaluate("""() => document.activeElement ? document.activeElement.id : null""")
+
+            if (
+                kb_state_1["activeId"] != "tab-all"
+                and kb_state_1["activeSelected"] == "true"
+                and kb_state_1["panelLabelledBy"] == kb_state_1["activeId"]
+                and kb_state_2["activeId"] == "tab-all"
+                and kb_state_2["activeSelected"] == "true"
+                and home_active_id == "tab-all"
+            ):
+                self.add_check(
+                    check_id="resources_tabs_keyboard_navigation",
+                    category="resources",
+                    name="Format tabs keyboard navigation (Arrow keys, Home, End)",
+                    status="PASS",
+                    observation=f"Arrow keys, Home, End navigated correctly between tabs (next={kb_state_1['activeId']}, home={home_active_id}, end={end_active_id})",
+                    details={"kb_state_1": kb_state_1, "kb_state_2": kb_state_2, "end": end_active_id},
+                )
+            else:
+                self.add_check(
+                    check_id="resources_tabs_keyboard_navigation",
+                    category="resources",
+                    name="Format tabs keyboard navigation (Arrow keys, Home, End)",
+                    status="FAIL",
+                    observation=f"Keyboard navigation failed: step1={kb_state_1}, step2={kb_state_2}, end={end_active_id}, home={home_active_id}",
+                )
+
+        # A resource with a paper, benchmark, and dataset remains one card.
+        cross_listed = page.locator('.resource-card').filter(
+            has=page.locator('h2 a[href="https://arxiv.org/abs/2505.00212"]')
+        )
+        memberships_ok = cross_listed.count() == 1
+        for format_name in ("paper", "dataset", "benchmark"):
+            page.locator(f"#tab-{format_name}").click()
+            memberships_ok = memberships_ok and cross_listed.is_visible()
+        page.locator("#tab-dataset").click()
+        dataset_total = page.locator('.resource-card:visible').count()
+        dataset_label = page.locator('#tab-dataset .format-count').inner_text()
+        memberships_ok = memberships_ok and dataset_label == f"({dataset_total})"
+        memberships_ok = memberships_ok and page.locator('.resource-card').filter(
+            has=page.locator('h2 a[href="https://arxiv.org/abs/2509.14295"]')
+        ).is_visible()
+        all_tab.first.click()
+        memberships_ok = memberships_ok and page.locator('.resource-card:visible').count() == total_cards
+        self.add_check(
+            check_id="resources_cross_listed_formats", category="resources",
+            name="Cross-listed resources appear under every supported format without duplication",
+            status="PASS" if memberships_ok else "FAIL",
+            observation=f"Who&When visible as Paper/Dataset/Benchmark; Dataset count {dataset_total}; All restores {total_cards} unique cards: {memberships_ok}",
+        )
+
         # 5. Category Filtering
         # Collect distinct categories from actual cards
         card_categories = page.evaluate("""() => {
@@ -890,6 +1028,7 @@ class BrowserAcceptanceChecker:
         # 8. Clear search and reset All
         search_input.first.fill("")
         all_button.first.click()
+        all_tab.first.click()
         page.wait_for_timeout(100)
 
         reset_eval = page.evaluate("""(totalExpected) => {
@@ -899,12 +1038,15 @@ class BrowserAcceptanceChecker:
             const noResultsVisible = noResultsEl && (noResultsEl.offsetParent !== null) && !noResultsEl.hidden && window.getComputedStyle(noResultsEl).display !== 'none';
             const allBtn = document.querySelector("button[data-filter='All']");
             const allPressed = allBtn ? allBtn.getAttribute('aria-pressed') : null;
+            const allTab = document.getElementById('tab-all');
+            const allTabSelected = allTab ? allTab.getAttribute('aria-selected') : null;
             const countEl = document.getElementById('resource-count');
             const countText = countEl ? countEl.innerText.trim() : '';
             return {
                 visibleCount: visibleCards.length,
                 noResultsVisible: !!noResultsVisible,
                 allPressed: allPressed,
+                allTabSelected: allTabSelected,
                 countText: countText
             };
         }""", total_cards)
@@ -913,13 +1055,14 @@ class BrowserAcceptanceChecker:
             reset_eval["visibleCount"] == total_cards
             and not reset_eval["noResultsVisible"]
             and reset_eval["allPressed"] == "true"
+            and reset_eval["allTabSelected"] == "true"
         ):
             self.add_check(
                 check_id="resources_reset_all",
                 category="resources",
                 name="Reset 'All' and clearing search",
                 status="PASS",
-                observation=f"Reset restored all {total_cards} cards, #no-results hidden, 'All' aria-pressed='true'",
+                observation=f"Reset restored all {total_cards} cards, #no-results hidden, 'All' category and format tab active",
                 details=reset_eval,
             )
         else:
@@ -928,8 +1071,221 @@ class BrowserAcceptanceChecker:
                 category="resources",
                 name="Reset 'All' and clearing search",
                 status="FAIL",
-                observation=f"Reset failed: visibleCount={reset_eval['visibleCount']}/{total_cards}, allPressed={reset_eval['allPressed']}, noResultsVisible={reset_eval['noResultsVisible']}",
+                observation=f"Reset failed: visibleCount={reset_eval['visibleCount']}/{total_cards}, allPressed={reset_eval['allPressed']}, allTabSelected={reset_eval['allTabSelected']}, noResultsVisible={reset_eval['noResultsVisible']}",
                 details=reset_eval,
+            )
+
+        # 9. Deep-link URL state check (?q=Inspect)
+        deep_url = self.make_url("/resources/?q=Inspect")
+        page.goto(deep_url, wait_until="networkidle")
+        page.wait_for_timeout(100)
+
+        deep_eval = page.evaluate("""() => {
+            const searchInput = document.getElementById('resource-search');
+            const cards = Array.from(document.querySelectorAll('.resource-card'));
+            const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+            return {
+                inputValue: searchInput ? searchInput.value : '',
+                visibleCards: visibleCards.length,
+                totalCards: cards.length
+            };
+        }""")
+
+        if deep_eval["inputValue"] == "Inspect" and deep_eval["visibleCards"] >= 1 and deep_eval["visibleCards"] < deep_eval["totalCards"]:
+            self.add_check(
+                check_id="resources_deep_link",
+                category="resources",
+                name="Deep-linking via URL parameters (?q=Inspect) with case preservation",
+                status="PASS",
+                observation=f"Loaded deep-link URL: search input populated with '{deep_eval['inputValue']}' and filtered to {deep_eval['visibleCards']} visible cards",
+                details=deep_eval,
+            )
+        else:
+            self.add_check(
+                check_id="resources_deep_link",
+                category="resources",
+                name="Deep-linking via URL parameters (?q=Inspect) with case preservation",
+                status="FAIL",
+                observation=f"Deep-link check failed: input='{deep_eval['inputValue']}', visible={deep_eval['visibleCards']}/{deep_eval['totalCards']}",
+                details=deep_eval,
+            )
+
+        # 10. Unknown format parameter fallback (?format=bogus)
+        bogus_fmt_url = self.make_url("/resources/?format=bogus")
+        page.goto(bogus_fmt_url, wait_until="networkidle")
+        page.wait_for_timeout(100)
+
+        bogus_fmt_eval = page.evaluate("""(totalExpected) => {
+            const allTab = document.getElementById('tab-all');
+            const allBtn = document.querySelector("button[data-filter='All'], button[data-filter='all']");
+            const panel = document.getElementById('resources-panel');
+            const cards = Array.from(document.querySelectorAll('.resource-card'));
+            const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const noResultsEl = document.getElementById('no-results');
+            const countEl = document.getElementById('resource-count');
+            return {
+                allTabSelected: allTab ? allTab.getAttribute('aria-selected') : null,
+                allTabTabindex: allTab ? allTab.getAttribute('tabindex') : null,
+                panelLabelledBy: panel ? panel.getAttribute('aria-labelledby') : null,
+                allBtnPressed: allBtn ? allBtn.getAttribute('aria-pressed') : null,
+                visibleCards: visibleCards.length,
+                totalCards: cards.length,
+                noResultsVisible: noResultsEl && (noResultsEl.offsetParent !== null) && !noResultsEl.hidden && window.getComputedStyle(noResultsEl).display !== 'none',
+                countText: countEl ? countEl.innerText.trim() : ''
+            };
+        }""", total_cards)
+
+        if (
+            bogus_fmt_eval["allTabSelected"] == "true"
+            and bogus_fmt_eval["allTabTabindex"] == "0"
+            and bogus_fmt_eval["panelLabelledBy"] == "tab-all"
+            and bogus_fmt_eval["allBtnPressed"] == "true"
+            and bogus_fmt_eval["visibleCards"] == total_cards
+            and not bogus_fmt_eval["noResultsVisible"]
+            and str(total_cards) in bogus_fmt_eval["countText"]
+        ):
+            self.add_check(
+                check_id="resources_unknown_format_fallback",
+                category="resources",
+                name="Unknown format falls back to All with all cards visible (?format=bogus)",
+                status="PASS",
+                observation=f"Normalized ?format=bogus to 'All': allTab selected, panel labelled, {bogus_fmt_eval['visibleCards']}/{total_cards} cards visible, empty state hidden",
+                details=bogus_fmt_eval,
+            )
+        else:
+            self.add_check(
+                check_id="resources_unknown_format_fallback",
+                category="resources",
+                name="Unknown format falls back to All with all cards visible (?format=bogus)",
+                status="FAIL",
+                observation=f"Unknown format fallback failed: tabSelected={bogus_fmt_eval['allTabSelected']}, visible={bogus_fmt_eval['visibleCards']}/{total_cards}, noResultsVisible={bogus_fmt_eval['noResultsVisible']}",
+                details=bogus_fmt_eval,
+            )
+
+        # 11. Unknown category parameter fallback (?category=bogus)
+        bogus_cat_url = self.make_url("/resources/?category=bogus")
+        page.goto(bogus_cat_url, wait_until="networkidle")
+        page.wait_for_timeout(100)
+
+        bogus_cat_eval = page.evaluate("""(totalExpected) => {
+            const allTab = document.getElementById('tab-all');
+            const allBtn = document.querySelector("button[data-filter='All'], button[data-filter='all']");
+            const otherBtns = Array.from(document.querySelectorAll("button[data-filter]:not([data-filter='All']):not([data-filter='all'])"));
+            const cards = Array.from(document.querySelectorAll('.resource-card'));
+            const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const noResultsEl = document.getElementById('no-results');
+            const countEl = document.getElementById('resource-count');
+            return {
+                allTabSelected: allTab ? allTab.getAttribute('aria-selected') : null,
+                allBtnPressed: allBtn ? allBtn.getAttribute('aria-pressed') : null,
+                otherPressed: otherBtns.map(b => b.getAttribute('aria-pressed')),
+                visibleCards: visibleCards.length,
+                totalCards: cards.length,
+                noResultsVisible: noResultsEl && (noResultsEl.offsetParent !== null) && !noResultsEl.hidden && window.getComputedStyle(noResultsEl).display !== 'none',
+                countText: countEl ? countEl.innerText.trim() : ''
+            };
+        }""", total_cards)
+
+        if (
+            bogus_cat_eval["allBtnPressed"] == "true"
+            and all(p == "false" for p in bogus_cat_eval["otherPressed"])
+            and bogus_cat_eval["allTabSelected"] == "true"
+            and bogus_cat_eval["visibleCards"] == total_cards
+            and not bogus_cat_eval["noResultsVisible"]
+            and str(total_cards) in bogus_cat_eval["countText"]
+        ):
+            self.add_check(
+                check_id="resources_unknown_category_fallback",
+                category="resources",
+                name="Unknown category falls back to All with all cards visible (?category=bogus)",
+                status="PASS",
+                observation=f"Normalized ?category=bogus to 'All': allBtn pressed, other categories unpressed, {bogus_cat_eval['visibleCards']}/{total_cards} cards visible",
+                details=bogus_cat_eval,
+            )
+        else:
+            self.add_check(
+                check_id="resources_unknown_category_fallback",
+                category="resources",
+                name="Unknown category falls back to All with all cards visible (?category=bogus)",
+                status="FAIL",
+                observation=f"Unknown category fallback failed: allBtnPressed={bogus_cat_eval['allBtnPressed']}, otherPressed={bogus_cat_eval['otherPressed']}, visible={bogus_cat_eval['visibleCards']}/{total_cards}",
+                details=bogus_cat_eval,
+            )
+
+        # 12. Real popstate/back transition from filtered URL to bare URL
+        # Start at clean /resources/
+        page.goto(self.make_url("/resources/"), wait_until="networkidle")
+        page.wait_for_timeout(100)
+
+        # Push a history entry with filters and dispatch popstate (controlled history fixture)
+        page.evaluate("""() => {
+            window.history.pushState({ test: "filtered" }, '', '/resources/?format=collection&category=governance&q=NIST');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+        }""")
+        page.wait_for_timeout(100)
+
+        fixture_state = page.evaluate("""() => {
+            const input = document.getElementById('resource-search');
+            const cards = Array.from(document.querySelectorAll('.resource-card'));
+            const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+            return {
+                url: window.location.pathname + window.location.search,
+                inputValue: input ? input.value : '',
+                visibleCount: visibleCards.length,
+                totalCount: cards.length
+            };
+        }""")
+
+        # Execute browser back navigation to return to bare /resources/
+        page.go_back(wait_until="networkidle")
+        page.wait_for_timeout(150)
+
+        popstate_bare_state = page.evaluate("""(totalExpected) => {
+            const input = document.getElementById('resource-search');
+            const cards = Array.from(document.querySelectorAll('.resource-card'));
+            const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const allTab = document.getElementById('tab-all');
+            const allBtn = document.querySelector("button[data-filter='All'], button[data-filter='all']");
+            const countEl = document.getElementById('resource-count');
+            const noResultsEl = document.getElementById('no-results');
+            return {
+                url: window.location.pathname + window.location.search,
+                inputValue: input ? input.value : '',
+                visibleCount: visibleCards.length,
+                totalCount: cards.length,
+                allTabSelected: allTab ? allTab.getAttribute('aria-selected') : null,
+                allTabTabindex: allTab ? allTab.getAttribute('tabindex') : null,
+                allBtnPressed: allBtn ? allBtn.getAttribute('aria-pressed') : null,
+                countText: countEl ? countEl.innerText.trim() : '',
+                noResultsVisible: noResultsEl && (noResultsEl.offsetParent !== null) && !noResultsEl.hidden && window.getComputedStyle(noResultsEl).display !== 'none'
+            };
+        }""", total_cards)
+
+        if (
+            popstate_bare_state["inputValue"] == ""
+            and popstate_bare_state["visibleCount"] == total_cards
+            and popstate_bare_state["allTabSelected"] == "true"
+            and popstate_bare_state["allTabTabindex"] == "0"
+            and popstate_bare_state["allBtnPressed"] == "true"
+            and not popstate_bare_state["noResultsVisible"]
+            and str(total_cards) in popstate_bare_state["countText"]
+        ):
+            self.add_check(
+                check_id="resources_popstate_back_transition",
+                category="resources",
+                name="Popstate/back transition from filtered URL to bare URL resets state",
+                status="PASS",
+                observation=f"Navigated back to bare URL {popstate_bare_state['url']}: search cleared, allTab active, allBtn pressed, all {total_cards} cards restored",
+                details={"fixture": fixture_state, "after_back": popstate_bare_state},
+            )
+        else:
+            self.add_check(
+                check_id="resources_popstate_back_transition",
+                category="resources",
+                name="Popstate/back transition from filtered URL to bare URL resets state",
+                status="FAIL",
+                observation=f"Popstate back transition failed: input='{popstate_bare_state['inputValue']}', visible={popstate_bare_state['visibleCount']}/{total_cards}, tabSelected={popstate_bare_state['allTabSelected']}, btnPressed={popstate_bare_state['allBtnPressed']}",
+                details={"fixture": fixture_state, "after_back": popstate_bare_state},
             )
 
         context.close()

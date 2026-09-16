@@ -34,7 +34,7 @@ Transparency regarding project affiliations is required:
 
 To propose a benchmark, sandbox, or framework:
 1. Ensure the resource is active, public, and provides primary documentation.
-2. Verify the project's documentation and record the date checked (`YYYY-MM-DD`).
+2. For a new individual entry, read the project's primary documentation and record the date checked (`YYYY-MM-DD`). For a catalog import, record the exact upstream snapshot and the date the entry was checked against that snapshot. A catalog review does not imply a live endpoint check, replicated result, or software test.
 3. Contributions should be submitted via the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository or by contacting the maintainer via [his university homepage](https://viterbi-web.usc.edu/~yzhao010/).
 4. For inclusion in `content/resources.json`, entries follow this schema:
 
@@ -57,6 +57,8 @@ To propose a benchmark, sandbox, or framework:
 
 Permitted categories: `Evaluation`, `Security`, `Governance`, `Reading`, `Tools`.
 
+The resource library also accepts `format`: `Paper`, `Tool`, `Benchmark`, `Dataset`, `Standard`, or `Collection`. These drive the format tabs; categories remain topic filters. Optional `source_section`, `venue`, `links` (`[{"label": "Code", "url": "https://example.org/code"}]`), and `catalog_source` preserve context and provenance. Imported entries use a pinned upstream README URL in `catalog_source`. See [the catalog maintenance guide](docs/resource-catalog.md) for the snapshot and refresh procedure. Retain original publication status and maintainer affiliations, including co-authored papers.
+
 ### 2. Proposing Articles
 
 News briefs report source-dated developments. Features explain research and its implications. Guides teach concepts or walk readers through practical methods. Release notes document specific changes to tools and benchmarks.
@@ -71,6 +73,8 @@ News briefs report source-dated developments. Features explain research and its 
 ---
 
 ## Pre-Submission Verification
+
+Resource `formats` may list several supported types, including the primary `format`. Supply a source or artifact link for each additional type. Tabs count matching unique resources; counts across tabs may overlap. Keep a single catalog record for a work with linked paper, code, and data artifacts.
 
 Before opening a pull request or submitting content:
 

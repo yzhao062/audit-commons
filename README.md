@@ -6,6 +6,8 @@ Audit Commons is an editorial publication with Latest, Features, Learn, Resource
 
 The homepage leads with the newest feature, while its news column and Latest index are ordered by publication date. This keeps an explanatory article alongside current coverage; the lead is not labelled as the latest news. If no feature exists, the lead falls back to news, guides, introductions, then releases. Dates remain visible, and editors should refresh the featured coverage as the publication grows.
 
+The Resources library adapts the companion Awesome Auditable AI catalog into format tabs with topic filters, search, and links to papers, code, and data. All entries remain in the initial HTML for reading without JavaScript. Catalog provenance and the offline refresh procedure are documented in [Resource catalog](docs/resource-catalog.md).
+
 ---
 
 ## Quickstart & Local Development
@@ -43,7 +45,7 @@ Validate source schemas, date formats, internal hyperlinks, in-page fragment tar
 python scripts/check.py
 ```
 
-The same suite checks search metadata: unique titles and descriptions, canonical URLs, crawler access, article schema consistency, and visible breadcrumbs. Setup receipts and the ongoing measurement routine are in [Search visibility](docs/search-visibility.md).
+The same suite checks search metadata: unique titles and descriptions, canonical URLs, crawler access, article schema consistency, visible breadcrumbs, and resources catalog contracts (including format taxonomy schema validation and a 100-row all-formats fixture test). Setup receipts and the ongoing measurement routine are in [Search visibility](docs/search-visibility.md).
 
 #### Verification Options
 
@@ -75,7 +77,7 @@ Visit `http://127.0.0.1:8765/`. All routes and content remain fully readable wit
 │       └── check.yml           # Build, validation and GitHub Pages deployment
 ├── assets/                     # Styles, SVGs, and progressive enhancement script
 │   ├── style.css               # Typography, colors, and responsive layout
-│   ├── site.js                 # Filter and search enhancement for /resources/
+│   ├── site.js                 # Filter, format tabs, keyboard nav, and search enhancement for /resources/
 │   ├── mark.svg                # Brand icon mark
 │   ├── favicon.svg             # Browser favicon
 │   ├── audit-lens.svg          # Retained workflow illustration (not used on the homepage)

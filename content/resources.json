@@ -10,7 +10,19 @@
     "source_urls": [
       "https://www.nist.gov/itl/ai-risk-management-framework"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Standard",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "PDF",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
   },
   {
     "id": "inspect-aisi",
@@ -23,7 +35,19 @@
     "source_urls": [
       "https://inspect.aisi.org.uk/"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Tool",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/UKGovernmentBEIS/inspect_ai"
+      }
+    ],
+    "formats": [
+      "Tool"
+    ]
   },
   {
     "id": "agentdojo",
@@ -36,7 +60,21 @@
     "source_urls": [
       "https://github.com/ethz-spylab/agentdojo"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Benchmark",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "NeurIPS 2024 Datasets and Benchmarks Track",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2406.13352"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
   },
   {
     "id": "awesome-auditable-ai",
@@ -49,7 +87,14 @@
     "source_urls": [
       "https://github.com/yzhao062/awesome-auditable-ai"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Collection",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md",
+    "links": [],
+    "formats": [
+      "Collection"
+    ]
   },
   {
     "id": "catchbench",
@@ -62,7 +107,19 @@
     "source_urls": [
       "https://github.com/yzhao062/catchbench/releases/tag/v0.1.2"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Benchmark",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "links": [
+      {
+        "label": "Release v0.1.2",
+        "url": "https://github.com/yzhao062/catchbench/releases/tag/v0.1.2"
+      }
+    ],
+    "formats": [
+      "Benchmark"
+    ]
   },
   {
     "id": "auditable-agents",
@@ -75,6 +132,4311 @@
     "source_urls": [
       "https://github.com/auditable-agents/auditable-agents.github.io"
     ],
-    "checked": "2026-09-15"
+    "checked": "2026-09-15",
+    "format": "Collection",
+    "source_section": "The Auditable Agents Ecosystem",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#the-auditable-agents-ecosystem",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2604.05485"
+      }
+    ],
+    "formats": [
+      "Collection",
+      "Paper"
+    ]
+  },
+  {
+    "id": "the-rise-and-potential-of-large-language-model-bas",
+    "name": "The Rise and Potential of Large Language Model Based Agents: A Survey",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Broad survey framing LLMs as the basis for autonomous agents, covering single-agent, multi-agent, and human-agent settings.",
+    "url": "https://arxiv.org/abs/2309.07864",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2309.07864"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "Sci. China Inf. Sci. 2025",
+    "links": [
+      {
+        "label": "Paper List",
+        "url": "https://github.com/WooooDyy/LLM-Agent-Paper-List"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "a-survey-on-large-language-model-based-autonomous",
+    "name": "A Survey on Large Language Model based Autonomous Agents",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Systematic review of LLM-based autonomous agents with a unified construction framework and a section on agent evaluation strategies.",
+    "url": "https://arxiv.org/abs/2308.11432",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2308.11432"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "Front. Comput. Sci. 2024",
+    "links": [
+      {
+        "label": "Paper List",
+        "url": "https://github.com/Paitesanshi/LLM-Agent-Survey"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "large-language-model-based-multi-agents-a-survey-o",
+    "name": "Large Language Model based Multi-Agents: A Survey of Progress and Challenges",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Survey of LLM multi-agent systems organized by agent profiling, communication, and capability growth, with open challenges.",
+    "url": "https://arxiv.org/abs/2402.01680",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2402.01680"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "IJCAI 2024",
+    "links": [
+      {
+        "label": "Paper List",
+        "url": "https://github.com/taichengguo/LLM_MultiAgents_Survey_Papers"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "llm-multi-agent-systems",
+    "name": "LLM Multi-Agent Systems: Challenges and Open Problems",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Position-style survey of unresolved problems in multi-agent systems, including task allocation, reasoning debate, context, and memory.",
+    "url": "https://arxiv.org/abs/2402.03578",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2402.03578"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "Preprint 2024",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "survey-on-evaluation-of-llm-based-agents",
+    "name": "Survey on Evaluation of LLM-based Agents",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Survey of agent evaluation and benchmarks, highlighting gaps in cost, safety, and robustness.",
+    "url": "https://arxiv.org/abs/2503.16416",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.16416"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "ACL Findings 2026",
+    "links": [
+      {
+        "label": "Paper List",
+        "url": "https://github.com/Asaf-Yehudai/LLM-Agent-Evaluation-Survey"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "a-survey-on-trustworthy-llm-agents",
+    "name": "A Survey on Trustworthy LLM Agents: Threats and Countermeasures",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "TrustAgent taxonomy separating intrinsic components (brain, memory, tool) from extrinsic ones (user, other agents, environment), mapping attacks, defenses, and evaluation onto each.",
+    "url": "https://arxiv.org/abs/2503.09648",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.09648"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "KDD 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "visibility-into-ai-agents",
+    "name": "Visibility into AI Agents",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Accountability-focused position paper proposing agent identifiers, real-time monitoring, and activity logging as measures to make agent activity answerable.",
+    "url": "https://arxiv.org/abs/2401.13138",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2401.13138"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "FAccT 2024",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentops-paper",
+    "name": "AgentOps: Enabling Observability of LLM Agents",
+    "category": "Reading",
+    "format": "Paper",
+    "summary": "Taxonomy of the artifacts and trace data to record across an agent's lifecycle, drawn from a mapping study of observability tools.",
+    "url": "https://arxiv.org/abs/2411.05285",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2411.05285"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Surveys and Foundations",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#surveys-and-foundations",
+    "venue": "Preprint 2024",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "whowhen",
+    "name": "Which Agent Causes Task Failures and When? On Automated Failure Attribution of LLM Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Defines automated failure attribution for LLM multi-agent systems and releases the Who&When dataset of annotated failure logs labeling the responsible agent and the decisive error step.",
+    "url": "https://arxiv.org/abs/2505.00212",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2505.00212"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ICML 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/mingyin1/Agents_Failure_Attribution"
+      },
+      {
+        "label": "Dataset",
+        "url": "https://github.com/ag2ai/Agents_Failure_Attribution"
+      }
+    ],
+    "formats": [
+      "Paper",
+      "Benchmark",
+      "Dataset"
+    ]
+  },
+  {
+    "id": "why-do-multi-agent-llm-systems-fail",
+    "name": "Why Do Multi-Agent LLM Systems Fail?",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Derives MAST, a 14-mode failure taxonomy in three groups (system design, inter-agent misalignment, task verification), from 150 expert-examined traces, and releases MAST-Data, 1,642 annotated traces across seven multi-agent frameworks.",
+    "url": "https://arxiv.org/abs/2503.13657",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.13657"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "NeurIPS 2025 Datasets and Benchmarks Track",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/multi-agent-systems-failure-taxonomy/MAST"
+      },
+      {
+        "label": "Dataset",
+        "url": "https://huggingface.co/datasets/mcemri/MAST-Data"
+      }
+    ],
+    "formats": [
+      "Paper",
+      "Dataset"
+    ]
+  },
+  {
+    "id": "trail",
+    "name": "TRAIL: Trace Reasoning and Agentic Issue Localization",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Annotates 148 single- and multi-agent traces with 841 errors under a reasoning, planning, and execution taxonomy, and shows long-context models score near 11% at locating them.",
+    "url": "https://arxiv.org/abs/2505.08638",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2505.08638"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper",
+      "Dataset"
+    ],
+    "links": [
+      {
+        "label": "Dataset",
+        "url": "https://huggingface.co/datasets/PatronusAI/TRAIL"
+      }
+    ]
+  },
+  {
+    "id": "agentracer",
+    "name": "AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems?",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Curates the TracerTraj attribution dataset and trains AgenTracer-8B to identify the responsible agent and step in long failed trajectories.",
+    "url": "https://arxiv.org/abs/2509.03312",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.03312"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ICLR 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/bingreeky/AgenTracer"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "where-did-it-all-go-wrong-a-hierarchical-look-into",
+    "name": "Where Did It All Go Wrong? A Hierarchical Look into Multi-Agent Error Attribution",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Proposes ECHO, an agent- and step-level attribution method combining hierarchical context, objective analysis, and consensus voting for subtle reasoning errors.",
+    "url": "https://arxiv.org/abs/2510.04886",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2510.04886"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "NeurIPS 2025 Workshop (LLM Evaluation)",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "aegis-attribution",
+    "name": "Aegis: Automated Error Generation and Attribution for Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Generates controlled faults to build a 9,533-trajectory dataset with annotated faulty agents and error modes for training and evaluating attribution methods.",
+    "url": "https://arxiv.org/abs/2509.14295",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.14295"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ICLR 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/kfq20/AEGIS"
+      },
+      {
+        "label": "Dataset",
+        "url": "https://huggingface.co/datasets/Fancylalala/AEGIS"
+      }
+    ],
+    "formats": [
+      "Paper",
+      "Dataset"
+    ]
+  },
+  {
+    "id": "agentrx",
+    "name": "AgentRx: Diagnosing AI Agent Failures from Execution Trajectories",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Synthesizes constraints, checks them step by step, and records the results in an auditable validation log that localizes the critical failure step within a 10-category taxonomy across three domains.",
+    "url": "https://arxiv.org/abs/2602.02475",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.02475"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/microsoft/AgentRx"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "seeing-the-whole-elephant",
+    "name": "Seeing the Whole Elephant: A Benchmark for Failure Attribution in LLM-based Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Introduces TraceElephant, a failure-attribution benchmark with fully observable traces and reproducible environments, reporting attribution accuracy up to 76% higher with full execution traces than with output-only logs.",
+    "url": "https://arxiv.org/abs/2604.22708",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.22708"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ACL 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/TraceElephant/TraceElephant"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "demystifying-the-lifecycle-of-failures-in-platform",
+    "name": "Demystifying the Lifecycle of Failures in Platform-Orchestrated Agentic Workflows",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Releases AgentFail, a collection of 307 failures from low-code agent platforms, and characterizes them by manifestation, root cause, and repair strategy at the workflow-node level.",
+    "url": "https://arxiv.org/abs/2509.23735",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.23735"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "falat",
+    "name": "FALAT: Tracing Failures in LLM Agent Trajectories via Dependency-Guided Search",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Frames attribution as dependency-guided coarse-to-fine search that separates root-cause steps from inherited downstream errors, evaluated on the Who&When benchmark.",
+    "url": "https://arxiv.org/abs/2606.00765",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.00765"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "who-when-pro",
+    "name": "Who&When Pro: Can LLMs Really Attribute Failures in AI Agents?",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Builds Who&When Pro, 12,326 failed trajectories with golden labels across three modalities and 26 source benchmarks, constructed by replaying a successful prefix exactly and then injecting a single failure.",
+    "url": "https://arxiv.org/abs/2607.09996",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.09996"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/whowhenpro/whowhen_pro"
+      },
+      {
+        "label": "Project",
+        "url": "https://whowhenpro.github.io/"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "where-llm-agents-fail-and-how-they-can-learn-from",
+    "name": "Where LLM Agents Fail and How They can Learn From Failures",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Introduces AgentErrorTaxonomy across memory, reflection, planning, action, and system operations, releases AgentErrorBench of annotated failure trajectories from ALFWorld, GAIA, and WebShop, and reports 24% higher all-correct accuracy for its AgentDebug root-cause debugger.",
+    "url": "https://arxiv.org/abs/2509.25370",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.25370"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/ulab-uiuc/AgentDebug"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "stepfinder",
+    "name": "StepFinder: A Temporal Semantic Framework for Failure Attribution in Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Uses a language model only to encode execution logs into temporal semantic sequences and scores steps with parameter-efficient temporal and attention modules, cutting inference time by 79% against the fastest language-model-based method on Who&When.",
+    "url": "https://arxiv.org/abs/2606.03467",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.03467"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "KDD 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "towards-self-improving-error-diagnosis-in-multi-ag",
+    "name": "Towards Self-Improving Error Diagnosis in Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Prunes trajectory context by symptom-driven backward tracing and gates memory updates on executable evidence, so ErrorProbe needs no annotation and transfers without retraining.",
+    "url": "https://arxiv.org/abs/2604.17658",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.17658"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ACL Findings 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "rethinking-failure-attribution-in-multi-agent-syst",
+    "name": "Rethinking Failure Attribution in Multi-Agent Systems: A Multi-Perspective Benchmark and Evaluation",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Releases MP-Bench and argues that reported language-model weakness at attribution largely reflects single-root-cause benchmark design rather than model capability.",
+    "url": "https://arxiv.org/abs/2603.25001",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.25001"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "tracing-agentic-failure-from-the-flow-of-success",
+    "name": "Tracing Agentic Failure from the Flow of Success",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Trains one-class neural controlled differential equations on 100 successful trajectories alone and scores deviation, gaining 20% in-domain F1 at 200 to 5000 times the speed of prompting baselines.",
+    "url": "https://arxiv.org/abs/2607.12747",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.12747"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "conformal-agent-error-attribution",
+    "name": "Conformal Agent Error Attribution",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Applies filtration-based conformal prediction over trajectories, returning contiguous step sets with finite-sample distribution-free coverage guarantees.",
+    "url": "https://arxiv.org/abs/2605.06788",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.06788"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "searchauditor",
+    "name": "SearchAuditor: Auditing and Attributing Failures in Long-Horizon Search Agents",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Releases SearchAuditBench, 1,243 failed deep-search trajectories averaging 73.1 messages and 65.1K tokens, on which the strongest baseline reaches a 26.6% end-to-end pass rate.",
+    "url": "https://arxiv.org/abs/2608.05212",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.05212"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "where-do-deep-research-agents-go-wrong-span-level",
+    "name": "Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Annotates 2,790 deep-research trajectories and filters them into TELBench, a 1,000-instance benchmark for erroneous-span and first-error localization, on which DRIFT gains up to 30 percentage points.",
+    "url": "https://arxiv.org/abs/2606.02060",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.02060"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "safari",
+    "name": "SAFARI: Scaling Long Horizon Agentic Fault Attribution via Active Investigation",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Runs a tool-augmented diagnostic loop over short-term memory instead of loading a whole trajectory, gaining 20% on Who&When at a 1M token budget and 19% on the TRAIL GAIA subset at a 25K token budget.",
+    "url": "https://arxiv.org/abs/2606.24626",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.24626"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "ICML 2026 Workshop (AIWILD)",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "failure-as-a-process",
+    "name": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Annotates 1,794 CLI coding trajectories over 63,000 steps from 7 models and 3 scaffolds on Terminal-Bench, finding that failures are mostly epistemic, start early, and stay hidden until recovery is impossible.",
+    "url": "https://arxiv.org/abs/2607.09510",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.09510"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "trajaudit",
+    "name": "TrajAudit: Automated Failure Diagnosis for Agentic Coding Systems",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Localizes error steps in agentic coding trajectories and releases RootSE, a benchmark of 102 failure trajectories with human-annotated error steps spanning localization, patch generation, verification, and environment failures.",
+    "url": "https://arxiv.org/abs/2605.26563",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.26563"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/LogAnalysisTech/TrajAudit"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "characterizing-faults-in-agentic-ai",
+    "name": "Characterizing Faults in Agentic AI: A Taxonomy of Types, Symptoms, and Root Causes",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Mines 13,602 issues and pull requests from 40 agentic repositories, samples 385 faults, derives 34 fault types, and validates the taxonomy with 145 practitioners.",
+    "url": "https://arxiv.org/abs/2603.06847",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.06847"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "cuadebug",
+    "name": "CUADebug: Diagnosing and Repairing Computer-Use Agent Failures",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Releases CUAErrorBench, 204 human-annotated OSWorld failures, and raises joint subtype-and-step diagnosis from 11.2% to 19.6% on the Claude-agent split.",
+    "url": "https://arxiv.org/abs/2608.02643",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.02643"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "grade",
+    "name": "GRADE: Graph Representation of LLM Agent Dependency and Execution",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Models a run as one graph with two edge layers, execution for what ran in what order and dependency for what each step relied on; across six corpora the dependency layer predicts failure where run size carries little signal, and the execution layer localizes the faulting step.",
+    "url": "https://arxiv.org/abs/2606.22741",
+    "owner": "GRADE contributors",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.22741"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Failure Attribution and Diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/yzhao062/grade"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "reliabilitybench",
+    "name": "ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Measures tool-using agent reliability along three axes: consistency under repeated runs (pass^k), robustness to semantically equivalent task perturbations, and fault tolerance under injected tool and API failures.",
+    "url": "https://arxiv.org/abs/2601.06112",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2601.06112"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "tau-bench",
+    "name": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Benchmarks agents in simulated tool-agent-user dialogues and introduces the pass^k metric, which scores whether an agent solves the same task on all of k independent trials.",
+    "url": "https://arxiv.org/abs/2406.12045",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2406.12045"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ICLR 2025",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ],
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/sierra-research/tau-bench"
+      }
+    ]
+  },
+  {
+    "id": "non-determinism-of-deterministic-llm-system-settin",
+    "name": "Non-Determinism of \"Deterministic\" LLM System Settings in Hosted Environments",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Documents variation in output text and task accuracy across repeated runs under nominally deterministic settings (temperature 0 and fixed decoding), identifying one source of run-to-run inconsistency in agent pipelines.",
+    "url": "https://aclanthology.org/2025.eval4nlp-1.12/",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://aclanthology.org/2025.eval4nlp-1.12/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Eval4NLP 2025 Workshop",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/breckbaldwin/llm-stability"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "when-agents-disagree-with-themselves-behavioral-co",
+    "name": "When Agents Disagree With Themselves: Behavioral Consistency as an Uncertainty Signal for LLM Agents",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Runs the same agent on the same task many times, finding several distinct ReAct-style action paths per ten runs, with inconsistent-path tasks scoring lower than consistent-path ones.",
+    "url": "https://arxiv.org/abs/2602.11619",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.11619"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ICML 2026 Workshop (Statistical Frameworks for Uncertainty in Agentic Systems)",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentnoisebench",
+    "name": "AgentNoiseBench: Benchmarking Robustness of Tool-Using LLM Agents Under Noisy Condition",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Quantifies how tool-using agents degrade under user-side instruction noise and tool-execution noise, reporting accuracy drops across models under realistic perturbations.",
+    "url": "https://arxiv.org/abs/2602.11348",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.11348"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ICML 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "paladin",
+    "name": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Trains agents to detect and recover from tool malfunctions (timeouts, API exceptions, inconsistent outputs) that otherwise trigger cascading reasoning errors and task abandonment.",
+    "url": "https://arxiv.org/abs/2509.25238",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.25238"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "AAAI 2026 Workshop (LaMAS)",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/33k0/PALADIN-Framework"
+      },
+      {
+        "label": "Data",
+        "url": "https://huggingface.co/datasets/E-k-O/PaladinData"
+      }
+    ],
+    "formats": [
+      "Paper",
+      "Dataset"
+    ]
+  },
+  {
+    "id": "atomix",
+    "name": "Atomix: Timely, Transactional Tool Use for Reliable Agentic Workflows",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Wraps tool use in progress-aware transactions that commit only after per-resource frontiers rule out earlier conflicting work, at microsecond-scale wrapper overhead.",
+    "url": "https://arxiv.org/abs/2602.14849",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.14849"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "acrfence",
+    "name": "ACRFence: Preventing Semantic Rollback Attacks in Agent Checkpoint-Restore",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Names semantic rollback attacks, in which an agent re-synthesizes a slightly different request after restore and the server treats it as new, enabling duplicate payments and credential reuse.",
+    "url": "https://arxiv.org/abs/2603.20625",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.20625"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ASPLOS 2026 Workshop (CoDAIM)",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "protocolbench",
+    "name": "ProtocolBench: Which LLM MultiAgent Protocol to Choose?",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Compares A2A, ACP, ANP, and Agora on success, latency, message overhead, and failure robustness, finding that completion time in the Streaming Queue scenario varies by up to 36.5% across protocols and mean end-to-end latency differs by 3.48 seconds.",
+    "url": "https://arxiv.org/abs/2510.17149",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2510.17149"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ICML 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/ulab-uiuc/AgentProtocols"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "towards-a-science-of-ai-agent-reliability",
+    "name": "Towards a Science of AI Agent Reliability",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Argues that a single success rate hides operational flaws and proposes twelve metrics decomposing agent reliability into consistency, robustness, predictability, and safety.",
+    "url": "https://arxiv.org/abs/2602.16666",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.16666"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "ICML 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "beyond-pass-1",
+    "name": "Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Proposes reliability metrics for long-horizon tasks (reliability decay curve, variance amplification, graceful degradation, meltdown onset) and evaluates 10 models over 23,392 episodes.",
+    "url": "https://arxiv.org/abs/2603.29231",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.29231"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "the-dice-roll-method",
+    "name": "The Dice Roll Method: A Standardized Protocol for Repeated-Query Auditing of Large Language Model Brand Recommendations",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Sets how many identical repeated runs a measurement needs before it is stable, using generalizability-theory reliability, simulation-based power, block-bootstrap convergence, and drift tests, with external validation on three repeated-query corpora collected by other groups including llm-stability.",
+    "url": "https://arxiv.org/abs/2609.04047",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2609.04047"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/Rankfor/rankfor-open/tree/main/research/dice-roll-method"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "where-does-the-noise-come-from-a-variance-componen",
+    "name": "Where Does the Noise Come From? A Variance-Components Decomposition of Non-Determinism in LLM Brand Answers",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Decomposes run-to-run variance in LLM brand responses across resampling, paraphrase, model, and query language over 12,933 responses, then converts the components into a query-budget allocation; reported components are point estimates with confidence intervals pending.",
+    "url": "https://arxiv.org/abs/2607.13304",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.13304"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "ai-control",
+    "name": "AI Control: Improving Safety Despite Intentional Subversion",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Evaluates monitoring protocols intended to improve deployment safety when a model tries to subvert oversight, using a trusted weaker model and limited trusted labor.",
+    "url": "https://arxiv.org/abs/2312.06942",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2312.06942"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ICML 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/rgreenblatt/control-evaluations"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "llama-guard",
+    "name": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Screens user prompts and model responses against a safety risk taxonomy as an input-output filter for agent applications.",
+    "url": "https://arxiv.org/abs/2312.06674",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2312.06674"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2023",
+    "links": [
+      {
+        "label": "Model",
+        "url": "https://huggingface.co/meta-llama/LlamaGuard-7b"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "guardagent",
+    "name": "GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Reads safety requirements, generates a check plan, and compiles the plan into guardrail code that checks a target agent's runtime actions without retraining.",
+    "url": "https://arxiv.org/abs/2406.09187",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2406.09187"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ICML 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/guardagent/code"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentmonitor",
+    "name": "AgentMonitor: A Plug-and-Play Framework for Predictive and Secure Multi-Agent Systems",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Captures per-agent inputs and outputs to predict task outcomes ahead of time and apply real-time corrections when a malicious agent threatens the multi-agent run.",
+    "url": "https://arxiv.org/abs/2408.14972",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2408.14972"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/chanchimin/AgentMonitor"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "g-safeguard",
+    "name": "G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Runs a graph neural network over the multi-agent utterance graph to flag compromised agents and then applies topological intervention to remediate the attack mid-run.",
+    "url": "https://arxiv.org/abs/2502.11127",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2502.11127"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ACL 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/wslong20/G-safeguard"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agrail",
+    "name": "AGrail: A Lifelong Agent Guardrail with Effective and Adaptive Safety Detection",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Generates and optimizes safety checks during execution, adapting them to task-specific and systemic risks over an agent's lifetime rather than relying on a fixed rule set.",
+    "url": "https://arxiv.org/abs/2502.11448",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2502.11448"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ACL 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/SaFo-Lab/AGrail4Agent"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "guardian",
+    "name": "GUARDIAN: Safeguarding LLM Multi-Agent Collaborations with Temporal Graph Modeling",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Models a multi-agent collaboration as a temporal attributed graph and uses an unsupervised encoder-decoder to detect anomalous nodes and edges as errors propagate.",
+    "url": "https://arxiv.org/abs/2505.19234",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2505.19234"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "NeurIPS 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/JialongZhou666/GUARDIAN"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "sentinelagent",
+    "name": "SentinelAgent: Graph-based Anomaly Detection in Multi-Agent Systems",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Watches the live execution graph, scores nodes, edges, and paths against security policies, and intervenes on single-point faults or collusion.",
+    "url": "https://arxiv.org/abs/2505.24201",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2505.24201"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "probguard",
+    "name": "ProbGuard: Proactive Runtime Monitoring for LLM Agent Safety via Probabilistic Prediction",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Estimates the likelihood of reaching an unsafe future state with a discrete-time Markov chain so the monitor can warn and intervene before a violation occurs.",
+    "url": "https://arxiv.org/abs/2508.00500",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2508.00500"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ASE 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/haoyuwang99/ProbGuard"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentsentinel",
+    "name": "AgentSentinel: An End-to-End and Real-Time Security Defense Framework for Computer-Use Agents",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Intercepts sensitive operations in a computer-use agent and halts execution until a security audit clears, correlating task context with system traces in real time.",
+    "url": "https://arxiv.org/abs/2509.07764",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2509.07764"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "CCS 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/m4p1e/agent-sentinel"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "trajectory-guard",
+    "name": "Trajectory Guard: A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Uses a Siamese recurrent autoencoder to classify a whole agent trajectory as either a wrong plan for the task or a malformed plan structure, reporting 32 ms per sample and a 17 to 27 times speedup over language-model judge baselines.",
+    "url": "https://arxiv.org/abs/2601.00516",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2601.00516"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "AAAI 2026 Workshop (TrustAgent)",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "adaptive-attacks-on-trusted-monitors-subvert-ai-co",
+    "name": "Adaptive Attacks on Trusted Monitors Subvert AI Control Protocols",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Shows that an untrusted model which knows the control protocol and the monitor can embed prompt injections in its own outputs to evade diverse language-model monitors on two AI control benchmarks, and that the Defer-to-Resample protocol amplifies the injection into a best-of-n attack.",
+    "url": "https://arxiv.org/abs/2510.09462",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2510.09462"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ICLR 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "reliable-weak-to-strong-monitoring-of-llm-agents",
+    "name": "Reliable Weak-to-Strong Monitoring of LLM Agents",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Stress-tests monitors watching a stronger agent for covert misbehavior across SHADE-Arena and CUA-SHADE-Arena, showing that monitor scaffolding matters more than monitor awareness and that escalating only pre-flagged cases to human reviewers raises the true-positive rate by about 15 percent at a false-positive rate of 0.01.",
+    "url": "https://arxiv.org/abs/2508.19461",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2508.19461"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ICLR 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "classifier-context-rot",
+    "name": "Classifier Context Rot: Monitor Performance Degrades with Context Length",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Measures how language-model monitors of coding agents degrade as transcripts grow, reporting that Opus 4.6, GPT 5.4, and Gemini 3.1 miss dangerous actions 2x to 30x more often after 800K tokens of benign activity than when the same actions appear alone.",
+    "url": "https://arxiv.org/abs/2605.12366",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.12366"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "actplane",
+    "name": "ActPlane: Programmable OS-Level Policy Enforcement for Agent Harnesses",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Enforces agent-declared policy in the kernel with eBPF and an information-flow language, covering indirect execution paths that tool-call interception cannot observe, at 1.9% to 8.4% overhead.",
+    "url": "https://arxiv.org/abs/2606.25189",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.25189"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "sleight-bench",
+    "name": "SLEIGHT-Bench: A Benchmark of Evasion Attacks Against Agent Monitors",
+    "category": "Tools",
+    "format": "Benchmark",
+    "summary": "Assembles 40 covert attacks across 11 evasion categories, on which an Opus 4.6 monitor with extended thinking catches 32% overall and never catches 20 of the 40 at a 1% false-positive rate over ten trials.",
+    "url": "https://arxiv.org/abs/2605.16626",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.16626"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentspec",
+    "name": "AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Defines a trigger, predicate, and enforcement-action rule language that prevents over 90% of unsafe code-agent executions and all hazardous embodied actions at millisecond overhead.",
+    "url": "https://arxiv.org/abs/2503.18666",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.18666"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "ICSE 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "prefixguard",
+    "name": "PrefixGuard: From LLM-Agent Traces to Online Failure-Warning Monitors",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Induces typed-step adapters offline and then trains prefix-risk scorers for online warnings, reaching 0.900 AUPRC on WebArena and gaining 0.137 on average over raw-text controls across four benchmarks.",
+    "url": "https://arxiv.org/abs/2605.06455",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.06455"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentdog-1-5",
+    "name": "AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Trains four open-weight guard models from 0.8B to 8B parameters on about 1,000 taxonomy-guided samples and deploys them as a training-free online guardrail.",
+    "url": "https://arxiv.org/abs/2605.29801",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.29801"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "stepguard",
+    "name": "StepGuard: Learning Step-Level Guardrails with Scalable Supervision and Safety-Utility Balancing",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Trains a 4B guard model on automatically generated safe and unsafe step-level trajectories to check tool actions before execution and audit completed trajectories, reducing mean attack success rate by 77.3% relative to no guard across AgentDojo and AgentDyn.",
+    "url": "https://arxiv.org/abs/2608.24777",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.24777"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "EMNLP 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/zheng977/StepGuard"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentarmor",
+    "name": "AgentArmor: Enforcing Program Analysis on Agent Runtime Trace to Defend Against Prompt Injection",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Reconstructs traces as control-flow, data-flow, and program-dependence graphs and type-checks policy over them, cutting AgentDojo attack success to 3 percent at 1 percent utility cost.",
+    "url": "https://arxiv.org/abs/2508.01249",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2508.01249"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "attriguard",
+    "name": "AttriGuard: Defeating Indirect Prompt Injection in LLM Agents via Causal Attribution of Tool Invocations",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Replays each proposed tool call under control-attenuated counterfactual views and blocks calls that vanish without the untrusted content, reaching 0% attack success across four AgentDojo suites at about 3% utility cost and holding adaptive attacks to single-digit success rates.",
+    "url": "https://arxiv.org/abs/2603.10749",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.10749"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "USENIX Security 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentabstain",
+    "name": "AgentAbstain: Do LLM Agents Know When Not to Act?",
+    "category": "Tools",
+    "format": "Benchmark",
+    "summary": "Pairs 263 act and abstain tasks across 42 executable environments, on which the best of 17 frontier models reaches 59.5% paired accuracy and some agents act irreversibly before recognizing a reason to stop.",
+    "url": "https://arxiv.org/abs/2607.10059",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.10059"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "enforcing-temporal-constraints-for-llm-agents",
+    "name": "Enforcing Temporal Constraints for LLM Agents",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Compiles temporal safety properties to first-order logic and enforces them at generation time with an SMT solver, raising conformance to 100% for two frontier models while also raising utility.",
+    "url": "https://arxiv.org/abs/2512.23738",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2512.23738"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "online-monitoring-and-corrective-steering-of-progr",
+    "name": "Online Monitoring and Corrective Steering of Programming Agents",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Combines a deterministic rule-based trajectory monitor with an advisor model consulted only on drift, gaining up to 15.2% resolution rate on SWE-bench Verified and Pro at $0.08 per instance.",
+    "url": "https://arxiv.org/abs/2608.06701",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.06701"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "hil-bench-human-in-loop-benchmark",
+    "name": "HiL-Bench (Human-in-Loop Benchmark): Do Agents Know When to Ask for Help?",
+    "category": "Tools",
+    "format": "Benchmark",
+    "summary": "Hides human-validated blockers in software-engineering and text-to-SQL tasks and scores selective escalation with an Ask-F1 metric.",
+    "url": "https://arxiv.org/abs/2604.09408",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.09408"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "nemo-guardrails",
+    "name": "NeMo Guardrails",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "an open-source toolkit that adds programmable rails to LLM applications and agents, intercepting requests to enforce Colang-defined policies and validate tool inputs and outputs before and after a call. Apache-2.0, 2023-present.",
+    "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "owner": "NVIDIA",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/NVIDIA-NeMo/Guardrails"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "EMNLP 2023 Demo",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2310.10501"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "guardrails-ai",
+    "name": "Guardrails AI",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "an open-source Python framework that runs input and output guards in an application, composing validators from Guardrails Hub to detect and mitigate risks such as toxicity, PII exposure, and hallucination. Apache-2.0, 2023-present.",
+    "url": "https://github.com/guardrails-ai/guardrails",
+    "owner": "Guardrails AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/guardrails-ai/guardrails"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "llamafirewall",
+    "name": "LlamaFirewall",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "a layered guardrail framework combining PromptGuard 2 for jailbreak and injection detection, AlignmentCheck as an experimental chain-of-thought auditor that inspects agent reasoning for goal hijacking, and CodeShield static analysis across 8 languages for insecure generated code. Llama 3.2 Community License, which restricts redistribution and is not an OSI-approved open-source license, 2023-present.",
+    "url": "https://github.com/meta-llama/PurpleLlama",
+    "owner": "Meta",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/meta-llama/PurpleLlama"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2025",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2505.03574"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "decision-provenance",
+    "name": "Decision Provenance: Harnessing Data Flow for Accountable Systems",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Uses data-flow lineage to expose decision pipelines, including inputs, decisions, and downstream effects, as a basis for accountability and audit.",
+    "url": "https://arxiv.org/abs/1804.05741",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/1804.05741"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "IEEE Access 2019",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "audit-trails-for-accountability-in-large-language",
+    "name": "Audit Trails for Accountability in Large Language Models",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Proposes lifecycle audit trails that record technical lineage and governance decisions (approvals, waivers, attestations) in tamper-evident logs for LLMs in high-stakes use.",
+    "url": "https://arxiv.org/abs/2601.20727",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2601.20727"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/victorojewale/audit-trail-PoC"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "responsible-agentic-ai-requires-explicit-provenanc",
+    "name": "Responsible Agentic AI Requires Explicit Provenance",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Argues that responsibility becomes assignable only when agents emit traceable, attributable records across the lifecycle, and formalizes a causal attribution function and responsibility tensor.",
+    "url": "https://arxiv.org/abs/2605.17169",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.17169"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "auditable-agents-paper",
+    "name": "Auditable Agents",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Defines five auditability dimensions for tool-using agents (action recoverability, lifecycle coverage, policy checkability, responsibility attribution, evidence integrity) and an Auditability Card.",
+    "url": "https://arxiv.org/abs/2604.05485",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.05485"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "ACM AI Leadership Summit 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "towards-security-auditable-llm-agents-a-unified-gr",
+    "name": "Towards Security-Auditable LLM Agents: A Unified Graph Representation",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Proposes Agent-BOM, a unified hierarchical attributed graph over agent execution that captures capability bindings, cognitive-state evolution, memory contamination, and cross-agent risk propagation as one structured record for post-hoc security auditing.",
+    "url": "https://arxiv.org/abs/2605.06812",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.06812"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "the-log-is-the-agent",
+    "name": "The Log is the Agent: Event-Sourced Reactive Graphs for Auditable, Forkable Agentic Systems",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Treats an append-only event log as the canonical record and derives the working graph from that log, supporting replay, forks from prior events, and end-to-end lineage for each run.",
+    "url": "https://arxiv.org/abs/2605.21997",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.21997"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/yoheinakajima/activegraph"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "traceaegis",
+    "name": "TraceAegis: Securing LLM-Based Agents via Hierarchical and Behavioral Anomaly Detection",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Builds lineage records from agent execution traces and abstracts them into behavioral rules; ships TraceAegis-Bench with labeled benign and abnormal traces.",
+    "url": "https://arxiv.org/abs/2510.11203",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2510.11203"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agent-sentry",
+    "name": "Agent-Sentry: Bounding LLM Agents via Execution Provenance",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Records execution lineage from prior legitimate runs and uses it to bound and account for an agent's later actions at runtime.",
+    "url": "https://arxiv.org/abs/2603.22868",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.22868"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "from-agent-traces-to-trust",
+    "name": "From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Surveys evidence tracing and execution lineage for process-level accountability, organizing trace sources, evidence units, and lineage relations for auditable agent systems.",
+    "url": "https://arxiv.org/abs/2606.04990",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.04990"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Paper List",
+        "url": "https://github.com/xiaoqi-7/Agent-Tracing-Survey"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "memlineage",
+    "name": "MemLineage: Lineage-Guided Enforcement for LLM Agent Memory",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Signs each memory entry per principal over an RFC 6962 Merkle log and refuses sensitive actions whose active justification descends from external content, driving attack success to zero on three memory-poisoning workloads and six AgentDojo banking pairs at sub-millisecond overhead.",
+    "url": "https://arxiv.org/abs/2605.14421",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.14421"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "trace-watermark",
+    "name": "TRACE: A Two-Channel Robust Attribution Watermark via Complementary Embeddings for LLM-Agent Trajectories",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Leaves action choice distortion-free on a selection channel and keys a tally channel on log structure alone, so a reseller who can rewrite the log cannot erase attribution; detection survives deletion of 70% of steps.",
+    "url": "https://arxiv.org/abs/2607.08400",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.08400"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "makerchecker",
+    "name": "MakerChecker",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "self-hosted governance for AI agents with role-based execution, human approval gates, and a hash-chained, Ed25519-signed audit log of every action. AGPL-3.0, 2026-present.",
+    "url": "https://github.com/makerchecker/MakerChecker",
+    "owner": "MakerChecker contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/makerchecker/MakerChecker"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "aegis-runtime",
+    "name": "aegis",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "runtime policy enforcement for AI agents with a cryptographic audit trail, human-in-the-loop approvals, and a kill switch, implemented as a wrapper around agent code. MIT-licensed, 2026-present.",
+    "url": "https://github.com/Justin0504/Aegis",
+    "owner": "Justin0504 and contributors",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/Justin0504/Aegis"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2603.12621"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "sofagent",
+    "name": "sofagent",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "commit-time audit engine for AI coding agents that checks git diffs and any available task log against 24 rules, 17 of them enabled by default, recording each result in a local hash-chained history with optional HMAC signing. A doctor command checks chain integrity over the latest 500 history entries, and an MCP server aggregates the local trails by agent. MIT-licensed, 2026-present.",
+    "url": "https://github.com/KongFangXun/sofagent",
+    "owner": "KongFangXun",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/KongFangXun/sofagent"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "halo-record",
+    "name": "halo-record",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "dependency-free recorder that seals tool calls, model calls, and approvals into a SHA-256 hash-chained JSONL log verifiable without trusting the operator, with optional RFC 3161 timestamping and OpenTelemetry GenAI span ingestion. Apache-2.0, 2026-present.",
+    "url": "https://github.com/bkuan001/halo-record",
+    "owner": "bkuan001",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/bkuan001/halo-record"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agent-governance-toolkit",
+    "name": "Agent Governance Toolkit",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "policy enforcement, agent identity, and execution sandboxing with a Merkle-chained audit trail and a Decision BOM, published with control mappings to the OWASP Agentic Top 10, NIST AI RMF 1.0, the EU AI Act, and SOC 2. MIT-licensed, 2026-present; public preview with breaking changes expected.",
+    "url": "https://github.com/microsoft/agent-governance-toolkit",
+    "owner": "Microsoft",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/microsoft/agent-governance-toolkit"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "trace-spec",
+    "name": "TRACE",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "open specification and Python SDK for hardware-attested agent trust records that bind model, policy, data class, tool calls, and TEE attestation into one signed artifact a third party can verify offline, with a conformance test suite. CC BY 4.0 spec, Apache-2.0 tooling, 2026-present.",
+    "url": "https://github.com/agentrust-io/trace-spec",
+    "owner": "AgentRust contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/agentrust-io/trace-spec"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agentlens",
+    "name": "AgentLens",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "MCP-native observability and audit-trail platform that records LLM calls, tool invocations, and decisions in an append-only, SHA-256 hash-chained, verifiable event log. MIT-licensed, 2026-present.",
+    "url": "https://github.com/agentkitai/agentlens",
+    "owner": "AgentKit AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/agentkitai/agentlens"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "auditable",
+    "name": "auditable",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "records which inputs a consequential agent action relied on, re-evaluates that action against current state, and reverses the committed action through a pluggable rail when its supporting conditions no longer hold. Apache-2.0, 2026-present.",
+    "url": "https://github.com/yzhao062/auditable",
+    "owner": "Yue Zhao and contributors",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/yzhao062/auditable"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "proofline",
+    "name": "Proofline",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "verification-first agent that turns task contracts into deterministic SHA-256 proof packets, rejects missing, stale, or contradictory evidence, and gates external actions behind human approval. MIT-licensed, 2026-present.",
+    "url": "https://github.com/ceodaradigu/proofline-agent",
+    "owner": "Ceodar Adigu",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/ceodaradigu/proofline-agent"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "semaprax-agent-runtime",
+    "name": "SEMAPRAX Agent Runtime",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "bounded agent loop with a caller-injected host that emits canonical Trace and Evidence documents for a run and checks them by internal replay before returning them. It is reached through the project's Rust API, so it does not attach to an agent written in another language, and the surrounding language project is pre-alpha. Apache-2.0, 2026-present.",
+    "url": "https://github.com/wavect/semaprax",
+    "owner": "Wavect",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/wavect/semaprax"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "busabase",
+    "name": "Busabase",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "self-hostable database and workspace for AI agents where scoped credentials can require data, document, schema, skill, and app mutations to arrive as ChangeRequests with exact diffs, submitter attribution, comments, review decisions, commits, and history before approved changes become canonical. MIT-licensed, 2026-present.",
+    "url": "https://github.com/busabase/busabase",
+    "owner": "Busabase",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/busabase/busabase"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agent-audit-paper",
+    "name": "Agent Audit: A Security Analysis System for LLM Agent Applications",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Static security analysis for LLM agent code and configuration, with tool-boundary taint tracking and MCP config auditing; the tool itself is listed under Scanners.",
+    "url": "https://arxiv.org/abs/2603.22853",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.22853"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "CAIS 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "injecagent",
+    "name": "InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "A benchmark of 1,054 cases that measures how often tool-integrated LLM agents follow malicious instructions embedded in tool outputs.",
+    "url": "https://arxiv.org/abs/2403.02691",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2403.02691"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "ACL Findings 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/uiuc-kang-lab/InjecAgent"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "sok",
+    "name": "SoK: The Attack Surface of Agentic AI: Tools, and Autonomy",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "A systematization of security risks and attack vectors in agentic systems that combine language models with tools, retrieval, and autonomous decision loops.",
+    "url": "https://arxiv.org/abs/2603.22928",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.22928"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "defeating-prompt-injections-by-design",
+    "name": "Defeating Prompt Injections by Design",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Extracts the control and data flow from the trusted query so untrusted retrieved data cannot affect the program flow, and enforces capability-based policies when tools are called, solving 77% of AgentDojo tasks with provable security against 84% for an undefended system.",
+    "url": "https://arxiv.org/abs/2503.18813",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.18813"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "SaTML 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/google-research/camel-prompt-injection"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "design-patterns-for-securing-llm-agents-against-pr",
+    "name": "Design Patterns for Securing LLM Agents against Prompt Injections",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Presents six design patterns that constrain a tool-using agent once it ingests untrusted input, with a utility and security trade-off analysis for each.",
+    "url": "https://arxiv.org/abs/2506.08837",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2506.08837"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agent-security-bench-asb",
+    "name": "Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "Formalizes 10 prompt-injection attacks, memory poisoning, a Plan-of-Thought backdoor, 4 mixed attacks, and 11 defenses across 13 backbones, 10 scenarios, and over 400 tools, reaching a peak average attack success rate of 84.30 percent.",
+    "url": "https://arxiv.org/abs/2410.02644",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2410.02644"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "ICLR 2025",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "memory-injection-attacks-on-llm-agents-via-query-o",
+    "name": "Memory Injection Attacks on LLM Agents via Query-Only Interaction",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Shows that MINJA injects malicious records through ordinary queries and observations alone, with injection success above 90% in most configurations across three agents.",
+    "url": "https://arxiv.org/abs/2503.03704",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2503.03704"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "NeurIPS 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "memsecbench",
+    "name": "MemSecBench: Tracking Agent Memory Poisoning from Persistence to Consequence and Repair",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "Follows 310 memory-poisoning cases from 48 contexts through write, execute, and forget stages across 24 harness, backend, and model combinations, reporting 84.2% persistence and 50.3% full-chain success, with selective repair at 56.1% among successfully poisoned cases.",
+    "url": "https://arxiv.org/abs/2607.27080",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.27080"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "stepjack",
+    "name": "StepJack: Benchmarking Computer-Use Agent Safety Against Multi-Step Indirect Prompt Injection",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "Decomposes an adversarial goal into innocuous sub-steps along the navigation path, raising attack success on 3 of 6 computer-use agents by up to 31.2 points across 480 examples.",
+    "url": "https://arxiv.org/abs/2608.06477",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.06477"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "who-pays-the-price-stakeholder-centric-prompt-inje",
+    "name": "Who Pays the Price? Stakeholder-Centric Prompt Injection Benchmarking for Real-world Web Agents",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "Introduces StakeBench, which scores prompt-injection harm by the affected stakeholder (user, seller, platform) over 264 executable cases from 22 templates on a live e-commerce environment, where indirect injection succeeds 41.67% to 68.16% of the time and the same agent shows a distinct failure profile per stakeholder.",
+    "url": "https://arxiv.org/abs/2606.13385",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.13385"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/StakeBench/SBC"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "model-context-protocol-threat-modeling-and-analyzi",
+    "name": "Model Context Protocol Threat Modeling and Analyzing Vulnerabilities to Prompt Injection with Tool Poisoning",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Threat model for Model Context Protocol clients showing how unvalidated tool metadata enables prompt injection and tool poisoning, with static-analysis and behavioral defenses.",
+    "url": "https://arxiv.org/abs/2603.22489",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.22489"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "J. Cybersecur. Priv. 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/nyit-vancouver/mcp-security"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "systematization-of-knowledge",
+    "name": "Systematization of Knowledge: Security and Safety in the Model Context Protocol Ecosystem",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "A survey of security and safety issues across the Model Context Protocol ecosystem, including tool poisoning, supply-chain risk, and proposed mitigations.",
+    "url": "https://arxiv.org/abs/2512.08290",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2512.08290"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2025",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "rethinking-mcp-security",
+    "name": "Rethinking MCP Security: A Large-Scale Study of Runtime MCP Servers and Security Scanner Reliability",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Builds MCPZoo from 64,611 unique MCP servers, over 37,288 of which support dynamic analysis, and finds existing scanners flag 96.89% of servers as risky at 45.53% average alert precision.",
+    "url": "https://arxiv.org/abs/2607.11086",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.11086"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "description-code-inconsistency-in-real-world-mcp-s",
+    "name": "Description-Code Inconsistency in Real-world MCP Servers: Measurement, Detection, and Security Implications",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Finds with structure-aware static analysis that 9.93% of 19,200 description-code pairs from 2,214 real servers misstate what the tool code does.",
+    "url": "https://arxiv.org/abs/2606.04769",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2606.04769"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "a-first-measurement-study-on-authentication-securi",
+    "name": "A First Measurement Study on Authentication Security in Real-World Remote MCP Servers",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Measures 7,973 live remote servers, of which 40.55% expose tools with no authentication, and reports 325 flaws and 9 CVE identifiers from 119 OAuth-enabled servers.",
+    "url": "https://arxiv.org/abs/2605.22333",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.22333"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "skilltrace",
+    "name": "SkillTrace: Multi-Trace Provenance Auditing for LLM-Agent Skill Reuse",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Audits skill-package reuse across expression, implementation, and operational traces, reaching AUROC 0.938 and F1 0.898 on 820 transformed positives against 751 negative controls, then audits 36,446 marketplace skills.",
+    "url": "https://arxiv.org/abs/2608.05204",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.05204"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "cloak-and-detonate",
+    "name": "Cloak and Detonate: Scanner Evasion and Dynamic Detection of Agent Skill Malware",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Shows self-extracting skill packing bypasses all 8 tested scanners at over 90% across 1,613 in-the-wild malicious skills, while its sandbox auditor detects 97% of benchmark attacks at a 2% false-positive rate and 87% of real-world malicious skills.",
+    "url": "https://arxiv.org/abs/2607.02357",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.02357"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "openskillrisk",
+    "name": "OpenSkillRisk: Benchmarking Agent Safety When Using Real-World Risky Third-Party Skills",
+    "category": "Security",
+    "format": "Benchmark",
+    "summary": "Collects 263 marketplace skills across 7 threat categories, on which the safest of 3 frameworks and 13 models still executes unsafe actions about 17% of the time.",
+    "url": "https://arxiv.org/abs/2607.20121",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2607.20121"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agent-audit",
+    "name": "agent-audit",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "static security scanner for LLM agents that flags prompt-injection sinks, audits MCP configuration, and runs tool-boundary taint analysis. Its rules map to the OWASP Agentic Top 10 (2026), and it supports LangChain, CrewAI, and AutoGen. MIT-licensed, 2026-present.",
+    "url": "https://github.com/HeadyZhang/agent-audit",
+    "owner": "Haiyue Zhang (HeadyZhang)",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://github.com/HeadyZhang/agent-audit"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "garak",
+    "name": "garak",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "an LLM vulnerability scanner that probes a model or any REST-accessible endpoint for prompt injection, jailbreaks, data leakage, and toxic generation, with detectors that score each probe. Apache-2.0, 2023-present.",
+    "url": "https://github.com/NVIDIA/garak",
+    "owner": "NVIDIA",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/NVIDIA/garak"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agentic-radar",
+    "name": "Agentic Radar",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "open-source scanner that maps agentic workflows through static analysis, detects MCP servers and tools, and reports OWASP-aligned vulnerabilities. It supports LangGraph, CrewAI, OpenAI Agents, AutoGen, and n8n. Apache-2.0, 2025 (last commit 2025-11-27).",
+    "url": "https://github.com/splx-ai/agentic-radar",
+    "owner": "Splx AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/splx-ai/agentic-radar"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "snyk-agent-scan",
+    "name": "Snyk Agent Scan",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "security scanner that auto-discovers the MCP servers, agent tools, and skills installed on a machine across 13 agent harnesses including Claude Code, Cursor, VS Code, Windsurf, Gemini CLI, and Codex. It flags more than 15 risk classes including prompt injection, tool poisoning, tool shadowing, toxic flows, malware payloads, and hardcoded secrets. Apache-2.0, 2025-present; it requires a Snyk API token, so it is an open-source client to a commercial service.",
+    "url": "https://github.com/snyk/agent-scan",
+    "owner": "Snyk",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/snyk/agent-scan"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#security-auditing-and-scanners",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "gammaf",
+    "name": "GAMMAF: A Common Framework for Graph-Based Anomaly Monitoring Benchmarking in LLM Multi-Agent Systems",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "An evaluation framework that generates synthetic multi-agent interaction datasets and standardizes the comparison of graph-based anomaly detectors over agent communication graphs.",
+    "url": "https://arxiv.org/abs/2604.24477",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.24477"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "swe-bench",
+    "name": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "2,294 software-engineering tasks drawn from real GitHub issues and their fix pull requests across 12 Python repositories, with unit-test verification of each generated patch.",
+    "url": "https://arxiv.org/abs/2310.06770",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2310.06770"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/SWE-bench/SWE-bench"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "swe-agent",
+    "name": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "An open-source coding-agent framework with released SWE-bench trajectories that contain step-by-step tool calls and edits for trace-level study.",
+    "url": "https://arxiv.org/abs/2405.15793",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2405.15793"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "NeurIPS 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/SWE-agent/SWE-agent"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentbench",
+    "name": "AgentBench: Evaluating LLMs as Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "A suite of eight interactive environments for measuring multi-turn decision-making of LLM agents, with logged interaction records across many models.",
+    "url": "https://arxiv.org/abs/2308.03688",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2308.03688"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/THUDM/AgentBench"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "gaia",
+    "name": "GAIA: a benchmark for General AI Assistants",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "466 real-world questions that require multi-step reasoning, web browsing, and tool use, with a single correct answer per item for unambiguous scoring of assistant behavior.",
+    "url": "https://arxiv.org/abs/2311.12983",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2311.12983"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2024",
+    "links": [
+      {
+        "label": "Data",
+        "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper",
+      "Dataset"
+    ]
+  },
+  {
+    "id": "webarena",
+    "name": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "A reproducible environment of self-hosted websites with long-horizon tasks scored by functional correctness of the end state, supporting repeatable agent evaluation.",
+    "url": "https://arxiv.org/abs/2307.13854",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2307.13854"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2024",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/web-arena-x/webarena"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "osworld",
+    "name": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "369 executable computer-use tasks on Ubuntu, each with a setup configuration and an execution-based checker, in an environment that also supports Windows and macOS, on which humans complete over 72.36% of tasks while the best evaluated model reaches 12.24%.",
+    "url": "https://arxiv.org/abs/2404.07972",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2404.07972"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "NeurIPS 2024 Datasets and Benchmarks Track",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/xlang-ai/OSWorld"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "terminal-bench",
+    "name": "Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Terminal-Bench 2.0 curates 89 command-line tasks, each with its own container environment, a human-written solution, and verification tests, on which frontier models and agents score below 65%.",
+    "url": "https://arxiv.org/abs/2601.11868",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2601.11868"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/harbor-framework/terminal-bench"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "appworld",
+    "name": "AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "750 interactive coding tasks over 9 simulated apps exposing 457 APIs, on which GPT-4o solves about 49% of normal tasks and 30% of challenge tasks.",
+    "url": "https://arxiv.org/abs/2407.18901",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2407.18901"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ACL 2024",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "identifying-the-risks-of-lm-agents-with-an-lm-emul",
+    "name": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "ToolEmu emulates tool execution so agents can be stress-tested on 144 cases without real side effects; the safest agent still fails 23.9% of the time and 68.8% of flagged failures are judged valid.",
+    "url": "https://arxiv.org/abs/2309.15817",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2309.15817"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2024",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "bench",
+    "name": "τ²-Bench: Evaluating Conversational Agents in a Dual-Control Environment",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Extends τ-bench to dual control where the user also acts on the shared environment, modeling Telecom as a Dec-POMDP and separating agent reasoning errors from coordination errors.",
+    "url": "https://arxiv.org/abs/2506.07982",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2506.07982"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICML 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentboard",
+    "name": "AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Nine partially observable environments scored by a fine-grained progress rate that credits incremental advancement rather than final success alone.",
+    "url": "https://arxiv.org/abs/2401.13178",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2401.13178"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "NeurIPS 2024 Datasets and Benchmarks Track",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "wildclawbench",
+    "name": "WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "60 bilingual multimodal tasks inside real command-line harnesses in Docker, on which the best of 19 models reaches 62.2% and swapping the harness alone moves one model by up to 18 points.",
+    "url": "https://arxiv.org/abs/2605.10912",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.10912"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "clawbench",
+    "name": "ClawBench: Can AI Agents Complete Everyday Online Tasks?",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Evaluates browser agents on 153 write-heavy tasks across 144 live websites, with final-request interception and synchronized video, screenshot, network, action, and message traces for auditable scoring and failure analysis.",
+    "url": "https://arxiv.org/abs/2604.08523",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.08523"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/TIGER-AI-Lab/ClawBench"
+      },
+      {
+        "label": "Project",
+        "url": "https://claw-bench.com/"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "evaluating-memory-in-llm-agents-via-incremental-mu",
+    "name": "Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "MemoryAgentBench recasts long-context data into incremental multi-turn interactions testing accurate retrieval, test-time learning, long-range understanding, and selective forgetting; no agent class masters all four.",
+    "url": "https://arxiv.org/abs/2507.05257",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2507.05257"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "ICLR 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "hintbench",
+    "name": "HINTBench: Horizon-agent Intrinsic Non-attack Trajectory Benchmark",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "629 trajectories (523 risky, 106 safe) averaging 33 steps that audit risk arising under benign conditions; strong models detect trajectory-level risk but fall below 35 Strict-F1 on locating the risky step.",
+    "url": "https://arxiv.org/abs/2604.13954",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.13954"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "os-harm",
+    "name": "OS-Harm: A Benchmark for Measuring Safety of Computer Use Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "150 OSWorld-based tasks spanning deliberate misuse, prompt injection, and model misbehavior, with a judge agreeing with human annotation at 0.76 and 0.79 F1.",
+    "url": "https://arxiv.org/abs/2506.14866",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2506.14866"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "NeurIPS 2025 Datasets and Benchmarks Track (Spotlight)",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "r-judge",
+    "name": "R-Judge: Benchmarking Safety Risk Awareness for LLM Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "569 multi-turn records across 27 risk scenarios and 10 risk types, on which GPT-4o reaches 74.42% while no other evaluated model significantly beats random.",
+    "url": "https://arxiv.org/abs/2401.10019",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2401.10019"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "EMNLP Findings 2024",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "telemetrysuffbench",
+    "name": "TelemetrySuffBench: Is Agent Telemetry Sufficient for Failure-Origin Diagnosis?",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Compares metadata, OpenTelemetry-compatible, and OpenInference-compatible views, which retain 99.5% to 100% detection F1 while holding fault-origin step accuracy at or below 0.5%.",
+    "url": "https://arxiv.org/abs/2608.07899",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.07899"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "pact",
+    "name": "PACT: Pressure-Applied Compliance Testing",
+    "category": "Evaluation",
+    "format": "Dataset",
+    "summary": "3,364 conversations across 48 scenarios in 12 regulated domains; each row gives an assistant a workplace rule and 2 to 5 options and records which options comply, whether the rule binds, which of nine pressures applies, and whether a directive is present.",
+    "url": "https://huggingface.co/datasets/trace-ai-labs/pact",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://huggingface.co/datasets/trace-ai-labs/pact"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/trace-ai-labs/pact"
+      }
+    ],
+    "formats": [
+      "Dataset"
+    ]
+  },
+  {
+    "id": "do-androids-dream-of-breaking-the-game-systematica",
+    "name": "Do Androids Dream of Breaking the Game? Systematically Auditing AI Agent Benchmarks with BenchJack",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Red-teams 10 agent benchmarks for reward-hacking exploits, surfacing 219 distinct flaws across eight recurring classes and scoring near-perfect on most benchmarks without solving a single task, then patches four of them below a 10% hackable-task ratio and fully repairs WebArena and OSWorld in three iterations.",
+    "url": "https://arxiv.org/abs/2605.12673",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.12673"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/benchjack/benchjack"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentrewardbench",
+    "name": "AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "1,302 web agent trajectories drawn from 5 benchmarks and 4 language models, each reviewed by an expert for success, side effects, and repetitiveness, used to score 12 language-model judges and to show that the rule-based evaluation of common benchmarks underreports agent success.",
+    "url": "https://arxiv.org/abs/2504.08942",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2504.08942"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "COLM 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/McGill-NLP/agent-reward-bench"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentauditor",
+    "name": "AgentAuditor: Human-Level Safety and Security Evaluation for LLM Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Training-free memory-augmented framework that lifts language-model safety evaluators toward human-expert accuracy, released with ASSEBench: 2,293 annotated records, 15 risk types, and 29 scenarios.",
+    "url": "https://arxiv.org/abs/2506.00641",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2506.00641"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "NeurIPS 2025",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "specbench",
+    "name": "SpecBench: Measuring Reward Hacking in Long-Horizon Coding Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Separates visible validation tests from held-out compositional tests across 30 systems-level tasks, finding the pass-rate gap grows 28 percentage points per tenfold increase in code size.",
+    "url": "https://arxiv.org/abs/2605.21384",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2605.21384"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "ai-agents-that-matter",
+    "name": "AI Agents That Matter",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Critique of agent benchmarking practice, arguing for cost-aware evaluation, adequate holdout sets, and reproducibility alongside accuracy.",
+    "url": "https://arxiv.org/abs/2407.01502",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2407.01502"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#datasets-and-benchmarks",
+    "venue": "TMLR 2025",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/benediktstroebl/agent-evals"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "langfuse",
+    "name": "Langfuse",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "self-hostable platform for tracing LLM and agent calls, running evaluations, managing prompts, and tracking cost and latency, with OpenTelemetry, LangChain, and OpenAI SDK integrations. MIT-licensed core, 2023-present.",
+    "url": "https://github.com/langfuse/langfuse",
+    "owner": "Langfuse contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/langfuse/langfuse"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "arize-phoenix",
+    "name": "Arize Phoenix",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source observability and evaluation tool built on OpenTelemetry for tracing, evaluating, and debugging LLM and agent applications, with auto-instrumentation for common frameworks. Elastic License 2.0, 2022-present.",
+    "url": "https://github.com/Arize-ai/phoenix",
+    "owner": "Arize AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Arize-ai/phoenix"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "openinference",
+    "name": "OpenInference",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "a set of OpenTelemetry-compatible conventions and instrumentation packages for capturing traces from LLM and agent frameworks; exports traces to OpenTelemetry-compatible backends. Apache-2.0, 2023-present.",
+    "url": "https://github.com/Arize-ai/openinference",
+    "owner": "Arize AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Arize-ai/openinference"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "opik",
+    "name": "Opik",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source platform for tracing, evaluating, and monitoring LLM applications and agentic workflows, with LLM-as-a-judge scoring, experiment tracking, and production dashboards. Apache-2.0, 2024-present.",
+    "url": "https://github.com/comet-ml/opik",
+    "owner": "Comet ML",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/comet-ml/opik"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "openllmetry",
+    "name": "OpenLLMetry",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "OpenTelemetry-based instrumentation for LLM applications that emits standard OpenTelemetry traces routable to existing observability backends; SDKs across Python, TypeScript, Go, and Ruby. Apache-2.0, 2023-present.",
+    "url": "https://github.com/traceloop/openllmetry",
+    "owner": "Traceloop",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/traceloop/openllmetry"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "helicone",
+    "name": "Helicone",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source observability platform and AI gateway that logs LLM and agent traces, costs, and latency through a proxy and a unified API across providers. Apache-2.0, 2023-present.",
+    "url": "https://github.com/Helicone/helicone",
+    "owner": "Helicone",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Helicone/helicone"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "bifrost",
+    "name": "Bifrost",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "OpenAI-compatible gateway that routes across providers with configurable failover, enforces budget and rate limits, executes MCP tools, and emits Prometheus metrics, OpenTelemetry traces, and per-request logs of prompt, response, token, cost, and latency. Apache-2.0, 2025-present.",
+    "url": "https://github.com/maximhq/bifrost",
+    "owner": "Maxim AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/maximhq/bifrost"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "gram",
+    "name": "Gram",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source AI control plane that connects agents to MCPs, enforces access policies, and records searchable tool calls, permission changes, and access events. AGPL-3.0, 2025-present.",
+    "url": "https://github.com/speakeasy-api/gram",
+    "owner": "Speakeasy",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/speakeasy-api/gram"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "deepeval",
+    "name": "DeepEval",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source evaluation framework that runs LLM and agent tests in a pytest-style workflow, with metrics for hallucination, relevancy, and task correctness that can be included in CI checks. Apache-2.0, 2023-present.",
+    "url": "https://github.com/confident-ai/deepeval",
+    "owner": "Confident AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/confident-ai/deepeval"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "evidently",
+    "name": "Evidently",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source framework to evaluate, test, and monitor ML and LLM systems, with 100+ built-in metrics spanning tabular data quality, data drift, and LLM judges. Apache-2.0, 2020-present.",
+    "url": "https://github.com/evidentlyai/evidently",
+    "owner": "Evidently AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/evidentlyai/evidently"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agentops",
+    "name": "AgentOps",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source SDK for monitoring AI agents, with session replays, cost tracking, and failure detection; integrates with CrewAI, OpenAI Agents SDK, LangChain, and AG2 (formerly AutoGen). MIT-licensed, 2023-present.",
+    "url": "https://github.com/AgentOps-AI/agentops",
+    "owner": "AgentOps",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/AgentOps-AI/agentops"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "langsmith",
+    "name": "LangSmith",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "framework-agnostic platform from the LangChain team for tracing, offline and online evaluation, and monitoring of LLM and agent applications. Commercial product, not open source; self-hosted and hybrid deployment are available on the Enterprise plan, 2023-present.",
+    "url": "https://www.langchain.com/langsmith-platform",
+    "owner": "LangChain",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://www.langchain.com/langsmith-platform"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "ragas",
+    "name": "Ragas",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "evaluation library for LLM applications, with RAG metrics such as faithfulness, answer relevancy, and context precision, agent metrics such as tool-call accuracy and topic adherence, and test set generation. Apache-2.0, 2023-2026 (last commit 2026-02-24, latest release v0.4.3 on 2026-01-13).",
+    "url": "https://github.com/vibrantlabsai/ragas",
+    "owner": "Exploding Gradients / Ragas contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/vibrantlabsai/ragas"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "venue": "EACL 2024 Demo",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://aclanthology.org/2024.eacl-demo.16/"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agentdebugx",
+    "name": "AgentDebugX",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "closes the debugging loop as detect, attribute, recover, and rerun, reaching 28.8% exact agent-and-step accuracy on Who&When with a qwen3.5-9b backbone against 21.7% for the strongest single-pass baseline and repairing 13 of 73 failed GAIA tasks in one rerun. MIT-licensed, 2026-present.",
+    "url": "https://github.com/AgentDebugX/AgentDebugX",
+    "owner": "AgentDebugX contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/AgentDebugX/AgentDebugX"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2607.18754"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "docent",
+    "name": "Docent",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "summarizes, searches, and clusters completed agent transcripts to surface broken tasks; adding packages that Docent revealed as missing raised the GPT-4o InterCode solve rate from 68.6% to 78% across 79 tasks. Apache-2.0, 2025-present.",
+    "url": "https://github.com/TransluceAI/docent",
+    "owner": "Transluce",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/TransluceAI/docent"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "laminar",
+    "name": "Laminar",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "OpenTelemetry-native agent observability with Signals that track a behavior described in plain English, such as an agent stuck in a loop, and alert on it across runs, plus SQL queries over span data. Apache-2.0, 2024-present.",
+    "url": "https://github.com/lmnr-ai/lmnr",
+    "owner": "Laminar",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/lmnr-ai/lmnr"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "trulens",
+    "name": "TruLens",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "OpenTelemetry-native evaluation recording latency, tokens, and cost per step, with seven agent-specific evaluators covering plan adherence, plan quality, tool selection, tool calling, execution efficiency, logical consistency, and external tool reliability. MIT-licensed, 2020-present.",
+    "url": "https://github.com/truera/trulens",
+    "owner": "TruEra",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/truera/trulens"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "e2b",
+    "name": "E2B",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "runs AI-generated code in isolated cloud sandboxes so an unsafe action is contained rather than executed on the host, with Terraform-based self-hosting. Apache-2.0, 2023-present.",
+    "url": "https://github.com/e2b-dev/E2B",
+    "owner": "E2B",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/e2b-dev/E2B"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "microsandbox",
+    "name": "Microsandbox",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "self-hosted microVM runtime giving agent code hardware-level isolation at an average boot under 100 milliseconds, spawned in-process with no daemon, with SDKs in five languages. Apache-2.0, 2024-present.",
+    "url": "https://github.com/superradcompany/microsandbox",
+    "owner": "SuperRadCompany",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/superradcompany/microsandbox"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "giskard",
+    "name": "Giskard",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "generates adversarial test suites from a plain-language description of the agent across OWASP LLM Top-10 threat categories, with multi-turn agent testing in v3. Apache-2.0, 2022-present.",
+    "url": "https://github.com/Giskard-AI/giskard-oss",
+    "owner": "Giskard",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Giskard-AI/giskard-oss"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agentrunproof",
+    "name": "AgentRunProof",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "deterministic runtime-conformance harness for the OpenAI Agents SDK that drives the real Runner through scripted responses on the public Model interface, and writes content-addressed evidence that can be rechecked without rerunning the SDK; built-in scenarios make no model API calls. MIT-licensed, 2026-present.",
+    "url": "https://github.com/FU-max-boop/agentrunproof",
+    "owner": "AgentRunProof contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/FU-max-boop/agentrunproof"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "a2e",
+    "name": "A2E",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "end-to-end agent auditing engine that uses the Agent Task Protocol to integrate tasks with different harnesses, automatically captures standardized execution traces, and assesses execution efficiency, tool use, task planning, and error recovery with multidimensional metrics. MIT-licensed, 2026-present.",
+    "url": "https://github.com/datamllab/A2E",
+    "owner": "DataML Lab",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/datamllab/A2E"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2608.07346"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "awesome-agentic-engineering",
+    "name": "Awesome Agentic Engineering",
+    "category": "Reading",
+    "format": "Collection",
+    "summary": "GitHub Action and CLI that scores an agent specification against risk-tiered profiles, fails a release on unresolved blockers, and runs eight prompt-injection fixtures through LangGraph and OpenAI Agents adapters that retain node-linked traces and machine-readable results. MIT-licensed, 2026-present.",
+    "url": "https://github.com/lindixu6-hash/awesome-agentic-engineering",
+    "owner": "Lindi Xu",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/lindixu6-hash/awesome-agentic-engineering"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Collection"
+    ]
+  },
+  {
+    "id": "agentcheck",
+    "name": "AgentCheck",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "open-source behavioral testing tool for tool-using AI agents that simulates declared tool execution while evaluating tool calls, failures, retries, confirmations, destructive actions, action sequencing, and fabricated success, with integrations for OpenAI Agents SDK, PydanticAI, and custom Python agents. Apache-2.0, 2026-present.",
+    "url": "https://github.com/WaseemGhanem98/AgentCheck",
+    "owner": "Waseem Ghanem",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/WaseemGhanem98/AgentCheck"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "orcareplay",
+    "name": "OrcaReplay",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "records a coding-agent run below the harness, placing model calls, per-turn workspace changes, and opt-in MCP frames on one timeline. It then re-executes the agent against the recorded model responses and reports divergence, or forks the run from a filesystem checkpoint onto a different model for comparison. Apache-2.0, 2026-present.",
+    "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
+    "owner": "Continuum AI",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Continuum-AI-Corp/OrcaReplay"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "plumb-line",
+    "name": "plumb-line",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "zero-dependency provenance primitive that propagates mock or low-confidence taint through derived values, paired with five Claude Code skills that audit a repository for unverified claims and source-truth gaps. Apache-2.0, 2026-present.",
+    "url": "https://github.com/slopstopper/plumb-line",
+    "owner": "slopstopper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/slopstopper/plumb-line"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "yylo-benchmark",
+    "name": "YYLO Benchmark",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "evaluation layer for coding-agent runs that executes each candidate in an isolated workspace and retains hash-linked execution receipts, post-run Git manifests, and evaluator configuration for later inspection. MIT-licensed, 2026-present.",
+    "url": "https://github.com/yylo-dev/yylo-benchmark",
+    "owner": "YYLO",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/yylo-dev/yylo-benchmark"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "formats": [
+      "Benchmark"
+    ]
+  },
+  {
+    "id": "model-cards-for-model-reporting",
+    "name": "Model Cards for Model Reporting",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Proposes short standardized documents that report a model's intended use, evaluation conditions, and performance across groups as accountability artifacts for deployed models.",
+    "url": "https://arxiv.org/abs/1810.03993",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/1810.03993"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "FAT* 2019",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "datasheets-for-datasets",
+    "name": "Datasheets for Datasets",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Introduces a standard datasheet for documenting a dataset's motivation, composition, collection process, and recommended uses to improve transparency and accountability.",
+    "url": "https://arxiv.org/abs/1803.09010",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/1803.09010"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "CACM 2021",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "closing-the-ai-accountability-gap",
+    "name": "Closing the AI Accountability Gap: Defining an End-to-End Framework for Internal Algorithmic Auditing",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Defines SMACTR, an internal audit framework that produces a documented decision trail across the development lifecycle so teams can assess systems before deployment.",
+    "url": "https://arxiv.org/abs/2001.00973",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2001.00973"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "FAT* 2020",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "black-box-access-is-insufficient-for-rigorous-ai-a",
+    "name": "Black-Box Access is Insufficient for Rigorous AI Audits",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Argues that meaningful third-party AI audits need more than query access, comparing black-box, white-box, and outside-the-box methods and their accountability implications.",
+    "url": "https://arxiv.org/abs/2401.14446",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2401.14446"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "FAccT 2024",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "position",
+    "name": "Position: AI Agents Need Authenticated Delegation",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Extends OAuth 2.0 and OpenID Connect with agent-specific credentials to scope permissions delegated to autonomous agents and link those permissions to a responsible human.",
+    "url": "https://proceedings.mlr.press/v267/south25a.html",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://proceedings.mlr.press/v267/south25a.html"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "ICML 2025 Position Paper Track",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2501.09674"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "ai-identity",
+    "name": "AI Identity: Standards, Gaps, and Research Directions for AI Agents",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Surveys current identity, delegation, and accountability standards for agents acting across organizational boundaries and maps the open gaps that current frameworks leave unaddressed.",
+    "url": "https://arxiv.org/abs/2604.23280",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2604.23280"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
+    "id": "mcp-spec",
+    "name": "Model Context Protocol (MCP) Specification",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "JSON-RPC 2.0 protocol that standardizes how applications expose tools, resources, and prompts to language models, with an optional OAuth 2.1 authorization profile requiring Protected Resource Metadata discovery (RFC 9728), resource-indicator audience binding (RFC 8707), and issuer validation (RFC 9207) on HTTP transports. Agentic AI Foundation (a directed fund under the Linux Foundation), revision 2026-07-28.",
+    "url": "https://modelcontextprotocol.io/specification/latest",
+    "owner": "Anthropic / Linux Foundation",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://modelcontextprotocol.io/specification/latest"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "spec repo",
+        "url": "https://github.com/modelcontextprotocol/modelcontextprotocol"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "agent2agent-a2a-protocol",
+    "name": "Agent2Agent (A2A) Protocol",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "task delegation between independent agents, where each server publishes an Agent Card declaring identity, capabilities, skills, endpoint, and authentication across API key, HTTP, OAuth 2.0, OpenID Connect, and mutual TLS. Linux Foundation, contributed by Google, v1.0.1 (28 May 2026).",
+    "url": "https://a2a-protocol.org/v1.0.1/specification/",
+    "owner": "Linux Foundation / Google",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://a2a-protocol.org/v1.0.1/specification/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "agent-payments-protocol-ap2",
+    "name": "Agent Payments Protocol (AP2)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "users sign Checkout and Payment Mandates as verifiable credentials, with an open stage carrying spending constraints and a closed stage carrying a specific authorization, so each agent-initiated transaction leaves a non-repudiable cryptographic record. FIDO Alliance, donated by Google, v0.2.",
+    "url": "https://ap2-protocol.org/",
+    "owner": "FIDO Alliance / Google",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://ap2-protocol.org/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "opentelemetry-semantic-conventions-for-generative",
+    "name": "OpenTelemetry Semantic Conventions for Generative AI (gen-ai)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "vendor-neutral telemetry schema for GenAI and agent spans, metrics, and events, covering model calls, tool calls, token usage, and agent and framework operations to support comparison of traces across stacks. OpenTelemetry / CNCF; all gen_ai.* attributes were deprecated in the core semantic-conventions repository at v1.42.0 (12 June 2026) and moved to this dedicated repository.",
+    "url": "https://github.com/open-telemetry/semantic-conventions-genai",
+    "owner": "OpenTelemetry / CNCF",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/open-telemetry/semantic-conventions-genai"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "nist-ai-600-1",
+    "name": "NIST AI 600-1, Generative AI Profile",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "cross-sector companion to the NIST AI RMF that names twelve GenAI risk areas and over 200 suggested actions across the Govern, Map, Measure, and Manage functions. NIST, July 2024.",
+    "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+    "owner": "National Institute of Standards and Technology (NIST)",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "eu-ai-act-regulation-2024-1689-article-12-record-k",
+    "name": "EU AI Act (Regulation 2024/1689), Article 12: Record-Keeping",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "legal duty requiring high-risk AI systems to record events throughout their lifetime for risk identification, post-market monitoring, and operational oversight. Article 26(6) requires deployers to retain the logs for at least six months. EU, 2024; the Digital Omnibus on AI (Regulation (EU) 2026/1744, in force 27 July 2026) moved high-risk application to 2 December 2027 for Annex III areas and 2 August 2028 for AI embedded in regulated products.",
+    "url": "https://artificialintelligenceact.eu/article/12/",
+    "owner": "European Union",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://artificialintelligenceact.eu/article/12/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "iso-iec-42001",
+    "name": "ISO/IEC 42001:2023, Artificial Intelligence Management System",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "first certifiable AI management system standard, setting requirements to establish, operate, and improve governance controls across the AI lifecycle, including risk assessment, impact assessment, and performance measurement. ISO/IEC JTC 1/SC 42, 2023.",
+    "url": "https://www.iso.org/standard/42001",
+    "owner": "ISO/IEC JTC 1/SC 42",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://www.iso.org/standard/42001"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "mitre-atlas-adversarial-threat-landscape-for-artif",
+    "name": "MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "living knowledge base of adversary tactics and techniques against AI systems, modeled on MITRE ATT&CK and built from real-world attacks and red-team demonstrations. MITRE, v2026.07 (7 August 2026): 16 tactics, 101 techniques, 77 sub-techniques, 37 mitigations, and 68 case studies, adding three AI Agent Tool Poisoning sub-techniques (AML.T0110.000/.001/.002) and AML.T0115.",
+    "url": "https://atlas.mitre.org/",
+    "owner": "MITRE",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://atlas.mitre.org/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "atlas-data v2026.07",
+        "url": "https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.07"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "owasp-top-10-for-llm-applications-and-owasp-top-10",
+    "name": "OWASP Top 10 for LLM Applications and OWASP Top 10 for Agentic Applications",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "community-maintained risk lists for language-model and agentic applications, covering prompt injection, excessive agency, tool misuse, memory and context poisoning, and goal hijacking, with a builder-side companion guide of technical recommendations. OWASP, 2025 (LLM) / 2026 (Agentic).",
+    "url": "https://genai.owasp.org/llm-top-10/",
+    "owner": "OWASP",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://genai.owasp.org/llm-top-10/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "agentic 2026",
+        "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+      },
+      {
+        "label": "securing agentic applications 1.0",
+        "url": "https://genai.owasp.org/resource/securing-agentic-applications-guide-1-0/"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "cwe-1427",
+    "name": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "base-level weakness entry cataloging prompt injection as a mappable software weakness, with a LangChain tool-agent demonstrative example. MITRE CWE 4.20, mapping status ALLOWED.",
+    "url": "https://cwe.mitre.org/data/definitions/1427.html",
+    "owner": "MITRE",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://cwe.mitre.org/data/definitions/1427.html"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "agentic-ai-threat-modeling-framework-maestro",
+    "name": "Agentic AI Threat Modeling Framework: MAESTRO",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "seven-layer threat-modeling method a builder can run against an agent architecture. Cloud Security Alliance, 2025; a single-author blog publication rather than a ratified standard, so it sits at a lower evidentiary register than the NIST, ISO, MITRE, and OWASP entries above.",
+    "url": "https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro",
+    "owner": "Cloud Security Alliance",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "agent-oversight-framework",
+    "name": "Agent Oversight Framework",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "independent governance proposal that organizes agent oversight into five layers, specifies evidence-collection and integrity controls, grades the evidence and design inferences behind its mechanisms, and runs a public evidence-correction process. ZhangRui987, 2026; a proposed design rather than a ratified standard or an evaluated implementation, so it sits at the same lower evidentiary register as MAESTRO above.",
+    "url": "https://github.com/ZhangRui987/agent-oversight-framework",
+    "owner": "Zhang Rui (ZhangRui987)",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/ZhangRui987/agent-oversight-framework"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "c2pa-technical-specification-content-credentials",
+    "name": "C2PA Technical Specification / Content Credentials",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "cryptographically signed, tamper-evident metadata standard that records the origin and edit history of media, including a manifest for AI-generated and AI-edited content. C2PA (Adobe, Microsoft, BBC, Intel, Truepic, Sony, and others), v2.2 (2025).",
+    "url": "https://spec.c2pa.org/specifications/specifications/2.2/specs/_attachments/C2PA_Specification.pdf",
+    "owner": "Coalition for Content Provenance and Authenticity (C2PA)",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://spec.c2pa.org/specifications/specifications/2.2/specs/_attachments/C2PA_Specification.pdf"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "c2pa-rs",
+        "url": "https://github.com/contentauth/c2pa-rs"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "certificate-transparency-rfc-6962-rfc-9162",
+    "name": "Certificate Transparency (RFC 6962, RFC 9162)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "append-only Merkle tree log with inclusion proofs, showing an entry is in the log, and consistency proofs, showing the log was only appended to; the origin of the verifiable-log pattern that tamper-evident agent trails reuse. IETF, 2013 (v1) / 2021 (v2).",
+    "url": "https://www.rfc-editor.org/rfc/rfc6962",
+    "owner": "IETF",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://www.rfc-editor.org/rfc/rfc6962"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "RFC 9162",
+        "url": "https://www.rfc-editor.org/rfc/rfc9162"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "in-toto-attestation-framework",
+    "name": "in-toto Attestation Framework",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "signed, machine-readable statements binding a subject artifact to a predicate describing what was done to it, giving a common envelope for provenance claims across steps and tools. in-toto / CNCF, 2018-2026 (living spec).",
+    "url": "https://github.com/in-toto/attestation",
+    "owner": "in-toto / CNCF",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/in-toto/attestation"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "in-toto.io",
+        "url": "https://in-toto.io/"
+      }
+    ],
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "slsa-supply-chain-levels-for-software-artifacts",
+    "name": "SLSA (Supply-chain Levels for Software Artifacts)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "graded framework defining what provenance a build must produce and how tamper-resistant it must be, with each level naming concrete requirements rather than intent. OpenSSF, v1.0 (2023).",
+    "url": "https://slsa.dev/spec/v1.0/",
+    "owner": "OpenSSF",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://slsa.dev/spec/v1.0/"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "dsse-dead-simple-signing-envelope",
+    "name": "DSSE (Dead Simple Signing Envelope)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "signing envelope that authenticates a payload together with its type, removing the canonicalization ambiguity that lets a signature be replayed against a different interpretation of the same bytes; used by in-toto and Sigstore. Secure Systems Lab, 2021-2026.",
+    "url": "https://github.com/secure-systems-lab/dsse",
+    "owner": "Secure Systems Lab",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/secure-systems-lab/dsse"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
+    "id": "rekor",
+    "name": "Rekor",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "transparency log service for signed software artifacts and attestations, built on an append-only Merkle log and serving inclusion and consistency proofs over a public API. Sigstore / OpenSSF, Apache-2.0, 2020-present.",
+    "url": "https://github.com/sigstore/rekor",
+    "owner": "Sigstore / OpenSSF",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/sigstore/rekor"
+    ],
+    "checked": "2026-09-16",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#standards-and-governance",
+    "formats": [
+      "Tool"
+    ]
   }
 ]

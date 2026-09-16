@@ -1,5 +1,97 @@
 [
   {
+    "slug": "news/frontier-pacing-ceo-statements",
+    "title": "AI lab leaders call for slower development: statements, actions, and open questions",
+    "summary": "A September exchange about frontier AI pacing raises questions about evaluator access and accountability. We separate executive statements from documented lab actions.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "event_date": "2026-09-12",
+    "kind": "news",
+    "topics": [
+      "Frontier AI",
+      "Governance",
+      "Auditing",
+      "Evaluations",
+      "Lab commitments"
+    ],
+    "source_urls": [
+      "https://darioamodei.com/post/we-must-pace-the-frontier",
+      "https://x.com/DarioAmodei/status/2098773920774074715",
+      "https://www.theguardian.com/technology/2026/sep/13/openai-sam-altman-elon-musk-back-anthropic-calls-brakes-ai-development",
+      "https://x.com/elonmusk/status/2098789109980332057",
+      "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/frontier-pacing-ceo-statements/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article draws on primary sources and explicitly attributed reporting; its evaluation questions are editorial analysis.",
+    "body_file": "bodies/frontier-pacing-ceo-statements.html",
+    "related_slugs": [
+      "news/openai-cybersecurity-rl-pause",
+      "news/anthropic-metr-incident-review",
+      "features/benchmark-scores-and-agent-safety"
+    ]
+  },
+  {
+    "slug": "news/anthropic-metr-incident-review",
+    "title": "Anthropic agrees to independent METR review of cybersecurity evaluation incidents",
+    "summary": "Anthropic reported an initial eight-week METR investigation of evaluation incidents. Its scope differs from the later proposal for standing evaluator access.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "event_date": "2026-09-09",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "METR",
+      "Third-party auditing",
+      "Cybersecurity",
+      "Model evaluation"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "https://darioamodei.com/post/we-must-pace-the-frontier"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-metr-incident-review/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources and does not constitute formal certification or regulatory guidance.",
+    "body_file": "bodies/anthropic-metr-incident-review.html",
+    "related_slugs": [
+      "news/frontier-pacing-ceo-statements",
+      "news/openai-cybersecurity-rl-pause",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
+  },
+  {
+    "slug": "news/openai-cybersecurity-rl-pause",
+    "title": "OpenAI details August training pause and cyber-critical evaluation thresholds",
+    "summary": "OpenAI reported a two-week RL pause and stronger research safeguards in August. The announcement describes selected workloads, not a halt to all research.",
+    "author": "Audit Commons",
+    "published": "2026-09-16",
+    "updated": "2026-09-16",
+    "event_date": "2026-08-18",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Preparedness Framework",
+      "Cybersecurity",
+      "Reinforcement learning",
+      "Training pause"
+    ],
+    "source_urls": [
+      "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-cybersecurity-rl-pause/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources and does not constitute formal certification or regulatory guidance.",
+    "body_file": "bodies/openai-cybersecurity-rl-pause.html",
+    "related_slugs": [
+      "news/frontier-pacing-ceo-statements",
+      "news/anthropic-metr-incident-review",
+      "features/benchmark-scores-and-agent-safety"
+    ]
+  },
+  {
     "slug": "start-here",
     "title": "What makes AI auditable?",
     "summary": "An editorial introduction explaining how evaluation, monitoring, and auditing differ by the questions they ask and the evidence they require.",
@@ -19,7 +111,10 @@
     "canonical_url": "https://auditcommons.org/start-here/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article presents an editorial framing rather than an official standard.",
     "body_file": "bodies/start-here.html",
-    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "guides/audit-an-agent-action"]
+    "related_slugs": [
+      "guides/how-to-read-an-agent-eval-report",
+      "guides/audit-an-agent-action"
+    ]
   },
   {
     "slug": "guides/audit-an-agent-action",
@@ -41,7 +136,10 @@
     "canonical_url": "https://auditcommons.org/guides/audit-an-agent-action/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. The procedures described here reflect practical evidence gathering and do not constitute formal certification.",
     "body_file": "bodies/audit-an-agent-action.html",
-    "related_slugs": ["start-here", "news/nist-nccoe-agent-identity-concept-paper"]
+    "related_slugs": [
+      "start-here",
+      "news/nist-nccoe-agent-identity-concept-paper"
+    ]
   },
   {
     "slug": "updates/catchbench-0-1-2",
@@ -63,7 +161,10 @@
     "canonical_url": "https://auditcommons.org/updates/catchbench-0-1-2/",
     "affiliation_disclosure": "CatchBench is maintained by Yue Zhao, who also maintains Audit Commons.",
     "body_file": "bodies/catchbench-0-1-2.html",
-    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "guides/audit-an-agent-action"]
+    "related_slugs": [
+      "guides/how-to-read-an-agent-eval-report",
+      "guides/audit-an-agent-action"
+    ]
   },
   {
     "slug": "about",
@@ -110,7 +211,10 @@
     "canonical_url": "https://auditcommons.org/news/optstop-bayesian-early-stopping/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources.",
     "body_file": "bodies/optstop-bayesian-early-stopping.html",
-    "related_slugs": ["features/benchmark-scores-and-agent-safety", "guides/how-to-read-an-agent-eval-report"]
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
   },
   {
     "slug": "news/nist-nccoe-agent-identity-concept-paper",
@@ -135,7 +239,10 @@
     "canonical_url": "https://auditcommons.org/news/nist-nccoe-agent-identity-concept-paper/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources.",
     "body_file": "bodies/nist-nccoe-agent-identity-concept-paper.html",
-    "related_slugs": ["guides/audit-an-agent-action", "start-here"]
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "start-here"
+    ]
   },
   {
     "slug": "features/benchmark-scores-and-agent-safety",
@@ -159,7 +266,10 @@
     "canonical_url": "https://auditcommons.org/features/benchmark-scores-and-agent-safety/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This feature presents editorial analysis and does not represent an official standard or certification framework.",
     "body_file": "bodies/benchmark-scores-and-agent-safety.html",
-    "related_slugs": ["guides/how-to-read-an-agent-eval-report", "news/optstop-bayesian-early-stopping"]
+    "related_slugs": [
+      "guides/how-to-read-an-agent-eval-report",
+      "news/optstop-bayesian-early-stopping"
+    ]
   },
   {
     "slug": "guides/how-to-read-an-agent-eval-report",
@@ -183,6 +293,9 @@
     "canonical_url": "https://auditcommons.org/guides/how-to-read-an-agent-eval-report/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This guide presents practical editorial guidance and does not constitute formal audit methodology, regulatory advice, or a certification framework.",
     "body_file": "bodies/how-to-read-an-agent-eval-report.html",
-    "related_slugs": ["features/benchmark-scores-and-agent-safety", "guides/audit-an-agent-action"]
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "guides/audit-an-agent-action"
+    ]
   }
 ]

@@ -17,9 +17,13 @@
 
     var searchInput = document.getElementById('resource-search');
     var filterButtons = document.querySelectorAll('button[data-filter]');
+    var tabList = document.querySelector('[role="tablist"]');
+    var formatTabs = document.querySelectorAll('[role="tab"]');
+    var panel = document.getElementById('resources-panel');
     var countEl = document.getElementById('resource-count');
     var noResultsEl = document.getElementById('no-results');
 
+    var activeFormat = 'all';
     var activeCategory = 'all';
     var searchQuery = '';
 
@@ -34,21 +38,183 @@
       noResultsEl.style.display = 'none';
     }
 
-    function applyFilters() {
+    function getValidFormats() {
+      var formats = { 'all': true };
+      formatTabs.forEach(function (tab) {
+        var fmt = (tab.getAttribute('data-format') || '').trim().toLowerCase();
+        if (fmt) {
+          formats[fmt] = true;
+        }
+      });
+      return formats;
+    }
+
+    function getValidCategories() {
+      var categories = { 'all': true };
+      filterButtons.forEach(function (btn) {
+        var cat = (btn.getAttribute('data-filter') || '').trim().toLowerCase();
+        if (cat) {
+          categories[cat] = true;
+        }
+      });
+      return categories;
+    }
+
+    function readStateFromUrl() {
+      var nextFormat = 'all';
+      var nextCategory = 'all';
+      var nextQuery = '';
+
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var hash = window.location.hash ? window.location.hash.substring(1) : '';
+        var hashParams = new URLSearchParams(hash);
+
+        var validFormats = getValidFormats();
+        var validCategories = getValidCategories();
+
+        var rawFmt = params.get('format') || hashParams.get('format');
+        if (rawFmt) {
+          var normFmt = rawFmt.trim().toLowerCase();
+          if (validFormats[normFmt]) {
+            nextFormat = normFmt;
+          } else {
+            nextFormat = 'all';
+          }
+        }
+
+        var rawCat = params.get('category') || hashParams.get('category');
+        if (rawCat) {
+          var normCat = rawCat.trim().toLowerCase();
+          if (validCategories[normCat]) {
+            nextCategory = normCat;
+          } else {
+            nextCategory = 'all';
+          }
+        }
+
+        var rawQ = params.get('q') || params.get('search') || hashParams.get('q');
+        if (rawQ) {
+          nextQuery = rawQ.trim();
+        }
+      } catch (err) {
+        nextFormat = 'all';
+        nextCategory = 'all';
+        nextQuery = '';
+      }
+
+      activeFormat = nextFormat;
+      activeCategory = nextCategory;
+      searchQuery = nextQuery;
+
+      if (searchInput) {
+        searchInput.value = searchQuery;
+      }
+    }
+
+    function updateUrlState() {
+      try {
+        var params = new URLSearchParams();
+        if (activeFormat && activeFormat.toLowerCase() !== 'all') {
+          params.set('format', activeFormat);
+        }
+        if (activeCategory && activeCategory.toLowerCase() !== 'all') {
+          params.set('category', activeCategory);
+        }
+        if (searchQuery && searchQuery.trim()) {
+          params.set('q', searchQuery.trim());
+        }
+        var qs = params.toString();
+        var newUrl = window.location.pathname + (qs ? '?' + qs : '');
+        if (window.location.pathname + window.location.search !== newUrl) {
+          window.history.replaceState({ format: activeFormat, category: activeCategory, q: searchQuery }, '', newUrl);
+        }
+      } catch (err) {
+        // Ignore in restricted test environments
+      }
+    }
+
+    function syncTabAttributes() {
+      var normFmt = (activeFormat || 'all').trim().toLowerCase();
+      var activeTab = null;
+
+      formatTabs.forEach(function (tab) {
+        var tabFmt = (tab.getAttribute('data-format') || 'all').trim().toLowerCase();
+        if (tabFmt === normFmt) {
+          activeTab = tab;
+        }
+      });
+
+      if (!activeTab) {
+        activeTab = document.getElementById('tab-all') || formatTabs[0];
+        activeFormat = 'all';
+      }
+
+      formatTabs.forEach(function (tab) {
+        var isSelected = (tab === activeTab);
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+        if (isSelected) {
+          tab.classList.add('is-active');
+        } else {
+          tab.classList.remove('is-active');
+        }
+      });
+
+      if (panel && activeTab) {
+        panel.setAttribute('aria-labelledby', activeTab.id);
+      }
+    }
+
+    function syncCategoryAttributes() {
+      var normCat = (activeCategory || 'all').trim().toLowerCase();
+      var activeBtn = null;
+
+      filterButtons.forEach(function (btn) {
+        var btnCat = (btn.getAttribute('data-filter') || 'all').trim().toLowerCase();
+        if (btnCat === normCat) {
+          activeBtn = btn;
+        }
+      });
+
+      if (!activeBtn) {
+        activeBtn = document.querySelector("button[data-filter='All'], button[data-filter='all']") || filterButtons[0];
+        activeCategory = 'all';
+      }
+
+      filterButtons.forEach(function (btn) {
+        var isSelected = (btn === activeBtn);
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+    }
+
+    function applyFilters(updateHistory) {
+      // Update button visual/ARIA states first to guarantee normalized activeFormat and activeCategory
+      syncTabAttributes();
+      syncCategoryAttributes();
+
       var total = cards.length;
       var matches = 0;
       var query = searchQuery.trim().toLowerCase();
-      var normalizedFilter = activeCategory.trim().toLowerCase();
+      var normCat = (activeCategory || 'all').trim().toLowerCase();
+      var normFmt = (activeFormat || 'all').trim().toLowerCase();
 
       cards.forEach(function (card) {
+        var cardFormats = (card.getAttribute('data-formats') || card.getAttribute('data-format') || 'collection').trim().toLowerCase().split(/\s+/);
         var cardCat = (card.getAttribute('data-category') || '').trim().toLowerCase();
         var cardSearch = (card.getAttribute('data-search') || '').toLowerCase();
         var cardText = (card.textContent || '').toLowerCase();
 
-        var matchesCategory = (normalizedFilter === 'all' || cardCat === normalizedFilter);
+        var matchesFormat = (normFmt === 'all' || cardFormats.indexOf(normFmt) !== -1);
+        var matchesCategory = (normCat === 'all' || cardCat === normCat);
         var matchesSearch = !query || (cardSearch.indexOf(query) !== -1) || (cardText.indexOf(query) !== -1);
 
-        if (matchesCategory && matchesSearch) {
+        if (matchesFormat && matchesCategory && matchesSearch) {
           card.hidden = false;
           card.style.display = '';
           matches++;
@@ -58,21 +224,9 @@
         }
       });
 
-      // Update filter button states and aria-pressed attributes
-      filterButtons.forEach(function (btn) {
-        var btnCat = (btn.getAttribute('data-filter') || 'all').trim().toLowerCase();
-        var isSelected = (btnCat === normalizedFilter);
-        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
-        if (isSelected) {
-          btn.classList.add('is-active');
-        } else {
-          btn.classList.remove('is-active');
-        }
-      });
-
       // Update live status announcement for screen readers and visual counts
       if (countEl) {
-        if (!query && normalizedFilter === 'all') {
+        if (!query && normCat === 'all' && normFmt === 'all') {
           countEl.textContent = 'Showing all ' + total + ' resources';
         } else if (matches > 0) {
           countEl.textContent = 'Showing ' + matches + ' of ' + total + ' resources';
@@ -91,18 +245,64 @@
           noResultsEl.style.display = 'none';
         }
       }
+
+      if (updateHistory) {
+        updateUrlState();
+      }
+    }
+
+    function selectFormatTab(tabEl) {
+      if (!tabEl) return;
+      activeFormat = tabEl.getAttribute('data-format') || 'all';
+      applyFilters(true);
     }
 
     function resetFilters() {
+      activeFormat = 'all';
       activeCategory = 'all';
       searchQuery = '';
       if (searchInput) {
         searchInput.value = '';
       }
-      applyFilters();
+      applyFilters(true);
       if (searchInput) {
         searchInput.focus();
       }
+    }
+
+    // Bind format tabs click
+    formatTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        selectFormatTab(tab);
+      });
+    });
+
+    // Keyboard navigation across format tabs (roving tabindex ARIA pattern)
+    if (tabList) {
+      var tabElements = Array.prototype.slice.call(formatTabs);
+      tabList.addEventListener('keydown', function (e) {
+        var currentTab = document.activeElement;
+        var currentIndex = tabElements.indexOf(currentTab);
+        if (currentIndex === -1) return;
+
+        var nextIndex = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          nextIndex = (currentIndex + 1) % tabElements.length;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          nextIndex = (currentIndex - 1 + tabElements.length) % tabElements.length;
+        } else if (e.key === 'Home') {
+          nextIndex = 0;
+        } else if (e.key === 'End') {
+          nextIndex = tabElements.length - 1;
+        }
+
+        if (nextIndex !== -1) {
+          e.preventDefault();
+          var targetTab = tabElements[nextIndex];
+          targetTab.focus();
+          selectFormatTab(targetTab);
+        }
+      });
     }
 
     // Bind category button clicks
@@ -110,7 +310,7 @@
       btn.addEventListener('click', function () {
         var val = btn.getAttribute('data-filter') || 'all';
         activeCategory = val;
-        applyFilters();
+        applyFilters(true);
       });
     });
 
@@ -118,19 +318,19 @@
     if (searchInput) {
       searchInput.addEventListener('input', function (e) {
         searchQuery = e.target.value || '';
-        applyFilters();
+        applyFilters(true);
       });
 
       searchInput.addEventListener('search', function (e) {
         searchQuery = e.target.value || '';
-        applyFilters();
+        applyFilters(true);
       });
 
       searchInput.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           searchInput.value = '';
           searchQuery = '';
-          applyFilters();
+          applyFilters(true);
         }
       });
     }
@@ -144,8 +344,15 @@
       });
     });
 
-    // Run initial filter to synchronize DOM state
-    applyFilters();
+    // Listen to browser Back/Forward navigation
+    window.addEventListener('popstate', function () {
+      readStateFromUrl();
+      applyFilters(false);
+    });
+
+    // Read initial deep-link state from URL and synchronize DOM
+    readStateFromUrl();
+    applyFilters(false);
   }
 
   // Enhanced code copying for practical worksheets with accessible status announcements

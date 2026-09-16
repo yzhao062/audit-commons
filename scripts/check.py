@@ -23,6 +23,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from urllib.parse import urlparse
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
+from resource_formats import formats_error
 
 
 class HtmlStructureExtractor(HTMLParser):
@@ -53,6 +54,10 @@ class HtmlStructureExtractor(HTMLParser):
         self.resource_controls_hidden: bool = False
         self.has_resource_search: bool = False
         self.filter_buttons: List[Dict[str, str]] = []
+        self.has_tablist: bool = False
+        self.tablist_aria_label: Optional[str] = None
+        self.format_tabs: List[Dict[str, str]] = []
+        self.tabpanels: List[Dict[str, str]] = []
         self.has_resource_count: bool = False
         self.resource_count_role_status: bool = False
         self.has_no_results: bool = False
@@ -135,6 +140,16 @@ class HtmlStructureExtractor(HTMLParser):
 
         if tag == "button" and "data-filter" in attr_dict:
             self.filter_buttons.append(attr_dict)
+
+        if attr_dict.get("role") == "tablist":
+            self.has_tablist = True
+            self.tablist_aria_label = attr_dict.get("aria-label")
+
+        if attr_dict.get("role") == "tab":
+            self.format_tabs.append(attr_dict)
+
+        if attr_dict.get("role") == "tabpanel":
+            self.tabpanels.append(attr_dict)
 
         if elem_id == "resource-count":
             self.has_resource_count = True
@@ -326,6 +341,7 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
     seen_ids = set()
     valid_categories = {"Evaluation", "Security", "Governance", "Reading", "Tools"}
     valid_relationships = {"External resource", "Maintainer project"}
+    valid_formats = {"Paper", "Tool", "Benchmark", "Dataset", "Standard", "Collection"}
     for idx, r in enumerate(resources):
         report.check()
         r_id = r.get("id")
@@ -335,6 +351,11 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
         if r_id in seen_ids:
             report.error(f"Duplicate resource ID '{r_id}'")
         seen_ids.add(r_id)
+
+        for req in ("name", "category", "summary", "url", "owner", "relationship", "checked"):
+            report.check()
+            if not r.get(req):
+                report.error(f"Resource '{r_id}' missing required property '{req}'")
 
         if r.get("category") not in valid_categories:
             report.error(f"Resource '{r_id}' invalid category '{r.get('category')}'; expected {valid_categories}")
@@ -350,6 +371,44 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
                 datetime.strptime(chk, "%Y-%m-%d")
             except ValueError:
                 report.error(f"Resource '{r_id}' checked date '{chk}' is not valid YYYY-MM-DD")
+
+        # Validate new optional fields when present
+        report.check()
+        if error := formats_error(r):
+            report.error(f"Resource '{r_id}': {error}")
+        if "format" in r:
+            fmt = r.get("format")
+            if fmt not in valid_formats:
+                report.error(f"Resource '{r_id}' invalid format '{fmt}'; expected {valid_formats}")
+
+        if "source_section" in r:
+            sec = r.get("source_section")
+            if not isinstance(sec, str) or not sec.strip():
+                report.error(f"Resource '{r_id}' source_section must be a non-empty string when present")
+
+        if "venue" in r:
+            ven = r.get("venue")
+            if not isinstance(ven, str) or not ven.strip():
+                report.error(f"Resource '{r_id}' venue must be a non-empty string when present")
+
+        if "catalog_source" in r:
+            cs = r.get("catalog_source")
+            if not isinstance(cs, str) or not cs.startswith(("http://", "https://")):
+                report.error(f"Resource '{r_id}' catalog_source must be a valid HTTP(S) URL when present")
+
+        if "links" in r:
+            links = r.get("links")
+            if not isinstance(links, list):
+                report.error(f"Resource '{r_id}' links must be a list of link objects when present")
+            else:
+                for l_idx, lk in enumerate(links):
+                    if not isinstance(lk, dict) or not lk.get("label") or not lk.get("url"):
+                        report.error(f"Resource '{r_id}' link #{l_idx} must contain 'label' and 'url'")
+
+        if "source_urls" in r:
+            s_urls = r.get("source_urls")
+            if not isinstance(s_urls, list):
+                report.error(f"Resource '{r_id}' source_urls must be a list of URLs when present")
 
 
 def validate_output_directory(
@@ -585,10 +644,57 @@ def validate_output_directory(
             if not ext.resource_cards:
                 report.error("resources/index.html: must contain .resource-card elements")
             for card in ext.resource_cards:
+                report.check()
                 if not card.get("data-category"):
                     report.error("resources/index.html: .resource-card missing required data-category attribute")
                 if not card.get("data-search"):
                     report.error("resources/index.html: .resource-card missing required data-search attribute")
+                if not card.get("data-format"):
+                    report.error("resources/index.html: .resource-card missing required data-format attribute")
+
+            # Check format tabs and tabpanel ARIA contract
+            report.check()
+            if not ext.has_tablist:
+                report.error("resources/index.html: missing [role='tablist'] container")
+            if not ext.tablist_aria_label:
+                report.error("resources/index.html: [role='tablist'] missing aria-label attribute")
+            if not ext.format_tabs:
+                report.error("resources/index.html: missing [role='tab'] buttons")
+
+            has_tab_all = False
+            for tab in ext.format_tabs:
+                report.check()
+                tab_id = tab.get("id")
+                if not tab_id:
+                    report.error("resources/index.html: [role='tab'] missing id attribute")
+                if tab.get("aria-controls") != "resources-panel":
+                    report.error(f"resources/index.html: tab '{tab_id}' aria-controls must be 'resources-panel'")
+                if tab_id == "tab-all":
+                    has_tab_all = True
+                    if tab.get("aria-selected") != "true":
+                        report.error("resources/index.html: tab-all must have aria-selected='true' initially")
+                    if tab.get("tabindex") != "0":
+                        report.error("resources/index.html: tab-all must have tabindex='0' initially")
+                else:
+                    if tab.get("aria-selected") != "false":
+                        report.error(f"resources/index.html: tab '{tab_id}' must have aria-selected='false' initially")
+                    if tab.get("tabindex") != "-1":
+                        report.error(f"resources/index.html: tab '{tab_id}' must have tabindex='-1' initially")
+
+            if not has_tab_all:
+                report.error("resources/index.html: missing required 'tab-all' tab")
+
+            report.check()
+            if len(ext.tabpanels) != 1:
+                report.error(f"resources/index.html: expected exactly 1 visible tabpanel, found {len(ext.tabpanels)}")
+            else:
+                panel = ext.tabpanels[0]
+                if panel.get("id") != "resources-panel":
+                    report.error("resources/index.html: tabpanel must have id='resources-panel'")
+                if panel.get("aria-labelledby") != "tab-all":
+                    report.error("resources/index.html: tabpanel aria-labelledby must initially reference 'tab-all'")
+                if panel.get("tabindex") != "0":
+                    report.error("resources/index.html: tabpanel must have tabindex='0' for keyboard navigation")
 
     # Validate all internal links, fragment targets, and referenced local assets
     for src_path, ext in page_data.items():
@@ -737,6 +843,180 @@ def run_output_safety_tests(repo_root: Path, content_dir: Path, assets_dir: Path
             report.error("Safety FAIL: Second build failed to regenerate valid index.html")
 
 
+def run_resources_contract_tests(repo_root: Path, content_dir: Path, assets_dir: Path, report: ValidationReport) -> None:
+    """
+    Validates:
+    1. Missing optional fields in legacy data fall back cleanly to sensible defaults (Collection, infer no claims).
+    2. Uses a temporary fixture simulating all 6 formats with 100 rows, runs full build and validation,
+       then removes fixture.
+    """
+    from build import build_site
+
+    print("Running resources data contract & 100-row all-formats fixture tests...")
+
+    from import_awesome import parse_awesome_markdown, clean_markdown_text
+    artifact_fixture = (
+        "## Tools and Platforms\n"
+        r"**\[Tool\] Example** ([org/example](https://github.com/org/example)): "
+        r"Example summary. [\[Paper\]](https://arxiv.org/abs/2310.10501) (EMNLP 2023 Demo)"
+    )
+    parsed_artifacts = parse_awesome_markdown(artifact_fixture)
+    report.check()
+    if (len(parsed_artifacts) != 1
+            or parsed_artifacts[0]["summary"] != "Example summary."
+            or parsed_artifacts[0]["venue"] != "EMNLP 2023 Demo"
+            or parsed_artifacts[0]["links"] != [
+                {"label": "Paper", "url": "https://arxiv.org/abs/2310.10501"}
+            ]):
+        report.error("Importer lost an escaped-bracket paper link or its venue")
+    report.check()
+    if clean_markdown_text(r"See [\[Paper\]](https://example.org/paper)") != "See Paper":
+        report.error("Importer left nested-bracket Markdown in plain text")
+
+    # Render legacy records without the optional catalog fields.
+    report.check()
+    res_file = content_dir / "resources.json"
+    if res_file.exists():
+        try:
+            from build import build_resources_page
+            legacy_data = json.loads(res_file.read_text(encoding="utf-8"))[:6]
+            for item in legacy_data:
+                for field in ("format", "formats", "source_section", "venue", "links", "catalog_source"):
+                    item.pop(field, None)
+            site_data = json.loads((content_dir / "site.json").read_text(encoding="utf-8"))
+            extractor = HtmlStructureExtractor()
+            extractor.feed(build_resources_page(site_data, legacy_data, "https://auditcommons.org"))
+            if len(extractor.resource_cards) != len(legacy_data):
+                report.error("Legacy resources did not all render")
+            if any(card.get("data-format") != "Collection" for card in extractor.resource_cards):
+                report.error("Legacy resources without a format must render as Collection")
+        except Exception as e:
+            report.error(f"Failed to verify legacy resources data: {e}")
+
+    # 2. Temporary fixture: simulate all formats with 100 rows
+    formats_cycle = ["Paper", "Tool", "Benchmark", "Dataset", "Standard", "Collection"]
+    categories_cycle = ["Evaluation", "Security", "Governance", "Reading", "Tools"]
+
+    fixture_resources = []
+    for i in range(1, 101):
+        fmt = formats_cycle[(i - 1) % len(formats_cycle)]
+        cat = categories_cycle[(i - 1) % len(categories_cycle)]
+        rel = "Maintainer project" if i % 10 == 0 else "External resource"
+        sec = f"Topic Section {(i % 8) + 1}" if i % 2 == 0 else None
+        venue = f"Conference 202{i % 6}" if fmt in ("Paper", "Benchmark") else None
+        links = [{"label": "Code", "url": f"https://github.com/example/repo-{i}"}, {"label": "Data", "url": f"https://data.org/set-{i}"}] if i % 3 == 0 else []
+        cat_src = f"https://github.com/yzhao062/awesome-auditable-ai/blob/main/README.md#sec-{i}" if i % 4 == 0 else None
+
+        row: Dict[str, Any] = {
+            "id": f"fixture-resource-{i:03d}",
+            "name": f"Synthetic {fmt} Resource #{i}",
+            "category": cat,
+            "summary": f"A verified description of synthetic resource #{i} evaluating auditable behaviors.",
+            "url": f"https://example.org/resources/{i}",
+            "owner": f"Institution {(i % 5) + 1}",
+            "relationship": rel,
+            "source_urls": [f"https://example.org/resources/{i}/primary"],
+            "checked": "2026-09-16",
+            "format": fmt,
+        }
+        if sec:
+            row["source_section"] = sec
+        if venue:
+            row["venue"] = venue
+        if links:
+            row["links"] = links
+        if cat_src:
+            row["catalog_source"] = cat_src
+
+        fixture_resources.append(row)
+
+    fixture_resources[0]["formats"] = ["Paper", "Dataset", "Benchmark"]
+    for invalid in (["Unknown"], ["Paper", "Paper"], ["Dataset"], "Paper", []):
+        report.check()
+        if not formats_error({"format": "Paper", "formats": invalid}):
+            report.error(f"Format validation accepted malformed memberships: {invalid!r}")
+
+    from import_awesome import parse_awesome_markdown
+    table_rows = parse_awesome_markdown(
+        "## Datasets and Benchmarks\n"
+        r"| [Example](https://arxiv.org/abs/2505.08638) | 2025 | Description. | "
+        r"[\[Code\]](https://github.com/org/example) [\[Dataset\]](https://huggingface.co/datasets/org/example) |"
+    )
+    report.check()
+    if len(table_rows) != 1 or table_rows[0]["links"] != [
+        {"label": "Code", "url": "https://github.com/org/example"},
+        {"label": "Dataset", "url": "https://huggingface.co/datasets/org/example"},
+    ]:
+        report.error("Importer dropped escaped artifact links in a table row")
+
+    # Run fixture build in isolated temporary directory
+    with tempfile.TemporaryDirectory() as fixture_tmp:
+        fixture_content = Path(fixture_tmp) / "content"
+        fixture_out = Path(fixture_tmp) / "_site"
+        fixture_content.mkdir(parents=True)
+
+        # Copy required metadata from original content dir
+        shutil.copy2(content_dir / "site.json", fixture_content / "site.json")
+        shutil.copy2(content_dir / "pages.json", fixture_content / "pages.json")
+        shutil.copytree(content_dir / "bodies", fixture_content / "bodies")
+
+        # Write the 100-row fixture
+        (fixture_content / "resources.json").write_text(json.dumps(fixture_resources, indent=2), encoding="utf-8")
+
+        # Validate source schema on fixture
+        validate_sources(fixture_content, report)
+
+        # Build site with fixture
+        build_site(
+            repo_root=repo_root,
+            content_dir=fixture_content,
+            output_dir=fixture_out,
+            assets_dir=assets_dir,
+            base_url_override="https://auditcommons.org",
+        )
+
+        # Validate output directory with fixture
+        validate_output_directory(fixture_out, "https://auditcommons.org", report)
+
+        # Inspect generated resources/index.html in fixture output
+        res_html_path = fixture_out / "resources/index.html"
+        report.check()
+        if not res_html_path.exists():
+            report.error("Fixture test: resources/index.html was not generated")
+        else:
+            text = res_html_path.read_text(encoding="utf-8")
+            extractor = HtmlStructureExtractor()
+            extractor.feed(text)
+
+            # Check that all 100 cards exist
+            report.check()
+            if len(extractor.resource_cards) != 100:
+                report.error(f"Fixture test: expected 100 .resource-card elements, found {len(extractor.resource_cards)}")
+
+            report.check()
+            if extractor.resource_cards[0].get("data-formats") != "Paper Dataset Benchmark":
+                report.error("Multi-format fixture lost a secondary membership")
+            fixture_html = (fixture_out / "resources/index.html").read_text(encoding="utf-8")
+            report.check()
+            if not re.search(r'id="tab-dataset"[^>]*>Datasets <span[^>]*>\(18\)', fixture_html):
+                report.error("Dataset tab must count 17 primary datasets plus the cross-listed paper once")
+
+            # Check that format tabs for all 6 formats were rendered
+            report.check()
+            tab_formats = {t.get("data-format") for t in extractor.format_tabs}
+            expected_formats = {"all", "Paper", "Tool", "Benchmark", "Dataset", "Standard", "Collection"}
+            if not expected_formats.issubset(tab_formats):
+                report.error(f"Fixture test: missing format tabs in fixture output: {expected_formats - tab_formats}")
+
+            # Check single visible tabpanel
+            report.check()
+            if len(extractor.tabpanels) != 1:
+                report.error(f"Fixture test: expected 1 tabpanel, found {len(extractor.tabpanels)}")
+
+    # Fixture is automatically removed upon exiting context manager
+    print("100-row fixture test complete and temporary fixture cleaned up.")
+
+
 def validate_search_metadata(output_dir: Path, content_dir: Path, base_url: str, report: ValidationReport) -> None:
     """Catch indexing regressions and disagreement between editorial and search metadata."""
     base_url = base_url.rstrip("/")
@@ -882,6 +1162,7 @@ def main() -> int:
     # 1. Output safety tests
     if not args.skip_safety and content_dir.exists() and assets_dir.exists():
         run_output_safety_tests(repo_root, content_dir, assets_dir, report)
+        run_resources_contract_tests(repo_root, content_dir, assets_dir, report)
 
     # 2. Source content checks
     if not args.skip_source:

@@ -19,6 +19,7 @@ import sys
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
+from resource_formats import resource_formats
 
 
 DEFAULT_BASE_URL = "https://auditcommons.org"
@@ -41,6 +42,33 @@ NAV_SLUG_PREFIXES: dict[str, list[str]] = {
     "learn":     ["learn", "guides/", "start-here"],
     "resources": ["resources"],
     "about":     ["about"],
+}
+
+CURATED_HOME_RESOURCE_IDS = [
+    "nist-ai-rmf",
+    "inspect-aisi",
+    "agentdojo",
+    "awesome-auditable-ai",
+    "catchbench",
+    "auditable-agents",
+]
+
+VALID_RESOURCE_FORMATS = [
+    "Paper",
+    "Tool",
+    "Benchmark",
+    "Dataset",
+    "Standard",
+    "Collection",
+]
+
+FORMAT_DISPLAY_LABELS = {
+    "Paper": "Papers",
+    "Tool": "Tools",
+    "Benchmark": "Benchmarks",
+    "Dataset": "Datasets",
+    "Standard": "Standards",
+    "Collection": "Collections",
 }
 
 
@@ -389,7 +417,7 @@ def render_html_page(
         <ul>
           <li><a href="/about/#contribute">Contribution Guide</a></li>
           <li><a href="/about/#corrections">Submit Corrections</a></li>
-          <li><a href="/feed.xml">Atom Feed</a></li>
+          <li><a href="/feed.xml">Follow via RSS / Atom</a></li>
           <li><a href="https://github.com/yzhao062/audit-commons">Website source</a></li>
           <li><a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a></li>
         </ul>
@@ -413,6 +441,18 @@ def _kind_label(kind: str) -> str:
         "feature": "Feature",
         "about": "About",
     }.get(kind, "Article")
+
+
+def build_follow_section() -> str:
+    return """
+    <section class="follow-section" aria-labelledby="follow-heading">
+      <h2 id="follow-heading">Follow Audit Commons</h2>
+      <p>Keep up with new reporting, practical guides, and resources in your feed reader.</p>
+      <div class="follow-links">
+        <a href="/feed.xml">Follow via RSS / Atom &rarr;</a>
+        <a href="/about/#contribute">Suggest a story or resource &rarr;</a>
+      </div>
+    </section>"""
 
 
 def build_homepage(
@@ -521,9 +561,18 @@ def build_homepage(
       <div class="pub-learning-grid">{learn_entries}</div>
     </section>"""
 
-    # Selected resources (compact, top 6)
+    # Selected resources (curated 6 foundational entries, not dumped first papers)
+    res_by_id = {r.get("id"): r for r in resources if r.get("id")}
+    curated_selected = [res_by_id[rid] for rid in CURATED_HOME_RESOURCE_IDS if rid in res_by_id]
+    if len(curated_selected) < 6:
+        for r in resources:
+            if r not in curated_selected:
+                curated_selected.append(r)
+                if len(curated_selected) == 6:
+                    break
+
     res_rows = ""
-    for res in resources[:6]:
+    for res in curated_selected:
         res_rows += f"""
         <li class="home-res-item">
           <a href="{escape(res['url'])}" class="home-res-link">{escape(res['name'])} <span aria-hidden="true">&nearr;</span></a>
@@ -555,6 +604,7 @@ def build_homepage(
           {news_section_html}
         </div>
       </div>
+      {build_follow_section()}
       {learn_html}
       {res_section_html}
     </div>
@@ -588,7 +638,7 @@ def build_resources_page(
     resources: List[Dict[str, Any]],
     base_url: str,
 ) -> str:
-    """Generates the searchable, filterable resource catalog."""
+    """Generates the searchable, filterable resource catalog with accessible format tabs."""
     categories = ["All", "Evaluation", "Security", "Governance", "Reading", "Tools"]
 
     filter_buttons_html = []
@@ -600,6 +650,28 @@ def build_resources_page(
         filter_buttons_html.append(btn)
     buttons_markup = "\n          ".join(filter_buttons_html)
 
+    # Compute counts per format
+    format_counts: dict[str, int] = {}
+    for r in resources:
+        for fmt in resource_formats(r):
+            format_counts[fmt] = format_counts.get(fmt, 0) + 1
+
+    total_count = len(resources)
+
+    # Build format tabs with true ARIA tab semantics
+    format_tabs_html = [
+        f'<button type="button" role="tab" id="tab-all" class="format-tab is-active" aria-selected="true" aria-controls="resources-panel" tabindex="0" data-format="all">All <span class="format-count">({total_count})</span></button>'
+    ]
+    for fmt in VALID_RESOURCE_FORMATS:
+        cnt = format_counts.get(fmt, 0)
+        if cnt > 0:
+            fmt_id = fmt.lower()
+            fmt_label = FORMAT_DISPLAY_LABELS.get(fmt, f"{fmt}s")
+            format_tabs_html.append(
+                f'<button type="button" role="tab" id="tab-{fmt_id}" class="format-tab" aria-selected="false" aria-controls="resources-panel" tabindex="-1" data-format="{fmt}">{fmt_label} <span class="format-count">({cnt})</span></button>'
+            )
+    format_tabs_markup = "\n            ".join(format_tabs_html)
+
     cards_html = []
     for r in resources:
         r_name = escape(r.get("name", ""))
@@ -609,57 +681,125 @@ def build_resources_page(
         r_sum = escape(r.get("summary", ""))
         r_owner = escape(r.get("owner", ""))
         r_checked = escape(r.get("checked", ""))
+        format_val = r.get("format") or "Collection"
+        formats = resource_formats(r)
+        r_section = r.get("source_section", "")
+        r_venue = r.get("venue", "")
+        links = r.get("links", [])
+        catalog_source = r.get("catalog_source", "")
         source_urls = r.get("source_urls", [])
 
-        search_terms = " ".join(str(r.get(key, "")) for key in ("name", "summary", "owner", "category", "relationship")).lower()
+        topic_display = r_section if r_section else r_cat
 
-        sources_markup = ""
+        search_fields = [
+            r.get("name", ""),
+            r.get("summary", ""),
+            r.get("owner", ""),
+            r.get("category", ""),
+            r.get("relationship", ""),
+            " ".join(formats),
+            r_section,
+            r_venue,
+        ]
+        if isinstance(links, list):
+            for lk in links:
+                if isinstance(lk, dict):
+                    search_fields.append(lk.get("label", ""))
+                    search_fields.append(lk.get("url", ""))
+        if isinstance(source_urls, list):
+            for u in source_urls:
+                search_fields.append(u)
+        search_terms = " ".join(str(f) for f in search_fields if f).lower()
+
+        # Tags
+        tags_html = [
+            f'<span class="tag tag-format tag-format-{escape(fmt.lower())}">{escape(fmt)}</span>'
+            for fmt in formats
+        ]
+        tags_html.append(f'<span class="tag tag-topic" data-category="{r_cat}">{escape(topic_display)}</span>')
+        if r_venue:
+            tags_html.append(f'<span class="tag tag-venue">{escape(r_venue)}</span>')
+        if r_rel == "Maintainer project":
+            tags_html.append('<span class="tag tag-maintainer">Maintainer project</span>')
+        else:
+            tags_html.append(f'<span class="tag tag-relationship">{r_rel}</span>')
+        tags_markup = "\n              ".join(tags_html)
+
+        # Artifact / secondary links
+        links_markup = ""
+        if isinstance(links, list) and links:
+            pills = []
+            for lk in links:
+                if isinstance(lk, dict) and lk.get("url"):
+                    lbl = escape(lk.get("label") or "Link")
+                    pills.append(f'<a href="{escape(lk["url"])}" class="resource-pill" rel="noopener noreferrer">{lbl} <span class="external-arrow" aria-hidden="true">&nearr;</span></a>')
+            if pills:
+                links_markup = f'\n          <div class="resource-links" aria-label="Artifact links">{" ".join(pills)}</div>'
+
+        # Provenance details
+        prov_items = [
+            f'<p class="provenance-item"><strong>Attribution:</strong> {r_owner}</p>',
+            f'<p class="provenance-item"><strong>Review status:</strong> Catalog reviewed <time datetime="{r_checked}">{r_checked}</time> against catalog snapshot (external links are not runtime verified).</p>',
+        ]
+        if r_rel == "Maintainer project":
+            prov_items.append('<p class="provenance-item provenance-disclosure"><strong>Maintainer disclosure:</strong> Authored or maintained by Audit Commons maintainers (Yue Zhao). Listed for relevance without institutional endorsement.</p>')
+        if catalog_source:
+            prov_items.append(f'<p class="provenance-item"><strong>Catalog source:</strong> <a href="{escape(catalog_source)}" rel="noopener noreferrer">Awesome Auditable AI record</a></p>')
         if source_urls:
-            items = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
-            sources_markup = f"""
-            <div class="resource-sources">
-              <span class="sources-label">Primary sources:</span>
-              <ul class="source-list">{items}</ul>
-            </div>"""
+            url_list = "".join(f'<li><a href="{escape(u)}" rel="noopener noreferrer">{escape(u)}</a></li>' for u in source_urls)
+            prov_items.append(f'<div class="provenance-sources"><strong>Primary sources:</strong><ul class="source-list">{url_list}</ul></div>')
 
         card = f"""
-        <article class="resource-card" data-category="{r_cat}" data-search="{escape(search_terms)}">
+        <article class="resource-card" data-category="{r_cat}" data-format="{escape(format_val)}" data-formats="{escape(' '.join(formats))}" data-search="{escape(search_terms)}">
           <div class="resource-card-header">
-            <div class="tags">
-              <span class="tag tag-category" data-category="{r_cat}">{r_cat}</span>
-              <span class="tag tag-relationship">{r_rel}</span>
+            <div class="resource-tags">
+              {tags_markup}
             </div>
-            <h2><a href="{r_url}">{r_name} <span class="external-arrow" aria-hidden="true">&nearr;</span></a></h2>
+            <h2 class="resource-title"><a href="{r_url}">{r_name} <span class="external-arrow" aria-hidden="true">&nearr;</span></a></h2>
           </div>
-          <p class="resource-summary">{r_sum}</p>
-          <div class="resource-meta">
-            <span class="resource-owner"><strong>Owner:</strong> {r_owner}</span>
-            <span class="resource-checked"><strong>Checked:</strong> <time datetime="{r_checked}">{r_checked}</time></span>
-          </div>
-          {sources_markup}
+          <p class="resource-summary">{r_sum}</p>{links_markup}
+          <details class="resource-provenance">
+            <summary class="provenance-toggle">Provenance &amp; sources</summary>
+            <div class="provenance-body">
+              {"".join(prov_items)}
+            </div>
+          </details>
         </article>"""
         cards_html.append(card)
 
-    total_count = len(resources)
     grid_html = "\n".join(cards_html)
 
     body_content = f"""
     <div class="container">
-      <header class="page-header">
+      <header class="page-header resource-page-header">
         <span class="eyebrow">Catalog</span>
-        <h1>Auditing Resources &amp; Toolchains</h1>
-        <p class="page-lead">Curated benchmarks, risk frameworks, evaluation toolchains, and primary reference materials for AI auditing.</p>
+        <h1>AI auditing library</h1>
+        <p class="page-lead">Papers, tools, benchmarks, datasets, and standards for studying and auditing AI systems.</p>
+        <div class="catalog-upstream-notice">
+          <p>Adapted from <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>. Descriptions follow the linked catalog; inclusion is not an independent evaluation of the work. Each entry records its source and review date. <a href="/about/#contribute">Suggest a resource or correction</a>.</p>
+        </div>
       </header>
 
       <div id="resource-controls" hidden>
-        <div class="resource-search-wrapper">
-          <label for="resource-search" class="search-label">Search resources</label>
-          <input type="search" id="resource-search" placeholder="Search by name, summary, owner, or topic..." autocomplete="off">
+        <div class="format-tabs-bar" role="region" aria-label="Format filter">
+          <div role="tablist" aria-label="Filter resources by format" class="format-tabs">
+            {format_tabs_markup}
+          </div>
         </div>
-        <div class="category-filters" role="group" aria-label="Filter by category">
-          {buttons_markup}
+
+        <div class="resource-filters-row">
+          <div class="resource-search-wrapper">
+            <label for="resource-search" class="search-label">Search resources</label>
+            <input type="search" id="resource-search" placeholder="Search by name, summary, topic, owner, venue..." autocomplete="off">
+          </div>
+          <div class="category-filters" role="group" aria-label="Filter by category">
+            <span class="filter-group-label">Category:</span>
+            {buttons_markup}
+          </div>
         </div>
+
         <div id="resource-count" role="status" aria-live="polite">Showing all {total_count} resources</div>
+        <p class="resource-format-note">Resources can appear in more than one format. All counts each resource once.</p>
       </div>
 
       <div id="no-results" class="empty-state" hidden>
@@ -667,15 +807,17 @@ def build_resources_page(
         <button type="button" data-action="reset" class="button button-secondary">Reset search</button>
       </div>
 
-      <div class="resource-grid">
-        {grid_html}
-      </div>
+      <section id="resources-panel" role="tabpanel" aria-labelledby="tab-all" tabindex="0" class="resources-panel">
+        <div class="resource-grid">
+          {grid_html}
+        </div>
+      </section>
     </div>
 """
 
     return render_html_page(
-        title="Auditing Resources & Toolchains",
-        description="Curated primary-source benchmarks, evaluation harnesses, and security sandboxes for AI auditing.",
+        title="AI Auditing Resources: Papers, Tools & Benchmarks",
+        description="Browse research papers, tools, benchmarks, datasets, standards, and collections about AI auditing, with topic filters and links to original sources.",
         canonical_url=canonical_for(base_url, "resources"),
         base_url=base_url,
         site_data=site_data,
@@ -947,6 +1089,7 @@ def build_article_page(
         <article class="article-body">
           {body_html}
           {related_html}
+          {build_follow_section() if kind != 'about' else ''}
         </article>
 
         <aside class="article-aside">
