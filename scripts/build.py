@@ -11,7 +11,9 @@ from __future__ import annotations
 import argparse
 import copy
 from datetime import datetime
+import hashlib
 import html
+from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
@@ -19,11 +21,16 @@ import re
 import shutil
 import sys
 from typing import Any, Dict, List, Optional
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 import xml.etree.ElementTree as ET
 
 from resource_formats import resource_formats
 from editorial_media import bind_media, media_credit, render_media, social_image_eligible
+from reading_lists import (
+    load_reading_lists,
+    render_reading_lists_html,
+    render_learn_selections_bridge,
+)
 from localization import (
     DEFAULT_LOCALE,
     SUPPORTED_LOCALES,
@@ -381,6 +388,7 @@ def render_html_page(
       <div class="footer-col footer-editorial">
         <h2>关注与参与</h2>
         <ul>
+          <li><a href="/zh/about/#contact">联系编辑</a></li>
           <li><a href="/zh/about/#contribute">贡献指南</a></li>
           <li><a href="/zh/about/#corrections">提交勘误</a></li>
           <li><a href="/zh/feed.xml">通过 RSS / Atom 订阅</a></li>
@@ -416,6 +424,7 @@ def render_html_page(
       <div class="footer-col footer-editorial">
         <h2>Connect</h2>
         <ul>
+          <li><a href="/about/#contact">Contact the editor</a></li>
           <li><a href="/about/#contribute">Contribution Guide</a></li>
           <li><a href="/about/#corrections">Submit Corrections</a></li>
           <li><a href="/feed.xml">Follow via RSS / Atom</a></li>
@@ -462,7 +471,7 @@ def render_html_page(
   <!-- Feed and Favicon -->
   <link rel="alternate" type="application/atom+xml" title="{feed_title}" href="{feed_url}">
   <link rel="icon" href="/favicon.svg?v=graphite" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="{escape(site_data.get('_style_href', '/assets/style.css'))}">
   <script src="/assets/site.js" defer></script>
   {extra_meta}
   {json_ld_html}
@@ -756,6 +765,7 @@ def build_resources_page(
     base_url: str,
     locale: str = "en",
     has_zh: bool = True,
+    reading_lists: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
     """Generates the searchable, filterable resource catalog with accessible format tabs."""
     categories = ["All", "Evaluation", "Security", "Governance", "Reading", "Tools"]
@@ -955,6 +965,11 @@ def build_resources_page(
         empty_text = "No resources match your search or filter criteria."
         reset_text = "Reset search"
 
+    selections_html = ""
+    if reading_lists:
+        res_lookup = {r.get("id"): r for r in resources if isinstance(r, dict) and "id" in r}
+        selections_html = "\n" + render_reading_lists_html(reading_lists, res_lookup, locale=locale)
+
     body_content = f"""
     <div class="container">
       <header class="page-header resource-page-header">
@@ -964,7 +979,7 @@ def build_resources_page(
         <div class="catalog-upstream-notice">
           {notice_html}
         </div>
-      </header>
+      </header>{selections_html}
 
       <div id="resource-controls" hidden>
         <div class="format-tabs-bar" role="region" aria-label="{format_region_label}">
@@ -1104,6 +1119,7 @@ def build_learn_index(
     base_url: str,
     locale: str = "en",
     has_zh: bool = True,
+    has_selections: bool = False,
 ) -> str:
     """Generates /learn/ (or /zh/learn/) — structured 3-step editorial learning path."""
     page_map = {p.get("slug"): p for p in pages}
@@ -1333,13 +1349,15 @@ def build_learn_index(
     elif not additional_guides:
         empty_html = f'<p class="empty-state">{"暂无已发布的学习指南。" if is_zh else "No guides published yet."}</p>'
 
+    selections_bridge = ("\n" + render_learn_selections_bridge(locale=locale)) if has_selections else ""
+
     body_content = f"""
     <div class="container">
       <header class="page-header">
         <span class="eyebrow">{escape(eyebrow)}</span>
         <h1>{escape(title)}</h1>
         <p class="page-lead">{escape(description)}</p>
-      </header>{outline_html}{path_html}{additional_section}{empty_html}
+      </header>{selections_bridge}{outline_html}{path_html}{additional_section}{empty_html}
     </div>
 """
 
@@ -1798,15 +1816,94 @@ def build_sitemap(routes: Dict[str, str], base_url: str) -> str:
 """
 
 
+class AbsolutizeHTMLParser(HTMLParser):
+    """
+    Resolves relative, root-relative, and fragment URLs in HTML markup to absolute URLs.
+    URL-bearing attributes href, src, and poster are resolved against base_url.
+    srcset candidate URLs are split and individually resolved against base_url.
+    All attributes are safely re-escaped with proper quote and entity handling.
+    Void tags (img, hr, br, etc.) are emitted without closing tags per HTML5.
+    Other attributes (such as action, formaction, cite, data-*) are passed through unchanged;
+    Audit Commons article HTML bodies do not contain forms, embeds, or video/audio constructs.
+    """
+    URL_ATTRS = {"href", "src", "poster"}
+    VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+
+    def __init__(self, base_url: str) -> None:
+        super().__init__(convert_charrefs=False)
+        self.base_url = base_url
+        self.pieces: List[str] = []
+
+    def handle_starttag(self, tag: str, attrs: List[tuple[str, Optional[str]]]) -> None:
+        attr_strs = []
+        for name, val in attrs:
+            if val is not None:
+                lower_name = name.lower()
+                if lower_name in self.URL_ATTRS:
+                    val_clean = val.strip()
+                    if val_clean.lower().startswith(("mailto:", "tel:", "javascript:")):
+                        resolved = val
+                    else:
+                        resolved = urljoin(self.base_url, val)
+                    attr_strs.append(f'{name}="{html.escape(resolved, quote=True)}"')
+                elif lower_name == "srcset":
+                    candidates = []
+                    for cand in val.split(","):
+                        parts = cand.strip().split(None, 1)
+                        if parts:
+                            u = parts[0]
+                            if not u.lower().startswith(("mailto:", "tel:", "javascript:", "data:")):
+                                u = urljoin(self.base_url, u)
+                            cand_res = u if len(parts) == 1 else f"{u} {parts[1]}"
+                            candidates.append(cand_res)
+                    resolved = ", ".join(candidates)
+                    attr_strs.append(f'{name}="{html.escape(resolved, quote=True)}"')
+                else:
+                    attr_strs.append(f'{name}="{html.escape(val, quote=True)}"')
+            else:
+                attr_strs.append(name)
+        attr_str = (" " + " ".join(attr_strs)) if attr_strs else ""
+        self.pieces.append(f"<{tag}{attr_str}>")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() not in self.VOID_TAGS:
+            self.pieces.append(f"</{tag}>")
+
+    def handle_data(self, data: str) -> None:
+        self.pieces.append(data)
+
+    def handle_entityref(self, name: str) -> None:
+        self.pieces.append(f"&{name};")
+
+    def handle_charref(self, name: str) -> None:
+        self.pieces.append(f"&#{name};")
+
+    def handle_comment(self, data: str) -> None:
+        self.pieces.append(f"<!--{data}-->")
+
+    def get_html(self) -> str:
+        return "".join(self.pieces)
+
+
+def absolutize_html_urls(html_content: str, base_url: str) -> str:
+    """Safely absolutize all URL-bearing attributes in an HTML snippet using HTMLParser."""
+    parser = AbsolutizeHTMLParser(base_url)
+    parser.feed(html_content)
+    return parser.get_html()
+
+
 def build_atom_feed(
     site_data: Dict[str, Any],
     feed_pages: List[Dict[str, Any]],
     base_url: str,
     locale: str = "en",
+    content_dir: Optional[Path] = None,
 ) -> str:
     """
     Generates an Atom 1.0 feed (/feed.xml or /zh/feed.xml).
-    Entries link canonical update URLs and include primary sources in article summaries.
+    Entries link canonical update URLs and deliver complete article HTML bodies,
+    lead editorial figures with caption/credit, primary sources, and article permalinks.
+    All relative/fragment URLs are resolved to absolute URLs against canonical item URLs.
     """
     clean_base = base_url.rstrip("/")
     if locale == "zh":
@@ -1846,7 +1943,39 @@ def build_atom_feed(
             )
             sources_html = f"<p><strong>{source_label}:</strong></p><ul>{s_list}</ul>"
 
-        entry_content = html.escape(f'<p>{summary}</p>{sources_html}<p><a href="{escape(item_canonical)}">{read_more_text}</a></p>')
+        # Resolve body HTML
+        body_html = p.get("_body_html")
+        if body_html is None and content_dir is not None:
+            bf = p.get("body_file")
+            if bf:
+                bf_path = content_dir / bf
+                if bf_path.is_file():
+                    body_html = bf_path.read_text(encoding="utf-8")
+        if body_html is None:
+            body_html = ""
+
+        # Localize internal links if Chinese locale
+        body_content = localize_body_html(body_html, locale)
+
+        # Assigned editorial lead figure with caption and credit
+        media_html = render_media(p, "article")
+
+        entry_parts = [f"<p>{summary}</p>"]
+        if media_html:
+            entry_parts.append(media_html)
+        if body_content:
+            entry_parts.append(body_content)
+        if sources_html:
+            entry_parts.append(sources_html)
+        disclosure = p.get("affiliation_disclosure")
+        if disclosure:
+            disclosure_label = "关联与披露说明" if locale == "zh" else "Affiliation &amp; Disclosure"
+            entry_parts.append(f'<h2>{disclosure_label}</h2><p>{escape(disclosure)}</p>')
+        entry_parts.append(f'<p><a href="{item_canonical}">{read_more_text}</a></p>')
+
+        raw_combined_html = "\n".join(entry_parts)
+        absolutized_html = absolutize_html_urls(raw_combined_html, item_canonical)
+        entry_content = html.escape(absolutized_html)
 
         entry = f"""  <entry>
     <title>{title}</title>
@@ -1935,6 +2064,10 @@ def build_site(
 
     # Determine and validate effective base URL (origin only)
     effective_base_url = validate_base_url(base_url_override or site_data.get("base_url"))
+    style_file = assets_dir / "style.css"
+    if style_file.is_file():
+        style_version = hashlib.sha256(style_file.read_bytes()).hexdigest()[:12]
+        site_data["_style_href"] = f"/assets/style.css?v={style_version}"
 
     # 3. Validate and load pages.json
     pages_file = content_dir / "pages.json"
@@ -2044,6 +2177,12 @@ def build_site(
         for resource in resources:
             resource["_search_summary"] = zh_overlays["resources"][resource["id"]]["summary"]
 
+    # 4c. Validate and load reading-lists.json if present in content_dir
+    reading_lists_file = content_dir / "reading-lists.json"
+    reading_lists: Optional[List[Dict[str, Any]]] = None
+    if reading_lists_file.exists():
+        reading_lists = load_reading_lists(content_dir, resources)
+
     media_files = bind_media(content_dir, assets_dir, pages, resources)
     prepare_output_directory(output_dir, repo_root, content_dir, assets_dir)
 
@@ -2061,7 +2200,7 @@ def build_site(
     (output_dir / "index.html").write_text(home_html, encoding="utf-8")
 
     # 7. Render English Resources Page (/resources/)
-    res_html = build_resources_page(site_data, resources, effective_base_url, locale="en", has_zh=has_zh)
+    res_html = build_resources_page(site_data, resources, effective_base_url, locale="en", has_zh=has_zh, reading_lists=reading_lists)
     res_dir = output_dir / "resources"
     res_dir.mkdir(parents=True, exist_ok=True)
     (res_dir / "index.html").write_text(res_html, encoding="utf-8")
@@ -2089,7 +2228,7 @@ def build_site(
     features_dir.mkdir(parents=True, exist_ok=True)
     (features_dir / "index.html").write_text(features_html, encoding="utf-8")
 
-    learn_html_page = build_learn_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
+    learn_html_page = build_learn_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh, has_selections=(reading_lists is not None))
     learn_dir = output_dir / "learn"
     learn_dir.mkdir(parents=True, exist_ok=True)
     (learn_dir / "index.html").write_text(learn_html_page, encoding="utf-8")
@@ -2100,6 +2239,7 @@ def build_site(
         slug = page["slug"].strip("/")
         body_file = content_dir / page["body_file"]
         body_html = body_file.read_text(encoding="utf-8")
+        page["_body_html"] = body_html
 
         article_html = build_article_page(
             page, site_data, body_html, effective_base_url,
@@ -2141,6 +2281,7 @@ def build_site(
             if "_media" in p:
                 m_key = article_media_keys.get(p["slug"])
                 zh_p["_media"] = apply_media_overlay(p["_media"], media_overlay.get(m_key, {}))
+            zh_p["_body_html"] = zh_overlays["bodies"][p["slug"]]
             zh_pages.append(zh_p)
 
         zh_page_lookup = {p["slug"]: p for p in zh_pages}
@@ -2162,7 +2303,7 @@ def build_site(
         all_sitemap_routes.append("zh")
 
         # 12b. Render Chinese Resources Page (/zh/resources/)
-        zh_res_html = build_resources_page(site_data, zh_resources, effective_base_url, locale="zh")
+        zh_res_html = build_resources_page(site_data, zh_resources, effective_base_url, locale="zh", reading_lists=reading_lists)
         zh_res_dir = zh_dir / "resources"
         zh_res_dir.mkdir(parents=True, exist_ok=True)
         (zh_res_dir / "index.html").write_text(zh_res_html, encoding="utf-8")
@@ -2193,7 +2334,7 @@ def build_site(
         (zh_features_dir / "index.html").write_text(zh_features_html, encoding="utf-8")
         all_sitemap_routes.append("zh/features")
 
-        zh_learn_html = build_learn_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_learn_html = build_learn_index(site_data, zh_pages, effective_base_url, locale="zh", has_selections=(reading_lists is not None))
         zh_learn_dir = zh_dir / "learn"
         zh_learn_dir.mkdir(parents=True, exist_ok=True)
         (zh_learn_dir / "index.html").write_text(zh_learn_html, encoding="utf-8")
@@ -2219,7 +2360,7 @@ def build_site(
 
         # 12f. Render Chinese Feed (/zh/feed.xml)
         zh_feed_pages = sorted([p for p in zh_pages if p.get("kind") != "about"], key=lambda p: p["published"], reverse=True)
-        zh_feed_xml = build_atom_feed(site_data, zh_feed_pages, effective_base_url, locale="zh")
+        zh_feed_xml = build_atom_feed(site_data, zh_feed_pages, effective_base_url, locale="zh", content_dir=content_dir)
         (zh_dir / "feed.xml").write_text(zh_feed_xml, encoding="utf-8")
 
     # 13. Render Sitemap (/sitemap.xml) - Excludes 404 pages
@@ -2248,7 +2389,7 @@ def build_site(
 
     # 14. Render Feed (/feed.xml) - Editorial articles (all kinds except about)
     feed_pages = sorted([p for p in pages if p.get("kind") != "about"], key=lambda p: p["published"], reverse=True)
-    feed_xml = build_atom_feed(site_data, feed_pages, effective_base_url, locale="en")
+    feed_xml = build_atom_feed(site_data, feed_pages, effective_base_url, locale="en", content_dir=content_dir)
     (output_dir / "feed.xml").write_text(feed_xml, encoding="utf-8")
 
     # 15. Render robots.txt

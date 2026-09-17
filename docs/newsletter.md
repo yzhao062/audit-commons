@@ -1,6 +1,6 @@
 # Weekly brief: launch proposal
 
-Status: editorial and integration proposal, not a live email subscription service. The website currently offers its working Atom feed at `/feed.xml`, with follow links on the homepage, article pages, and footer. No subscriber emails are collected by this repository.
+Status: editorial and integration proposal, not a live email subscription service. The website currently offers its working full-content bilingual Atom feeds at `/feed.xml` (English) and `/zh/feed.xml` (Simplified Chinese), with follow links on the homepage, article pages, and footer. Each entry delivers complete article HTML prose, lead editorial images with full existing caption/credits, primary source attribution, and absolute permalinks and anchor/media URLs. No subscriber emails are collected by this repository, and no signup forms or placeholder inputs exist on the site.
 
 ## Reader promise
 
@@ -29,7 +29,11 @@ Select material rather than emailing the full list of new links. Skip an issue w
 
 Buttondown is a candidate, pending the owner's platform choice and account setup. It supports [embedded subscription forms](https://docs.buttondown.com/building-your-subscriber-base) and [weekly RSS-to-email drafts](https://docs.buttondown.com/rss-to-email), including Atom feeds. Review current plan terms when configuring the service; this document does not authorize a purchase.
 
-Start with weekly draft generation from `https://auditcommons.org/feed.xml`, then edit the selection and add the library item before sending. The current article feed does not include individual catalog additions. Do not treat a feed connection as permission to email contacts or enable unattended sending.
+The [official pricing page](https://buttondown.com/pricing?plan=free), checked on 2026-09-17, lists the first 100 subscribers as free. Native RSS-to-email and tagging/segmentation are separate paid add-ons, each listed at $9/month. Do not assume the free tier includes automated delivery or language segmentation; recheck the selected plan before activation.
+
+The bilingual Atom feeds remain the working subscription channels. A free email pilot could begin with manually curated issues, subject to the provider's current limits. Do not add an email form until delivery, confirmation, unsubscribe, and provider disclosures are configured and tested.
+
+Start with weekly draft generation or manual curation from `https://auditcommons.org/feed.xml`, then edit the selection and add the library item before sending. The current article feed does not include individual catalog additions. Do not treat a feed connection as permission to email contacts or enable unattended sending.
 
 Before enabling the email signup, confirm the real account URL, sender and reply-to addresses, subscription confirmation flow, unsubscribe link, and a concise explanation of which provider receives the submitted email address. Keep all API credentials and subscriber data outside the public repository. Test signup, confirmation, one test issue, and unsubscribe using an explicitly authorized test address. Domain sender verification follows the chosen provider's actual DNS instructions.
 

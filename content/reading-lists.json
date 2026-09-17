@@ -1,0 +1,139 @@
+[
+  {
+    "id": "evaluate-agent-deployment",
+    "title": {
+      "en": "Evaluate an agent before deployment",
+      "zh": "部署前评估智能体"
+    },
+    "purpose": {
+      "en": "Select realistic tasks, measure tool-use consistency, and review failure traces before release.",
+      "zh": "在发布前选择真实任务、测试工具调用一致性并审查故障轨迹。"
+    },
+    "items": [
+      {
+        "resource_id": "inspect-aisi",
+        "rationale": {
+          "en": "Set up a repeatable evaluation and retain its task, scorer, and logs.",
+          "zh": "建立可复现的评估流程，并保留其任务定义、评分器与运行日志。"
+        }
+      },
+      {
+        "resource_id": "gaia",
+        "rationale": {
+          "en": "Test assistant performance on multi-modal tasks that require web browsing and external tools.",
+          "zh": "在需要网页浏览和外部工具的多模态任务上测试助手的实际表现。"
+        }
+      },
+      {
+        "resource_id": "tau-bench",
+        "rationale": {
+          "en": "Measure how well the agent maintains state and follows user instructions across multi-turn tool interactions.",
+          "zh": "度量智能体在多轮工具交互中维护状态与遵循用户指令的能力。"
+        }
+      },
+      {
+        "resource_id": "catchbench",
+        "rationale": {
+          "en": "Compare when a failure can be caught: before a run, during execution, or after it; start with the offline PRE quickstart.",
+          "zh": "对比故障在运行前、执行中还是运行后被发现；可以先从离线的 PRE 快速入门开始。"
+        }
+      },
+      {
+        "resource_id": "whowhen",
+        "rationale": {
+          "en": "Inspect annotated multi-agent failure logs to study which agent and step were responsible.",
+          "zh": "查阅带注释的多智能体故障日志，研究哪个智能体和步骤导致了失败。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "secure-tool-use-prompt-injection",
+    "title": {
+      "en": "Secure tool use and prompt injection",
+      "zh": "保护工具调用与防御提示注入"
+    },
+    "purpose": {
+      "en": "Test injection resistance, separate instructions from untrusted data, and scan tool configurations.",
+      "zh": "测试注入抗性，隔离控制指令与不可信数据，并扫描工具配置。"
+    },
+    "items": [
+      {
+        "resource_id": "agentdojo",
+        "rationale": {
+          "en": "Run dynamic test suites to observe how your agent handles prompt injection during tool execution.",
+          "zh": "运行动态测试套件，观察智能体在工具调用期间如何应对提示注入。"
+        }
+      },
+      {
+        "resource_id": "injecagent",
+        "rationale": {
+          "en": "Evaluate vulnerability to indirect prompt injections across diverse tool integrations and prompt structures.",
+          "zh": "在多种工具集成与提示结构下评估系统对间接提示注入的脆弱性。"
+        }
+      },
+      {
+        "resource_id": "defeating-prompt-injections-by-design",
+        "rationale": {
+          "en": "Apply architectural boundaries that separate user instructions from untrusted data in agent workflows.",
+          "zh": "在智能体工作流中应用将用户指令与不可信数据进行物理或逻辑隔离的架构边界。"
+        }
+      },
+      {
+        "resource_id": "agent-audit",
+        "rationale": {
+          "en": "Scan agent code against common vulnerability patterns before running integration tests.",
+          "zh": "在执行集成测试前，扫描智能体代码中常见的漏洞模式。"
+        }
+      },
+      {
+        "resource_id": "model-context-protocol-threat-modeling-and-analyzi",
+        "rationale": {
+          "en": "Check tool configurations for tool poisoning risks and gaps in static validation and parameter visibility.",
+          "zh": "检查工具配置中的工具投毒风险，以及静态验证和参数可见性方面的缺口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "governance-evidence-foundations",
+    "title": {
+      "en": "Governance and evidence foundations",
+      "zh": "治理与证据基础"
+    },
+    "purpose": {
+      "en": "Identify audit questions, document model bounds, map decision provenance, and capture OpenTelemetry execution traces.",
+      "zh": "梳理审计问题，记录模型边界，映射决策溯源，并捕获 OpenTelemetry 执行追踪。"
+    },
+    "items": [
+      {
+        "resource_id": "nist-ai-rmf",
+        "rationale": {
+          "en": "Use the framework categories to map operational risks and frame audit questions for your deployment.",
+          "zh": "使用该框架的风险分类梳理运行风险，并为系统部署构建审计问题。"
+        }
+      },
+      {
+        "resource_id": "model-cards-for-model-reporting",
+        "rationale": {
+          "en": "Document intended uses, evaluation results, and known limitations in a concise summary.",
+          "zh": "在简明的结构化报告中记录预期用途、评估结果与已知局限性。"
+        }
+      },
+      {
+        "resource_id": "decision-provenance",
+        "rationale": {
+          "en": "Trace inputs, data transforms, and model outputs to explain how automated decisions were reached.",
+          "zh": "追踪输入、数据转换与模型输出，以解释自动化决策的生成过程。"
+        }
+      },
+      {
+        "resource_id": "openinference",
+        "rationale": {
+          "en": "Instrument agent spans and tool calls using OpenTelemetry-compatible schemas to capture execution traces.",
+          "zh": "使用兼容 OpenTelemetry 的规范埋点记录智能体跨度与工具调用，以捕获执行轨迹。"
+        }
+      }
+    ]
+  }
+]

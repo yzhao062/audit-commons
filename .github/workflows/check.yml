@@ -37,6 +37,9 @@ jobs:
       - name: Verify navigation and editorial categories
         run: python scripts/check_navigation.py
 
+      - name: Verify curated reading lists and task selections
+        run: python scripts/check_reading_lists.py
+
       - name: Upload website artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5

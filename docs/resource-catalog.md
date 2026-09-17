@@ -192,6 +192,48 @@ python scripts/build.py
 # 2. Run full schema, link, and accessibility validation
 python scripts/check.py
 ```
-All 201 resources are checked for schema compliance, slug formatting, unique URLs, valid dates, URL syntax, and accessibility contracts. External link reachability is not tested.
+All 201 resources are checked for schema compliance and rendered internal links. External link reachability is not tested.
 
 The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization.
+
+---
+
+## 6. Task-Oriented Resource Selections (Reading Lists)
+
+To help practitioners navigate the catalog for specific operational tasks without wading through the full 201-item catalog, Audit Commons publishes three curated reading paths in `content/reading-lists.json` under the heading **Start with a task** (**从任务开始**):
+
+1. **Evaluate an agent before deployment** (`evaluate-agent-deployment`): Select realistic tasks, measure tool-use consistency, and review failure traces before release.
+2. **Secure tool use and prompt injection** (`secure-tool-use-prompt-injection`): Test injection resistance, separate instructions from untrusted data, and scan tool configurations.
+3. **Governance and evidence foundations** (`governance-evidence-foundations`): Identify audit questions, document model bounds, map decision provenance, and capture OpenTelemetry execution traces.
+
+### 6.1 Schema Contract (`content/reading-lists.json`)
+
+`content/reading-lists.json` is a JSON array of selection objects adhering to the following schema:
+
+| Field | Type | Requirement | Description |
+|---|---|---|---|
+| `id` | string | Required | Unique kebab-case slug matching `^[a-z0-9]+(-[a-z0-9]+)*$` |
+| `title` | object | Required | Bilingual titles with non-empty `en` and `zh` strings |
+| `purpose` | object | Required | Bilingual summary of selection scope with non-empty `en` and `zh` strings |
+| `items` | object[] | Required | Ordered array of 4 to 6 curated resource items |
+| `items[].resource_id` | string | Required | Existing catalog `id` in `content/resources.json` |
+| `items[].rationale` | object | Required | Bilingual action-oriented justification (one sentence) with non-empty `en` and `zh` strings |
+
+### 6.2 Editorial Curation Rules & Invariants
+
+1. **Catalog Truth & No Fabricated URLs**: Every `resource_id` must match an existing record in `content/resources.json`. Metadata (title, canonical URL, format, relationship, owner) is pulled directly from the catalog. Direct canonical URLs prevent filter-hidden anchor navigation bugs.
+2. **Action-Oriented Rationales**: Rationale text must instruct the reader on what to do with each resource (e.g. choose task &rarr; measure &rarr; review evidence) rather than restating a generic abstract. Each rationale is exactly one sentence.
+3. **Reading Suggestions, Not Certification**: Selections are reading suggestions to orient practice and testing, not formal certifications, compliance guarantees, or institutional endorsements.
+4. **Maintainer Project Cap & Tag Disclosure**: To prevent undisclosed self-promotion, each selection enforces a hard cap of **at most 1 maintainer project** (`relationship: "Maintainer project"`). Maintainer affiliation is disclosed via the existing card tag, never duplicated in rationale prose. External resources (such as OpenInference) are preferred whenever suitable.
+5. **Item Boundaries**: Each selection contains between 4 and 6 items arranged in logical sequence.
+6. **Bilingual Completeness**: English and Chinese texts must be supplied for every `title`, `purpose`, and item `rationale`. Translations must not be empty or whitespace-only.
+7. **Accessible Static Presentation**: Selections render as native `<details>` and `<summary>` rows on the Resources page (`/resources/`, `/zh/resources/`), remaining fully functional without JavaScript. Summary children use valid phrasing elements (`<span>`). The markup does not use the `.resource-card` CSS class to preserve catalog filter isolation and tab counts.
+8. **Concise Learn Bridge**: A single sentence on `/learn/` and `/zh/learn/` links directly to `/resources/#curated-selections` without duplicating another learning curriculum or adding parallel promotional CTA buttons.
+
+### 6.3 Validation & CI Enforcement
+
+Curated selections are strictly verified prior to any output modification:
+```bash
+python scripts/check_reading_lists.py
+```
+This suite verifies JSON schema compliance, cross-checks all resource IDs against `content/resources.json`, tests negative fail-closed rejection cases (unknown IDs, duplicate IDs, missing translations, maintainer cap breaches), and inspects emitted HTML in `_site` for both language editions.

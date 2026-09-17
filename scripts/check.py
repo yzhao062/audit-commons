@@ -427,6 +427,7 @@ def validate_output_directory(
     output_dir: Path,
     expected_base_url: str,
     report: ValidationReport,
+    content_dir: Optional[Path] = None,
 ) -> None:
     """Validates generated site structure, links, fragments, assets, and contracts."""
     if not output_dir.exists() or not output_dir.is_dir():
@@ -518,9 +519,10 @@ def validate_output_directory(
         except Exception as e:
             report.error(f"Failed to parse sitemap.xml: {e}")
 
-    # Validate Feed
-    feed_file = output_dir / "feed.xml"
-    if feed_file.exists():
+    # Validate Feed(s) - full-content bilingual regression checks
+    def _validate_feed(feed_file: Path, feed_locale: str) -> None:
+        if not feed_file.exists():
+            return
         report.check()
         try:
             tree = ET.parse(feed_file)
@@ -528,25 +530,211 @@ def validate_output_directory(
             ns = {"atom": "http://www.w3.org/2005/Atom"}
             entries = root.findall("atom:entry", ns) or [e for e in root.iter() if e.tag.endswith("entry")]
             if not entries:
-                report.error("feed.xml must contain at least one <entry>")
+                report.error(f"{feed_file.name} must contain at least one <entry>")
+                return
+
+            expected_feed_url = f"{expected_base_url.rstrip('/')}/zh/feed.xml" if feed_locale == "zh" else f"{expected_base_url.rstrip('/')}/feed.xml"
+            feed_id = root.findtext("atom:id", default="", namespaces=ns) or next((c.text for c in root if c.tag.endswith("id")), "")
+            if feed_id != expected_feed_url:
+                report.error(f"{feed_file.name} id mismatch: expected '{expected_feed_url}', got '{feed_id}'")
+
+            def _find_elem(parent: ET.Element, tag_name: str) -> Optional[ET.Element]:
+                elem = parent.find(f"atom:{tag_name}", ns)
+                if elem is not None:
+                    return elem
+                for child in parent:
+                    if child.tag.endswith(tag_name):
+                        return child
+                return None
+
+            resolved_content_dir = content_dir or (output_dir.parent / "content")
+            if not resolved_content_dir.exists():
+                for entry in entries:
+                    title_e = _find_elem(entry, "title")
+                    link_e = _find_elem(entry, "link")
+                    id_e = _find_elem(entry, "id")
+                    content_e = _find_elem(entry, "content")
+                    if title_e is None or not (title_e.text or "").strip():
+                        report.error(f"{feed_file.name} entry missing title")
+                    if link_e is None or not link_e.get("href"):
+                        report.error(f"{feed_file.name} entry missing link href")
+                    if id_e is None or not (id_e.text or "").strip():
+                        report.error(f"{feed_file.name} entry missing id")
+                    if content_e is None or not (content_e.text or "").strip():
+                        report.error(f"{feed_file.name} entry missing content")
+                return
+
+            pages_file = resolved_content_dir / "pages.json"
+            if not pages_file.exists():
+                return
+            source_pages = json.loads(pages_file.read_text(encoding="utf-8"))
+            editorial_pages = [p for p in source_pages if p.get("kind") != "about"]
+
+            zh_pages_map: Dict[str, Any] = {}
+            zh_media_map: Dict[str, Any] = {}
+            if feed_locale == "zh" and (resolved_content_dir / "zh" / "pages.json").exists():
+                zh_pages_map = json.loads((resolved_content_dir / "zh" / "pages.json").read_text(encoding="utf-8"))
+            if feed_locale == "zh" and (resolved_content_dir / "zh" / "media.json").exists():
+                zh_media_map = json.loads((resolved_content_dir / "zh" / "media.json").read_text(encoding="utf-8"))
+
+            manifest_data: Dict[str, Any] = {}
+            if (resolved_content_dir / "media.json").exists():
+                try:
+                    manifest_data = json.loads((resolved_content_dir / "media.json").read_text(encoding="utf-8"))
+                except Exception:
+                    pass
+            article_media_keys = manifest_data.get("articles", {})
+
+            # Check coverage
+            if len(entries) != len(editorial_pages):
+                report.error(f"{feed_file.name} entries count mismatch: expected {len(editorial_pages)}, got {len(entries)}")
+
+            # Check reverse-chronological order
+            entry_pub_dates = []
             for entry in entries:
-                title = entry.find("atom:title", ns)
-                if title is None:
-                    title = next((c for c in entry if c.tag.endswith("title")), None)
-                link = entry.find("atom:link", ns)
-                if link is None:
-                    link = next((c for c in entry if c.tag.endswith("link")), None)
-                entry_id = entry.find("atom:id", ns)
-                if entry_id is None:
-                    entry_id = next((c for c in entry if c.tag.endswith("id")), None)
-                if title is None or not (title.text or "").strip():
-                    report.error("feed.xml entry missing title")
-                if link is None or not link.get("href"):
-                    report.error("feed.xml entry missing link href")
-                if entry_id is None or not (entry_id.text or "").strip():
-                    report.error("feed.xml entry missing id")
+                pub_elem = _find_elem(entry, "published")
+                if pub_elem is not None and pub_elem.text:
+                    entry_pub_dates.append(pub_elem.text)
+            if entry_pub_dates != sorted(entry_pub_dates, reverse=True):
+                report.error(f"{feed_file.name} entries not in reverse-chronological order by published date")
+
+            # Validate each entry
+            for entry in entries:
+                report.check()
+                title_elem = _find_elem(entry, "title")
+                link_elem = _find_elem(entry, "link")
+                id_elem = _find_elem(entry, "id")
+                pub_elem = _find_elem(entry, "published")
+                upd_elem = _find_elem(entry, "updated")
+                sum_elem = _find_elem(entry, "summary")
+                content_elem = _find_elem(entry, "content")
+
+                if title_elem is None or not (title_elem.text or "").strip():
+                    report.error(f"{feed_file.name} entry missing title")
+                if link_elem is None or not link_elem.get("href"):
+                    report.error(f"{feed_file.name} entry missing link href")
+                if id_elem is None or not (id_elem.text or "").strip():
+                    report.error(f"{feed_file.name} entry missing id")
+                if pub_elem is None or not (pub_elem.text or "").strip():
+                    report.error(f"{feed_file.name} entry missing published")
+                if upd_elem is None or not (upd_elem.text or "").strip():
+                    report.error(f"{feed_file.name} entry missing updated")
+                if content_elem is None or not (content_elem.text or "").strip():
+                    report.error(f"{feed_file.name} entry missing content")
+                    continue
+
+                entry_url = link_elem.get("href", "")
+                entry_id = id_elem.text.strip() if (id_elem is not None and id_elem.text) else ""
+
+                # Identity preservation: ID must equal canonical article URL
+                if entry_id != entry_url:
+                    report.error(f"{feed_file.name} entry ID '{entry_id}' != link '{entry_url}'")
+
+                path = urlparse(entry_url).path
+                slug = path.removeprefix("/zh/").strip("/") if feed_locale == "zh" else path.strip("/")
+                orig_p = next((p for p in editorial_pages if p["slug"] == slug), None)
+                if not orig_p:
+                    report.error(f"{feed_file.name} contains unexpected article slug: '{slug}'")
+                    continue
+
+                # Identity and dates match source exactly
+                expected_pub = f"{orig_p['published']}T00:00:00Z"
+                expected_upd = f"{(orig_p.get('updated') or orig_p['published'])}T00:00:00Z"
+                if pub_elem.text != expected_pub:
+                    report.error(f"{feed_file.name} entry '{slug}' published date mismatch: expected '{expected_pub}', got '{pub_elem.text}'")
+                if upd_elem.text != expected_upd:
+                    report.error(f"{feed_file.name} entry '{slug}' updated date mismatch: expected '{expected_upd}', got '{upd_elem.text}'")
+
+                # Summary match
+                expected_summary = zh_pages_map[slug]["summary"] if feed_locale == "zh" and slug in zh_pages_map else orig_p.get("summary", "")
+                if sum_elem is not None and sum_elem.text != expected_summary:
+                    report.error(f"{feed_file.name} entry '{slug}' summary does not match source summary")
+
+                # Parse and inspect content HTML
+                raw_html = content_elem.text or ""
+                disclosure = orig_p.get("affiliation_disclosure", "")
+                if feed_locale == "zh":
+                    disclosure = zh_pages_map.get(slug, {}).get("affiliation_disclosure", disclosure)
+                report.check()
+                if disclosure and html.escape(disclosure) not in raw_html:
+                    report.error(f"{feed_file.name} entry '{slug}' missing affiliation disclosure")
+                class _FeedContentInspector(HTMLParser):
+                    def __init__(self):
+                        super().__init__()
+                        self.hrefs = []
+                        self.srcs = []
+                        self.has_site_nav = False
+                        self.has_follow_widget = False
+
+                    def handle_starttag(self, tag, attrs):
+                        attr_dict = dict(attrs)
+                        if "href" in attr_dict:
+                            self.hrefs.append(attr_dict["href"])
+                        if "src" in attr_dict:
+                            self.srcs.append(attr_dict["src"])
+                        classes = attr_dict.get("class", "").split()
+                        if "site-nav" in classes:
+                            self.has_site_nav = True
+                        if "follow-section" in classes or "follow-box" in classes:
+                            self.has_follow_widget = True
+
+                inspector = _FeedContentInspector()
+                try:
+                    inspector.feed(raw_html)
+                except Exception as ex:
+                    report.error(f"{feed_file.name} entry '{slug}' content HTML parse error: {ex}")
+
+                # Ensure no navbar or follow widget injection
+                if inspector.has_site_nav:
+                    report.error(f"{feed_file.name} entry '{slug}' injected site-nav into content")
+                if inspector.has_follow_widget:
+                    report.error(f"{feed_file.name} entry '{slug}' injected follow widget into content")
+
+                # URL resolution check: all href and src must be absolute
+                for h in inspector.hrefs:
+                    if not h.startswith(("http://", "https://", "mailto:", "tel:")):
+                        report.error(f"{feed_file.name} entry '{slug}' contains non-absolute href: '{h}'")
+
+                for s in inspector.srcs:
+                    if not s.startswith(("http://", "https://")):
+                        report.error(f"{feed_file.name} entry '{slug}' contains non-absolute src: '{s}'")
+
+                # Full-body content verification: substantive body text check
+                bf_basename = Path(orig_p["body_file"]).name
+                body_path = (resolved_content_dir / "zh" / "bodies" / bf_basename) if feed_locale == "zh" else (resolved_content_dir / orig_p["body_file"])
+                if body_path.is_file():
+                    headings = re.findall(r'<h[2-4][^>]*>(.*?)</h[2-4]>', body_path.read_text(encoding="utf-8"))
+                    if headings:
+                        first_h = re.sub(r'<[^>]+>', '', headings[0]).strip()
+                        if first_h and first_h not in raw_html:
+                            report.error(f"{feed_file.name} entry '{slug}' missing substantive body heading '{first_h}'")
+
+                # Editorial media & credits check
+                assigned_media = article_media_keys.get(slug)
+                if assigned_media:
+                    if "<figure" not in raw_html or "media-article" not in raw_html:
+                        report.error(f"{feed_file.name} entry '{slug}' missing lead editorial figure")
+                    if "media-credit" not in raw_html:
+                        report.error(f"{feed_file.name} entry '{slug}' missing lead figure media credit")
+                    if feed_locale == "zh" and assigned_media in zh_media_map:
+                        zh_caption = zh_media_map[assigned_media].get("caption", "")
+                        if zh_caption and zh_caption not in raw_html:
+                            report.error(f"{feed_file.name} entry '{slug}' missing translated Chinese media caption")
+                else:
+                    if "<figure" in raw_html and "media-article" in raw_html:
+                        report.error(f"{feed_file.name} entry '{slug}' unexpectedly has editorial figure")
+
+                # Read more permalink check
+                read_more = "在 Audit Commons 阅读全文" if feed_locale == "zh" else "Read complete article at Audit Commons"
+                if read_more not in raw_html or entry_url not in raw_html:
+                    report.error(f"{feed_file.name} entry '{slug}' missing read more permalink")
+
         except Exception as e:
-            report.error(f"Failed to parse feed.xml: {e}")
+            report.error(f"Failed to validate {feed_file.name}: {e}")
+
+    _validate_feed(output_dir / "feed.xml", "en")
+    if (output_dir / "zh" / "feed.xml").exists():
+        _validate_feed(output_dir / "zh" / "feed.xml", "zh")
 
     # Parse and index all HTML files
     html_files = list(output_dir.rglob("*.html"))
@@ -1032,6 +1220,91 @@ def run_resources_contract_tests(repo_root: Path, content_dir: Path, assets_dir:
     print("100-row fixture test complete and temporary fixture cleaned up.")
 
 
+def run_feed_contract_tests(
+    repo_root: Path,
+    content_dir: Path,
+    assets_dir: Path,
+    base_url: str,
+    report: ValidationReport,
+) -> None:
+    """Rigorous regression tests for full-content bilingual Atom feeds."""
+    print("Running full-content bilingual Atom feed regression tests...")
+    from build import AbsolutizeHTMLParser, build_atom_feed
+
+    # 1. URL resolution including query escaping, mailto, and fragment anchors
+    test_base = "https://feed-test.auditcommons.org/news/sample-slug/"
+    test_snippet = """
+    <p>Introduction paragraph with &amp; entity.</p>
+    <a href="/guides/sample?topic=eval&amp;mode=strict#step-1">Relative with query and fragment</a>
+    <a href="#in-page-anchor">In-page anchor</a>
+    <a href="mailto:editor@example.com?subject=Inquiry%20Regarding%20Audit">Email link</a>
+    <img src="/assets/media/test.png" alt="Test &amp; Check">
+    """
+    parser = AbsolutizeHTMLParser(test_base)
+    parser.feed(test_snippet)
+    resolved = parser.get_html()
+    report.check()
+    if 'href="https://feed-test.auditcommons.org/guides/sample?topic=eval&amp;mode=strict#step-1"' not in resolved:
+        report.error("Feed URL resolution failed for query and fragment on root-relative link")
+    report.check()
+    if 'href="https://feed-test.auditcommons.org/news/sample-slug/#in-page-anchor"' not in resolved:
+        report.error("Feed URL resolution failed for in-page fragment anchor")
+    report.check()
+    if 'href="mailto:editor@example.com?subject=Inquiry%20Regarding%20Audit"' not in resolved:
+        report.error("Feed URL resolution corrupted mailto link")
+    report.check()
+    if 'src="https://feed-test.auditcommons.org/assets/media/test.png"' not in resolved:
+        report.error("Feed URL resolution failed for image src")
+
+    # 2. XML safety round-trip
+    wrapped_xml = f'<feed xmlns="http://www.w3.org/2005/Atom"><entry><content type="html">{html.escape(resolved)}</content></entry></feed>'
+    try:
+        xml_root = ET.fromstring(wrapped_xml)
+        content_elem = xml_root.find("{http://www.w3.org/2005/Atom}entry/{http://www.w3.org/2005/Atom}content")
+        report.check()
+        if content_elem is None or content_elem.text != resolved:
+            report.error("Feed content failed XML round-trip equality")
+    except Exception as ex:
+        report.error(f"Feed XML safety test failed to parse XML: {ex}")
+
+    # 3. Custom base URL & feed page generation
+    synthetic_page = {
+        "slug": "news/test-item",
+        "title": "Test Title &amp; Analysis",
+        "summary": "Summary of test item",
+        "author": "Audit Commons",
+        "published": "2026-09-17",
+        "updated": "2026-09-17",
+        "kind": "news",
+        "source_urls": ["https://example.com/source?a=1&b=2"],
+        "_body_html": '<section><h2>Test Heading</h2><p>Body with <a href="#details">fragment link</a>.</p></section>',
+    }
+    custom_feed_xml = build_atom_feed({"name": "Test Site"}, [synthetic_page], "https://custom.example.org", locale="en")
+    report.check()
+    try:
+        custom_root = ET.fromstring(custom_feed_xml)
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        entry = custom_root.find("a:entry", ns)
+        if entry is None:
+            report.error("Synthetic feed failed to generate entry")
+        else:
+            if entry.findtext("a:id", namespaces=ns) != "https://custom.example.org/news/test-item/":
+                report.error("Synthetic feed entry id mismatch")
+            if entry.findtext("a:published", namespaces=ns) != "2026-09-17T00:00:00Z":
+                report.error("Synthetic feed entry published date mismatch")
+            content_text = entry.findtext("a:content", namespaces=ns) or ""
+            if "https://custom.example.org/news/test-item/#details" not in content_text:
+                report.error("Synthetic feed failed to absolutize fragment anchor against canonical URL")
+            if "Test Heading" not in content_text:
+                report.error("Synthetic feed failed to include substantive body HTML")
+            if "https://custom.example.org/news/test-item/" not in content_text:
+                report.error("Synthetic feed failed to include canonical permalink")
+    except Exception as ex:
+        report.error(f"Synthetic feed XML parse failed: {ex}")
+
+    print("Atom feed regression tests completed successfully.")
+
+
 def validate_search_metadata(output_dir: Path, content_dir: Path, base_url: str, report: ValidationReport) -> None:
     """Catch indexing regressions and disagreement between editorial and search metadata."""
     base_url = base_url.rstrip("/")
@@ -1220,6 +1493,7 @@ def main() -> int:
     if not args.skip_safety and content_dir.exists() and assets_dir.exists():
         run_output_safety_tests(repo_root, content_dir, assets_dir, report)
         run_resources_contract_tests(repo_root, content_dir, assets_dir, report)
+        run_feed_contract_tests(repo_root, content_dir, assets_dir, base_url, report)
 
     # 2. Source content checks
     if not args.skip_source:
@@ -1231,7 +1505,7 @@ def main() -> int:
 
     # 3. Output directory checks
     print("Checking output files, links, fragments, accessibility, and sitemap...")
-    validate_output_directory(output_dir, base_url, report)
+    validate_output_directory(output_dir, base_url, report, content_dir=content_dir)
     validate_search_metadata(output_dir, content_dir, base_url, report)
     validate_editorial_media(output_dir, content_dir, report)
 

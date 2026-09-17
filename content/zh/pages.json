@@ -86,7 +86,7 @@
       "贡献指南"
     ],
     "body_file": "zh/bodies/about.html",
-    "source_sha256": "d1b2b883193326c6da81a1b08c392317f21764890393e668bd6829f6ed96d1ae",
+    "source_sha256": "9480a468dbc41f7246b4186a951ea645f72923cf18c34d3fbd3d79e1266979bf",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。它不代表任何商业财团或认证机构。"
   },
   "news/optstop-bayesian-early-stopping": {

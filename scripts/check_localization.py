@@ -553,10 +553,21 @@ def test_media_and_path_rejection(repo_root: Path, report: TestReporter) -> None
 
 def test_chinese_feed(repo_root: Path, report: TestReporter) -> None:
     import xml.etree.ElementTree as ET
+    from html.parser import HTMLParser
+    import re
+
     ns = {"a": "http://www.w3.org/2005/Atom"}
-    tree = ET.parse(repo_root / "_site/zh/feed.xml")
+    zh_feed_file = repo_root / "_site/zh/feed.xml"
+    if not zh_feed_file.exists():
+        report.error("Chinese Atom feed _site/zh/feed.xml is missing")
+        return
+
+    tree = ET.parse(zh_feed_file)
     sources = json.loads((repo_root / "content/pages.json").read_text(encoding="utf-8"))
     overlays = json.loads((repo_root / "content/zh/pages.json").read_text(encoding="utf-8"))
+    zh_media = json.loads((repo_root / "content/zh/media.json").read_text(encoding="utf-8"))
+    manifest = json.loads((repo_root / "content/media.json").read_text(encoding="utf-8"))
+    art_media_keys = manifest.get("articles", {})
     expected = {p["slug"]: overlays[p["slug"]] for p in sources if p["kind"] != "about"}
     entries = tree.findall("a:entry", ns)
     report.check()
@@ -571,6 +582,98 @@ def test_chinese_feed(repo_root: Path, report: TestReporter) -> None:
         if not path.startswith("/zh/") or slug not in expected or entry.findtext("a:title", namespaces=ns) != expected[slug]["title"]:
             report.error(f"Chinese Atom entry has wrong URL or translated title: {path}")
         found.add(slug)
+
+        orig_p = next(p for p in sources if p["slug"] == slug)
+        expected_url = f"https://auditcommons.org/zh/{slug}/"
+        pub_date = orig_p["published"]
+        upd_date = orig_p.get("updated") or pub_date
+
+        report.check()
+        if entry.findtext("a:id", namespaces=ns) != expected_url:
+            report.error(f"Chinese Atom entry ID mismatch for {slug}")
+        if entry.findtext("a:published", namespaces=ns) != f"{pub_date}T00:00:00Z":
+            report.error(f"Chinese Atom entry published date mismatch for {slug}")
+        if entry.findtext("a:updated", namespaces=ns) != f"{upd_date}T00:00:00Z":
+            report.error(f"Chinese Atom entry updated date mismatch for {slug}")
+        if entry.findtext("a:summary", namespaces=ns) != expected[slug]["summary"]:
+            report.error(f"Chinese Atom entry summary mismatch for {slug}")
+
+        # Content inspections
+        content = entry.findtext("a:content", namespaces=ns) or ""
+        report.check()
+        if not content:
+            report.error(f"Chinese Atom entry content empty for {slug}")
+            continue
+
+        class _ZHContentInspector(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.hrefs = []
+                self.srcs = []
+                self.has_nav = False
+                self.has_follow = False
+
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if "href" in d:
+                    self.hrefs.append(d["href"])
+                if "src" in d:
+                    self.srcs.append(d["src"])
+                cl = d.get("class", "").split()
+                if "site-nav" in cl:
+                    self.has_nav = True
+                if "follow-section" in cl or "follow-box" in cl:
+                    self.has_follow = True
+
+        insp = _ZHContentInspector()
+        try:
+            insp.feed(content)
+        except Exception as ex:
+            report.error(f"Chinese Atom entry HTML parse failure for {slug}: {ex}")
+
+        report.check()
+        if insp.has_nav:
+            report.error(f"Chinese Atom entry {slug} injected site navbar")
+        if insp.has_follow:
+            report.error(f"Chinese Atom entry {slug} injected follow widget")
+
+        for h in insp.hrefs:
+            if not h.startswith(("http://", "https://", "mailto:", "tel:")):
+                report.error(f"Chinese Atom entry {slug} contains non-absolute href: {h}")
+            elif h.startswith("#"):
+                report.error(f"Chinese Atom entry {slug} contains unresolved fragment: {h}")
+
+        for s in insp.srcs:
+            if not s.startswith(("http://", "https://")):
+                report.error(f"Chinese Atom entry {slug} contains non-absolute src: {s}")
+
+        # Substantive body check
+        zh_body_file = repo_root / "content" / expected[slug]["body_file"]
+        if zh_body_file.is_file():
+            headings = re.findall(r"<h[2-4][^>]*>(.*?)</h[2-4]>", zh_body_file.read_text(encoding="utf-8"))
+            if headings:
+                first_h = re.sub(r"<[^>]+>", "", headings[0]).strip()
+                report.check()
+                if first_h and first_h not in content:
+                    report.error(f"Chinese Atom entry {slug} missing body heading: '{first_h}'")
+
+        # Editorial media check
+        mkey = art_media_keys.get(slug)
+        report.check()
+        if mkey:
+            if "<figure" not in content or "media-article" not in content:
+                report.error(f"Chinese Atom entry {slug} missing lead figure")
+            if mkey in zh_media and zh_media[mkey]["caption"] not in content:
+                report.error(f"Chinese Atom entry {slug} missing Chinese media caption")
+        else:
+            if "<figure" in content and "media-article" in content:
+                report.error(f"Chinese Atom entry {slug} unexpectedly has lead figure")
+
+        # Permalink check
+        report.check()
+        if "在 Audit Commons 阅读全文" not in content or expected_url not in content:
+            report.error(f"Chinese Atom entry {slug} missing Chinese permalink")
+
     if found != set(expected):
         report.error("Chinese Atom feed has missing or duplicate entries")
 
