@@ -24,6 +24,7 @@ from urllib.parse import urlparse
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 from resource_formats import formats_error
+from editorial_media import social_image_eligible
 
 
 class HtmlStructureExtractor(HTMLParser):
@@ -34,6 +35,7 @@ class HtmlStructureExtractor(HTMLParser):
         self.element_ids: Set[str] = set()
         self.links: List[Tuple[str, int]] = []  # (href, line_number)
         self.asset_sources: List[Tuple[str, str, int]] = []  # (tag, src/href, line_number)
+        self.images: List[Dict[str, str]] = []
         self.meta_tags: List[Dict[str, str]] = []
         self.has_skip_link: bool = False
         self.has_main: bool = False
@@ -116,6 +118,8 @@ class HtmlStructureExtractor(HTMLParser):
             self.links.append((href, self.getpos()[0]))
 
         # Assets & Dependencies
+        if tag == "img":
+            self.images.append(attr_dict)
         if tag in ("img", "script") and "src" in attr_dict:
             self.asset_sources.append((tag, attr_dict["src"], self.getpos()[0]))
         if tag == "link" and "href" in attr_dict:
@@ -410,6 +414,14 @@ def validate_sources(content_dir: Path, report: ValidationReport) -> None:
             if not isinstance(s_urls, list):
                 report.error(f"Resource '{r_id}' source_urls must be a list of URLs when present")
 
+    zh_dir = content_dir / "zh"
+    if zh_dir.exists() and zh_dir.is_dir():
+        from localization import validate_translation_overlays
+        try:
+            validate_translation_overlays(content_dir, pages, resources)
+        except Exception as e:
+            report.error(f"Chinese translation overlay validation failed: {e}")
+
 
 def validate_output_directory(
     output_dir: Path,
@@ -559,7 +571,7 @@ def validate_output_directory(
     # Validate semantic contract and DOM invariants on each HTML page
     expected_sitemap = {
         expected_base_url.rstrip('/') + ('/' if name == 'index.html' else '/' + name.removesuffix('index.html'))
-        for name in page_data if name != '404.html'
+        for name in page_data if not name.endswith('404.html')
     }
     report.check()
     if sitemap_urls != expected_sitemap:
@@ -619,7 +631,10 @@ def validate_output_directory(
                 report.error("index.html must include JSON-LD WebSite structured data")
 
         if "guides/" in rel_path or "updates/" in rel_path or "news/" in rel_path or "features/" in rel_path:
-            if rel_path not in ("guides/index.html", "updates/index.html", "features/index.html"):
+            if rel_path not in (
+                "guides/index.html", "updates/index.html", "features/index.html",
+                "zh/guides/index.html", "zh/updates/index.html", "zh/features/index.html",
+            ):
                 has_article = False
                 for s in ext.json_ld_scripts:
                     try:
@@ -632,17 +647,17 @@ def validate_output_directory(
                     report.error(f"{rel_path}: Practical guides and releases must include JSON-LD Article structured data")
 
         # Check resource page DOM contract
-        if rel_path == "resources/index.html":
+        if rel_path in ("resources/index.html", "zh/resources/index.html"):
             if not ext.has_resource_controls or not ext.resource_controls_hidden:
-                report.error("resources/index.html: #resource-controls must exist and have 'hidden' attribute initially")
+                report.error(f"{rel_path}: #resource-controls must exist and have 'hidden' attribute initially")
             if not ext.has_resource_search:
-                report.error("resources/index.html: input#resource-search[type='search'] must exist")
+                report.error(f"{rel_path}: input#resource-search[type='search'] must exist")
             if not ext.has_resource_count or not ext.resource_count_role_status:
-                report.error("resources/index.html: #resource-count with role='status' must exist")
+                report.error(f"{rel_path}: #resource-count with role='status' must exist")
             if not ext.has_no_results or not ext.no_results_hidden:
-                report.error("resources/index.html: #no-results empty state must exist and be hidden initially")
+                report.error(f"{rel_path}: #no-results empty state must exist and be hidden initially")
             if not ext.resource_cards:
-                report.error("resources/index.html: must contain .resource-card elements")
+                report.error(f"{rel_path}: must contain .resource-card elements")
             for card in ext.resource_cards:
                 report.check()
                 if not card.get("data-category"):
@@ -1048,9 +1063,9 @@ def validate_search_metadata(output_dir: Path, content_dir: Path, base_url: str,
             seen[value] = rel
         report.check()
         directives = {s.strip() for s in meta.get("robots", "").lower().split(",")}
-        if rel == "404.html":
+        if rel.endswith("404.html"):
             if "noindex" not in directives:
-                report.error("404.html: Must remain noindex")
+                report.error(f"{rel}: Must remain noindex")
             continue
         if {"noindex", "nofollow", "none", "nosnippet"} & directives:
             report.error(f"{rel}: Search discovery or snippets are blocked")
@@ -1125,6 +1140,48 @@ def validate_search_metadata(output_dir: Path, content_dir: Path, base_url: str,
                 report.error(f"{page['slug']}: Related reading link missing for {related}")
 
 
+def validate_editorial_media(output_dir, content_dir, report):
+    manifest_file = content_dir / 'media.json'
+    if not manifest_file.exists():
+        return
+    manifest = json.loads(manifest_file.read_text(encoding='utf-8'))
+    from hashlib import sha256
+    for key, media in manifest['assets'].items():
+        report.check()
+        file = output_dir / media['src'].lstrip('/')
+        if not file.is_file() or sha256(file.read_bytes()).hexdigest() != media['sha256']:
+            report.error(f'Media {key}: published image missing or differs from source digest')
+        if 'license_file' in media:
+            report.check()
+            if not (output_dir / media['license_file'].lstrip('/')).is_file():
+                report.error(f'Media {key}: published license notice missing')
+    for file in output_dir.rglob('*.html'):
+        ext = HtmlStructureExtractor()
+        ext.feed(file.read_text(encoding='utf-8'))
+        for img in ext.images:
+            if not img.get('src', '').startswith('/assets/media/'):
+                continue
+            report.check()
+            if not img.get('alt') or not all(img.get(k, '').isdigit() and int(img[k]) > 0 for k in ('width', 'height')):
+                report.error(f'{file}: editorial image needs descriptive alt and intrinsic dimensions')
+    for slug, key in manifest['articles'].items():
+        media = manifest['assets'][key]
+        ext = HtmlStructureExtractor()
+        ext.feed((output_dir / slug / 'index.html').read_text(encoding='utf-8'))
+        links = {url for url, _ in ext.links}
+        report.check()
+        if media['source_url'] not in links or media['license_url'] not in links:
+            report.error(f'{slug}: image attribution missing')
+        report.check()
+        if media['src'] not in {img.get('src') for img in ext.images}:
+            report.error(f'{slug}: assigned editorial image missing')
+        report.check()
+        og = next((m for m in ext.meta_tags if m.get('property') == 'og:image'), {})
+        expected_image = media['src'] if social_image_eligible(media) else '/assets/social-preview.png'
+        if urlparse(og.get('content', '')).path != expected_image:
+            report.error(f'{slug}: unexpected article social preview')
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Audit Commons output & content verification suite")
     parser.add_argument("--content-dir", default="content", help="Path to source content directory")
@@ -1176,6 +1233,7 @@ def main() -> int:
     print("Checking output files, links, fragments, accessibility, and sitemap...")
     validate_output_directory(output_dir, base_url, report)
     validate_search_metadata(output_dir, content_dir, base_url, report)
+    validate_editorial_media(output_dir, content_dir, report)
 
     # Print summary
     print()

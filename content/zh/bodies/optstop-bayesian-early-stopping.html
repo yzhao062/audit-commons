@@ -1,0 +1,48 @@
+<nav class="article-toc" aria-label="本页导航">
+  <p class="toc-label">本页导航</p>
+  <ol>
+    <li><a href="#what-happened">AISI 发布的内容</a></li>
+    <li><a href="#how-it-works">optstop 的工作原理</a></li>
+    <li><a href="#limits">局限性</a></li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h2 id="what-happened">AISI 发布的内容</h2>
+  <p>
+    2026年8月27日，英国人工智能安全研究所（UK AI Security Institute）发表了一篇
+    <a href="https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts">博文</a>，
+    介绍了 <code>optstop</code>，这是一个将贝叶斯最优停止理论应用于大语言模型（LLM）评估的开源 Python 软件包。该发布随附了 Toby D. Pilditch 于2026年8月14日提交至 arXiv 的预印本论文
+    <a href="https://arxiv.org/abs/2608.14425"><em>Knowing When to Stop: Bayesian Optimal Stopping for LLM Evaluations</em></a>，
+    以及一个<a href="https://github.com/UKGovernmentBEIS/optstop">公开代码仓库</a>。
+  </p>
+  <p>
+    该工具通过少量配置添加即可与 AISI 的 <a href="https://inspect.aisi.org.uk/early-stopping.html">Inspect</a>
+    评估框架集成。其出发点在于解决实际的资源瓶颈：固定预算的评估往往把算力浪费在特征已非常明确的任务-模型组合上，而更难解决的边缘案例却可能在资源耗尽前未能得到充分检验。
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="how-it-works">optstop 的工作原理</h2>
+  <p>
+    <code>optstop</code> 跟踪当前性能估计值周围的可信区间。当该区间收窄至预设阈值（精度规则）或停止变化（稳定规则）时，它便停止采样。如果两条规则均未满足，则评估将运行至全部计划预算。保守机制要求在估计成功率低于 1% 时获取额外数据，以防在罕见事件场景下过早停止。每一次停止决策均会被记录在日志中。
+  </p>
+  <p>
+    在包含 200 个测试项和 10 轮迭代的九种验证设置下，该
+    <a href="https://arxiv.org/abs/2608.14425">论文</a>报告节省了 57% 至 97% 的计划试验轮次，
+    且评估结论与完整运行保持一致。这些属于报道所引述的验证结果，
+    并不保证其他评估也能获得同样的算力节省。采用过程可以循序渐进：事后验证（在已完成的评估上运行以验证一致性）、影子模式（记录早停建议但不付诸执行），最后再正式启用。
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="limits">局限性</h2>
+  <p>
+    节省幅度取决于评估设计、模型以及精度阈值。该工具目前要求任务按随机顺序排列；非随机队列可能会使早期估计产生偏差。针对罕见成功设置的防护机制解决了一个重要的边缘情况，但并未消除自适应早停带来的所有风险。
+  </p>
+  <ul>
+    <li>博客：<a href="https://www.aisi.gov.uk/blog/optimal-stopping-spending-evaluation-compute-where-it-counts">AISI，2026年8月27日</a></li>
+    <li>论文：<a href="https://arxiv.org/abs/2608.14425">arXiv:2608.14425</a>（2026年8月14日提交）</li>
+    <li>代码：<a href="https://github.com/UKGovernmentBEIS/optstop">github.com/UKGovernmentBEIS/optstop</a></li>
+  </ul>
+</section>

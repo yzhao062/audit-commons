@@ -1,0 +1,4 @@
+# Preserve downloaded media bytes so provenance hashes survive Windows checkout.
+assets/media/** -text
+# Keep upstream legal notices verbatim, including their original whitespace.
+assets/media/licenses/** -whitespace

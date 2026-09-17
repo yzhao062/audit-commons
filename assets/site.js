@@ -6,6 +6,18 @@
 (function () {
   'use strict';
 
+  function syncLanguageSwitchLinks() {
+    var switchLinks = document.querySelectorAll('.lang-switch a[href]');
+    if (!switchLinks || switchLinks.length === 0) return;
+    var search = window.location.search || '';
+    var hash = window.location.hash || '';
+    switchLinks.forEach(function (link) {
+      var rawHref = link.getAttribute('href') || '';
+      var baseHref = rawHref.split('?')[0].split('#')[0];
+      link.setAttribute('href', baseHref + search + hash);
+    });
+  }
+
   function initResourceDirectory() {
     var controls = document.getElementById('resource-controls');
     var cards = document.querySelectorAll('.resource-card');
@@ -125,8 +137,8 @@
           params.set('q', searchQuery.trim());
         }
         var qs = params.toString();
-        var newUrl = window.location.pathname + (qs ? '?' + qs : '');
-        if (window.location.pathname + window.location.search !== newUrl) {
+        var newUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+        if (window.location.pathname + window.location.search + window.location.hash !== newUrl) {
           window.history.replaceState({ format: activeFormat, category: activeCategory, q: searchQuery }, '', newUrl);
         }
       } catch (err) {
@@ -225,13 +237,24 @@
       });
 
       // Update live status announcement for screen readers and visual counts
+      var isZh = document.documentElement.lang === 'zh-CN' || document.documentElement.lang === 'zh';
       if (countEl) {
-        if (!query && normCat === 'all' && normFmt === 'all') {
-          countEl.textContent = 'Showing all ' + total + ' resources';
-        } else if (matches > 0) {
-          countEl.textContent = 'Showing ' + matches + ' of ' + total + ' resources';
+        if (isZh) {
+          if (!query && normCat === 'all' && normFmt === 'all') {
+            countEl.textContent = '显示全部 ' + total + ' 项资源';
+          } else if (matches > 0) {
+            countEl.textContent = '显示 ' + matches + ' / ' + total + ' 项资源';
+          } else {
+            countEl.textContent = '未找到匹配的资源';
+          }
         } else {
-          countEl.textContent = 'No matching resources found';
+          if (!query && normCat === 'all' && normFmt === 'all') {
+            countEl.textContent = 'Showing all ' + total + ' resources';
+          } else if (matches > 0) {
+            countEl.textContent = 'Showing ' + matches + ' of ' + total + ' resources';
+          } else {
+            countEl.textContent = 'No matching resources found';
+          }
         }
       }
 
@@ -249,6 +272,7 @@
       if (updateHistory) {
         updateUrlState();
       }
+      syncLanguageSwitchLinks();
     }
 
     function selectFormatTab(tabEl) {
@@ -353,6 +377,188 @@
     // Read initial deep-link state from URL and synchronize DOM
     readStateFromUrl();
     applyFilters(false);
+    syncLanguageSwitchLinks();
+  }
+
+  function initLatestFilters() {
+    var controls = document.getElementById('latest-controls');
+    var cards = document.querySelectorAll('.article-list .article-card');
+
+    if (!controls || cards.length === 0) {
+      return;
+    }
+
+    var filterButtons = controls.querySelectorAll('button[data-kind]');
+    var countEl = document.getElementById('latest-count');
+    var noResultsEl = document.getElementById('latest-no-results');
+    var resetButtons = controls.querySelectorAll('[data-action="reset-latest"]');
+
+    var VALID_KINDS = ['all', 'news', 'feature', 'guide', 'release'];
+    var activeKind = 'all';
+
+    // Progressive disclosure: Reveal controls only after script initialization
+    controls.hidden = false;
+    controls.removeAttribute('hidden');
+    controls.style.display = '';
+
+    if (noResultsEl) {
+      noResultsEl.hidden = true;
+      noResultsEl.style.display = 'none';
+    }
+
+    function readKindFromUrl() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var raw = params.get('kind');
+        if (raw) {
+          var norm = raw.trim().toLowerCase();
+          if (VALID_KINDS.indexOf(norm) !== -1) {
+            return norm;
+          }
+        }
+      } catch (err) {}
+      return 'all';
+    }
+
+    function updateUrlState(kind, push) {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (kind && kind !== 'all') {
+          params.set('kind', kind);
+        } else if (params.has('kind')) {
+          params.delete('kind');
+        }
+        var qs = params.toString();
+        var newUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+        var currentUrl = window.location.pathname + window.location.search + window.location.hash;
+        if (currentUrl !== newUrl) {
+          if (push) {
+            window.history.pushState({ kind: kind }, '', newUrl);
+          } else {
+            window.history.replaceState({ kind: kind }, '', newUrl);
+          }
+        }
+      } catch (err) {}
+    }
+
+    function applyFilter(kind, updateHistory, push) {
+      activeKind = kind || 'all';
+
+      // Update button aria-pressed and classes
+      filterButtons.forEach(function (btn) {
+        var btnKind = (btn.getAttribute('data-kind') || '').trim().toLowerCase();
+        var isSelected = (btnKind === activeKind);
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+
+      // Filter cards:
+      // 'all': all cards
+      // 'guide': card kind is 'guide' OR 'introduction'
+      // other: card kind is activeKind
+      var total = cards.length;
+      var visible = 0;
+      cards.forEach(function (card) {
+        var cardKind = (card.getAttribute('data-kind') || '').trim().toLowerCase();
+        var matches = false;
+        if (activeKind === 'all') {
+          matches = true;
+        } else if (activeKind === 'guide') {
+          matches = (cardKind === 'guide' || cardKind === 'introduction');
+        } else {
+          matches = (cardKind === activeKind);
+        }
+
+        if (matches) {
+          card.hidden = false;
+          card.style.display = '';
+          visible++;
+        } else {
+          card.hidden = true;
+          card.style.display = 'none';
+        }
+      });
+
+      // Update count text
+      var isZh = document.documentElement.lang === 'zh-CN' || document.documentElement.lang === 'zh';
+      if (countEl) {
+        if (isZh) {
+          if (activeKind === 'all') {
+            countEl.textContent = '显示全部 ' + total + ' 篇内容';
+          } else if (visible > 0) {
+            countEl.textContent = '显示 ' + visible + ' / ' + total + ' 篇内容';
+          } else {
+            countEl.textContent = '未找到匹配的内容';
+          }
+        } else {
+          if (activeKind === 'all') {
+            countEl.textContent = 'Showing all ' + total + ' items';
+          } else if (visible > 0) {
+            countEl.textContent = 'Showing ' + visible + ' of ' + total + ' items';
+          } else {
+            countEl.textContent = 'No matching items found';
+          }
+        }
+      }
+
+      // Update empty state
+      if (noResultsEl) {
+        if (visible === 0) {
+          noResultsEl.hidden = false;
+          noResultsEl.style.display = 'block';
+        } else {
+          noResultsEl.hidden = true;
+          noResultsEl.style.display = 'none';
+        }
+      }
+
+      if (updateHistory) {
+        updateUrlState(activeKind, push);
+      }
+      syncLanguageSwitchLinks();
+    }
+
+    // Bind button clicks
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var kind = (btn.getAttribute('data-kind') || 'all').trim().toLowerCase();
+        if (VALID_KINDS.indexOf(kind) === -1) {
+          kind = 'all';
+        }
+        if (kind !== activeKind) {
+          applyFilter(kind, true, true);
+        } else {
+          updateUrlState(kind, false);
+          syncLanguageSwitchLinks();
+        }
+      });
+    });
+
+    // Bind reset buttons
+    resetButtons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        applyFilter('all', true, true);
+        var allBtn = controls.querySelector('button[data-kind="all"]');
+        if (allBtn) {
+          allBtn.focus();
+        }
+      });
+    });
+
+    // Listen to browser Back/Forward navigation
+    window.addEventListener('popstate', function () {
+      var kind = readKindFromUrl();
+      applyFilter(kind, false, false);
+    });
+
+    // Initial state from URL
+    var initialKind = readKindFromUrl();
+    applyFilter(initialKind, false, false);
   }
 
   // Enhanced code copying for practical worksheets with accessible status announcements
@@ -379,26 +585,36 @@
       }
     }
 
+    var isZh = document.documentElement.lang === 'zh-CN' || document.documentElement.lang === 'zh';
+    var textCopied = isZh ? '已复制！' : 'Copied!';
+    var textCopy = isZh ? '复制' : 'Copy';
+    var textCopyFailed = isZh ? '复制失败' : 'Copy failed';
+    var ariaCopied = isZh ? '代码已复制至剪贴板' : 'Code worksheet copied to clipboard';
+    var ariaCopy = isZh ? '复制代码至剪贴板' : 'Copy code worksheet to clipboard';
+    var ariaFailed = isZh ? '复制失败，请手动选择文本' : 'Copying failed, select text manually';
+    var statusCopied = isZh ? '已将代码复制至剪贴板' : 'Worksheet copied to clipboard';
+    var statusFailed = isZh ? '复制到剪贴板失败，请手动选择文本。' : 'Copy to clipboard failed. Please select text manually.';
+
     function handleCopySuccess(button) {
-      button.textContent = 'Copied!';
+      button.textContent = textCopied;
       button.classList.add('is-copied');
-      button.setAttribute('aria-label', 'Code worksheet copied to clipboard');
-      announceStatus('Worksheet copied to clipboard');
+      button.setAttribute('aria-label', ariaCopied);
+      announceStatus(statusCopied);
       setTimeout(function () {
-        button.textContent = 'Copy';
+        button.textContent = textCopy;
         button.classList.remove('is-copied');
-        button.setAttribute('aria-label', 'Copy code worksheet to clipboard');
+        button.setAttribute('aria-label', ariaCopy);
       }, 2000);
     }
 
     function handleCopyFailure(button) {
-      button.textContent = 'Copy failed';
+      button.textContent = textCopyFailed;
       button.classList.remove('is-copied');
-      button.setAttribute('aria-label', 'Copying failed, select text manually');
-      announceStatus('Copy to clipboard failed. Please select text manually.');
+      button.setAttribute('aria-label', ariaFailed);
+      announceStatus(statusFailed);
       setTimeout(function () {
-        button.textContent = 'Copy';
-        button.setAttribute('aria-label', 'Copy code worksheet to clipboard');
+        button.textContent = textCopy;
+        button.setAttribute('aria-label', ariaCopy);
       }, 2500);
     }
 
@@ -439,7 +655,8 @@
       button.type = 'button';
       button.className = 'copy-button';
       button.setAttribute('aria-label', 'Copy code worksheet to clipboard');
-      button.textContent = 'Copy';
+      button.textContent = textCopy;
+      button.setAttribute('aria-label', ariaCopy);
 
       button.addEventListener('click', function () {
         var text = code.innerText || code.textContent || '';
@@ -460,14 +677,21 @@
     });
   }
 
+  window.addEventListener('hashchange', syncLanguageSwitchLinks);
+  window.addEventListener('popstate', syncLanguageSwitchLinks);
+
   // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       initResourceDirectory();
+      initLatestFilters();
       initCodeCopying();
+      syncLanguageSwitchLinks();
     });
   } else {
     initResourceDirectory();
+    initLatestFilters();
     initCodeCopying();
+    syncLanguageSwitchLinks();
   }
 })();

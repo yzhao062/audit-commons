@@ -3,11 +3,13 @@
 Audit Commons Static Site Generator
 Builds the complete Audit Commons field portal using standard Python 3.12 library only.
 Generates the field portal from its editorial content and static assets.
+Supports both English and Simplified Chinese (/zh/) editions via translation overlays.
 """
 
 from __future__ import annotations
 
 import argparse
+import copy
 from datetime import datetime
 import html
 import json
@@ -19,7 +21,31 @@ import sys
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
+
 from resource_formats import resource_formats
+from editorial_media import bind_media, media_credit, render_media, social_image_eligible
+from localization import (
+    DEFAULT_LOCALE,
+    SUPPORTED_LOCALES,
+    LOCALE_LANG,
+    LOCALE_OG,
+    REQUIRED_NAV_ITEMS_ZH,
+    FORMAT_DISPLAY_LABELS_ZH,
+    CATEGORY_DISPLAY_LABELS_ZH,
+    SECTION_DISPLAY_LABELS_ZH,
+    KIND_LABELS_ZH,
+    canonical_for,
+    route_href,
+    get_hreflang_tags,
+    render_language_switcher,
+    localize_body_html,
+    display_date,
+    normalize_slug,
+    validate_translation_overlays,
+    apply_page_overlay,
+    apply_resource_overlay,
+    apply_media_overlay,
+)
 
 
 DEFAULT_BASE_URL = "https://auditcommons.org"
@@ -28,17 +54,13 @@ MARKER_SIGNATURE = "Audit Commons Static Site Generator Ownership Marker\nversio
 
 REQUIRED_NAV_ITEMS = [
     ("Latest", "/latest/"),
-    ("Features", "/features/"),
     ("Learn", "/learn/"),
     ("Resources", "/resources/"),
     ("About", "/about/"),
 ]
 
-# Slug prefixes that activate each nav item for sub-pages.
-# Exact match takes priority; this map handles children of each section.
 NAV_SLUG_PREFIXES: dict[str, list[str]] = {
-    "latest":    ["latest", "news/", "updates/"],
-    "features":  ["features/"],
+    "latest":    ["latest", "news/", "news", "updates/", "updates", "features/", "features"],
     "learn":     ["learn", "guides/", "start-here"],
     "resources": ["resources"],
     "about":     ["about"],
@@ -72,7 +94,6 @@ FORMAT_DISPLAY_LABELS = {
 }
 
 
-
 def escape(val: Any) -> str:
     """Safely escape text for HTML attributes or body content."""
     if val is None:
@@ -92,17 +113,12 @@ def parse_date(date_str: str) -> datetime:
         raise ValueError(f"Invalid calendar date '{date_str}': {e}") from e
 
 
-def display_date(date_str: str) -> str:
-    date = parse_date(date_str)
-    return f"{date.day} {date.strftime('%b')} {date.year}"
-
-
-def publication_identity(site_data: Dict[str, Any], base_url: str) -> Dict[str, Any]:
+def publication_identity(site_data: Dict[str, Any], base_url: str, locale: str = "en") -> Dict[str, Any]:
     return {
         "@type": "Organization",
-        "@id": canonical_for(base_url, "about") + "#publication",
+        "@id": canonical_for(base_url, "about", locale) + "#publication",
         "name": site_data.get("name", "Audit Commons"),
-        "url": canonical_for(base_url, "about"),
+        "url": canonical_for(base_url, "about", locale),
     }
 
 
@@ -138,30 +154,6 @@ def serialize_json_ld(data: Dict[str, Any]) -> str:
     """
     raw = json.dumps(data, indent=2, ensure_ascii=False)
     return raw.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
-
-
-def canonical_for(base_url: str, slug: str) -> str:
-    """
-    Compute canonical URL for a given route slug.
-    Consistently applies validated base_url origin rather than trusting stored values blindly.
-    """
-    base = base_url.rstrip("/")
-    if not slug or slug == "/":
-        return f"{base}/"
-    if slug == "404.html" or slug == "/404.html":
-        return f"{base}/404.html"
-    clean_slug = slug.strip("/")
-    return f"{base}/{clean_slug}/"
-
-
-def route_href(slug: str) -> str:
-    """Generate root-relative internal link for a route."""
-    if not slug or slug == "/":
-        return "/"
-    if slug == "404.html" or slug == "/404.html":
-        return "/404.html"
-    clean_slug = slug.strip("/")
-    return f"/{clean_slug}/"
 
 
 def clean_directory_contents_safely(target_dir: Path) -> None:
@@ -290,10 +282,17 @@ def render_html_page(
     is_404: bool = False,
     extra_meta: str = "",
     json_ld: Optional[Dict[str, Any]] = None,
+    social_image: Optional[Dict[str, Any]] = None,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
-    """Renders a complete HTML page matching the DOM and accessibility contract."""
+    """Renders a complete HTML page matching the DOM, accessibility, and localization contracts."""
     site_name = escape(site_data.get("name", "Audit Commons"))
-    site_tagline = escape(site_data.get("tagline", "Research, tools, and community for AI auditing."))
+    if locale == "zh":
+        site_tagline = escape("关于 AI 审计的新闻、深度分析与实践学习。")
+    else:
+        site_tagline = escape(site_data.get("tagline", "Research, tools, and community for AI auditing."))
+
     maintainer = site_data.get("maintainer", {})
     maintainer_name = escape(maintainer.get("name", "Yue Zhao"))
     maintainer_url = escape(maintainer.get("url", "https://viterbi-web.usc.edu/~yzhao010/"))
@@ -303,15 +302,27 @@ def render_html_page(
     escaped_desc = escape(description)
     escaped_canonical = escape(canonical_url)
     social_png_url = f"{base_url.rstrip('/')}/assets/social-preview.png"
+    social_width, social_height = 1200, 630
+    social_alt = f"{site_name}: {site_tagline}"
+    if social_image_eligible(social_image):
+        social_png_url = base_url.rstrip('/') + social_image['src']
+        social_width, social_height = social_image['width'], social_image['height']
+        social_alt = escape(social_image['alt'])
 
     # Robots tag: 404 must not be indexed
     robots_tag = '<meta name="robots" content="noindex, follow">' if is_404 else '<meta name="robots" content="index, follow, max-image-preview:large">'
 
-    # Navigation links - use exact match + explicit prefix map to avoid substring collisions
+    html_lang = LOCALE_LANG.get(locale, "en")
+    og_locale = LOCALE_OG.get(locale, "en_US")
+    hreflang_tags = get_hreflang_tags(base_url, current_slug, has_zh=has_zh) if not is_404 else ""
+    lang_switch_html = render_language_switcher(current_slug, locale, has_zh=has_zh)
+
+    # Navigation links - use exact match + explicit prefix map
+    nav_items = REQUIRED_NAV_ITEMS_ZH if locale == "zh" else REQUIRED_NAV_ITEMS
+    clean_current = normalize_slug(current_slug)
     nav_links_html = []
-    clean_current = current_slug.strip("/")
-    for label, target in REQUIRED_NAV_ITEMS:
-        target_slug = target.strip("/")
+    for label, target in nav_items:
+        target_slug = target.strip("/").removeprefix("zh/").strip("/")
         # Exact match
         is_active = (clean_current == target_slug)
         if not is_active:
@@ -329,6 +340,16 @@ def render_html_page(
         nav_links_html.append(f'<a href="{target}"{active_attr}>{escape(label)}</a>')
     nav_html = "\n        ".join(nav_links_html)
 
+    # Brand and Header labels
+    brand_href = route_href("", locale)
+    brand_aria = "Audit Commons 首页" if locale == "zh" else "Audit Commons Homepage"
+    brand_subtitle = "AI 审计" if locale == "zh" else "AI Auditing"
+    skip_text = "跳转至主要内容" if locale == "zh" else "Skip to main content"
+    nav_aria = "主导航" if locale == "zh" else "Main Navigation"
+
+    # Feed Link
+    feed_url = f"{base_url.rstrip('/')}/zh/feed.xml" if locale == "zh" else f"{base_url.rstrip('/')}/feed.xml"
+    feed_title = f"{site_name} (中文) 订阅" if locale == "zh" else f"{site_name} Feed"
 
     # JSON-LD Structured Data with script breakout protection
     json_ld_html = ""
@@ -336,64 +357,44 @@ def render_html_page(
         safe_json_str = serialize_json_ld(json_ld)
         json_ld_html = f'<script type="application/ld+json">\n{safe_json_str}\n</script>'
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{full_title}</title>
-  <meta name="description" content="{escaped_desc}">
-  <link rel="canonical" href="{escaped_canonical}">
-  {robots_tag}
+    # Footer
+    if locale == "zh":
+        footer_html = f"""  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-about">
+        <h2>Audit Commons</h2>
+        <p class="footer-tagline">{site_tagline}</p>
+        <p class="footer-maintainer">维护者：<a href="{maintainer_url}">{maintainer_name}</a>。</p>
+      </div>
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:site_name" content="{site_name}">
-  <meta property="og:type" content="{og_type}">
-  <meta property="og:title" content="{full_title}">
-  <meta property="og:description" content="{escaped_desc}">
-  <meta property="og:url" content="{escaped_canonical}">
-  <meta property="og:image" content="{social_png_url}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{site_name}: {site_tagline}">
+      <div class="footer-col footer-links">
+        <h2>内容栏目</h2>
+        <ul>
+          <li><a href="/zh/latest/">最新内容</a></li>
+          <li><a href="/zh/latest/?kind=feature">深度解读</a></li>
+          <li><a href="/zh/learn/">学习指南</a></li>
+          <li><a href="/zh/resources/">资源目录</a></li>
+          <li><a href="/zh/about/">关于本站</a></li>
+        </ul>
+      </div>
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{full_title}">
-  <meta name="twitter:description" content="{escaped_desc}">
-  <meta name="twitter:image" content="{social_png_url}">
-
-  <!-- Feed and Favicon -->
-  <link rel="alternate" type="application/atom+xml" title="{site_name} Feed" href="{base_url.rstrip('/')}/feed.xml">
-  <link rel="icon" href="/favicon.svg?v=graphite" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/style.css">
-  <script src="/assets/site.js" defer></script>
-  {extra_meta}
-  {json_ld_html}
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="/" class="brand" aria-label="Audit Commons Homepage">
-        <img src="/assets/mark.svg?v=graphite" alt="" width="38" height="38" class="brand-icon">
-        <span class="brand-text">
-          <span class="brand-title">Audit Commons</span>
-          <span class="brand-subtitle">AI Auditing</span>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Main Navigation">
-        {nav_html}
-      </nav>
+      <div class="footer-col footer-editorial">
+        <h2>关注与参与</h2>
+        <ul>
+          <li><a href="/zh/about/#contribute">贡献指南</a></li>
+          <li><a href="/zh/about/#corrections">提交勘误</a></li>
+          <li><a href="/zh/feed.xml">通过 RSS / Atom 订阅</a></li>
+          <li><a href="https://github.com/yzhao062/audit-commons">网站源码</a></li>
+          <li><a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a></li>
+        </ul>
+      </div>
     </div>
-  </header>
-
-  <main id="main" tabindex="-1">
-{body_content}
-  </main>
-
-  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p class="footer-copy">&copy; 2026 Audit Commons. {site_tagline}</p>
+    </div>
+  </footer>"""
+    else:
+        footer_html = f"""  <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col footer-about">
         <h2>Audit Commons</h2>
@@ -405,7 +406,7 @@ def render_html_page(
         <h2>Editorial Sections</h2>
         <ul>
           <li><a href="/latest/">Latest additions</a></li>
-          <li><a href="/features/">Features</a></li>
+          <li><a href="/latest/?kind=feature">Analysis</a></li>
           <li><a href="/learn/">Learn</a></li>
           <li><a href="/resources/">Resources</a></li>
           <li><a href="/about/">About</a></li>
@@ -426,24 +427,99 @@ def render_html_page(
     <div class="container footer-bottom">
       <p class="footer-copy">&copy; 2026 Audit Commons. {site_tagline}</p>
     </div>
-  </footer>
+  </footer>"""
+
+    hreflang_block = f"\n{hreflang_tags}" if hreflang_tags else ""
+
+    return f"""<!DOCTYPE html>
+<html lang="{html_lang}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{full_title}</title>
+  <meta name="description" content="{escaped_desc}">
+  <link rel="canonical" href="{escaped_canonical}">{hreflang_block}
+  {robots_tag}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content="{site_name}">
+  <meta property="og:type" content="{og_type}">
+  <meta property="og:title" content="{full_title}">
+  <meta property="og:description" content="{escaped_desc}">
+  <meta property="og:url" content="{escaped_canonical}">
+  <meta property="og:locale" content="{og_locale}">
+  <meta property="og:image" content="{social_png_url}">
+  <meta property="og:image:width" content="{social_width}">
+  <meta property="og:image:height" content="{social_height}">
+  <meta property="og:image:alt" content="{social_alt}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{full_title}">
+  <meta name="twitter:description" content="{escaped_desc}">
+  <meta name="twitter:image" content="{social_png_url}">
+
+  <!-- Feed and Favicon -->
+  <link rel="alternate" type="application/atom+xml" title="{feed_title}" href="{feed_url}">
+  <link rel="icon" href="/favicon.svg?v=graphite" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/site.js" defer></script>
+  {extra_meta}
+  {json_ld_html}
+</head>
+<body>
+  <a class="skip-link" href="#main">{skip_text}</a>
+
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="{brand_href}" class="brand" aria-label="{brand_aria}">
+        <img src="/assets/mark.svg?v=graphite" alt="" width="38" height="38" class="brand-icon">
+        <span class="brand-text">
+          <span class="brand-title">Audit Commons</span>
+          <span class="brand-subtitle">{brand_subtitle}</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="{nav_aria}">
+        {nav_html}
+      </nav>
+{lang_switch_html}
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+{body_content}
+  </main>
+
+{footer_html}
 </body>
 </html>"""
 
 
-def _kind_label(kind: str) -> str:
+def _kind_label(kind: str, locale: str = "en") -> str:
     """Human-readable label for an article kind."""
+    if locale == "zh":
+        return KIND_LABELS_ZH.get(kind, "文章")
     return {
         "introduction": "Orientation",
         "guide": "Guide",
         "release": "Release",
         "news": "News",
-        "feature": "Feature",
+        "feature": "Analysis",
         "about": "About",
     }.get(kind, "Article")
 
 
-def build_follow_section() -> str:
+def build_follow_section(locale: str = "en") -> str:
+    if locale == "zh":
+        return """
+    <section class="follow-section" aria-labelledby="follow-heading">
+      <h2 id="follow-heading">关注 Audit Commons</h2>
+      <p>在您的阅读器中及时获取最新报道、实践指南与精选资源。</p>
+      <div class="follow-links">
+        <a href="/zh/feed.xml">通过 RSS / Atom 订阅 &rarr;</a>
+        <a href="/zh/about/#contribute">推荐报道或资源 &rarr;</a>
+      </div>
+    </section>"""
     return """
     <section class="follow-section" aria-labelledby="follow-heading">
       <h2 id="follow-heading">Follow Audit Commons</h2>
@@ -460,9 +536,42 @@ def build_homepage(
     pages: List[Dict[str, Any]],
     resources: List[Dict[str, Any]],
     base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
     """Build editorial publication front page."""
-    description = site_data.get("description", "Editorial coverage of AI auditing practice and research.")
+    if locale == "zh":
+        title = "AI 审计新闻、指南与资源"
+        description = "关于 AI 审计实践与研究的专题报道。"
+        announced_label = "公布于"
+        published_label = "发布于"
+        byline_prefix = "文 / "
+        read_article_text = "阅读全文 &rarr;"
+        news_section_title = "新闻与动态"
+        see_all_text = "查看全部 &rarr;"
+        learn_section_title = "学习"
+        all_guides_text = "所有指南 &rarr;"
+        selected_res_title = "精选资源"
+        full_catalog_text = "完整目录 &rarr;"
+        maintainer_tag = " · 维护者项目"
+        masthead_sub = "新闻、分析与学习"
+        masthead_site = "AI 审计"
+    else:
+        title = "AI Auditing News, Guides & Resources"
+        description = site_data.get("description", "Editorial coverage of AI auditing practice and research.")
+        announced_label = "Announced"
+        published_label = "Published"
+        byline_prefix = "By "
+        read_article_text = "Read article &rarr;"
+        news_section_title = "News &amp; Releases"
+        see_all_text = "See all &rarr;"
+        learn_section_title = "Learn"
+        all_guides_text = "All guides &rarr;"
+        selected_res_title = "Selected Resources"
+        full_catalog_text = "Full catalog &rarr;"
+        maintainer_tag = " · Maintainer project"
+        masthead_sub = "News, analysis &amp; learning"
+        masthead_site = "AI auditing"
 
     editorial_kinds_priority = ["feature", "news", "guide", "introduction", "release"]
     editorial_pages = [p for p in pages if p.get("kind") not in ("about",)]
@@ -481,25 +590,26 @@ def build_homepage(
     if lead_page:
         lp = lead_page
         lp_kind = lp.get("kind", "article")
-        lp_label = _kind_label(lp_kind)
+        lp_label = _kind_label(lp_kind, locale)
         lp_event_date = lp.get("event_date", "")
         lp_pub = lp.get("published", "")
         event_date_html = ""
         if lp_event_date and lp_event_date != lp_pub:
-            event_date_html = f'<span class="pub-lead-event-date">Announced <time datetime="{escape(lp_event_date)}">{display_date(lp_event_date)}</time></span>'
+            event_date_html = f'<span class="pub-lead-event-date">{announced_label} <time datetime="{escape(lp_event_date)}">{display_date(lp_event_date, locale)}</time></span>'
         lead_html = f"""
     <section class="pub-lead-section" aria-labelledby="pub-lead-heading">
       <div class="pub-lead-meta">
         <span class="pub-lead-label">{escape(lp_label)}</span>
         {event_date_html}
-        <span class="pub-lead-date">Published <time datetime="{escape(lp_pub)}">{display_date(lp_pub)}</time></span>
+        <span class="pub-lead-date">{published_label} <time datetime="{escape(lp_pub)}">{display_date(lp_pub, locale)}</time></span>
       </div>
       <h1 class="pub-lead-headline" id="pub-lead-heading">
-        <a href="{route_href(lp['slug'])}">{escape(lp['title'])}</a>
+        <a href="{route_href(lp['slug'], locale)}">{escape(lp['title'])}</a>
       </h1>
       <p class="pub-lead-summary">{escape(lp.get('summary', ''))}</p>
-      <p class="pub-lead-byline">By {escape(lp.get('author', 'Audit Commons'))}</p>
-      <a class="pub-section-more" href="{route_href(lp['slug'])}">Read article &rarr;</a>
+      {render_media(lp, 'lead', route_href(lp['slug'], locale), priority=True)}
+      <p class="pub-lead-byline">{byline_prefix}{escape(lp.get('author', 'Audit Commons'))}</p>
+      <a class="pub-section-more" href="{route_href(lp['slug'], locale)}">{read_article_text}</a>
     </section>"""
 
     # Compact news list (news + release, sorted by published desc, exclude lead)
@@ -511,19 +621,22 @@ def build_homepage(
     )[:5]
     news_rows = ""
     for item in news_items:
-        item_label = _kind_label(item.get("kind", ""))
+        item_label = _kind_label(item.get("kind", ""), locale)
         item_event = item.get("event_date", "")
         item_pub = item.get("published", "")
         event_bit = ""
         if item_event and item_event != item_pub:
-            event_bit = f'<span class="news-list-event">Announced <time datetime="{escape(item_event)}">{display_date(item_event)}</time></span> '
+            event_bit = f'<span class="news-list-event">{announced_label} <time datetime="{escape(item_event)}">{display_date(item_event, locale)}</time></span> '
         disclosure_bit = f'<p class="news-list-disclosure">{escape(item.get("affiliation_disclosure", ""))}</p>' if item.get("kind") == "release" else ""
         news_rows += f"""
         <li class="news-list-item">
+          {render_media(item, 'compact', route_href(item['slug'], locale))}
+          <div class="news-list-copy">
           <div class="news-list-meta"><span class="news-list-label">{escape(item_label)}</span>
-          <span class="news-list-date">Published <time datetime="{escape(item_pub)}">{display_date(item_pub)}</time></span></div>
-          <a class="news-list-title" href="{route_href(item['slug'])}">{escape(item['title'])}</a>
+          <span class="news-list-date">{published_label} <time datetime="{escape(item_pub)}">{display_date(item_pub, locale)}</time></span></div>
+          <a class="news-list-title" href="{route_href(item['slug'], locale)}">{escape(item['title'])}</a>
           {event_bit}{disclosure_bit}
+          </div>
         </li>"""
 
     news_section_html = ""
@@ -531,8 +644,8 @@ def build_homepage(
         news_section_html = f"""
     <section class="pub-news-section" aria-labelledby="news-list-heading">
       <div class="pub-section-bar">
-        <h2 id="news-list-heading" class="pub-section-title">News &amp; Releases</h2>
-        <a class="pub-section-more" href="/latest/">See all &rarr;</a>
+        <h2 id="news-list-heading" class="pub-section-title">{news_section_title}</h2>
+        <a class="pub-section-more" href="{route_href('latest', locale)}">{see_all_text}</a>
       </div>
       <ul class="news-list">{news_rows}
       </ul>
@@ -542,11 +655,12 @@ def build_homepage(
     learn_items = [p for p in pages if p.get("kind") in ("introduction", "guide") and p is not lead_page]
     learn_entries = ""
     for p in learn_items:
-        plabel = _kind_label(p.get("kind", ""))
+        plabel = _kind_label(p.get("kind", ""), locale)
         learn_entries += f"""
         <article class="reading-entry">
+          {render_media(p, 'compact', route_href(p['slug'], locale))}
           <span class="eyebrow">{escape(plabel)}</span>
-          <h3><a href="{route_href(p['slug'])}">{escape(p['title'])}</a></h3>
+          <h3><a href="{route_href(p['slug'], locale)}">{escape(p['title'])}</a></h3>
           <p>{escape(p.get('summary', ''))}</p>
         </article>"""
 
@@ -555,13 +669,13 @@ def build_homepage(
         learn_html = f"""
     <section class="pub-learn-section" aria-labelledby="learn-heading">
       <div class="pub-section-bar">
-        <h2 id="learn-heading" class="pub-section-title">Learn</h2>
-        <a class="pub-section-more" href="/learn/">All guides &rarr;</a>
+        <h2 id="learn-heading" class="pub-section-title">{learn_section_title}</h2>
+        <a class="pub-section-more" href="{route_href('learn', locale)}">{all_guides_text}</a>
       </div>
       <div class="pub-learning-grid">{learn_entries}</div>
     </section>"""
 
-    # Selected resources (curated 6 foundational entries, not dumped first papers)
+    # Selected resources
     res_by_id = {r.get("id"): r for r in resources if r.get("id")}
     curated_selected = [res_by_id[rid] for rid in CURATED_HOME_RESOURCE_IDS if rid in res_by_id]
     if len(curated_selected) < 6:
@@ -573,17 +687,19 @@ def build_homepage(
 
     res_rows = ""
     for res in curated_selected:
+        rel_label = maintainer_tag if res.get('relationship') == 'Maintainer project' else ''
         res_rows += f"""
         <li class="home-res-item">
+          {render_media(res, 'resource', res['url'])}
           <a href="{escape(res['url'])}" class="home-res-link">{escape(res['name'])} <span aria-hidden="true">&nearr;</span></a>
-          <span class="home-res-cat">{escape(res.get('category', ''))}{' · Maintainer project' if res.get('relationship') == 'Maintainer project' else ''}</span>
+          <span class="home-res-cat">{escape(CATEGORY_DISPLAY_LABELS_ZH.get(res.get('category', ''), res.get('category', '')) if locale == 'zh' else res.get('category', ''))}{rel_label}</span>
         </li>"""
 
     res_section_html = f"""
     <section class="pub-resources-section" aria-labelledby="res-heading">
       <div class="pub-section-bar">
-        <h2 id="res-heading" class="pub-section-title">Selected Resources</h2>
-        <a class="pub-section-more" href="/resources/">Full catalog &rarr;</a>
+        <h2 id="res-heading" class="pub-section-title">{selected_res_title}</h2>
+        <a class="pub-section-more" href="{route_href('resources', locale)}">{full_catalog_text}</a>
       </div>
       <ul class="home-res-list">{res_rows}
       </ul>
@@ -592,8 +708,8 @@ def build_homepage(
     body_content = f"""
     <div class="container pub-home">
       <header class="pub-masthead">
-        {'<p class="pub-site-name">AI auditing</p>' if lead_page else '<h1 class="pub-site-name">Audit Commons</h1>'}
-        <p class="pub-scope">News, analysis &amp; learning</p>
+        {'<p class="pub-site-name">' + masthead_site + '</p>' if lead_page else '<h1 class="pub-site-name">Audit Commons</h1>'}
+        <p class="pub-scope">{masthead_sub}</p>
       </header>
 
       <div class="pub-front-grid">
@@ -604,7 +720,7 @@ def build_homepage(
           {news_section_html}
         </div>
       </div>
-      {build_follow_section()}
+      {build_follow_section(locale)}
       {learn_html}
       {res_section_html}
     </div>
@@ -612,31 +728,34 @@ def build_homepage(
     json_ld = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": canonical_for(base_url, "") + "#website",
-        "inLanguage": "en",
+        "@id": canonical_for(base_url, "", locale) + "#website",
+        "inLanguage": LOCALE_LANG.get(locale, "en"),
         "name": site_data.get("name", "Audit Commons"),
-        "url": f"{base_url.rstrip('/')}/",
+        "url": canonical_for(base_url, "", locale),
         "description": description,
-        "publisher": publication_identity(site_data, base_url),
+        "publisher": publication_identity(site_data, base_url, locale),
     }
     return render_html_page(
-        title="AI Auditing News, Guides & Resources",
+        title=title,
         description=description,
-        canonical_url=canonical_for(base_url, ""),
+        canonical_url=canonical_for(base_url, "", locale),
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug="",
+        current_slug="" if locale == "en" else "zh",
         og_type="website",
         json_ld=json_ld,
+        locale=locale,
+        has_zh=has_zh,
     )
-
 
 
 def build_resources_page(
     site_data: Dict[str, Any],
     resources: List[Dict[str, Any]],
     base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
     """Generates the searchable, filterable resource catalog with accessible format tabs."""
     categories = ["All", "Evaluation", "Security", "Governance", "Reading", "Tools"]
@@ -646,7 +765,8 @@ def build_resources_page(
         is_all = (cat == "All")
         pressed = "true" if is_all else "false"
         active_cls = " is-active" if is_all else ""
-        btn = f'<button type="button" class="filter-button{active_cls}" data-filter="{cat}" aria-pressed="{pressed}">{cat}</button>'
+        btn_label = CATEGORY_DISPLAY_LABELS_ZH[cat] if locale == "zh" else cat
+        btn = f'<button type="button" class="filter-button{active_cls}" data-filter="{cat}" aria-pressed="{pressed}">{btn_label}</button>'
         filter_buttons_html.append(btn)
     buttons_markup = "\n          ".join(filter_buttons_html)
 
@@ -659,14 +779,15 @@ def build_resources_page(
     total_count = len(resources)
 
     # Build format tabs with true ARIA tab semantics
+    all_tab_label = "全部" if locale == "zh" else "All"
     format_tabs_html = [
-        f'<button type="button" role="tab" id="tab-all" class="format-tab is-active" aria-selected="true" aria-controls="resources-panel" tabindex="0" data-format="all">All <span class="format-count">({total_count})</span></button>'
+        f'<button type="button" role="tab" id="tab-all" class="format-tab is-active" aria-selected="true" aria-controls="resources-panel" tabindex="0" data-format="all">{all_tab_label} <span class="format-count">({total_count})</span></button>'
     ]
     for fmt in VALID_RESOURCE_FORMATS:
         cnt = format_counts.get(fmt, 0)
         if cnt > 0:
             fmt_id = fmt.lower()
-            fmt_label = FORMAT_DISPLAY_LABELS.get(fmt, f"{fmt}s")
+            fmt_label = FORMAT_DISPLAY_LABELS_ZH.get(fmt, fmt) if locale == "zh" else FORMAT_DISPLAY_LABELS.get(fmt, f"{fmt}s")
             format_tabs_html.append(
                 f'<button type="button" role="tab" id="tab-{fmt_id}" class="format-tab" aria-selected="false" aria-controls="resources-panel" tabindex="-1" data-format="{fmt}">{fmt_label} <span class="format-count">({cnt})</span></button>'
             )
@@ -679,7 +800,8 @@ def build_resources_page(
         r_cat = escape(r.get("category", ""))
         r_rel = escape(r.get("relationship", ""))
         r_sum = escape(r.get("summary", ""))
-        r_owner = escape(r.get("owner", ""))
+        owner = r.get("owner", "")
+        r_owner = escape("见论文作者名单" if locale == "zh" and owner == "Authors listed in the paper" else owner)
         r_checked = escape(r.get("checked", ""))
         format_val = r.get("format") or "Collection"
         formats = resource_formats(r)
@@ -690,14 +812,20 @@ def build_resources_page(
         source_urls = r.get("source_urls", [])
 
         topic_display = r_section if r_section else r_cat
+        topic_display_localized = (SECTION_DISPLAY_LABELS_ZH.get(r_section, r_section) if r_section else CATEGORY_DISPLAY_LABELS_ZH.get(r_cat, r_cat)) if locale == "zh" else topic_display
 
+        # Comprehensive search fields ensuring both English and Chinese queries match
         search_fields = [
             r.get("name", ""),
             r.get("summary", ""),
+            r.get("_search_summary", ""),
             r.get("owner", ""),
             r.get("category", ""),
+            CATEGORY_DISPLAY_LABELS_ZH.get(r.get("category", ""), ""),
             r.get("relationship", ""),
+            "维护者项目" if r.get("relationship") == "Maintainer project" else "外部资源",
             " ".join(formats),
+            " ".join(FORMAT_DISPLAY_LABELS_ZH.get(f, f) for f in formats),
             r_section,
             r_venue,
         ]
@@ -713,16 +841,16 @@ def build_resources_page(
 
         # Tags
         tags_html = [
-            f'<span class="tag tag-format tag-format-{escape(fmt.lower())}">{escape(fmt)}</span>'
+            f'<span class="tag tag-format tag-format-{escape(fmt.lower())}">{escape(FORMAT_DISPLAY_LABELS_ZH.get(fmt, fmt) if locale == "zh" else fmt)}</span>'
             for fmt in formats
         ]
-        tags_html.append(f'<span class="tag tag-topic" data-category="{r_cat}">{escape(topic_display)}</span>')
+        tags_html.append(f'<span class="tag tag-topic" data-category="{r_cat}">{escape(topic_display_localized)}</span>')
         if r_venue:
             tags_html.append(f'<span class="tag tag-venue">{escape(r_venue)}</span>')
         if r_rel == "Maintainer project":
-            tags_html.append('<span class="tag tag-maintainer">Maintainer project</span>')
+            tags_html.append(f'<span class="tag tag-maintainer">{"维护者项目" if locale == "zh" else "Maintainer project"}</span>')
         else:
-            tags_html.append(f'<span class="tag tag-relationship">{r_rel}</span>')
+            tags_html.append(f'<span class="tag tag-relationship">{"外部资源" if locale == "zh" else r_rel}</span>')
         tags_markup = "\n              ".join(tags_html)
 
         # Artifact / secondary links
@@ -731,26 +859,49 @@ def build_resources_page(
             pills = []
             for lk in links:
                 if isinstance(lk, dict) and lk.get("url"):
-                    lbl = escape(lk.get("label") or "Link")
+                    label = lk.get("label") or "Link"
+                    if locale == "zh":
+                        label = {"Paper": "论文", "Code": "代码", "Data": "数据", "Dataset": "数据集", "Docs": "文档", "Documentation": "文档", "Project": "项目", "Website": "网站", "Link": "链接"}.get(label, label)
+                    lbl = escape(label)
                     pills.append(f'<a href="{escape(lk["url"])}" class="resource-pill" rel="noopener noreferrer">{lbl} <span class="external-arrow" aria-hidden="true">&nearr;</span></a>')
             if pills:
-                links_markup = f'\n          <div class="resource-links" aria-label="Artifact links">{" ".join(pills)}</div>'
+                links_markup = f'\n          <div class="resource-links" aria-label="{"相关资料链接" if locale == "zh" else "Artifact links"}">{" ".join(pills)}</div>'
 
         # Provenance details
-        prov_items = [
-            f'<p class="provenance-item"><strong>Attribution:</strong> {r_owner}</p>',
-            f'<p class="provenance-item"><strong>Review status:</strong> Catalog reviewed <time datetime="{r_checked}">{r_checked}</time> against catalog snapshot (external links are not runtime verified).</p>',
-        ]
-        if r_rel == "Maintainer project":
-            prov_items.append('<p class="provenance-item provenance-disclosure"><strong>Maintainer disclosure:</strong> Authored or maintained by Audit Commons maintainers (Yue Zhao). Listed for relevance without institutional endorsement.</p>')
-        if catalog_source:
-            prov_items.append(f'<p class="provenance-item"><strong>Catalog source:</strong> <a href="{escape(catalog_source)}" rel="noopener noreferrer">Awesome Auditable AI record</a></p>')
-        if source_urls:
-            url_list = "".join(f'<li><a href="{escape(u)}" rel="noopener noreferrer">{escape(u)}</a></li>' for u in source_urls)
-            prov_items.append(f'<div class="provenance-sources"><strong>Primary sources:</strong><ul class="source-list">{url_list}</ul></div>')
+        if locale == "zh":
+            prov_items = [
+                f'<p class="provenance-item"><strong>归属：</strong> {r_owner}</p>',
+                f'<p class="provenance-item"><strong>审核状态：</strong> 于 <time datetime="{r_checked}">{r_checked}</time> 对照目录快照完成核对（外部链接未进行运行时验证）。</p>',
+            ]
+            if r_rel == "Maintainer project":
+                prov_items.append('<p class="provenance-item provenance-disclosure"><strong>维护者披露：</strong> 由 Audit Commons 维护者（Yue Zhao）编写或维护。仅因相关性收录，不包含机构背书。</p>')
+            if catalog_source:
+                prov_items.append(f'<p class="provenance-item"><strong>目录来源：</strong> <a href="{escape(catalog_source)}" rel="noopener noreferrer">Awesome Auditable AI 条目</a></p>')
+            if source_urls:
+                url_list = "".join(f'<li><a href="{escape(u)}" rel="noopener noreferrer">{escape(u)}</a></li>' for u in source_urls)
+                prov_items.append(f'<div class="provenance-sources"><strong>原始来源：</strong><ul class="source-list">{url_list}</ul></div>')
+            if res_media := r.get('_media'):
+                prov_items.append(f'<p class="provenance-item"><strong>图片：</strong> {media_credit(res_media)}。{escape(res_media["changes"])}</p>')
+            prov_toggle = "来源与溯源信息"
+        else:
+            prov_items = [
+                f'<p class="provenance-item"><strong>Attribution:</strong> {r_owner}</p>',
+                f'<p class="provenance-item"><strong>Review status:</strong> Catalog reviewed <time datetime="{r_checked}">{r_checked}</time> against catalog snapshot (external links are not runtime verified).</p>',
+            ]
+            if r_rel == "Maintainer project":
+                prov_items.append('<p class="provenance-item provenance-disclosure"><strong>Maintainer disclosure:</strong> Authored or maintained by Audit Commons maintainers (Yue Zhao). Listed for relevance without institutional endorsement.</p>')
+            if catalog_source:
+                prov_items.append(f'<p class="provenance-item"><strong>Catalog source:</strong> <a href="{escape(catalog_source)}" rel="noopener noreferrer">Awesome Auditable AI record</a></p>')
+            if source_urls:
+                url_list = "".join(f'<li><a href="{escape(u)}" rel="noopener noreferrer">{escape(u)}</a></li>' for u in source_urls)
+                prov_items.append(f'<div class="provenance-sources"><strong>Primary sources:</strong><ul class="source-list">{url_list}</ul></div>')
+            if res_media := r.get('_media'):
+                prov_items.append(f'<p class="provenance-item"><strong>Image:</strong> {media_credit(res_media)}. {escape(res_media["changes"])}</p>')
+            prov_toggle = "Provenance &amp; sources"
 
         card = f"""
         <article class="resource-card" data-category="{r_cat}" data-format="{escape(format_val)}" data-formats="{escape(' '.join(formats))}" data-search="{escape(search_terms)}">
+          {render_media(r, 'resource', r['url'])}
           <div class="resource-card-header">
             <div class="resource-tags">
               {tags_markup}
@@ -759,7 +910,7 @@ def build_resources_page(
           </div>
           <p class="resource-summary">{r_sum}</p>{links_markup}
           <details class="resource-provenance">
-            <summary class="provenance-toggle">Provenance &amp; sources</summary>
+            <summary class="provenance-toggle">{prov_toggle}</summary>
             <div class="provenance-body">
               {"".join(prov_items)}
             </div>
@@ -769,42 +920,77 @@ def build_resources_page(
 
     grid_html = "\n".join(cards_html)
 
+    if locale == "zh":
+        page_title = "AI 审计资源库：论文、工具与基准评测"
+        page_desc = "浏览关于 AI 审计的研究论文、工具、基准、数据集、标准与精选合集，支持主题筛选并提供原始来源链接。"
+        eyebrow = "目录"
+        heading = "AI 审计资源库"
+        page_lead = "用于研究和审计 AI 系统的学术论文、实用工具、基准评测、数据集与规范标准。"
+        notice_html = '<p>改编自 <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>。收录条目描述沿用对应目录；收录并不代表对相关成果进行独立评测。各条目均记录了其来源与审核日期。<a href="/zh/about/#contribute">推荐资源或提交修正</a>。</p>'
+        format_region_label = "格式筛选"
+        format_tablist_label = "按格式筛选资源"
+        search_label = "搜索资源"
+        search_placeholder = "按名称、摘要、主题、所有者、发表会议搜索..."
+        category_group_label = "按分类筛选"
+        category_prefix = "分类："
+        count_text = f"显示全部 {total_count} 项资源"
+        format_note = "部分资源属于多个格式分类。全部标签下每项资源仅计算一次。"
+        empty_text = "没有符合您搜索或筛选条件的资源。"
+        reset_text = "重置搜索"
+    else:
+        page_title = "AI Auditing Resources: Papers, Tools & Benchmarks"
+        page_desc = "Browse research papers, tools, benchmarks, datasets, standards, and collections about AI auditing, with topic filters and links to original sources."
+        eyebrow = "Catalog"
+        heading = "AI auditing library"
+        page_lead = "Papers, tools, benchmarks, datasets, and standards for studying and auditing AI systems."
+        notice_html = '<p>Adapted from <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>. Descriptions follow the linked catalog; inclusion is not an independent evaluation of the work. Each entry records its source and review date. <a href="/about/#contribute">Suggest a resource or correction</a>.</p>'
+        format_region_label = "Format filter"
+        format_tablist_label = "Filter resources by format"
+        search_label = "Search resources"
+        search_placeholder = "Search by name, summary, topic, owner, venue..."
+        category_group_label = "Filter by category"
+        category_prefix = "Category:"
+        count_text = f"Showing all {total_count} resources"
+        format_note = "Resources can appear in more than one format. All counts each resource once."
+        empty_text = "No resources match your search or filter criteria."
+        reset_text = "Reset search"
+
     body_content = f"""
     <div class="container">
       <header class="page-header resource-page-header">
-        <span class="eyebrow">Catalog</span>
-        <h1>AI auditing library</h1>
-        <p class="page-lead">Papers, tools, benchmarks, datasets, and standards for studying and auditing AI systems.</p>
+        <span class="eyebrow">{eyebrow}</span>
+        <h1>{heading}</h1>
+        <p class="page-lead">{page_lead}</p>
         <div class="catalog-upstream-notice">
-          <p>Adapted from <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>. Descriptions follow the linked catalog; inclusion is not an independent evaluation of the work. Each entry records its source and review date. <a href="/about/#contribute">Suggest a resource or correction</a>.</p>
+          {notice_html}
         </div>
       </header>
 
       <div id="resource-controls" hidden>
-        <div class="format-tabs-bar" role="region" aria-label="Format filter">
-          <div role="tablist" aria-label="Filter resources by format" class="format-tabs">
+        <div class="format-tabs-bar" role="region" aria-label="{format_region_label}">
+          <div role="tablist" aria-label="{format_tablist_label}" class="format-tabs">
             {format_tabs_markup}
           </div>
         </div>
 
         <div class="resource-filters-row">
           <div class="resource-search-wrapper">
-            <label for="resource-search" class="search-label">Search resources</label>
-            <input type="search" id="resource-search" placeholder="Search by name, summary, topic, owner, venue..." autocomplete="off">
+            <label for="resource-search" class="search-label">{search_label}</label>
+            <input type="search" id="resource-search" placeholder="{search_placeholder}" autocomplete="off">
           </div>
-          <div class="category-filters" role="group" aria-label="Filter by category">
-            <span class="filter-group-label">Category:</span>
+          <div class="category-filters" role="group" aria-label="{category_group_label}">
+            <span class="filter-group-label">{category_prefix}</span>
             {buttons_markup}
           </div>
         </div>
 
-        <div id="resource-count" role="status" aria-live="polite">Showing all {total_count} resources</div>
-        <p class="resource-format-note">Resources can appear in more than one format. All counts each resource once.</p>
+        <div id="resource-count" role="status" aria-live="polite">{count_text}</div>
+        <p class="resource-format-note">{format_note}</p>
       </div>
 
       <div id="no-results" class="empty-state" hidden>
-        <p>No resources match your search or filter criteria.</p>
-        <button type="button" data-action="reset" class="button button-secondary">Reset search</button>
+        <p>{empty_text}</p>
+        <button type="button" data-action="reset" class="button button-secondary">{reset_text}</button>
       </div>
 
       <section id="resources-panel" role="tabpanel" aria-labelledby="tab-all" tabindex="0" class="resources-panel">
@@ -816,14 +1002,16 @@ def build_resources_page(
 """
 
     return render_html_page(
-        title="AI Auditing Resources: Papers, Tools & Benchmarks",
-        description="Browse research papers, tools, benchmarks, datasets, standards, and collections about AI auditing, with topic filters and links to original sources.",
-        canonical_url=canonical_for(base_url, "resources"),
+        title=page_title,
+        description=page_desc,
+        canonical_url=canonical_for(base_url, "resources", locale),
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug="resources",
+        current_slug="resources" if locale == "en" else "zh/resources",
         og_type="website",
+        locale=locale,
+        has_zh=has_zh,
     )
 
 
@@ -831,12 +1019,17 @@ def build_guides_index(
     site_data: Dict[str, Any],
     pages: List[Dict[str, Any]],
     base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
+    title = "实践指南" if locale == "zh" else "Guides"
+    eyebrow = "学习" if locale == "zh" else "Learn"
+    description = "解读评测证据与审计 AI 系统的实用指南。" if locale == "zh" else "Practical guides to reading evidence and auditing AI systems."
+    empty_msg = "暂无已发布的实践指南。" if locale == "zh" else "No guides published yet."
     return _render_article_list_index(
         site_data=site_data, pages=[p for p in pages if p.get("kind") == "guide"],
-        base_url=base_url, title="Guides", slug="guides", eyebrow="Learn",
-        description="Practical guides to reading evidence and auditing AI systems.",
-        empty_msg="No guides published yet.",
+        base_url=base_url, title=title, slug="guides", eyebrow=eyebrow,
+        description=description, empty_msg=empty_msg, locale=locale, has_zh=has_zh,
     )
 
 
@@ -844,12 +1037,323 @@ def build_updates_index(
     site_data: Dict[str, Any],
     pages: List[Dict[str, Any]],
     base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
+    title = "版本发布" if locale == "zh" else "Releases"
+    eyebrow = "最新" if locale == "zh" else "Latest"
+    description = "版本更新说明、原始来源与维护者信息披露。" if locale == "zh" else "Release notes, sources, and maintainer disclosures."
+    empty_msg = "暂无已发布的版本更新。" if locale == "zh" else "No release notes published yet."
     return _render_article_list_index(
         site_data=site_data, pages=[p for p in pages if p.get("kind") == "release"],
-        base_url=base_url, title="Releases", slug="updates", eyebrow="Latest",
-        description="Release notes, sources, and maintainer disclosures.",
-        empty_msg="No release notes published yet.",
+        base_url=base_url, title=title, slug="updates", eyebrow=eyebrow,
+        description=description, empty_msg=empty_msg, locale=locale, has_zh=has_zh,
+    )
+
+
+def build_latest_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
+) -> str:
+    """Generates /latest/ (or /zh/latest/) — all editorial additions sorted most-recent-first."""
+    editorial = [p for p in pages if p.get("kind") not in ("about",)]
+    title = "最新内容" if locale == "zh" else "Latest Additions"
+    eyebrow = "全站目录" if locale == "zh" else "Publication index"
+    description = "Audit Commons 刊发的全部内容，按最新发布时间排序。" if locale == "zh" else "All editorial content added to Audit Commons, most recently published first."
+    empty_msg = "暂无已发布的内容。" if locale == "zh" else "No articles published yet."
+    return _render_article_list_index(
+        site_data=site_data, pages=editorial, base_url=base_url,
+        title=title, description=description, eyebrow=eyebrow,
+        slug="latest", empty_msg=empty_msg, locale=locale, has_zh=has_zh,
+        is_latest=True,
+    )
+
+
+def build_features_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
+) -> str:
+    """Generates /features/ (or /zh/features/) — feature-kind articles."""
+    features = [p for p in pages if p.get("kind") == "feature"]
+    title = "深度解读" if locale == "zh" else "Analysis"
+    eyebrow = "深度解读" if locale == "zh" else "Analysis"
+    description = "深入探讨 AI 审计研究、实践与政策的专题解读与分析。" if locale == "zh" else "In-depth editorial analysis on AI auditing research, practice, and policy."
+    empty_msg = "暂无已发布的深度解读文章。" if locale == "zh" else "No analysis articles published yet."
+    contextual_note = (
+        f'<p class="topic-legacy-note"><a href="{route_href("latest", locale)}?kind=feature">&larr; 在最新发布中按深度解读筛选</a></p>'
+        if locale == "zh"
+        else f'<p class="topic-legacy-note"><a href="{route_href("latest", locale)}?kind=feature">&larr; View all Analysis articles in Latest</a></p>'
+    )
+    return _render_article_list_index(
+        site_data=site_data, pages=features, base_url=base_url,
+        title=title, description=description, eyebrow=eyebrow,
+        slug="features", empty_msg=empty_msg, locale=locale, has_zh=has_zh,
+        contextual_note=contextual_note,
+    )
+
+
+def build_learn_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
+) -> str:
+    """Generates /learn/ (or /zh/learn/) — structured 3-step editorial learning path."""
+    page_map = {p.get("slug"): p for p in pages}
+    is_zh = (locale == "zh")
+
+    # Curated 3-step learning path sequence
+    steps_data = [
+        {
+            "step_num": "01",
+            "slug": "start-here",
+            "kicker": "第一步 · 核心概念" if is_zh else "Step 1 · Core Concepts",
+            "nav_label": "理解可审计 AI" if is_zh else "Understand auditable AI",
+            "time_display": "阅读用时：约 2 分钟" if is_zh else "Reading: ~2 min",
+            "outcome": (
+                "区分评估、监控与审计的边界，并理解为何模型内部文本不能证明外部行动确实发生。"
+                if is_zh else
+                "Distinguish evaluation, monitoring, and auditing, and recognize why internal model text cannot prove an external action occurred."
+            ),
+            "read_text": "阅读导读" if is_zh else "Read introduction",
+            "resources": [
+                {
+                    "title": "NIST AI 风险管理框架 (AI RMF 1.0)" if is_zh else "NIST AI Risk Management Framework (AI RMF 1.0)",
+                    "href": f"{route_href('resources', locale)}?q=NIST%20AI",
+                    "desc": "用于梳理 AI 风险与审计问题的自愿性框架。" if is_zh else "Voluntary framework for organizing risk taxonomy and audit questions.",
+                },
+                {
+                    "title": "Inspect 评估框架" if is_zh else "Inspect Framework",
+                    "href": f"{route_href('resources', locale)}?q=Inspect",
+                    "desc": "英国 AISI 推出的开源评测工具，用于设计可复现的基准测试。" if is_zh else "AISI open-source framework for reproducible model and agent evaluations.",
+                },
+            ],
+        },
+        {
+            "step_num": "02",
+            "slug": "guides/how-to-read-an-agent-eval-report",
+            "kicker": "第二步 · 报告评估" if is_zh else "Step 2 · Report Evaluation",
+            "nav_label": "阅读评估报告" if is_zh else "Read an evaluation report",
+            "time_display": "阅读用时：约 4 分钟 | 案例演练：约 10 分钟（共计约 14 分钟）" if is_zh else "Reading: ~4 min | Worked critique: ~10 min (Total ~14 min)",
+            "outcome": (
+                "围绕任务、算力、样本量、失败模式与结论边界提出五个关键问题，判断评估证据是否支撑其结论。"
+                if is_zh else
+                "Ask five questions about tasks, compute, sample size, failure modes, and evidence bounds to judge whether an evaluation supports its claims."
+            ),
+            "read_text": "阅读指南" if is_zh else "Read guide",
+            "resources": [
+                {
+                    "title": "Inspect 评估工具" if is_zh else "Inspect",
+                    "href": f"{route_href('resources', locale)}?q=Inspect",
+                    "desc": "包含可复用任务、评分器与审查日志的评测工具。" if is_zh else "Evaluation framework with reusable tasks, tools, scorers, and inspection logs.",
+                },
+                {
+                    "title": "资源库：基准评测" if is_zh else "Catalog: Benchmarks",
+                    "href": f"{route_href('resources', locale)}?format=Benchmark",
+                    "desc": "在资源目录中查阅精选评测基准。" if is_zh else "Explore curated evaluation benchmarks in the resource catalog.",
+                },
+            ],
+        },
+        {
+            "step_num": "03",
+            "slug": "guides/audit-an-agent-action",
+            "kicker": "第三步 · 实操审计" if is_zh else "Step 3 · Practical Auditing",
+            "nav_label": "审计智能体行动" if is_zh else "Audit an agent action",
+            "time_display": "阅读用时：约 4 分钟 | 工作表演练：约 15 分钟（共计约 19 分钟）" if is_zh else "Reading: ~4 min | Worksheet practice: ~15 min (Total ~19 min)",
+            "outcome": (
+                "对照五项可观察证据要素审查外部工具调用，并在纯文本工作表中记录限定性结论。"
+                if is_zh else
+                "Verify external tool calls across five observable evidence elements and document bounded findings in a plaintext worksheet."
+            ),
+            "read_text": "阅读指南" if is_zh else "Read guide",
+            "resources": [
+                {
+                    "title": "AgentDojo 安全基准" if is_zh else "AgentDojo",
+                    "href": f"{route_href('resources', locale)}?q=AgentDojo",
+                    "desc": "针对具备工具调用能力智能体的提示注入攻防测试环境。" if is_zh else "Benchmark environment for testing prompt injection and tool execution security boundaries.",
+                },
+                {
+                    "title": "资源库：安全工具" if is_zh else "Catalog: Security Tools",
+                    "href": f"{route_href('resources', locale)}?category=security&format=Tool",
+                    "desc": "用于智能体工作流安全审计与防护的实用工具。" if is_zh else "Practical security auditing tools and scanners for agent workflows.",
+                },
+            ],
+        },
+    ]
+
+    title = "学习" if is_zh else "Learn"
+    eyebrow = "学习路径" if is_zh else "Learning Path"
+    description = (
+        "从核心概念起步，学会阅读评估报告，再动手练习审计工作表。"
+        if is_zh else
+        "Start with the concepts, learn to read an evaluation report, then try an audit worksheet."
+    )
+    time_label = "预估用时" if is_zh else "Estimated Time"
+    outcome_label = "学习目标" if is_zh else "Learning Outcome"
+    resources_label = "相关实践资源" if is_zh else "Practical Related Resources"
+
+    # Render curated steps
+    steps_html = []
+    outline_items = []
+    curated_slugs = set()
+    for s in steps_data:
+        slug = s["slug"]
+        curated_slugs.add(slug)
+        page = page_map.get(slug)
+        if not page:
+            continue
+
+        step_id = f"step-{s['step_num']}"
+        p_href = route_href(slug, locale)
+        p_title = escape(page.get("title", s["nav_label"]))
+        p_media = render_media(page, "index", p_href, priority=False)
+
+        outline_items.append(
+            f'<li><a href="#{step_id}"><span class="outline-num">{int(s["step_num"])}</span> {escape(s["nav_label"])}</a></li>'
+        )
+
+        res_items = []
+        for r in s["resources"]:
+            r_title = escape(r["title"])
+            r_href = escape(r["href"])
+            r_desc = escape(r["desc"])
+            res_items.append(
+                f'<li><a href="{r_href}">{r_title}</a>: <span class="step-res-desc">{r_desc}</span></li>'
+            )
+        res_list_html = "\n              ".join(res_items)
+
+        step_card = f"""
+        <li class="learning-step" id="{step_id}">
+          <div class="step-num-col">
+            <span class="step-num" aria-hidden="true">{s['step_num']}</span>
+          </div>
+          <div class="step-content">
+            <div class="step-header">
+              <span class="step-kicker">{escape(s['kicker'])}</span>
+              <h2 class="step-heading"><a href="{p_href}">{p_title}</a></h2>
+            </div>
+            <div class="step-time-box">
+              <span class="step-time-label">{time_label}:</span>
+              <span class="step-time-val">{escape(s['time_display'])}</span>
+            </div>
+            <div class="step-outcome">
+              <strong class="step-outcome-label">{outcome_label}</strong>
+              <p class="step-outcome-text">{escape(s['outcome'])}</p>
+            </div>
+            {p_media}
+            <div class="step-link-wrap">
+              <a href="{p_href}" class="step-read-link">{escape(s['read_text'])} &rarr;</a>
+            </div>
+            <div class="step-resources">
+              <span class="step-resources-label">{resources_label}</span>
+              <ul class="step-resources-list">
+                {res_list_html}
+              </ul>
+            </div>
+          </div>
+        </li>"""
+        steps_html.append(step_card)
+
+    steps_markup = "\n".join(steps_html)
+
+    # Additional reading section for any guides not in curated steps
+    additional_guides = [
+        p for p in pages
+        if p.get("kind") in ("introduction", "guide") and p.get("slug") not in curated_slugs
+    ]
+    additional_section = ""
+    if additional_guides:
+        add_title = "延伸阅读与参考指南" if is_zh else "Additional Guides & Reference"
+        add_desc = "未包含在核心三步路径中的其他实践指南与入门参考资料。" if is_zh else "Further practical guides and orienting materials beyond the core three-step path."
+        published_prefix = "发布于 " if is_zh else "Published "
+        read_more_text = "阅读全文 &rarr;" if is_zh else "Read article &rarr;"
+
+        add_cards = []
+        for p in sorted(additional_guides, key=lambda x: x.get("published", ""), reverse=True):
+            p_slug = p["slug"]
+            p_title = escape(p["title"])
+            p_summary = escape(p.get("summary", ""))
+            p_pub = escape(p.get("published", ""))
+            p_kind = _kind_label(p.get("kind", ""), locale)
+            p_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in p.get("topics", []))
+            p_href = route_href(p_slug, locale)
+            p_media = render_media(p, "index", p_href, priority=False)
+            add_card = f"""
+          <article class="article-card{' has-media' if p.get('_media') else ''}" data-kind="{escape(p.get('kind', ''))}">
+            {p_media}
+            <div class="article-card-copy">
+              <div class="article-card-header">
+                <span class="eyebrow">{escape(p_kind)}</span>
+                <h2><a href="{p_href}">{p_title}</a></h2>
+              </div>
+              <p class="article-summary">{p_summary}</p>
+              <div class="article-card-meta">
+                <span class="date">{published_prefix}<time datetime="{p_pub}">{display_date(p_pub, locale)}</time></span>
+                <div class="tags">{p_topics}</div>
+              </div>
+              <a href="{p_href}" class="article-read-link">{read_more_text}</a>
+            </div>
+          </article>"""
+            add_cards.append(add_card)
+
+        additional_section = f"""
+      <section class="learning-additional" aria-labelledby="additional-guides-heading">
+        <div class="learning-additional-header">
+          <h2 id="additional-guides-heading">{escape(add_title)}</h2>
+          <p>{escape(add_desc)}</p>
+        </div>
+        <div class="article-list">
+          {"\n".join(add_cards)}
+        </div>
+      </section>"""
+
+    # Outline and main content composition
+    outline_html = ""
+    path_html = ""
+    empty_html = ""
+    if steps_html:
+        outline_label = "学习路径阶段" if is_zh else "Learning path stages"
+        outline_html = f"""
+      <nav class="learning-outline" aria-label="{outline_label}">
+        <ol class="outline-list">
+          {"\n          ".join(outline_items)}
+        </ol>
+      </nav>"""
+        path_html = f"""
+      <ol class="learning-path" aria-label="{escape(title)}">
+        {steps_markup}
+      </ol>"""
+    elif not additional_guides:
+        empty_html = f'<p class="empty-state">{"暂无已发布的学习指南。" if is_zh else "No guides published yet."}</p>'
+
+    body_content = f"""
+    <div class="container">
+      <header class="page-header">
+        <span class="eyebrow">{escape(eyebrow)}</span>
+        <h1>{escape(title)}</h1>
+        <p class="page-lead">{escape(description)}</p>
+      </header>{outline_html}{path_html}{additional_section}{empty_html}
+    </div>
+"""
+
+    return render_html_page(
+        title=title,
+        description=description,
+        canonical_url=canonical_for(base_url, "learn", locale),
+        base_url=base_url,
+        site_data=site_data,
+        body_content=body_content,
+        current_slug="learn" if locale == "en" else "zh/learn",
+        og_type="website",
+        locale=locale,
+        has_zh=has_zh,
     )
 
 
@@ -863,8 +1367,16 @@ def _render_article_list_index(
     eyebrow: str,
     slug: str,
     empty_msg: str,
+    locale: str = "en",
+    has_zh: bool = True,
+    contextual_note: str = "",
+    is_latest: bool = False,
 ) -> str:
     """Generic list-style index page for editorial article sections."""
+    published_prefix = "发布于 " if locale == "zh" else "Published "
+    announced_prefix = "公布于 " if locale == "zh" else "Announced "
+    read_more_text = "阅读全文 &rarr;" if locale == "zh" else "Read article &rarr;"
+
     cards_html = []
     for p in sorted(pages, key=lambda x: x.get("published", ""), reverse=True):
         p_slug = p["slug"]
@@ -872,35 +1384,72 @@ def _render_article_list_index(
         p_summary = escape(p.get("summary", ""))
         p_pub = escape(p.get("published", ""))
         p_event = p.get("event_date", "")
-        p_kind = _kind_label(p.get("kind", ""))
+        p_kind = _kind_label(p.get("kind", ""), locale)
         p_topics = "".join(f'<span class="tag">{escape(t)}</span>' for t in p.get("topics", []))
         event_bit = ""
         if p_event and p_event != p.get("published", ""):
-            event_bit = f'<span class="date">Announced <time datetime="{escape(p_event)}">{display_date(p_event)}</time></span> '
+            event_bit = f'<span class="date">{announced_prefix}<time datetime="{escape(p_event)}">{display_date(p_event, locale)}</time></span> '
         disclosure_bit = f'<p class="catalog-attribution">{escape(p["affiliation_disclosure"])}</p>' if p.get("kind") == "release" and p.get("affiliation_disclosure") else ""
         card = f"""
-        <article class="article-card">
+        <article class="article-card{' has-media' if p.get('_media') else ''}" data-kind="{escape(p.get('kind', ''))}">
+          {render_media(p, 'index', route_href(p_slug, locale), priority=not cards_html)}
+          <div class="article-card-copy">
           <div class="article-card-header">
             <span class="eyebrow">{escape(p_kind)}</span>
-            <h2><a href="/{p_slug}/">{p_title}</a></h2>
+            <h2><a href="{route_href(p_slug, locale)}">{p_title}</a></h2>
           </div>
           <p class="article-summary">{p_summary}</p>
           <div class="article-card-meta">
-            <span class="date">Published <time datetime="{p_pub}">{display_date(p_pub)}</time></span>{event_bit}
+            <span class="date">{published_prefix}<time datetime="{p_pub}">{display_date(p_pub, locale)}</time></span>{event_bit}
             <div class="tags">{p_topics}</div>
           </div>
           {disclosure_bit}
-          <a href="/{p_slug}/" class="article-read-link">Read article &rarr;</a>
+          <a href="{route_href(p_slug, locale)}" class="article-read-link">{read_more_text}</a>
+          </div>
         </article>"""
         cards_html.append(card)
     cards_markup = "\n".join(cards_html) if cards_html else f'<p class="empty-state">{empty_msg}</p>'
+
+    filter_controls_html = ""
+    if is_latest:
+        filter_label = "分类：" if locale == "zh" else "Category:"
+        filter_aria = "按类别筛选内容" if locale == "zh" else "Filter articles by category"
+        count_text = f"显示全部 {len(pages)} 篇内容" if locale == "zh" else f"Showing all {len(pages)} items"
+        no_res_text = "未找到符合该分类的内容。" if locale == "zh" else "No articles found matching this category."
+        reset_text = "显示全部内容" if locale == "zh" else "Show all articles"
+
+        all_label = "全部" if locale == "zh" else "All"
+        news_label = "新闻简讯" if locale == "zh" else "News"
+        analysis_label = "深度解读" if locale == "zh" else "Analysis"
+        guides_label = "实践指南" if locale == "zh" else "Guides"
+        releases_label = "动态发布" if locale == "zh" else "Releases"
+
+        filter_controls_html = f"""
+      <div id="latest-controls" class="latest-filters-bar" hidden>
+        <div class="category-filters" role="group" aria-label="{filter_aria}">
+          <span class="filter-group-label">{filter_label}</span>
+          <button type="button" class="filter-button is-active" data-kind="all" data-filter="all" aria-pressed="true">{all_label}</button>
+          <button type="button" class="filter-button" data-kind="news" data-filter="news" aria-pressed="false">{news_label}</button>
+          <button type="button" class="filter-button" data-kind="feature" data-filter="feature" aria-pressed="false">{analysis_label}</button>
+          <button type="button" class="filter-button" data-kind="guide" data-filter="guide" aria-pressed="false">{guides_label}</button>
+          <button type="button" class="filter-button" data-kind="release" data-filter="release" aria-pressed="false">{releases_label}</button>
+        </div>
+        <div id="latest-count" role="status" aria-live="polite" class="latest-count">{count_text}</div>
+        <div id="latest-no-results" class="empty-state" hidden>
+          <p>{no_res_text}</p>
+          <button type="button" class="filter-button is-active" data-action="reset-latest">{reset_text}</button>
+        </div>
+      </div>"""
+
     body_content = f"""
     <div class="container">
       <header class="page-header">
         <span class="eyebrow">{escape(eyebrow)}</span>
         <h1>{escape(title)}</h1>
         <p class="page-lead">{escape(description)}</p>
+        {contextual_note}
       </header>
+      {filter_controls_html}
       <div class="article-list">
         {cards_markup}
       </div>
@@ -909,69 +1458,14 @@ def _render_article_list_index(
     return render_html_page(
         title=title,
         description=description,
-        canonical_url=canonical_for(base_url, slug),
+        canonical_url=canonical_for(base_url, slug, locale),
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug=slug,
+        current_slug=slug if locale == "en" else f"zh/{slug}",
         og_type="website",
-    )
-
-
-def build_latest_index(
-    site_data: Dict[str, Any],
-    pages: List[Dict[str, Any]],
-    base_url: str,
-) -> str:
-    """Generates /latest/ — all editorial additions sorted most-recent-first, excluding About."""
-    editorial = [p for p in pages if p.get("kind") not in ("about",)]
-    return _render_article_list_index(
-        site_data=site_data,
-        pages=editorial,
-        base_url=base_url,
-        title="Latest Additions",
-        description="All editorial content added to Audit Commons, most recently published first.",
-        eyebrow="Publication index",
-        slug="latest",
-        empty_msg="No articles published yet.",
-    )
-
-
-def build_features_index(
-    site_data: Dict[str, Any],
-    pages: List[Dict[str, Any]],
-    base_url: str,
-) -> str:
-    """Generates /features/ — feature-kind articles."""
-    features = [p for p in pages if p.get("kind") == "feature"]
-    return _render_article_list_index(
-        site_data=site_data,
-        pages=features,
-        base_url=base_url,
-        title="Features",
-        description="In-depth editorial features on AI auditing research, practice, and policy.",
-        eyebrow="Features",
-        slug="features",
-        empty_msg="No features published yet.",
-    )
-
-
-def build_learn_index(
-    site_data: Dict[str, Any],
-    pages: List[Dict[str, Any]],
-    base_url: str,
-) -> str:
-    """Generates /learn/ — introduction and guide kinds."""
-    learn = [p for p in pages if p.get("kind") in ("introduction", "guide")]
-    return _render_article_list_index(
-        site_data=site_data,
-        pages=learn,
-        base_url=base_url,
-        title="Learn",
-        description="Orienting introductions and practical auditing guides for working with AI systems.",
-        eyebrow="Learning resources",
-        slug="learn",
-        empty_msg="No guides published yet.",
+        locale=locale,
+        has_zh=has_zh,
     )
 
 
@@ -981,6 +1475,8 @@ def build_article_page(
     body_html: str,
     base_url: str,
     related_pages: Optional[List[Dict[str, Any]]] = None,
+    locale: str = "en",
+    has_zh: bool = True,
 ) -> str:
     """Generates an individual article / content page."""
     slug = page["slug"]
@@ -995,22 +1491,35 @@ def build_article_page(
     source_urls = page.get("source_urls", [])
     disclosure = page.get("affiliation_disclosure", "")
 
-    canonical_url = canonical_for(base_url, slug)
-    section_name, section_slug = {
-        "news": ("Latest", "latest"), "release": ("Latest", "latest"),
-        "feature": ("Features", "features"), "guide": ("Learn", "learn"),
-        "introduction": ("Learn", "learn"), "about": ("About", "about"),
-    }[kind]
-    trail = [("Home", canonical_for(base_url, ""))]
+    canonical_url = canonical_for(base_url, slug, locale)
+
+    if locale == "zh":
+        section_name, section_slug = {
+            "news": ("最新", "latest"), "release": ("最新", "latest"),
+            "feature": ("最新", "latest"), "guide": ("学习", "learn"),
+            "introduction": ("学习", "learn"), "about": ("关于", "about"),
+        }[kind]
+        home_label = "首页"
+        nav_label = "路径导航"
+    else:
+        section_name, section_slug = {
+            "news": ("Latest", "latest"), "release": ("Latest", "latest"),
+            "feature": ("Latest", "latest"), "guide": ("Learn", "learn"),
+            "introduction": ("Learn", "learn"), "about": ("About", "about"),
+        }[kind]
+        home_label = "Home"
+        nav_label = "Breadcrumb"
+
+    trail = [(home_label, canonical_for(base_url, "", locale))]
     if section_slug != slug:
-        trail.append((section_name, canonical_for(base_url, section_slug)))
+        trail.append((section_name, canonical_for(base_url, section_slug, locale)))
     trail.append((title, canonical_url))
     crumbs = "".join(
         f'<li><a href="{escape(urlparse(url).path)}">{escape(label)}</a></li>'
         if i < len(trail) - 1 else f'<li aria-current="page">{escape(label)}</li>'
         for i, (label, url) in enumerate(trail)
     )
-    breadcrumbs = f'<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>{crumbs}</ol></nav>'
+    breadcrumbs = f'<nav class="breadcrumbs" aria-label="{nav_label}"><ol>{crumbs}</ol></nav>'
     breadcrumb_data = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
@@ -1019,28 +1528,27 @@ def build_article_page(
         ],
     }
     extra_meta = f'<script type="application/ld+json">{serialize_json_ld(breadcrumb_data)}</script>'
+
     related_html = ""
     if related_pages:
+        heading = "延伸阅读" if locale == "zh" else "Continue reading"
         related_links = "".join(
-            f'<li><a href="{route_href(p["slug"])}">{escape(p["title"])}</a></li>'
+            f'<li><a href="{route_href(p["slug"], locale)}">{escape(p["title"])}</a></li>'
             for p in related_pages
         )
-        related_html = f'<section class="related-reading" aria-labelledby="related-reading"><h2 id="related-reading">Continue reading</h2><ul>{related_links}</ul></section>'
+        related_html = f'<section class="related-reading" aria-labelledby="related-reading"><h2 id="related-reading">{heading}</h2><ul>{related_links}</ul></section>'
 
-    kind_labels = {
-        "introduction": "Orientation",
-        "guide": "Practical Guide",
-        "release": "Field Update",
-        "news": "News",
-        "feature": "Feature",
-        "about": "About",
-    }
-    eyebrow_text = kind_labels.get(kind, "Article")
-
+    eyebrow_text = _kind_label(kind, locale)
+    if locale == "en":
+        eyebrow_text = {"guide": "Practical Guide", "release": "Field Update"}.get(kind, eyebrow_text)
     topics_markup = "".join(f'<span class="tag">{escape(t)}</span>' for t in topics)
 
     sources_section = ""
-    source_heading = "Primary sources" if kind in ("release", "news") else "Related resources"
+    if locale == "zh":
+        source_heading = "原始来源" if kind in ("release", "news") else "相关资源"
+    else:
+        source_heading = "Primary sources" if kind in ("release", "news") else "Related resources"
+
     if source_urls:
         items = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
         sources_section = f"""
@@ -1051,29 +1559,44 @@ def build_article_page(
 
     disclosure_section = ""
     if disclosure:
+        disc_heading = "关联与披露说明" if locale == "zh" else "Affiliation &amp; Disclosure"
         disclosure_section = f"""
         <div class="callout meta-disclosure">
-          <h4>Affiliation &amp; Disclosure</h4>
+          <h4>{disc_heading}</h4>
           <p>{escape(disclosure)}</p>
         </div>"""
 
     updated_markup = ""
     if updated and updated != published:
+        upd_label = "更新日期" if locale == "zh" else "Updated"
         updated_markup = f"""
-        <dt>Updated</dt>
-        <dd><time datetime="{escape(updated)}">{display_date(updated)}</time></dd>"""
+        <dt>{upd_label}</dt>
+        <dd><time datetime="{escape(updated)}">{display_date(updated, locale)}</time></dd>"""
 
-    # Event date: shown for news and release kinds, separate from published date
     event_date_markup = ""
     if event_date and event_date != published:
+        ann_label = "公布日期" if locale == "zh" else "Announced"
         event_date_markup = f"""
-        <dt>Announced</dt>
-        <dd><time datetime="{escape(event_date)}">{display_date(event_date)}</time></dd>"""
+        <dt>{ann_label}</dt>
+        <dd><time datetime="{escape(event_date)}">{display_date(event_date, locale)}</time></dd>"""
 
     header_meta = ""
     if kind != "about":
-        event_text = f' &middot; Announced <time datetime="{escape(event_date)}">{display_date(event_date)}</time>' if event_date else ""
-        header_meta = f'<p class="article-header-meta">By <a href="/about/">{escape(author)}</a> &middot; Published <time datetime="{escape(published)}">{display_date(published)}</time>{event_text}</p>'
+        if locale == "zh":
+            event_text = f' &middot; 公布于 <time datetime="{escape(event_date)}">{display_date(event_date, locale)}</time>' if event_date else ""
+            header_meta = f'<p class="article-header-meta">文 / <a href="{route_href("about", locale)}">{escape(author)}</a> &middot; 发布于 <time datetime="{escape(published)}">{display_date(published, locale)}</time>{event_text}</p>'
+        else:
+            event_text = f' &middot; Announced <time datetime="{escape(event_date)}">{display_date(event_date, locale)}</time>' if event_date else ""
+            header_meta = f'<p class="article-header-meta">By <a href="{route_href("about", locale)}">{escape(author)}</a> &middot; Published <time datetime="{escape(published)}">{display_date(published, locale)}</time>{event_text}</p>'
+
+    aside_heading = "文档信息" if locale == "zh" else "Document Details"
+    aside_type = "类型" if locale == "zh" else "Type"
+    aside_author = "编辑署名" if locale == "zh" else "Editorial Identity"
+    aside_pub = "发布日期" if locale == "zh" else "Published"
+    aside_topics = "主题" if locale == "zh" else "Topics"
+
+    # Run HTML-aware navigation link localizer
+    localized_body_content = localize_body_html(body_html, locale)
 
     body_content = f"""
     <div class="container">
@@ -1087,26 +1610,27 @@ def build_article_page(
 
       <div class="article-layout">
         <article class="article-body">
-          {body_html}
+          {render_media(page, 'article', priority=True)}
+          {localized_body_content}
           {related_html}
-          {build_follow_section() if kind != 'about' else ''}
+          {build_follow_section(locale) if kind != 'about' else ''}
         </article>
 
         <aside class="article-aside">
           <div class="article-meta">
-            <h3>Document Details</h3>
+            <h3>{aside_heading}</h3>
             <dl class="meta-list">
-              <dt>Type</dt>
+              <dt>{aside_type}</dt>
               <dd>{escape(eyebrow_text)}</dd>
-              <dt>Editorial Identity</dt>
+              <dt>{aside_author}</dt>
               <dd>{escape(author)}</dd>
-              <dt>Published</dt>
-              <dd><time datetime="{escape(published)}">{display_date(published)}</time></dd>
+              <dt>{aside_pub}</dt>
+              <dd><time datetime="{escape(published)}">{display_date(published, locale)}</time></dd>
               {event_date_markup}
               {updated_markup}
             </dl>
 
-            {f'<div class="meta-section"><h4>Topics</h4><div class="tags">{topics_markup}</div></div>' if topics_markup else ''}
+            {f'<div class="meta-section"><h4>{aside_topics}</h4><div class="tags">{topics_markup}</div></div>' if topics_markup else ''}
             {disclosure_section}
             {sources_section}
           </div>
@@ -1123,16 +1647,16 @@ def build_article_page(
             "@type": "NewsArticle" if kind == "news" else "Article",
             "@id": canonical_url + "#article",
             "url": canonical_url,
-            "inLanguage": "en",
-            "isPartOf": {"@id": canonical_for(base_url, "") + "#website"},
+            "inLanguage": LOCALE_LANG.get(locale, "en"),
+            "isPartOf": {"@id": canonical_for(base_url, "", locale) + "#website"},
             "articleSection": section_name,
             "keywords": topics,
             "citation": source_urls,
             "isAccessibleForFree": True,
             "headline": title,
             "description": summary,
-            "author": publication_identity(site_data, base_url),
-            "publisher": publication_identity(site_data, base_url),
+            "author": publication_identity(site_data, base_url, locale),
+            "publisher": publication_identity(site_data, base_url, locale),
             "datePublished": published,
             "dateModified": updated or published,
             "mainEntityOfPage": canonical_url,
@@ -1141,10 +1665,19 @@ def build_article_page(
         json_ld = {
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            "mainEntity": publication_identity(site_data, base_url),
+            "inLanguage": LOCALE_LANG.get(locale, "en"),
+            "mainEntity": publication_identity(site_data, base_url, locale),
             "name": title,
             "description": summary,
             "url": canonical_url,
+        }
+
+    if media := page.get('_media'):
+        json_ld['image'] = {
+            '@type': 'ImageObject', 'url': base_url.rstrip('/') + media['src'],
+            'width': media['width'], 'height': media['height'],
+            'caption': media['caption'], 'creditText': media['credit'],
+            'license': media['license_url'],
         }
 
     return render_html_page(
@@ -1154,21 +1687,57 @@ def build_article_page(
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug=slug,
+        current_slug=slug if locale == "en" else f"zh/{slug}",
         og_type=og_type,
         extra_meta=extra_meta,
         json_ld=json_ld,
+        social_image=page.get('_media'),
+        locale=locale,
+        has_zh=has_zh,
     )
 
 
-def build_404_page(site_data: Dict[str, Any], base_url: str) -> str:
+def build_404_page(site_data: Dict[str, Any], base_url: str, locale: str = "en", has_zh: bool = True) -> str:
     """Generates the usable 404 error page (never indexed in sitemap)."""
-    body_content = """
+    if locale == "zh":
+        title = "页面未找到"
+        description = "在 Audit Commons 上未找到您所请求的页面。"
+        eyebrow = "404 错误"
+        heading = "页面未找到"
+        lead = "在 Audit Commons 上未找到您所请求的页面。"
+        body_content = f"""
     <div class="container">
       <header class="page-header error-header">
-        <span class="eyebrow">Error 404</span>
-        <h1>Page Not Found</h1>
-        <p class="page-lead">We could not find this page on Audit Commons.</p>
+        <span class="eyebrow">{eyebrow}</span>
+        <h1>{heading}</h1>
+        <p class="page-lead">{lead}</p>
+      </header>
+
+      <div class="empty-state error-content">
+        <p>该页面可能已被移动，或您输入的网址有误。您可以直接访问以下主要栏目：</p>
+        <ul class="error-nav-list">
+          <li><a href="/zh/">首页</a>：网站发布主页</li>
+          <li><a href="/zh/latest/">最新</a>：最新文章与新闻简讯</li>
+          <li><a href="/zh/latest/?kind=feature">深度解读</a>：研究深度解读与分析</li>
+          <li><a href="/zh/learn/">学习</a>：入门导读、实践指南与实操示例</li>
+          <li><a href="/zh/resources/">资源</a>：基准评测、测试沙盒与规范标准目录</li>
+          <li><a href="/zh/about/">关于</a>：刊发范围、维护者披露与贡献说明</li>
+        </ul>
+      </div>
+    </div>
+"""
+    else:
+        title = "Page Not Found"
+        description = "The requested page could not be found on Audit Commons."
+        eyebrow = "Error 404"
+        heading = "Page Not Found"
+        lead = "We could not find this page on Audit Commons."
+        body_content = f"""
+    <div class="container">
+      <header class="page-header error-header">
+        <span class="eyebrow">{eyebrow}</span>
+        <h1>{heading}</h1>
+        <p class="page-lead">{lead}</p>
       </header>
 
       <div class="empty-state error-content">
@@ -1176,7 +1745,7 @@ def build_404_page(site_data: Dict[str, Any], base_url: str) -> str:
         <ul class="error-nav-list">
           <li><a href="/">Home</a>: The publication front page</li>
           <li><a href="/latest/">Latest</a>: Recent articles and news briefs</li>
-          <li><a href="/features/">Features</a>: Research explainers and analysis</li>
+          <li><a href="/latest/?kind=feature">Analysis</a>: Research explainers and analysis</li>
           <li><a href="/learn/">Learn</a>: Introductions, guides, and worked examples</li>
           <li><a href="/resources/">Resources</a>: Searchable directory of benchmarks, sandboxes, and specifications</li>
           <li><a href="/about/">About</a>: Scope, maintainer disclosures, and contributions</li>
@@ -1186,32 +1755,34 @@ def build_404_page(site_data: Dict[str, Any], base_url: str) -> str:
 """
 
     return render_html_page(
-        title="Page Not Found",
-        description="The requested page could not be found on Audit Commons.",
-        canonical_url=canonical_for(base_url, "404.html"),
+        title=title,
+        description=description,
+        canonical_url=canonical_for(base_url, "404.html", locale),
         base_url=base_url,
         site_data=site_data,
         body_content=body_content,
-        current_slug="404",
+        current_slug="404" if locale == "en" else "zh/404",
         og_type="website",
         is_404=True,
+        locale=locale,
+        has_zh=has_zh,
     )
 
 
 def build_sitemap(routes: Dict[str, str], base_url: str) -> str:
     """
     Generates sitemap.xml for public routes.
-    Explicitly excludes 404.html.
+    Explicitly excludes 404.html and any localized 404 pages.
     """
     clean_base = base_url.rstrip("/")
     url_elements = []
 
     for route, modified in routes.items():
-        if route == "404.html" or route.endswith("404.html"):
+        if route.endswith("404.html"):
             continue
         clean_route = route.strip("/")
         loc = f"{clean_base}/" if not clean_route else f"{clean_base}/{clean_route}/"
-        priority = "1.0" if not clean_route else "0.8"
+        priority = "1.0" if clean_route in ("", "zh") else "0.8"
         entry = f"""  <url>
     <loc>{escape(loc)}</loc>
     <lastmod>{escape(modified)}</lastmod>
@@ -1231,16 +1802,25 @@ def build_atom_feed(
     site_data: Dict[str, Any],
     feed_pages: List[Dict[str, Any]],
     base_url: str,
+    locale: str = "en",
 ) -> str:
     """
-    Generates an Atom 1.0 feed (/feed.xml).
-    Entries link canonical own update URLs and include primary sources in article summaries.
+    Generates an Atom 1.0 feed (/feed.xml or /zh/feed.xml).
+    Entries link canonical update URLs and include primary sources in article summaries.
     """
     clean_base = base_url.rstrip("/")
-    site_name = escape(site_data.get("name", "Audit Commons"))
-    site_tagline = escape(site_data.get("tagline", "Research, tools, and community for AI auditing."))
-    feed_url = f"{clean_base}/feed.xml"
-    site_url = f"{clean_base}/"
+    if locale == "zh":
+        site_name = escape(f"{site_data.get('name', 'Audit Commons')} (中文)")
+        site_tagline = escape("关于 AI 审计的新闻、深度分析与实践学习。")
+        feed_url = f"{clean_base}/zh/feed.xml"
+        site_url = f"{clean_base}/zh/"
+        read_more_text = "在 Audit Commons 阅读全文"
+    else:
+        site_name = escape(site_data.get("name", "Audit Commons"))
+        site_tagline = escape(site_data.get("tagline", "Research, tools, and community for AI auditing."))
+        feed_url = f"{clean_base}/feed.xml"
+        site_url = f"{clean_base}/"
+        read_more_text = "Read complete article at Audit Commons"
 
     dates = [p.get("updated") or p.get("published") for p in feed_pages if p.get("published")]
     feed_updated = max(dates) if dates else "2026-09-15"
@@ -1253,16 +1833,20 @@ def build_atom_feed(
         author = escape(p.get("author", "Audit Commons"))
         published = p.get("published", "2026-09-15")
         updated = p.get("updated") or published
-        item_canonical = canonical_for(base_url, slug)
+        item_canonical = canonical_for(base_url, slug, locale)
         source_urls = p.get("source_urls", [])
 
         sources_html = ""
         if source_urls:
             s_list = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
-            source_label = "Primary sources" if p.get("kind") in ("release", "news") else "Related resources"
+            source_label = "原始来源" if locale == "zh" and p.get("kind") in ("release", "news") else (
+                "相关资源" if locale == "zh" else (
+                    "Primary sources" if p.get("kind") in ("release", "news") else "Related resources"
+                )
+            )
             sources_html = f"<p><strong>{source_label}:</strong></p><ul>{s_list}</ul>"
 
-        entry_content = html.escape(f'<p>{summary}</p>{sources_html}<p><a href="{escape(item_canonical)}">Read complete article at Audit Commons</a></p>')
+        entry_content = html.escape(f'<p>{summary}</p>{sources_html}<p><a href="{escape(item_canonical)}">{read_more_text}</a></p>')
 
         entry = f"""  <entry>
     <title>{title}</title>
@@ -1365,6 +1949,9 @@ def build_site(
     if not isinstance(pages, list):
         raise ValueError("content/pages.json must be a JSON list of page records")
 
+    # Keep a deep copy of raw pages for overlay verification before media binding
+    raw_pages_for_hash = copy.deepcopy(pages)
+
     # Validate page schemas & dates
     seen_slugs = set()
     for idx, page in enumerate(pages):
@@ -1373,7 +1960,7 @@ def build_site(
             raise ValueError(f"Page record #{idx} missing required 'slug'")
         if not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*(?:/[a-z0-9]+(?:-[a-z0-9]+)*)*", slug):
             raise ValueError(f"Invalid page slug: {slug!r}")
-        if slug.split('/')[0] in {'assets', 'resources', 'index', '404'} or slug in {'guides', 'updates', 'latest', 'features', 'learn'}:
+        if slug.split('/')[0] in {'assets', 'resources', 'index', '404', 'zh'} or slug in {'guides', 'updates', 'latest', 'features', 'learn'}:
             raise ValueError(f"Page slug collides with a generated route: {slug}")
         if slug in seen_slugs:
             raise ValueError(f"Duplicate slug detected in pages.json: '{slug}'")
@@ -1424,6 +2011,8 @@ def build_site(
     if not isinstance(resources, list):
         raise ValueError("content/resources.json must be a JSON list of resource records")
 
+    raw_resources_for_hash = copy.deepcopy(resources)
+
     # Validate resource records
     seen_res_ids = set()
     valid_categories = {"Evaluation", "Security", "Governance", "Reading", "Tools"}
@@ -1448,49 +2037,64 @@ def build_site(
 
         parse_date(res["checked"])
 
+    # 4b. Validate Chinese translation overlays if content/zh directory exists
+    # Validates overlay keys/types, paths, coverage, and source_sha256 BEFORE touching output
+    zh_overlays = validate_translation_overlays(content_dir, raw_pages_for_hash, raw_resources_for_hash)
+    if zh_overlays is not None:
+        for resource in resources:
+            resource["_search_summary"] = zh_overlays["resources"][resource["id"]]["summary"]
+
+    media_files = bind_media(content_dir, assets_dir, pages, resources)
     prepare_output_directory(output_dir, repo_root, content_dir, assets_dir)
+
     # 5. Copy static assets
     copy_assets_safely(assets_dir, output_dir)
+    for source in media_files:
+        destination = output_dir / 'assets' / source.relative_to(assets_dir.resolve())
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
 
-    # 6. Render Home Page (/)
-    home_html = build_homepage(site_data, pages, resources, effective_base_url)
+    has_zh = (zh_overlays is not None)
+
+    # 6. Render English Home Page (/)
+    home_html = build_homepage(site_data, pages, resources, effective_base_url, locale="en", has_zh=has_zh)
     (output_dir / "index.html").write_text(home_html, encoding="utf-8")
 
-    # 7. Render Resources Page (/resources/)
-    res_html = build_resources_page(site_data, resources, effective_base_url)
+    # 7. Render English Resources Page (/resources/)
+    res_html = build_resources_page(site_data, resources, effective_base_url, locale="en", has_zh=has_zh)
     res_dir = output_dir / "resources"
     res_dir.mkdir(parents=True, exist_ok=True)
     (res_dir / "index.html").write_text(res_html, encoding="utf-8")
 
-    # 8. Render Guides Index (/guides/) — legacy URL kept
-    guides_html = build_guides_index(site_data, pages, effective_base_url)
+    # 8. Render English Guides Index (/guides/)
+    guides_html = build_guides_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
     guides_dir = output_dir / "guides"
     guides_dir.mkdir(parents=True, exist_ok=True)
     (guides_dir / "index.html").write_text(guides_html, encoding="utf-8")
 
-    # 9. Render Updates Index (/updates/) — legacy URL kept
-    updates_html = build_updates_index(site_data, pages, effective_base_url)
+    # 9. Render English Updates Index (/updates/)
+    updates_html = build_updates_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
     updates_dir = output_dir / "updates"
     updates_dir.mkdir(parents=True, exist_ok=True)
     (updates_dir / "index.html").write_text(updates_html, encoding="utf-8")
 
-    # 9b. New editorial section indices
-    latest_html = build_latest_index(site_data, pages, effective_base_url)
+    # 9b. English editorial section indices
+    latest_html = build_latest_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
     latest_dir = output_dir / "latest"
     latest_dir.mkdir(parents=True, exist_ok=True)
     (latest_dir / "index.html").write_text(latest_html, encoding="utf-8")
 
-    features_html = build_features_index(site_data, pages, effective_base_url)
+    features_html = build_features_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
     features_dir = output_dir / "features"
     features_dir.mkdir(parents=True, exist_ok=True)
     (features_dir / "index.html").write_text(features_html, encoding="utf-8")
 
-    learn_html_page = build_learn_index(site_data, pages, effective_base_url)
+    learn_html_page = build_learn_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh)
     learn_dir = output_dir / "learn"
     learn_dir.mkdir(parents=True, exist_ok=True)
     (learn_dir / "index.html").write_text(learn_html_page, encoding="utf-8")
 
-    # 10. Render Individual Content Pages from pages.json
+    # 10. Render English Individual Content Pages
     all_sitemap_routes = ["", "resources", "guides", "updates", "latest", "features", "learn"]
     for page in pages:
         slug = page["slug"].strip("/")
@@ -1500,6 +2104,8 @@ def build_site(
         article_html = build_article_page(
             page, site_data, body_html, effective_base_url,
             [page_lookup[slug] for slug in page.get("related_slugs", [])],
+            locale="en",
+            has_zh=has_zh,
         )
         target_dir = output_dir / slug
         target_dir.mkdir(parents=True, exist_ok=True)
@@ -1507,35 +2113,150 @@ def build_site(
 
         all_sitemap_routes.append(slug)
 
-    # 11. Render Usable 404 Page (/404.html)
-    page_404_html = build_404_page(site_data, effective_base_url)
+    # 11. Render English Usable 404 Page (/404.html)
+    page_404_html = build_404_page(site_data, effective_base_url, locale="en", has_zh=has_zh)
     (output_dir / "404.html").write_text(page_404_html, encoding="utf-8")
 
-    # 12. Render Sitemap (/sitemap.xml) - Excludes 404.html
+    # 12. Render Chinese Edition (/zh/...) if translation overlays present
+    if zh_overlays is not None:
+        zh_dir = output_dir / "zh"
+        zh_dir.mkdir(parents=True, exist_ok=True)
+
+        manifest_data: Dict[str, Any] = {}
+        if (content_dir / "media.json").exists():
+            try:
+                manifest_data = json.loads((content_dir / "media.json").read_text(encoding="utf-8"))
+            except Exception:
+                pass
+
+        article_media_keys = manifest_data.get("articles", {})
+        res_media_keys = manifest_data.get("resources", {})
+        media_overlay = zh_overlays.get("media", {})
+
+        # Localize page objects with overlay data
+        zh_pages = []
+        for p in pages:
+            p_over = zh_overlays["pages"][p["slug"]]
+            zh_p = apply_page_overlay(p, p_over)
+            if "_media" in p:
+                m_key = article_media_keys.get(p["slug"])
+                zh_p["_media"] = apply_media_overlay(p["_media"], media_overlay.get(m_key, {}))
+            zh_pages.append(zh_p)
+
+        zh_page_lookup = {p["slug"]: p for p in zh_pages}
+
+        # Localize resource objects with overlay data
+        zh_resources = []
+        for r in resources:
+            r_over = zh_overlays["resources"][r["id"]]
+            zh_r = apply_resource_overlay(r, r_over)
+            zh_r["_search_summary"] = r["summary"]
+            if "_media" in r:
+                m_key = res_media_keys.get(r["id"])
+                zh_r["_media"] = apply_media_overlay(r["_media"], media_overlay.get(m_key, {}))
+            zh_resources.append(zh_r)
+
+        # 12a. Render Chinese Home Page (/zh/)
+        zh_home_html = build_homepage(site_data, zh_pages, zh_resources, effective_base_url, locale="zh")
+        (zh_dir / "index.html").write_text(zh_home_html, encoding="utf-8")
+        all_sitemap_routes.append("zh")
+
+        # 12b. Render Chinese Resources Page (/zh/resources/)
+        zh_res_html = build_resources_page(site_data, zh_resources, effective_base_url, locale="zh")
+        zh_res_dir = zh_dir / "resources"
+        zh_res_dir.mkdir(parents=True, exist_ok=True)
+        (zh_res_dir / "index.html").write_text(zh_res_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/resources")
+
+        # 12c. Render Chinese Section Indices
+        zh_guides_html = build_guides_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_guides_dir = zh_dir / "guides"
+        zh_guides_dir.mkdir(parents=True, exist_ok=True)
+        (zh_guides_dir / "index.html").write_text(zh_guides_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/guides")
+
+        zh_updates_html = build_updates_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_updates_dir = zh_dir / "updates"
+        zh_updates_dir.mkdir(parents=True, exist_ok=True)
+        (zh_updates_dir / "index.html").write_text(zh_updates_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/updates")
+
+        zh_latest_html = build_latest_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_latest_dir = zh_dir / "latest"
+        zh_latest_dir.mkdir(parents=True, exist_ok=True)
+        (zh_latest_dir / "index.html").write_text(zh_latest_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/latest")
+
+        zh_features_html = build_features_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_features_dir = zh_dir / "features"
+        zh_features_dir.mkdir(parents=True, exist_ok=True)
+        (zh_features_dir / "index.html").write_text(zh_features_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/features")
+
+        zh_learn_html = build_learn_index(site_data, zh_pages, effective_base_url, locale="zh")
+        zh_learn_dir = zh_dir / "learn"
+        zh_learn_dir.mkdir(parents=True, exist_ok=True)
+        (zh_learn_dir / "index.html").write_text(zh_learn_html, encoding="utf-8")
+        all_sitemap_routes.append("zh/learn")
+
+        # 12d. Render Chinese Individual Content Pages
+        for zh_p in zh_pages:
+            slug = zh_p["slug"].strip("/")
+            body_html = zh_overlays["bodies"][slug]
+            zh_article_html = build_article_page(
+                zh_p, site_data, body_html, effective_base_url,
+                [zh_page_lookup[s] for s in zh_p.get("related_slugs", [])],
+                locale="zh",
+            )
+            zh_target_dir = zh_dir / slug
+            zh_target_dir.mkdir(parents=True, exist_ok=True)
+            (zh_target_dir / "index.html").write_text(zh_article_html, encoding="utf-8")
+            all_sitemap_routes.append(f"zh/{slug}")
+
+        # 12e. Render Chinese 404 (/zh/404.html)
+        zh_404_html = build_404_page(site_data, effective_base_url, locale="zh")
+        (zh_dir / "404.html").write_text(zh_404_html, encoding="utf-8")
+
+        # 12f. Render Chinese Feed (/zh/feed.xml)
+        zh_feed_pages = sorted([p for p in zh_pages if p.get("kind") != "about"], key=lambda p: p["published"], reverse=True)
+        zh_feed_xml = build_atom_feed(site_data, zh_feed_pages, effective_base_url, locale="zh")
+        (zh_dir / "feed.xml").write_text(zh_feed_xml, encoding="utf-8")
+
+    # 13. Render Sitemap (/sitemap.xml) - Excludes 404 pages
     article_dates = {p['slug']: p.get('updated') or p['published'] for p in pages}
     latest_date = max([*article_dates.values(), *(r['checked'] for r in resources)])
-    route_dates = {route: article_dates.get(route, latest_date) for route in all_sitemap_routes}
-    route_dates['resources'] = max((r['checked'] for r in resources), default=latest_date)
-    route_dates['guides'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'guide' or p['slug'].startswith('guides/')), default=latest_date)
-    route_dates['updates'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'release' or p['slug'].startswith('updates/')), default=latest_date)
-    route_dates['latest'] = latest_date
-    route_dates['features'] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'feature' or p['slug'].startswith('features/')), default=latest_date)
-    route_dates['learn'] = max((article_dates[p['slug']] for p in pages if p.get('kind') in ('guide', 'introduction') or p['slug'].startswith('guides/')), default=latest_date)
+    route_dates = {}
+    for route in all_sitemap_routes:
+        clean = route.removeprefix("zh/").removeprefix("zh")
+        if clean in article_dates:
+            route_dates[route] = article_dates[clean]
+        elif clean == "resources":
+            route_dates[route] = max((r['checked'] for r in resources), default=latest_date)
+        elif clean == "guides":
+            route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'guide' or p['slug'].startswith('guides/')), default=latest_date)
+        elif clean == "updates":
+            route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'release' or p['slug'].startswith('updates/')), default=latest_date)
+        elif clean == "features":
+            route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'feature' or p['slug'].startswith('features/')), default=latest_date)
+        elif clean == "learn":
+            route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') in ('guide', 'introduction') or p['slug'].startswith('guides/')), default=latest_date)
+        else:
+            route_dates[route] = latest_date
+
     sitemap_xml = build_sitemap(route_dates, effective_base_url)
     (output_dir / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
 
-    # 13. Render Feed (/feed.xml) - Editorial articles (all kinds except about); exclude About
+    # 14. Render Feed (/feed.xml) - Editorial articles (all kinds except about)
     feed_pages = sorted([p for p in pages if p.get("kind") != "about"], key=lambda p: p["published"], reverse=True)
-    feed_xml = build_atom_feed(site_data, feed_pages, effective_base_url)
+    feed_xml = build_atom_feed(site_data, feed_pages, effective_base_url, locale="en")
     (output_dir / "feed.xml").write_text(feed_xml, encoding="utf-8")
 
-    # 14. Render robots.txt
+    # 15. Render robots.txt
     robots_txt = build_robots_txt(effective_base_url)
     (output_dir / "robots.txt").write_text(robots_txt, encoding="utf-8")
 
-    print(f"Build complete. Emitted {len(all_sitemap_routes) + 1} routes and assets to {output_dir}")
-
-
+    total_emitted = len(all_sitemap_routes) + (2 if zh_overlays else 1)
+    print(f"Build complete. Emitted {total_emitted} routes and assets to {output_dir}")
 
 
 def main() -> int:

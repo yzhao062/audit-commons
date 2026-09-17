@@ -1,0 +1,102 @@
+{
+  "sam-altman": {
+    "alt": "Sam Altman（右）在2016年炉边谈话中发言",
+    "caption": "Sam Altman（右）出席2016年炉边谈话。历史资料照片。",
+    "source_sha256": "1ad18065df53b76ce21a19e902f5527900be9c59fafb0957c3642122e564a262"
+  },
+  "metr": {
+    "alt": "METR 标志",
+    "caption": "METR，相关报道调查中指明的独立评估机构。",
+    "source_sha256": "20669e132f9d5739a9d744b37e7050ea51243d7c5b21b48ee91f7708f8df8032"
+  },
+  "nist-campus": {
+    "alt": "位于盖瑟斯堡的 NIST 园区，花树环绕",
+    "caption": "位于盖瑟斯堡的 NIST 园区。来自 NIST 图片库的历史资料图像。",
+    "source_sha256": "4f34751ef1568673070f147d22441d92765e049e1ba0637178d3d4b0ec315d1d"
+  },
+  "nist": {
+    "alt": "NIST 标志",
+    "caption": "NIST",
+    "source_sha256": "de3b0e3d723e2bbd0cf9637cd7ba49c846c91ad48e71d790355138907bc1db23"
+  },
+  "inspect": {
+    "alt": "Inspect 使用的英国人工智能安全研究所（UK AI Security Institute）标志",
+    "caption": "英国人工智能安全研究所（UK AI Security Institute）",
+    "source_sha256": "fe9e52d07ac62216321d1db298e9f083b2366a9a0f60087206de799ee0a4e1b4"
+  },
+  "inspect-viewer": {
+    "alt": "展示评估结果和各个样本的 Inspect 日志查看器",
+    "caption": "Inspect 日志查看器，如项目文档所示。仅为界面示例，并非 Audit Commons 产生的结果。",
+    "source_sha256": "ac398cdfdc470236183c6c1945cd52517f929e6b9719b4f8ab5f913e8ccde82e"
+  },
+  "optstop": {
+    "alt": "来自 optstop 代码仓库的性能与评估效率图",
+    "caption": "来自 optstop 作者的配图：在其实验设置下的性能与评估效率对比。",
+    "source_sha256": "042a8ad857eea9404f2e4695c3e8c0d8439e22fe33f5e81558ee30b64094c7bc"
+  },
+  "catchbench": {
+    "alt": "CatchBench 对 PRE、LIVE 和 POST 审计阶段的概览",
+    "caption": "CatchBench 项目关于其 PRE、LIVE 和 POST 工作流的概览。",
+    "source_sha256": "1c77918c88cf5f355ff35fe95185b09ae20ce6988beb99242184f3d43b0c9aea"
+  },
+  "awesome": {
+    "alt": "Awesome Auditable AI 项目横幅",
+    "caption": "Awesome Auditable AI",
+    "source_sha256": "0b6ea0a330d3e5910ca737bcf1b76dd2db9504dfb3ce7ae63734998706209ca2"
+  },
+  "auditable": {
+    "alt": "展示智能体审计生命周期的 Auditable 项目流程图",
+    "caption": "来自 auditable 项目的生命周期流程图。",
+    "source_sha256": "85ef3da367682455f404114bcc7be10c8c316d06cdd72da3ecce87c9887a3042"
+  },
+  "audit-report": {
+    "alt": "来自 auditable 项目的审计报告示例",
+    "caption": "来自维护者项目 auditable 的示例报告。其字段展示了一种具体实现，并非通用的报告标准。",
+    "source_sha256": "1273f73bbb98e7e5c19caf9bb5e591f1768e47c9030db50bf4720cc1a3949625"
+  },
+  "guardrails": {
+    "alt": "Guardrails AI 标志",
+    "caption": "Guardrails AI",
+    "source_sha256": "6f03d6fbafb8f6d3883aa9b002ccb78b986d322991f486671d48a3ba943b2e3d"
+  },
+  "opik": {
+    "alt": "Opik 标志",
+    "caption": "Opik",
+    "source_sha256": "6b497fce5331aed2852bd0f11c17f8001c1dd29b5da8829a988592c29a3c6409"
+  },
+  "deepeval": {
+    "alt": "DeepEval 标志",
+    "caption": "DeepEval",
+    "source_sha256": "1d4111dfdc6e89f226896c83afe5ac9dbf50d477c3bd1131edab5d0466eef033"
+  },
+  "ragas": {
+    "alt": "Ragas 标志",
+    "caption": "Ragas",
+    "source_sha256": "cd7a42d2c113a6ba38bbab6c41209135e5a562184a5cb464e8447dbeb13fd3a1"
+  },
+  "swe-bench": {
+    "alt": "SWE-bench 项目横幅",
+    "caption": "SWE-bench",
+    "source_sha256": "86e6899687c01ba690321f0c15a28e5ab935d9c163b345da20d48f784bd11c0e"
+  },
+  "appworld": {
+    "alt": "AppWorld 应用引擎与基准概览",
+    "caption": "来自项目代码仓库的 AppWorld 引擎与基准概览。",
+    "source_sha256": "f668fc682d02adc0de313e16cfbeb2fef80210ef69534f6f729d5a258263de44"
+  },
+  "evidently": {
+    "alt": "Evidently 项目横幅",
+    "caption": "Evidently",
+    "source_sha256": "90af1767369e1afebb7ab9ebbea2ae7ce7d6fdac2b27f71ec15621fc3a9ad3e9"
+  },
+  "agentops": {
+    "alt": "AgentOps 项目横幅",
+    "caption": "AgentOps",
+    "source_sha256": "fc591fb2fdc926ee1b65a544615717d25def1b08eb9f9b7d3a71aed3af6d02d3"
+  },
+  "ai-leaders-2023": {
+    "alt": "Rishi Sunak 于2023年5月在唐宁街会见 Sam Altman、Demis Hassabis 和 Dario Amodei",
+    "caption": "AI 实验室负责人在唐宁街，2023年5月。历史资料照片。",
+    "source_sha256": "c4521542a3992e5a243e03b9a8e32206dd2e432586876fc4dc3b7632947ccf91"
+  }
+}

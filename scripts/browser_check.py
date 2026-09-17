@@ -45,6 +45,27 @@ for article in json.loads((Path(__file__).resolve().parents[1] / "content/pages.
     if article_route not in CONTRACT_ROUTES:
         CONTRACT_ROUTES.append(article_route)
 
+zh_dir = Path(__file__).resolve().parents[1] / "content/zh"
+if zh_dir.exists():
+    zh_base = [
+        "/zh/",
+        "/zh/latest/",
+        "/zh/features/",
+        "/zh/learn/",
+        "/zh/resources/",
+        "/zh/guides/",
+        "/zh/updates/",
+        "/zh/about/",
+        "/zh/404.html",
+    ]
+    for r in zh_base:
+        if r not in CONTRACT_ROUTES:
+            CONTRACT_ROUTES.append(r)
+    for article in json.loads((Path(__file__).resolve().parents[1] / "content/pages.json").read_text(encoding="utf-8")):
+        zh_article_route = f"/zh/{article['slug']}/"
+        if zh_article_route not in CONTRACT_ROUTES:
+            CONTRACT_ROUTES.append(zh_article_route)
+
 VIEWPORTS = [
     {"name": "desktop", "width": 1440, "height": 1000},
     {"name": "mobile", "width": 390, "height": 844},
@@ -120,8 +141,17 @@ class BrowserAcceptanceChecker:
                     # 3. Resources filtering, search, aria-pressed, reset
                     self.run_resources_filter_checks(browser)
 
+                    # 3b. Latest all-content filtering, back/forward, EN/ZH switch
+                    self.run_latest_filter_checks(browser)
+
                     # 4. No-JS verification
                     self.run_no_js_checks(browser)
+
+                    self.run_media_checks(browser)
+
+                    # Localization browser acceptance checks
+                    self.run_localization_browser_checks(browser)
+                    self.run_language_reading_checks(browser)
 
                     # 5. Screenshots capture if requested
                     if self.screenshots_dir:
@@ -170,6 +200,171 @@ class BrowserAcceptanceChecker:
         print(json.dumps(report, indent=2))
         return 0 if all_passed else 1
 
+    def run_localization_browser_checks(self, browser: Browser) -> None:
+        """Verify language switcher navigation and query parameter retention in browser."""
+        context = browser.new_context()
+        page = context.new_page()
+
+        try:
+            test_url = self.make_url("/resources/?category=Reading&q=audit")
+            page.goto(test_url, wait_until="networkidle")
+
+            zh_switch = page.locator(".lang-switch a[hreflang='zh-CN']")
+            if zh_switch.count() == 0:
+                self.add_check(
+                    check_id="lang_switch_present",
+                    category="localization",
+                    name="Language switcher presence",
+                    status="FAIL",
+                    observation="Language switcher zh-CN link missing on /resources/",
+                )
+                context.close()
+                return
+
+            zh_switch.click()
+            page.wait_for_load_state("networkidle")
+
+            current_url = page.url
+            has_zh_path = "/zh/resources/" in current_url
+            has_cat = "category=Reading" in current_url
+            has_q = "q=audit" in current_url
+
+            if has_zh_path and has_cat and has_q:
+                self.add_check(
+                    check_id="lang_switch_param_retention",
+                    category="localization",
+                    name="Language switch query retention",
+                    status="PASS",
+                    observation=f"Successfully navigated to Chinese edition with params preserved: {current_url}",
+                )
+            else:
+                self.add_check(
+                    check_id="lang_switch_param_retention",
+                    category="localization",
+                    name="Language switch query retention",
+                    status="FAIL",
+                    observation=f"Expected /zh/resources/?category=Reading&q=audit, got {current_url}",
+                )
+
+            count_text = page.locator("#resource-count").inner_text()
+            if "显示" in count_text or "资源" in count_text:
+                self.add_check(
+                    check_id="zh_resource_count_localized",
+                    category="localization",
+                    name="Chinese resource count localization",
+                    status="PASS",
+                    observation=f"Resource count announced in Chinese: '{count_text}'",
+                )
+            else:
+                self.add_check(
+                    check_id="zh_resource_count_localized",
+                    category="localization",
+                    name="Chinese resource count localization",
+                    status="FAIL",
+                    observation=f"Resource count not localized: '{count_text}'",
+                )
+
+            en_switch = page.locator(".lang-switch a[hreflang='en']")
+            en_switch.click()
+            page.wait_for_load_state("networkidle")
+            en_url = page.url
+            if "/resources/" in en_url and "/zh/" not in en_url and "category=Reading" in en_url:
+                self.add_check(
+                    check_id="lang_switch_return",
+                    category="localization",
+                    name="Language switch return to English",
+                    status="PASS",
+                    observation=f"Successfully returned to English edition with params preserved: {en_url}",
+                )
+            else:
+                self.add_check(
+                    check_id="lang_switch_return",
+                    category="localization",
+                    name="Language switch return to English",
+                    status="FAIL",
+                    observation=f"Failed return to English: {en_url}",
+                )
+
+        except Exception as e:
+            self.add_check(
+                check_id="localization_browser_error",
+                category="localization",
+                name="Language switcher browser interaction",
+                status="FAIL",
+                observation=f"Exception during localization browser checks: {e}",
+            )
+        finally:
+            context.close()
+
+    def run_language_reading_checks(self, browser: Browser) -> None:
+        """Keep search results and reading position consistent across languages."""
+        context = browser.new_context()
+        page = context.new_page()
+        try:
+            for query in ("voluntary", "自愿性"):
+                page.goto(self.make_url("/resources/"), wait_until="networkidle")
+                page.locator("#resource-search").fill(query)
+                before = page.locator(".resource-card:visible .resource-title").all_text_contents()
+                assert before, f"No English results for {query}"
+                page.locator(".lang-switch a[hreflang='zh-CN']").click()
+                page.wait_for_load_state("networkidle")
+                after = page.locator(".resource-card:visible .resource-title").all_text_contents()
+                assert before == after, f"Search results changed on language switch for {query}"
+            self.add_check(check_id="bilingual_summary_search", category="localization",
+                           name="Bilingual search equivalence", status="PASS",
+                           observation="English and Chinese summary queries retain identical results after switching")
+
+            page.goto(self.make_url("/guides/how-to-read-an-agent-eval-report/?view=reading#five-questions"), wait_until="networkidle")
+            page.locator(".lang-switch a[hreflang='zh-CN']").click()
+            page.wait_for_load_state("networkidle")
+            assert "/zh/guides/" in page.url and page.url.endswith("?view=reading#five-questions"), page.url
+            page.locator('.article-toc a[href="#worked-example"]').click()
+            page.locator(".lang-switch a[hreflang='en']").click()
+            page.wait_for_load_state("networkidle")
+            assert "/zh/" not in page.url and page.url.endswith("?view=reading#worked-example"), page.url
+            self.add_check(check_id="article_language_anchor", category="localization",
+                           name="Article query and updated anchor retention", status="PASS",
+                           observation="Switching preserves the article query and the newly selected table-of-contents anchor")
+
+            with browser.new_context(java_script_enabled=False) as plain:
+                document = plain.new_page()
+                document.goto(self.make_url("/zh/guides/how-to-read-an-agent-eval-report/"), wait_until="networkidle")
+                assert document.locator("html").get_attribute("lang") == "zh-CN"
+                document.locator(".lang-switch a[hreflang='en']").click()
+                document.wait_for_load_state("networkidle")
+                assert document.url.endswith("/guides/how-to-read-an-agent-eval-report/") and "/zh/" not in document.url
+            self.add_check(check_id="language_switch_no_js", category="localization",
+                           name="Language switch without JavaScript", status="PASS",
+                           observation="Chinese article switches to its English equivalent using a plain link")
+        except Exception as exc:
+            self.add_check(check_id="language_reading_regression", category="localization",
+                           name="Bilingual reading continuity", status="FAIL", observation=str(exc))
+        finally:
+            context.close()
+
+    def run_media_checks(self, browser: Browser) -> None:
+        """Decode actual local images, including lazy images hidden by catalog filters."""
+        context = browser.new_context()
+        page = context.new_page()
+        for route in ('/latest/', '/resources/'):
+            page.goto(self.make_url(route), wait_until='networkidle')
+            results = page.locator('img[src^="/assets/media/"]').evaluate_all('''async images =>
+                Promise.all(images.map(async image => {
+                    const probe = new Image();
+                    probe.src = image.src;
+                    try { await probe.decode(); }
+                    catch { return {src: image.getAttribute('src'), ok: false}; }
+                    return {src: image.getAttribute('src'), ok: probe.naturalWidth > 0 && probe.naturalHeight > 0};
+                }))''')
+            failed = [r['src'] for r in results if not r['ok']]
+            self.add_check(
+                check_id='media_decode_' + route.strip('/'), category='media',
+                name=f'Editorial images decode on {route}',
+                status='PASS' if results and not failed else 'FAIL',
+                observation=f'{len(results)} images; decode failures: {failed}',
+            )
+        context.close()
+
     def run_standard_route_checks(self, browser: Browser) -> None:
         context = browser.new_context(viewport={"width": 1440, "height": 1000})
         page = context.new_page()
@@ -205,7 +400,7 @@ class BrowserAcceptanceChecker:
 
             # HTTP status check
             status_code = response.status if response else 0
-            if route == "/404.html":
+            if route.endswith("404.html"):
                 # Static servers often serve 404.html directly with 200, custom servers with 404
                 if status_code in (200, 404):
                     self.add_check(
@@ -344,23 +539,25 @@ class BrowserAcceptanceChecker:
                     details=landmarks,
                 )
 
-            # Internal navigation check on header nav
-            nav_links = page.locator("nav.site-nav a, header nav a")
+            # Internal navigation check on header nav (4 items: latest, learn, resources, about)
+            nav_links = page.locator("nav.site-nav a")
             link_hrefs = [nav_links.nth(i).get_attribute("href") or "" for i in range(nav_links.count())]
-            expected_destinations = ["latest", "features", "learn", "resources", "about"]
+            expected_destinations = ["latest", "learn", "resources", "about"]
             missing_links = []
             for dest in expected_destinations:
                 matched = any(dest in href for href in link_hrefs)
                 if not matched:
                     missing_links.append(dest)
 
-            if not missing_links:
+            unexpected_features = [h for h in link_hrefs if "/features/" in h or "/zh/features/" in h]
+
+            if not missing_links and not unexpected_features:
                 self.add_check(
                     check_id=f"nav_links_{route}",
                     category="navigation",
                     name=f"Primary nav links on {route}",
                     status="PASS",
-                    observation=f"Found internal navigation links: {link_hrefs}",
+                    observation=f"Found internal navigation links (4 items): {link_hrefs}",
                     details={"hrefs": link_hrefs},
                 )
             else:
@@ -369,8 +566,8 @@ class BrowserAcceptanceChecker:
                     category="navigation",
                     name=f"Primary nav links on {route}",
                     status="FAIL",
-                    observation=f"Nav missing required destination links {missing_links} in {link_hrefs}",
-                    details={"missing": missing_links, "hrefs": link_hrefs},
+                    observation=f"Nav links mismatch: missing={missing_links}, unexpected_features={unexpected_features} in {link_hrefs}",
+                    details={"missing": missing_links, "unexpected": unexpected_features, "hrefs": link_hrefs},
                 )
 
             # Horizontal overflow check across 3 viewports
@@ -1290,6 +1487,249 @@ class BrowserAcceptanceChecker:
 
         context.close()
 
+    def run_latest_filter_checks(self, browser: Browser) -> None:
+        """Browser tests for Latest all-content list filters, URL persistence, back/forward, and EN/ZH retention."""
+        self.log("Running Latest filter categories, history, and bilingual switch acceptance checks...")
+        context = browser.new_context(viewport={"width": 1440, "height": 1000})
+        page = context.new_page()
+
+        # 1. Load /latest/
+        latest_url = self.make_url("/latest/")
+        page.goto(latest_url, wait_until="networkidle")
+
+        # Verify #latest-controls revealed by progressive enhancement
+        controls_visible = page.evaluate("""() => {
+            const controls = document.getElementById('latest-controls');
+            return controls && !controls.hidden && window.getComputedStyle(controls).display !== 'none';
+        }""")
+        self.add_check(
+            check_id="latest_controls_visible_with_js",
+            category="latest_filtering",
+            name="Latest controls unhidden with JS",
+            status="PASS" if controls_visible else "FAIL",
+            observation="Latest filter controls revealed progressively by JS" if controls_visible else "Controls missing or hidden with JS",
+        )
+
+        # Initial state: "all" button pressed, all cards visible
+        state = page.evaluate("""() => {
+            const allBtn = document.querySelector('#latest-controls button[data-kind="all"]');
+            const cards = Array.from(document.querySelectorAll('.article-list .article-card'));
+            const visible = cards.filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const countEl = document.getElementById('latest-count');
+            return {
+                allPressed: allBtn && allBtn.getAttribute('aria-pressed') === 'true',
+                totalCards: cards.length,
+                visibleCards: visible.length,
+                countText: countEl ? countEl.textContent : '',
+            };
+        }""")
+        self.add_check(
+            check_id="latest_initial_filter_all",
+            category="latest_filtering",
+            name="Initial filter state 'all'",
+            status="PASS" if (state["allPressed"] and state["visibleCards"] == state["totalCards"] and state["totalCards"] > 0) else "FAIL",
+            observation=f"All button pressed, {state['visibleCards']}/{state['totalCards']} cards visible, count='{state['countText']}'",
+        )
+
+        # 2. Click "News" filter
+        page.click('#latest-controls button[data-kind="news"]')
+        page.wait_for_timeout(50)
+        news_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="news"]');
+            const allBtn = document.querySelector('#latest-controls button[data-kind="all"]');
+            const cards = Array.from(document.querySelectorAll('.article-list .article-card'));
+            const visible = cards.filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const allMatchNews = visible.every(c => c.getAttribute('data-kind') === 'news');
+            return {
+                newsPressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                allPressed: allBtn && allBtn.getAttribute('aria-pressed') === 'true',
+                visibleCount: visible.length,
+                allMatchNews: allMatchNews,
+                url: window.location.href,
+            };
+        }""")
+        has_kind_news = "?kind=news" in news_state["url"]
+        self.add_check(
+            check_id="latest_filter_news",
+            category="latest_filtering",
+            name="Filter by News category (?kind=news)",
+            status="PASS" if (news_state["newsPressed"] and not news_state["allPressed"] and news_state["allMatchNews"] and has_kind_news) else "FAIL",
+            observation=f"News pressed, {news_state['visibleCount']} cards visible (all news), url='{news_state['url']}'",
+        )
+
+        # 3. Click "Analysis" filter (data-kind="feature")
+        page.click('#latest-controls button[data-kind="feature"]')
+        page.wait_for_timeout(50)
+        analysis_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="feature"]');
+            const visible = Array.from(document.querySelectorAll('.article-list .article-card')).filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const allMatchFeature = visible.every(c => c.getAttribute('data-kind') === 'feature');
+            return {
+                featurePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                visibleCount: visible.length,
+                allMatchFeature: allMatchFeature,
+                url: window.location.href,
+            };
+        }""")
+        has_kind_feature = "?kind=feature" in analysis_state["url"]
+        self.add_check(
+            check_id="latest_filter_analysis",
+            category="latest_filtering",
+            name="Filter by Analysis category (?kind=feature)",
+            status="PASS" if (analysis_state["featurePressed"] and analysis_state["allMatchFeature"] and has_kind_feature) else "FAIL",
+            observation=f"Analysis pressed, {analysis_state['visibleCount']} cards visible (all feature), url='{analysis_state['url']}'",
+        )
+
+        # 4. Click "Guides" filter (tests introduction + guide mapping to Guides)
+        page.click('#latest-controls button[data-kind="guide"]')
+        page.wait_for_timeout(50)
+        guides_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="guide"]');
+            const visible = Array.from(document.querySelectorAll('.article-list .article-card')).filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const allMatchGuide = visible.every(c => {
+                const k = c.getAttribute('data-kind');
+                return k === 'guide' || k === 'introduction';
+            });
+            const hasIntro = visible.some(c => c.getAttribute('data-kind') === 'introduction');
+            const hasGuide = visible.some(c => c.getAttribute('data-kind') === 'guide');
+            return {
+                guidePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                visibleCount: visible.length,
+                allMatchGuide: allMatchGuide,
+                hasIntro: hasIntro,
+                hasGuide: hasGuide,
+                url: window.location.href,
+            };
+        }""")
+        has_kind_guide = "?kind=guide" in guides_state["url"]
+        guides_pass = (guides_state["guidePressed"] and guides_state["allMatchGuide"] and guides_state["hasIntro"] and guides_state["hasGuide"] and has_kind_guide)
+        self.add_check(
+            check_id="latest_filter_guides",
+            category="latest_filtering",
+            name="Filter by Guides category (introduction + guide mapped to Guides)",
+            status="PASS" if guides_pass else "FAIL",
+            observation=f"Guides pressed, {guides_state['visibleCount']} cards visible, hasIntro={guides_state['hasIntro']}, hasGuide={guides_state['hasGuide']}, url='{guides_state['url']}'",
+        )
+
+        # 5. Click "Releases" filter
+        page.click('#latest-controls button[data-kind="release"]')
+        page.wait_for_timeout(50)
+        release_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="release"]');
+            const visible = Array.from(document.querySelectorAll('.article-list .article-card')).filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            const allMatchRelease = visible.every(c => c.getAttribute('data-kind') === 'release');
+            return {
+                releasePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                visibleCount: visible.length,
+                allMatchRelease: allMatchRelease,
+                url: window.location.href,
+            };
+        }""")
+        has_kind_release = "?kind=release" in release_state["url"]
+        release_pass = (release_state["releasePressed"] and release_state["allMatchRelease"] and has_kind_release)
+        self.add_check(
+            check_id="latest_filter_releases",
+            category="latest_filtering",
+            name="Filter by Releases category (?kind=release)",
+            status="PASS" if release_pass else "FAIL",
+            observation=f"Releases pressed, {release_state['visibleCount']} cards visible (all release), url='{release_state['url']}'",
+        )
+
+        # 6. Browser Back and Forward navigation retention
+        page.go_back()
+        page.wait_for_timeout(50)
+        back_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="guide"]');
+            return {
+                guidePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                url: window.location.href,
+            };
+        }""")
+        back_pass = back_state["guidePressed"] and "?kind=guide" in back_state["url"]
+        self.add_check(
+            check_id="latest_history_back",
+            category="latest_filtering",
+            name="Browser Back retains Guides filter",
+            status="PASS" if back_pass else "FAIL",
+            observation=f"Back to Guides: guidePressed={back_state['guidePressed']}, url='{back_state['url']}'",
+        )
+
+        page.go_forward()
+        page.wait_for_timeout(50)
+        fwd_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="release"]');
+            return {
+                releasePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                url: window.location.href,
+            };
+        }""")
+        fwd_pass = fwd_state["releasePressed"] and "?kind=release" in fwd_state["url"]
+        self.add_check(
+            check_id="latest_history_forward",
+            category="latest_filtering",
+            name="Browser Forward retains Releases filter",
+            status="PASS" if fwd_pass else "FAIL",
+            observation=f"Forward to Releases: releasePressed={fwd_state['releasePressed']}, url='{fwd_state['url']}'",
+        )
+
+        # 7. Language Switch retains category across locales
+        # Navigate directly to /latest/?kind=feature
+        page.goto(self.make_url("/latest/?kind=feature"), wait_until="networkidle")
+        zh_link_href = page.locator('.lang-switch a[hreflang="zh-CN"]').get_attribute('href') or ""
+        zh_has_kind = "?kind=feature" in zh_link_href
+        self.add_check(
+            check_id="latest_lang_switch_preserves_query",
+            category="latest_filtering",
+            name="Language switch link retains ?kind=feature",
+            status="PASS" if zh_has_kind else "FAIL",
+            observation=f"ZH switch link href: '{zh_link_href}'",
+        )
+
+        # Click language switcher to navigate to Chinese edition
+        page.click('.lang-switch a[hreflang="zh-CN"]')
+        page.wait_for_timeout(100)
+        zh_page_state = page.evaluate("""() => {
+            const btn = document.querySelector('#latest-controls button[data-kind="feature"]');
+            const enLink = document.querySelector('.lang-switch a[hreflang="en"]');
+            return {
+                featurePressed: btn && btn.getAttribute('aria-pressed') === 'true',
+                btnText: btn ? btn.textContent.trim() : '',
+                enLinkHref: enLink ? enLink.getAttribute('href') : '',
+                url: window.location.href,
+            };
+        }""")
+        zh_pass = (zh_page_state["featurePressed"] and zh_page_state["btnText"] == "深度解读" and "?kind=feature" in zh_page_state.get("enLinkHref", ""))
+        self.add_check(
+            check_id="latest_zh_locale_category_retained",
+            category="latest_filtering",
+            name="Chinese page retains category (?kind=feature) and updates button to 深度解读",
+            status="PASS" if zh_pass else "FAIL",
+            observation=f"ZH page featurePressed={zh_page_state['featurePressed']}, btnText='{zh_page_state['btnText']}', enLink='{zh_page_state['enLinkHref']}'",
+        )
+
+        # 8. Invalid kind defaults to all
+        page.goto(self.make_url("/latest/?kind=invalid_category_xyz"), wait_until="networkidle")
+        invalid_state = page.evaluate("""() => {
+            const allBtn = document.querySelector('#latest-controls button[data-kind="all"]');
+            const cards = Array.from(document.querySelectorAll('.article-list .article-card'));
+            const visible = cards.filter(c => !c.hidden && window.getComputedStyle(c).display !== 'none');
+            return {
+                allPressed: allBtn && allBtn.getAttribute('aria-pressed') === 'true',
+                totalCards: cards.length,
+                visibleCards: visible.length,
+            };
+        }""")
+        invalid_pass = invalid_state["allPressed"] and (invalid_state["visibleCards"] == invalid_state["totalCards"])
+        self.add_check(
+            check_id="latest_invalid_kind_defaults_all",
+            category="latest_filtering",
+            name="Invalid ?kind= defaults to 'all'",
+            status="PASS" if invalid_pass else "FAIL",
+            observation=f"All button pressed={invalid_state['allPressed']}, {invalid_state['visibleCards']}/{invalid_state['totalCards']} visible",
+        )
+
+        context.close()
+
     def run_no_js_checks(self, browser: Browser) -> None:
         context = browser.new_context(java_script_enabled=False, viewport={"width": 1440, "height": 1000})
         page = context.new_page()
@@ -1348,6 +1788,41 @@ class BrowserAcceptanceChecker:
                 status="FAIL",
                 observation=f"Not all cards visible without JS: visible={no_js_res_eval['visibleCards']}, total={no_js_res_eval['totalCards']}",
                 details=no_js_res_eval,
+            )
+
+        # 1b. On /latest/ and /zh/latest/: verify #latest-controls hidden, all article cards visible
+        for latest_route in ("/latest/", "/zh/latest/"):
+            latest_route_url = self.make_url(latest_route)
+            page.goto(latest_route_url, wait_until="load")
+            no_js_latest_eval = page.evaluate("""() => {
+                const controls = document.getElementById('latest-controls');
+                const controlsVisible = controls ? (controls.offsetParent !== null && !controls.hidden && window.getComputedStyle(controls).display !== 'none') : false;
+                const cards = Array.from(document.querySelectorAll('.article-list .article-card'));
+                const visibleCards = cards.filter(c => (c.offsetParent !== null) && !c.hidden && window.getComputedStyle(c).display !== 'none');
+                return {
+                    controlsExists: !!controls,
+                    controlsVisible: controlsVisible,
+                    totalCards: cards.length,
+                    visibleCards: visibleCards.length
+                };
+            }""")
+            is_hidden = not no_js_latest_eval["controlsVisible"]
+            self.add_check(
+                check_id=f"no_js_latest_controls_hidden_{latest_route.strip('/')}",
+                category="no_js",
+                name=f"No-JS: #latest-controls hidden on {latest_route}",
+                status="PASS" if is_hidden else "FAIL",
+                observation=f"#latest-controls is hidden without JS on {latest_route}" if is_hidden else f"#latest-controls visible without JS on {latest_route}",
+                details=no_js_latest_eval,
+            )
+            all_visible = no_js_latest_eval["visibleCards"] > 0 and no_js_latest_eval["visibleCards"] == no_js_latest_eval["totalCards"]
+            self.add_check(
+                check_id=f"no_js_latest_all_cards_visible_{latest_route.strip('/')}",
+                category="no_js",
+                name=f"No-JS: All article cards visible on {latest_route}",
+                status="PASS" if all_visible else "FAIL",
+                observation=f"All {no_js_latest_eval['visibleCards']} article cards visible on {latest_route} without JS" if all_visible else f"Not all cards visible on {latest_route} without JS",
+                details=no_js_latest_eval,
             )
 
         # 2. Verify all contract pages have readable content without JS

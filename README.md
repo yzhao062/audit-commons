@@ -2,11 +2,25 @@
 
 News, analysis, and learning about AI auditing.
 
-Audit Commons is an editorial publication with Latest, Features, Learn, Resources, and About sections. It publishes source-dated news briefs, research explainers, and practical guides, with an initial focus on AI agents. Existing article URLs remain canonical; the original guides and updates indexes remain available.
+Audit Commons is an editorial publication with a unified four-item primary navigation: **Latest**, **Learn**, **Resources**, and **About** (Chinese: **最新**, **学习**, **资源**, **关于**). It publishes source-dated news briefs, research explainers, and practical auditing guides, with an initial focus on AI agents. In-depth features are integrated into Latest as **Analysis** (**深度解读**); existing `/features/` and `/zh/features/` routes remain accessible as legacy topic indexes. Existing article URLs, canonicals, translations, and media hashes remain strictly intact.
 
-The homepage leads with the newest feature, while its news column and Latest index are ordered by publication date. This keeps an explanatory article alongside current coverage; the lead is not labelled as the latest news. If no feature exists, the lead falls back to news, guides, introductions, then releases. Dates remain visible, and editors should refresh the featured coverage as the publication grows.
+The **Learn** section provides a structured, three-step editorial learning path:
+
+1. **Understand auditable AI** (`/start-here/`): Conceptual baseline distinguishing evaluation, monitoring, and auditing (~2 min reading).
+2. **Read an evaluation report** (`/guides/how-to-read-an-agent-eval-report/`): Five critical questions for evaluating benchmark reports (~4 min reading + ~10 min worked critique).
+3. **Audit an agent action** (`/guides/audit-an-agent-action/`): Evidence procedure and plaintext worksheet for external tool calls (~4 min reading + ~15 min worksheet exercise).
+
+Each step pairs clear learning outcomes with realistic reading-versus-activity time estimates, editorial source media, and direct links to foundational catalog resources (such as NIST AI RMF, Inspect, and AgentDojo). Additional guides appear in an additional reading section below the curated path.
+
+The homepage leads with the newest featured analysis, while its news column and Latest index are ordered by publication date. Dates remain visible, and editors should refresh featured coverage as the publication grows.
 
 The Resources library adapts the companion Awesome Auditable AI catalog into format tabs with topic filters, search, and links to papers, code, and data. All entries remain in the initial HTML for reading without JavaScript. Catalog provenance and the offline refresh procedure are documented in [Resource catalog](docs/resource-catalog.md).
+
+News and selected resources include locally hosted photographs, project logos, figures, and screenshots. See [Editorial images](docs/media.md) for the contribution and attribution workflow.
+
+Audit Commons publishes in English (`/`) as its root canonical edition, alongside a Simplified Chinese edition (`/zh/`) powered by non-destructive translation overlays. See the [Localization playbook](docs/localization.md) for data contracts and specifications.
+
+For recurring updates, start with the [Editorial maintenance playbook](docs/maintenance.md).
 
 ---
 
@@ -43,6 +57,8 @@ Validate source schemas, date formats, internal hyperlinks, in-page fragment tar
 
 ```bash
 python scripts/check.py
+python scripts/check_localization.py
+python scripts/check_navigation.py
 ```
 
 The same suite checks search metadata: unique titles and descriptions, canonical URLs, crawler access, article schema consistency, visible breadcrumbs, and resources catalog contracts (including format taxonomy schema validation and a 100-row all-formats fixture test). Setup receipts and the ongoing measurement routine are in [Search visibility](docs/search-visibility.md).
@@ -96,9 +112,17 @@ Visit `http://127.0.0.1:8765/`. All routes and content remain fully readable wit
 │       ├── benchmark-scores-and-agent-safety.html
 │       ├── how-to-read-an-agent-eval-report.html
 │       └── about.html
+├── content/zh/                 # Simplified Chinese translation overlays
+│   ├── pages.json              # Localized article metadata & digests
+│   ├── resources.json          # Localized resource summaries & digests
+│   ├── media.json              # Localized media alt text & captions
+│   └── bodies/                 # Localized article HTML fragments
 ├── scripts/
 │   ├── build.py                # Standard-library static site generator
 │   ├── check.py                # Output, link, anchor, schema, and safety validator
+│   ├── check_localization.py   # Dedicated localization invariant test suite
+│   ├── check_navigation.py     # Navigation, learning path, and editorial category checks
+│   ├── localization.py         # Translation overlay contract & SEO helpers
 │   └── browser_check.py        # Optional Playwright acceptance checks
 ├── CONTRIBUTING.md             # Editorial guidelines and submission procedures
 └── README.md                   # Development guide and deployment documentation
@@ -111,6 +135,7 @@ Visit `http://127.0.0.1:8765/`. All routes and content remain fully readable wit
 ### Continuous Integration (CI)
 
 Automated CI (`.github/workflows/check.yml`) runs on push and pull request to verify:
+
 1. Static site build completes without errors.
 2. Output directory safety tests pass (protected paths survive, stale files are cleared).
 3. All internal links, fragment anchors, and local assets resolve.

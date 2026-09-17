@@ -2,6 +2,8 @@
 
 Audit Commons publishes news briefs, explainers, practical learning materials, and selected resources about AI auditing, with an initial emphasis on AI agents.
 
+For recurring editorial work, follow the [maintenance playbook](docs/maintenance.md). For photographs, logos, figures, and screenshots, use the [editorial image guide](docs/media.md), including provenance, rights, captions, and local asset validation.
+
 ---
 
 ## Editorial Philosophy: Claims Need Evidence

@@ -1,0 +1,147 @@
+{
+  "news/frontier-pacing-ceo-statements": {
+    "title": "AI 实验室负责人呼吁放缓开发节奏：公开声明、实际行动与待解问题",
+    "summary": "九月份关于前沿 AI 发展节奏的一场公开讨论引发了有关评估机构准入与问责的疑问。我们将高管公开声明与已有据可查的实验室行动区分开来。",
+    "topics": [
+      "前沿 AI",
+      "治理",
+      "审计",
+      "评估",
+      "实验室承诺"
+    ],
+    "body_file": "zh/bodies/frontier-pacing-ceo-statements.html",
+    "source_sha256": "5d6c62a18a36089f0554c008b2aed780aa0bbaa8624bc36012be9caeafaae665",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文基于原始一手资料和明确引用的公开报道；文中的评估疑问属于编辑分析。"
+  },
+  "news/anthropic-metr-incident-review": {
+    "title": "Anthropic 同意由 METR 对网络安全评估事件开展独立审查",
+    "summary": "Anthropic 报告了一项为期八周的由 METR 主导的评估事件初步调查。其调查范围与后来提出的常设评估机构准入机制有所不同。",
+    "topics": [
+      "Anthropic",
+      "METR",
+      "第三方审计",
+      "网络安全",
+      "模型评估"
+    ],
+    "body_file": "zh/bodies/anthropic-metr-incident-review.html",
+    "source_sha256": "7379acc112026ca3d9c0905bdf889b6567271cd4d786bd223e0af221fe344152",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结，不构成正式认证或监管指导。"
+  },
+  "news/openai-cybersecurity-rl-pause": {
+    "title": "OpenAI 详述八月训练暂停与网络安全关键评估阈值",
+    "summary": "OpenAI 报告了八月份为期两周的强化学习（RL）暂停及更严格的研究保障措施。该公告所针对的是特定工作负载，而非全面中止所有研究。",
+    "topics": [
+      "OpenAI",
+      "Preparedness Framework",
+      "网络安全",
+      "强化学习",
+      "训练暂停"
+    ],
+    "body_file": "zh/bodies/openai-cybersecurity-rl-pause.html",
+    "source_sha256": "39629566d5c1a734efb68aaaa0b1add9b1763aef0e8115bc8da82a87627d35e3",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结，不构成正式认证或监管指导。"
+  },
+  "start-here": {
+    "title": "是什么让 AI 具备可审计性？",
+    "summary": "一篇编辑导引，从所提问题与所需证据的角度，阐述评估、监控与审计之间的区别。",
+    "topics": [
+      "评估",
+      "监控",
+      "审计"
+    ],
+    "body_file": "zh/bodies/start-here.html",
+    "source_sha256": "da0de7de76acf0bae18c7f3622e163e13a437a5e511757b474cd42db608a2c2f",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文阐述的是编辑框架视角，而非官方标准。"
+  },
+  "guides/audit-an-agent-action": {
+    "title": "审计智能体行动：外部工具调用证据工作表",
+    "summary": "一份实用的工作表与操作流程，用于审查可检验的证据是否支持关于 AI 智能体行动的主张。",
+    "topics": [
+      "智能体审计",
+      "证据工作表",
+      "工具调用"
+    ],
+    "body_file": "zh/bodies/audit-an-agent-action.html",
+    "source_sha256": "8367f94f51c005839bea10e6398e7e782c74df898228362fe930538d39477474",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。此处描述的流程体现了实用的证据收集方法，不构成正式认证。"
+  },
+  "updates/catchbench-0-1-2": {
+    "title": "CatchBench 0.1.2：更规范的安装与 PRE（离线）快速上手",
+    "summary": "CatchBench 0.1.2 解决了打包问题，能够清晰提示缺失的可选代码检出，并保持已发布的评测得分不变。",
+    "topics": [
+      "评估",
+      "基准测试",
+      "CatchBench"
+    ],
+    "body_file": "zh/bodies/catchbench-0-1-2.html",
+    "source_sha256": "6eb1263740e66fea5c4e3ffcb63a5303989cd2bcaa4ef9241380e28f9edd8093",
+    "affiliation_disclosure": "CatchBench 由 Yue Zhao 维护，他同时也是 Audit Commons 的维护者。"
+  },
+  "about": {
+    "title": "关于 Audit Commons",
+    "summary": "涵盖范围、编辑方针、资料来源、利益披露与贡献指南。",
+    "topics": [
+      "关于",
+      "编辑方针",
+      "贡献指南"
+    ],
+    "body_file": "zh/bodies/about.html",
+    "source_sha256": "d1b2b883193326c6da81a1b08c392317f21764890393e668bd6829f6ed96d1ae",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。它不代表任何商业财团或认证机构。"
+  },
+  "news/optstop-bayesian-early-stopping": {
+    "title": "AISI 推出用于自适应评估早停的 optstop",
+    "summary": "该开源工具利用统计早停规则分配评估试验轮次。其八月份的公告阐述了评估人员如何检查和验证这些决策。",
+    "topics": [
+      "评估",
+      "基准测试",
+      "算力效率",
+      "AISI",
+      "Inspect"
+    ],
+    "body_file": "zh/bodies/optstop-bayesian-early-stopping.html",
+    "source_sha256": "4663fe21f46af3e9994938d12cf2dda5b13a8ef1a7a88d44b7acfa2102e266ab",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结。"
+  },
+  "news/nist-nccoe-agent-identity-concept-paper": {
+    "title": "NIST 探讨 AI 智能体的身份标识与授权机制",
+    "summary": "一份二月份的概念文件探讨了身份标准如何应用于智能体行动。公众意见征集期现已截止；NCCoE 正在审查收到的反馈意见。",
+    "topics": [
+      "智能体身份",
+      "授权机制",
+      "NIST",
+      "网络安全",
+      "提示注入"
+    ],
+    "body_file": "zh/bodies/nist-nccoe-agent-identity-concept-paper.html",
+    "source_sha256": "4b285159d9f7f39cd2759bffe4430329bfee4b7a3450c489e9f1a402634ba40e",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结。"
+  },
+  "features/benchmark-scores-and-agent-safety": {
+    "title": "为什么基准得分不能确立智能体的安全性",
+    "summary": "任务设定、工具环境与算力预算共同决定了每个评估得分。理解这些考量是评判评估结果对实际部署有何参考意义的第一步。",
+    "topics": [
+      "评估",
+      "智能体安全",
+      "基准测试",
+      "算力预算",
+      "审计证据"
+    ],
+    "body_file": "zh/bodies/benchmark-scores-and-agent-safety.html",
+    "source_sha256": "b8c75dc458044f1e40b25450045908948c8be7930bcc024fc3f3ba622ffa76f9",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本专题阐述编辑分析观点，不代表官方标准或认证框架。"
+  },
+  "guides/how-to-read-an-agent-eval-report": {
+    "title": "如何阅读 AI 智能体评估报告",
+    "summary": "围绕任务、预算、不确定性、失败模式与结论主张提出的五个关键问题，并结合实例进行了深入分析。",
+    "topics": [
+      "评估",
+      "智能体审计",
+      "基准测试",
+      "证据评估"
+    ],
+    "body_file": "zh/bodies/how-to-read-an-agent-eval-report.html",
+    "source_sha256": "caa6d5407065966236d85b2501ec5955c4bbc31ba9d13dcd7c0cd0124c52d38a",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本指南提供实用的编辑指导，不构成正式的审计方法学、监管建议或认证框架。"
+  }
+}

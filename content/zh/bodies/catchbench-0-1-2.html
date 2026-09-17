@@ -1,0 +1,32 @@
+<section class="section">
+  <h2>发布概览</h2>
+  <p>
+    CatchBench 0.1.2 版本于2026年9月13日发布。该更新解决了早期版本中发现的打包和纯净安装问题。公开发布的发布说明指出，研究论文中报告的、以及通过离线命令 <code>catchbench --task pre</code> 生成的所有基准测试得分，均与 0.1.1 版本保持一致。
+  </p>
+  <div class="callout">
+    <p>
+      <strong>维护者披露：</strong>CatchBench 由 Yue Zhao 维护，他同时也是 Audit Commons 的维护者。
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>打包与配置修复</h2>
+  <p>
+    0.1.2 版本解决了三个安装问题：
+  </p>
+  <ul>
+    <li>
+      <strong>缺失代码检出的处理：</strong>在没有可选 GRADE 代码仓库的情况下运行该软件包时，现在会输出清晰的配置说明并以状态码 2 干净退出，而不会抛出未处理的导入错误。
+    </li>
+    <li>
+      <strong>工作目录自动发现：</strong>软件包现在会直接在当前活动工作目录中解析代码检出。
+    </li>
+    <li>
+      <strong>捆绑许可证文件：</strong>发布的 wheel 包现在包含软件包声明文件所引用的许可证清单。
+    </li>
+  </ul>
+  <p>
+    发布说明记录显示，标签验证工作流因文档解析错误而失败，而看板生成工作流已通过。有关发布文件，请参见 <a href="https://github.com/yzhao062/catchbench/releases/tag/v0.1.2">GitHub 上的 CatchBench 0.1.2 发布页面</a>。
+  </p>
+</section>
