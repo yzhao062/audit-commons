@@ -51,6 +51,8 @@ The publication maintains an agreed four-item primary navigation across English 
 
 ## A recurring update cycle
 
+For an agent-led refresh, use the repository-local [weekly-refresh skill](../skills/weekly-refresh/SKILL.md), registered in `AGENTS.local.md`. For example: "Run weekly-refresh for the past seven days; update worthwhile news and resources in English and Chinese, then validate the local changes." The skill routes candidates to the appropriate content type and loads the detailed guides only when needed. It is a reusable manual workflow; no scheduled task has been enabled.
+
 1. Read `AGENTS.md` and `AGENTS.local.md`, inspect Git status and recent history, and identify unpublished work. Preserve other contributors' changes. Confirm which checkout and preview server belong to this site.
 2. Review candidate developments from primary sources. Select items with a concrete reader benefit: a consequential event, an explanation of evidence, a useful released artifact, or a material correction. Skip a thin week instead of filling a quota.
 3. Update or add articles, resource records, and relevant media using the rules below. Link related explanations and resources. Keep one canonical URL per article in each language; a new section or presentation does not require a duplicate page.
@@ -103,6 +105,7 @@ python scripts/build.py
 python scripts/check.py
 python scripts/check_localization.py
 python scripts/check_navigation.py
+python scripts/check_reading_lists.py
 ```
 
 For changes to images, layout, navigation, or resource filtering, use the optional Playwright setup in the [README](../README.md#browser-checks). Reuse an existing preview server when possible; otherwise start one in a separate terminal:

@@ -21,6 +21,7 @@ News and selected resources include locally hosted photographs, project logos, f
 Audit Commons publishes in English (`/`) as its root canonical edition, alongside a Simplified Chinese edition (`/zh/`) powered by non-destructive translation overlays. See the [Localization playbook](docs/localization.md) for data contracts and specifications.
 
 For recurring updates, start with the [Editorial maintenance playbook](docs/maintenance.md).
+The repository-local [weekly-refresh skill](skills/weekly-refresh/SKILL.md) routes weekly editorial work across news, learning, resources, media, and Chinese translation. It is registered in `AGENTS.local.md` and can be invoked by asking for a weekly refresh; it does not install a schedule or enable automatic publication.
 
 ---
 
@@ -59,6 +60,7 @@ Validate source schemas, date formats, internal hyperlinks, in-page fragment tar
 python scripts/check.py
 python scripts/check_localization.py
 python scripts/check_navigation.py
+python scripts/check_reading_lists.py
 ```
 
 The same suite checks search metadata: unique titles and descriptions, canonical URLs, crawler access, article schema consistency, visible breadcrumbs, and resources catalog contracts (including format taxonomy schema validation and a 100-row all-formats fixture test). Setup receipts and the ongoing measurement routine are in [Search visibility](docs/search-visibility.md).
