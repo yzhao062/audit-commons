@@ -37,7 +37,7 @@ Transparency regarding project affiliations is required:
 To propose a benchmark, sandbox, or framework:
 1. Ensure the resource is active, public, and provides primary documentation.
 2. For a new individual entry, read the project's primary documentation and record the date checked (`YYYY-MM-DD`). For a catalog import, record the exact upstream snapshot and the date the entry was checked against that snapshot. A catalog review does not imply a live endpoint check, replicated result, or software test.
-3. Contributions should be submitted via the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository or by emailing [yzhao062@gmail.com](mailto:yzhao062@gmail.com). Submissions in English or Chinese are welcome.
+3. Contributions should be submitted via the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository or by emailing [hello@auditcommons.org](mailto:hello@auditcommons.org). Submissions in English or Chinese are welcome.
 4. For inclusion in `content/resources.json`, entries follow this schema:
 
 ```json

@@ -386,7 +386,8 @@ def render_html_page(
       </div>
 
       <div class="footer-col footer-editorial">
-        <h2>关注与参与</h2>
+        <h2>联系与关注</h2>
+        <p>编辑邮箱<br><a href="mailto:hello@auditcommons.org">hello@auditcommons.org</a></p>
         <ul>
           <li><a href="/zh/about/#contact">联系编辑</a></li>
           <li><a href="/zh/about/#contribute">贡献指南</a></li>
@@ -422,7 +423,8 @@ def render_html_page(
       </div>
 
       <div class="footer-col footer-editorial">
-        <h2>Connect</h2>
+        <h2>Contact &amp; follow</h2>
+        <p>Editorial email<br><a href="mailto:hello@auditcommons.org">hello@auditcommons.org</a></p>
         <ul>
           <li><a href="/about/#contact">Contact the editor</a></li>
           <li><a href="/about/#contribute">Contribution Guide</a></li>
