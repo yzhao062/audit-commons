@@ -1,5 +1,62 @@
 [
   {
+    "slug": "news/anthropic-accenture-embedded-evaluation",
+    "title": "Anthropic names Accenture as an embedded evaluator",
+    "summary": "Anthropic says Faculty, an Accenture business, will evaluate and red-team models with employee-comparable access. Industry standards for evaluator access, funding, and reporting remain unsettled.",
+    "author": "Audit Commons",
+    "published": "2026-09-19",
+    "updated": "2026-09-19",
+    "event_date": "2026-09-18",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Independent evaluation",
+      "Third-party auditing",
+      "Evaluator access",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "https://darioamodei.com/post/we-must-pace-the-frontier"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-accenture-embedded-evaluation/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary sources and does not constitute formal certification or regulatory guidance.",
+    "body_file": "bodies/anthropic-accenture-embedded-evaluation.html",
+    "related_slugs": [
+      "news/frontier-pacing-ceo-statements",
+      "news/anthropic-metr-incident-review",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
+  },
+  {
+    "slug": "news/openai-misalignment-reporting-framework",
+    "title": "OpenAI publishes a framework for reporting model misalignment",
+    "summary": "OpenAI published a disclosure process and six incident reports. The framework makes report fields visible, while company-selected cases do not establish prevalence.",
+    "author": "Audit Commons",
+    "published": "2026-09-19",
+    "updated": "2026-09-19",
+    "event_date": "2026-09-16",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Incident reporting",
+      "Model misalignment",
+      "Disclosure",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://openai.com/index/model-misalignment-reporting-framework/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-misalignment-reporting-framework/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article is an editorial summary of the linked primary source and does not constitute formal certification or regulatory guidance.",
+    "body_file": "bodies/openai-misalignment-reporting-framework.html",
+    "related_slugs": [
+      "news/openai-cybersecurity-rl-pause",
+      "news/frontier-pacing-ceo-statements",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
+  },
+  {
     "slug": "news/frontier-pacing-ceo-statements",
     "title": "AI lab leaders call for slower development: statements, actions, and open questions",
     "summary": "A September exchange about frontier AI pacing raises questions about evaluator access and accountability. We separate executive statements from documented lab actions.",

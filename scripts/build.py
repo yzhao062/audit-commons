@@ -938,7 +938,7 @@ def build_resources_page(
         eyebrow = "目录"
         heading = "AI 审计资源库"
         page_lead = "用于研究和审计 AI 系统的学术论文、实用工具、基准评测、数据集与规范标准。"
-        notice_html = '<p>改编自 <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>。收录条目描述沿用对应目录；收录并不代表对相关成果进行独立评测。各条目均记录了其来源与审核日期。<a href="/zh/about/#contribute">推荐资源或提交修正</a>。</p>'
+        notice_html = '<p>资源来自 <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>，该代码仓库也是提交通道。合并到其中的条目会在下一次经过审核的目录更新中导入，因此同时出现在 GitHub 清单和本网站。收录不代表对相关成果进行独立评测。各条目均记录了来源与审核日期。<a href="/zh/about/#contribute">推荐资源或提交修正</a>。</p>'
         format_region_label = "格式筛选"
         format_tablist_label = "按格式筛选资源"
         search_label = "搜索资源"
@@ -955,7 +955,7 @@ def build_resources_page(
         eyebrow = "Catalog"
         heading = "AI auditing library"
         page_lead = "Papers, tools, benchmarks, datasets, and standards for studying and auditing AI systems."
-        notice_html = '<p>Adapted from <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>. Descriptions follow the linked catalog; inclusion is not an independent evaluation of the work. Each entry records its source and review date. <a href="/about/#contribute">Suggest a resource or correction</a>.</p>'
+        notice_html = '<p>Resources come from <a href="https://github.com/yzhao062/awesome-auditable-ai">Awesome Auditable AI</a>, which is also the submission channel. Entries merged there enter the next reviewed catalog refresh, so they appear in both the GitHub list and this site. Inclusion does not constitute an independent evaluation. Each entry records its source and review date. <a href="/about/#contribute">Suggest a resource or correction</a>.</p>'
         format_region_label = "Format filter"
         format_tablist_label = "Filter resources by format"
         search_label = "Search resources"

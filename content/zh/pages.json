@@ -1,4 +1,32 @@
 {
+  "news/anthropic-accenture-embedded-evaluation": {
+    "title": "Anthropic 指定 Accenture 担任嵌入式评估机构",
+    "summary": "Anthropic 表示，Accenture 旗下的 Faculty 将在接近员工级别的访问条件下开展模型评估与红队测试。业界尚未形成有关评估机构访问权限、资金安排和报告的统一标准。",
+    "topics": [
+      "Anthropic",
+      "独立评估",
+      "第三方审计",
+      "评估机构访问权限",
+      "治理"
+    ],
+    "body_file": "zh/bodies/anthropic-accenture-embedded-evaluation.html",
+    "source_sha256": "d64948b6ea9611e887f78ca326d374c63894adafacd8993a865e8ee025173365",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结，不构成正式认证或监管指导。"
+  },
+  "news/openai-misalignment-reporting-framework": {
+    "title": "OpenAI 发布模型错位行为报告框架",
+    "summary": "OpenAI 发布了一套披露流程及六份事件报告。该框架明确了报告字段，但由公司选择的案例无法说明此类行为的发生率。",
+    "topics": [
+      "OpenAI",
+      "事件报告",
+      "模型错位行为",
+      "信息披露",
+      "治理"
+    ],
+    "body_file": "zh/bodies/openai-misalignment-reporting-framework.html",
+    "source_sha256": "8661d290b527f4b2177aafe1d047a736ede87c16f8ec4934576f821c21474b16",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文是对所链接一手资料的编辑总结，不构成正式认证或监管指导。"
+  },
   "news/frontier-pacing-ceo-statements": {
     "title": "AI 实验室负责人呼吁放缓开发节奏：公开声明、实际行动与待解问题",
     "summary": "九月份关于前沿 AI 发展节奏的一场公开讨论引发了有关评估机构准入与问责的疑问。我们将高管公开声明与已有据可查的实验室行动区分开来。",
@@ -86,7 +114,7 @@
       "贡献指南"
     ],
     "body_file": "zh/bodies/about.html",
-    "source_sha256": "2579ce991a70b8f0aa451eab35acf24388801b500994687c49bff311edd2c3e4",
+    "source_sha256": "906040efa8ce7288237b7c64dc0e3c77ae9941a635b98293bd3da10bc0350ac0",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。它不代表任何商业财团或认证机构。"
   },
   "news/optstop-bayesian-early-stopping": {

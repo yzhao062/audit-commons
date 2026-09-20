@@ -336,6 +336,8 @@
     }
   },
   "articles": {
+    "news/anthropic-accenture-embedded-evaluation": "ai-leaders-2023",
+    "news/openai-misalignment-reporting-framework": "sam-altman",
     "news/frontier-pacing-ceo-statements": "ai-leaders-2023",
     "news/anthropic-metr-incident-review": "metr",
     "news/openai-cybersecurity-rl-pause": "sam-altman",
