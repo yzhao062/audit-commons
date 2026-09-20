@@ -54,10 +54,10 @@ The publication maintains an agreed four-item primary navigation across English 
 For an agent-led refresh, use the repository-local [weekly-refresh skill](../skills/weekly-refresh/SKILL.md), registered in `AGENTS.local.md`. For example: "Run weekly-refresh for the past seven days; update worthwhile news and resources in English and Chinese, then validate the local changes." The skill routes candidates to the appropriate content type and loads the detailed guides only when needed. It is a reusable manual workflow; no scheduled task has been enabled.
 
 1. Read `AGENTS.md` and `AGENTS.local.md`, inspect Git status and recent history, and identify unpublished work. Preserve other contributors' changes. Confirm which checkout and preview server belong to this site.
-2. Review candidate developments from primary sources. Select items with a concrete reader benefit: a consequential event, an explanation of evidence, a useful released artifact, or a material correction. Skip a thin week instead of filling a quota.
+2. Start resource discovery from Awesome Auditable AI and compare parsed catalog records with the pinned snapshot. Use low-cost `/prun` units for independent catalog, official-news, and research-artifact discovery. Select items with a concrete reader benefit: a consequential event, an explanation of evidence, a useful released artifact, or a material correction. Skip a thin week instead of filling a quota.
 3. Update or add articles, resource records, and relevant media using the rules below. Link related explanations and resources. Keep one canonical URL per article in each language; a new section or presentation does not require a duplicate page.
 4. Build and validate the changed source. For visual or interactive changes, inspect the rendered pages and run browser checks. Review the homepage as well as the page edited, because lead selection and shared components affect both.
-5. Complete any requested independent review on the actual final changes. Record actionable feedback and its disposition. Repeat affected checks after fixes; an earlier passing report does not certify a later revision.
+5. Before publishing a weekly refresh, stage the intended paths and run `/vet both` sequentially, using Codex and Agy on the same final batch. Record actionable feedback and its disposition. Repeat affected checks after fixes; an earlier passing report does not certify a later revision.
 6. Prepare a scoped diff and publish only with explicit authorization. Then verify the deployment and the changed public pages. Record the outcome using the template below.
 
 This is a manual workflow, not an installed recurring job or an authorization to send email or publish future changes.
@@ -117,7 +117,7 @@ python scripts/browser_check.py --base-url http://127.0.0.1:8765
 
 Use the actual server port if different. Inspect desktop and narrow mobile layouts, image decoding, captions and credit links, long titles, and overflow. For resource interactions, include combined filters, URL state, keyboard use, and reading without JavaScript. For documentation-only changes, check the diff, referenced paths, and commands; rerunning browser tests is unnecessary unless site behavior changed.
 
-When Claude and Agy reviews are requested, use their available review channels and disclose an unavailable reviewer. Do not label a self-review as an independent review. Keep review scratch files, browser captures, credentials, and private account details outside published output.
+For the weekly-refresh prepublication gate, `/vet both` means Codex and Agy. Dispatch them sequentially, use their available review channels, and disclose an unavailable reviewer. Do not label a self-review as an independent review. Keep review scratch files, browser captures, credentials, and private account details outside published output.
 
 Before release, inspect both staged and unstaged changes, stage only intended paths, and run `git diff --check` plus `git diff --cached --check`. Show the exact commit and push commands and obtain explicit authorization when it has not already been given for that scope. Verify the actual branch, upstream, and remote; do not assume the local branch is named `main`. Reconcile remote advances without force-pushing unrelated work.
 
