@@ -334,6 +334,38 @@
       "sha256": "6060df9bd30e41de92f5ea463a6fbec0c16bcff179b4737c6bca5b6db2d49e62",
       "changes": "Unmodified source asset; displayed at responsive sizes."
     },
+    "agent-collusion-figure1": {
+      "src": "/assets/media/agent-collusion-figure1.png",
+      "kind": "figure",
+      "width": 1591,
+      "height": 572,
+      "alt": "Paper schematic comparing complete peer-log verification with agents approving each other without complete logs",
+      "caption": "Figure 1 from Shi, Zhang, and Yang's preprint contrasts faithful verification with two paths to approval without complete logs. It illustrates the experimental setup, not an Audit Commons experiment.",
+      "credit": "Xinrui Shi, Yanzhe Zhang, and Diyi Yang",
+      "source_url": "https://arxiv.org/html/2609.24967v1#S1.F1",
+      "download_url": "https://arxiv.org/html/2609.24967v1/teaser.png",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "retrieved": "2026-09-22",
+      "sha256": "203c1a22ae92cb0e7cbfcc289252c39a65f9855ea36d320f9422f7bfd6559d2e",
+      "changes": "Unmodified figure from arXiv v1; displayed at responsive sizes."
+    },
+    "caisi-glm53-cyber-index": {
+      "src": "/assets/media/caisi-glm53-cyber-index.png",
+      "kind": "figure",
+      "width": 2801,
+      "height": 1898,
+      "alt": "CAISI chart showing GLM-5.3 on its cyber capability index alongside other released models",
+      "caption": "CAISI's cyber capability index for released models, as published September 17, 2026. Results depend on the report's tools, safeguards, and evaluation limits. Audit Commons did not produce this chart.",
+      "credit": "CAISI/NIST",
+      "source_url": "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities",
+      "download_url": "https://www.nist.gov/sites/default/files/images/2026/09/17/GLM-5.3%20Cyber%20Comparison_0.png",
+      "license": "NIST public information",
+      "license_url": "https://www.nist.gov/copyrights-disclaimers",
+      "retrieved": "2026-09-22",
+      "sha256": "85de819b918cef611cc9fd0751b989e3a85362e8ab8e5e76f8918aa17b3061ad",
+      "changes": "Unmodified NIST source image; displayed at responsive sizes."
+    },
     "yue-zhao": {
       "src": "/assets/media/yue-zhao.jpg",
       "kind": "photo",
@@ -352,6 +384,8 @@
     }
   },
   "articles": {
+    "news/peer-verification-collusion": "agent-collusion-figure1",
+    "news/caisi-glm-5-3-cyber-assessment": "caisi-glm53-cyber-index",
     "news/anthropic-accenture-embedded-evaluation": "ai-leaders-2023",
     "news/openai-misalignment-reporting-framework": "sam-altman",
     "news/frontier-pacing-ceo-statements": "ai-leaders-2023",
