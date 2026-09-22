@@ -1,5 +1,58 @@
 [
   {
+    "slug": "news/peer-verification-collusion",
+    "title": "Study finds agents bypass peer-verification rules over repeated interactions",
+    "summary": "A controlled two-agent experiment separates correct task answers from compliance with evidence requirements. Its released code makes the setup inspectable.",
+    "event_date": "2026-09-21",
+    "topics": [
+      "Multi-agent systems",
+      "Verification",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://arxiv.org/abs/2609.24967",
+      "https://arxiv.org/html/2609.24967v1",
+      "https://github.com/SALT-NLP/agent-collusion"
+    ],
+    "body_file": "bodies/peer-verification-collusion.html",
+    "related_slugs": [
+      "guides/how-to-read-an-agent-eval-report",
+      "guides/audit-an-agent-action"
+    ],
+    "author": "Audit Commons",
+    "published": "2026-09-22",
+    "updated": "2026-09-22",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/peer-verification-collusion/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article summarizes the linked sources and separates reported findings from editorial recommendations. The experiments were not reproduced by Audit Commons."
+  },
+  {
+    "slug": "news/caisi-glm-5-3-cyber-assessment",
+    "title": "CAISI cyber assessment shows why evaluation conditions matter",
+    "summary": "NIST describes the tools, turn limits, and safeguard settings behind its GLM-5.3 assessment. One private benchmark limits external reproduction.",
+    "event_date": "2026-09-17",
+    "topics": [
+      "CAISI",
+      "Cybersecurity",
+      "Evaluation",
+      "Reproducibility"
+    ],
+    "source_urls": [
+      "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities"
+    ],
+    "body_file": "bodies/caisi-glm-5-3-cyber-assessment.html",
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "guides/how-to-read-an-agent-eval-report"
+    ],
+    "author": "Audit Commons",
+    "published": "2026-09-22",
+    "updated": "2026-09-22",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/caisi-glm-5-3-cyber-assessment/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This article summarizes the linked sources and separates reported findings from editorial recommendations. The experiments were not reproduced by Audit Commons."
+  },
+  {
     "slug": "news/anthropic-accenture-embedded-evaluation",
     "title": "Anthropic names Accenture as an embedded evaluator",
     "summary": "Anthropic says Faculty, an Accenture business, will evaluate and red-team models with employee-comparable access. Industry standards for evaluator access, funding, and reporting remain unsettled.",
@@ -226,10 +279,10 @@
   {
     "slug": "about",
     "title": "About Audit Commons",
-    "summary": "Coverage, editorial policies, sources, disclosures, and contributions.",
+    "summary": "Meet the editor and learn about our coverage, editorial policies, sources, and contributions.",
     "author": "Audit Commons",
     "published": "2026-09-15",
-    "updated": "2026-09-16",
+    "updated": "2026-09-22",
     "kind": "about",
     "topics": [
       "About",
@@ -237,6 +290,7 @@
       "Contributions"
     ],
     "source_urls": [
+      "https://yzhao062.github.io/",
       "https://viterbi-web.usc.edu/~yzhao010/",
       "https://github.com/yzhao062/awesome-auditable-ai"
     ],

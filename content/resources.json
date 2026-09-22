@@ -4438,5 +4438,58 @@
     "formats": [
       "Tool"
     ]
+  },
+  {
+    "id": "agent-collusion",
+    "name": "Emergent Collusion in Long-Horizon LLM Agent Interaction",
+    "category": "Evaluation",
+    "summary": "A preprint studying repeated peer verification under restricted evidence exchange. Code and task inputs are public; a separate data release is pending. Results concern a controlled two-agent setting.",
+    "url": "https://arxiv.org/abs/2609.24967",
+    "owner": "Xinrui Shi, Yanzhe Zhang, and Diyi Yang",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2609.24967",
+      "https://github.com/SALT-NLP/agent-collusion"
+    ],
+    "checked": "2026-09-22",
+    "format": "Paper",
+    "formats": [
+      "Paper"
+    ],
+    "venue": "Preprint (2026)",
+    "source_section": "Failure Attribution and Diagnosis",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/SALT-NLP/agent-collusion"
+      }
+    ]
+  },
+  {
+    "id": "mcp-granite",
+    "name": "MCP-GRANITE: Tool-Interface Granularity Benchmark",
+    "category": "Evaluation",
+    "summary": "Tests MCP tool-interface granularity across edge scenarios. The repository includes scenarios and one sample run; full experiment outputs are pending. Its evaluator checks answer strings rather than final simulator state.",
+    "url": "https://arxiv.org/abs/2609.24161",
+    "owner": "Demetris Paschalides, Moysis Symeonides, George Pallis, and Marios D. Dikaiakos",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2609.24161",
+      "https://github.com/dpasch01/mcp-granite"
+    ],
+    "checked": "2026-09-22",
+    "format": "Benchmark",
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ],
+    "venue": "MASCOTS 2026 (author-reported)",
+    "source_section": "Datasets and Benchmarks",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/dpasch01/mcp-granite"
+      }
+    ]
   }
 ]

@@ -1162,6 +1162,13 @@ def run_resources_contract_tests(repo_root: Path, content_dir: Path, assets_dir:
         shutil.copy2(content_dir / "site.json", fixture_content / "site.json")
         shutil.copy2(content_dir / "pages.json", fixture_content / "pages.json")
         shutil.copytree(content_dir / "bodies", fixture_content / "bodies")
+        media_path = content_dir / "media.json"
+        if media_path.exists():
+            fixture_media = json.loads(media_path.read_text(encoding="utf-8"))
+            fixture_media["resources"] = {}
+            (fixture_content / "media.json").write_text(
+                json.dumps(fixture_media, ensure_ascii=False), encoding="utf-8"
+            )
 
         # Write the 100-row fixture
         (fixture_content / "resources.json").write_text(json.dumps(fixture_resources, indent=2), encoding="utf-8")

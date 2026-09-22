@@ -20,3 +20,9 @@ The initial set is about 3.8 MB in total. Browser verification measured roughly 
 Each image retains its own rights. Repository licenses are recorded from the upstream project; they do not grant ownership of trademarks. Logos and project banners identify the subject of an editorial listing and imply no affiliation or endorsement. Upstream copyright and license notices are retained alongside the assets. These image-specific permissions do not set the license of the Audit Commons website.
 
 The initial set includes licensed archive photographs of Dario Amodei and Sam Altman, NIST campus photography, the METR mark, an author-supplied optstop figure, Inspect's documented log viewer, and project marks or previews for selected resources. The registry is the authoritative per-image provenance record.
+
+## Editor Portrait
+
+The About editor profile uses `assets/media/yue-zhao.jpg`, copied without modification from Yue Zhao's current homepage asset, `images/rsz_300.jpg`, on September 22, 2026. Its actual dimensions are 1024 by 1024 pixels. Yue requested this use; no general reuse license or photographer attribution is inferred.
+
+The `yue-zhao` registry entry records the source and digest. The bilingual About bodies render this image inside the editor card, so it intentionally has no article-lead mapping. Keep their alt text and the Chinese media overlay consistent. The card links to the source homepage for photo credit and preserves the image's square aspect ratio.

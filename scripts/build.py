@@ -881,9 +881,10 @@ def build_resources_page(
 
         # Provenance details
         if locale == "zh":
+            review_basis = "目录快照" if catalog_source else "所链接的原始来源"
             prov_items = [
                 f'<p class="provenance-item"><strong>归属：</strong> {r_owner}</p>',
-                f'<p class="provenance-item"><strong>审核状态：</strong> 于 <time datetime="{r_checked}">{r_checked}</time> 对照目录快照完成核对（外部链接未进行运行时验证）。</p>',
+                f'<p class="provenance-item"><strong>审核状态：</strong> 于 <time datetime="{r_checked}">{r_checked}</time> 对照{review_basis}完成核对（外部链接未进行运行时验证）。</p>',
             ]
             if r_rel == "Maintainer project":
                 prov_items.append('<p class="provenance-item provenance-disclosure"><strong>维护者披露：</strong> 由 Audit Commons 维护者（Yue Zhao）编写或维护。仅因相关性收录，不包含机构背书。</p>')
@@ -896,9 +897,10 @@ def build_resources_page(
                 prov_items.append(f'<p class="provenance-item"><strong>图片：</strong> {media_credit(res_media)}。{escape(res_media["changes"])}</p>')
             prov_toggle = "来源与溯源信息"
         else:
+            review_basis = "catalog snapshot" if catalog_source else "linked primary sources"
             prov_items = [
                 f'<p class="provenance-item"><strong>Attribution:</strong> {r_owner}</p>',
-                f'<p class="provenance-item"><strong>Review status:</strong> Catalog reviewed <time datetime="{r_checked}">{r_checked}</time> against catalog snapshot (external links are not runtime verified).</p>',
+                f'<p class="provenance-item"><strong>Review status:</strong> Catalog reviewed <time datetime="{r_checked}">{r_checked}</time> against {review_basis} (external links are not runtime verified).</p>',
             ]
             if r_rel == "Maintainer project":
                 prov_items.append('<p class="provenance-item provenance-disclosure"><strong>Maintainer disclosure:</strong> Authored or maintained by Audit Commons maintainers (Yue Zhao). Listed for relevance without institutional endorsement.</p>')

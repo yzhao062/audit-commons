@@ -333,6 +333,22 @@
       "retrieved": "2026-09-16",
       "sha256": "6060df9bd30e41de92f5ea463a6fbec0c16bcff179b4737c6bca5b6db2d49e62",
       "changes": "Unmodified source asset; displayed at responsive sizes."
+    },
+    "yue-zhao": {
+      "src": "/assets/media/yue-zhao.jpg",
+      "kind": "photo",
+      "width": 1024,
+      "height": 1024,
+      "alt": "Portrait of Yue Zhao",
+      "caption": "Portrait from Yue Zhao's personal homepage.",
+      "credit": "Yue Zhao's personal homepage",
+      "source_url": "https://yzhao062.github.io/",
+      "download_url": "https://yzhao062.github.io/images/rsz_300.jpg",
+      "license": "Used at the subject's request; no general reuse license stated",
+      "license_url": "https://yzhao062.github.io/",
+      "retrieved": "2026-09-22",
+      "sha256": "d5754f56d8f550a9eee4344fcced0a4474d59a804467b49d6eef86f3c1407e00",
+      "changes": "Unmodified homepage asset; displayed at responsive sizes in the About editor profile."
     }
   },
   "articles": {

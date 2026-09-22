@@ -2258,6 +2258,46 @@ p.learn-selections-bridge {
   color: var(--color-text);
 }
 
+.editor-profile {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.editor-portrait { margin: 0; }
+.editor-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.editor-portrait figcaption {
+  margin-top: .5rem;
+  font-size: .72rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.editor-bio h3 { margin: 0 0 .35rem; }
+.editor-bio .editor-role {
+  margin: 0 0 1rem;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.editor-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  font-size: .9rem;
+}
+
+@media (max-width: 540px) {
+  .editor-profile { grid-template-columns: 1fr; gap: 1.25rem; }
+  .editor-portrait { width: 128px; }
+}
+
 @media (max-width: 680px) {
   .selection-summary {
     gap: 0.5rem;

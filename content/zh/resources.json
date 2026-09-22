@@ -802,5 +802,13 @@
   "rekor": {
     "summary": "针对已签名软件工件和证明声明的透明度日志服务，构建于仅追加的默克尔日志之上，通过公开 API 提供包含性证明与一致性证明。Sigstore / OpenSSF，采用 Apache-2.0 许可，2020 年至今。",
     "source_sha256": "1be4c50d00c8d7749022d7ba5b74f3b8cd9fde5d21bca23893dfe296cff5499b"
+  },
+  "agent-collusion": {
+    "summary": "一篇研究受限证据交换下反复互审行为的预印本。代码与任务输入已公开，单独的数据发布仍在等待中。结果适用于受控的双智能体设置。",
+    "source_sha256": "b5d6d03c614e5dc45d4ecbc988ff4ca7af80dc3ee4bad041562a99faf1ca518c"
+  },
+  "mcp-granite": {
+    "summary": "在边缘场景中测试 MCP 工具接口粒度。仓库提供场景和一次示例运行，完整实验输出仍待发布。评估器检查答案字符串，而非模拟器的最终状态。",
+    "source_sha256": "99d2846cdd3a17861df8a6001ec4768e0b908a7a4e8374d19b05c8202934100c"
   }
 }

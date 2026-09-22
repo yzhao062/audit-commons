@@ -107,14 +107,14 @@
   },
   "about": {
     "title": "关于 Audit Commons",
-    "summary": "涵盖范围、编辑方针、资料来源、利益披露与贡献指南。",
+    "summary": "认识编辑，了解报道范围、编辑方针、资料来源与贡献方式。",
     "topics": [
       "关于",
       "编辑方针",
       "贡献指南"
     ],
     "body_file": "zh/bodies/about.html",
-    "source_sha256": "906040efa8ce7288237b7c64dc0e3c77ae9941a635b98293bd3da10bc0350ac0",
+    "source_sha256": "41f8a4e6e1aa0ddee084cac9576b0035a9818d4abbdeb1d978dfba6f9ea32103",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。它不代表任何商业财团或认证机构。"
   },
   "news/optstop-bayesian-early-stopping": {
@@ -171,5 +171,30 @@
     "body_file": "zh/bodies/how-to-read-an-agent-eval-report.html",
     "source_sha256": "caa6d5407065966236d85b2501ec5955c4bbc31ba9d13dcd7c0cd0124c52d38a",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本指南提供实用的编辑指导，不构成正式的审计方法学、监管建议或认证框架。"
+  },
+  "news/peer-verification-collusion": {
+    "title": "研究发现：智能体在反复互动中绕过相互核验规则",
+    "summary": "一项双智能体受控实验区分了任务答案正确与遵守证据要求。公开代码允许读者检查实验设置。",
+    "topics": [
+      "多智能体系统",
+      "核验",
+      "审计证据"
+    ],
+    "body_file": "zh/bodies/peer-verification-collusion.html",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文总结所链接的资料，并区分作者报告的结果与编辑建议。本站尚未复现相关实验。",
+    "source_sha256": "f52d48f3e8184df40f99cb5b70df06033a563e4d6ceaca9d929d87cad7f86313"
+  },
+  "news/caisi-glm-5-3-cyber-assessment": {
+    "title": "CAISI 网络安全评估说明：理解分数需要检查实验条件",
+    "summary": "NIST 说明了 GLM-5.3 评估所用的工具、轮次上限与安全防护设置。其中一个私有基准限制了外部复现。",
+    "topics": [
+      "CAISI",
+      "网络安全",
+      "评估",
+      "可复现性"
+    ],
+    "body_file": "zh/bodies/caisi-glm-5-3-cyber-assessment.html",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文总结所链接的资料，并区分作者报告的结果与编辑建议。本站尚未复现相关实验。",
+    "source_sha256": "06801bcef8a09bb698a29f70adb7ae060240f5a1d28eac56653936311bbb96f7"
   }
 }
