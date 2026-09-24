@@ -1,4 +1,18 @@
 {
+  "news/bengio-un-security-council-agent-risks": {
+    "title": "Bengio 在联合国安理会呼吁对前沿 AI 开展独立安全审查",
+    "summary": "在 9 月 23 日的发言中，Yoshua Bengio 主张对前沿 AI 开展独立安全审查、报告事件并实行许可制度。所引资料未能证明安理会已采纳这些建议。",
+    "topics": [
+      "前沿 AI",
+      "AI 智能体",
+      "独立评估",
+      "事件报告",
+      "治理"
+    ],
+    "body_file": "zh/bodies/bengio-un-security-council-agent-risks.html",
+    "source_sha256": "b8b3886346958a1ce4ddb992b024f090a8b8c350fb4ebfc372fb8fd4cd35303d",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文概述所链接资料，并将政策建议归于 Bengio 本人。Audit Commons 未独立调查其发言中提及的事件。"
+  },
   "news/anthropic-accenture-embedded-evaluation": {
     "title": "Anthropic 指定 Accenture 担任嵌入式评估机构",
     "summary": "Anthropic 表示，Accenture 旗下的 Faculty 将在接近员工级别的访问条件下开展模型评估与红队测试。业界尚未形成有关评估机构访问权限、资金安排和报告的统一标准。",

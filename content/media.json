@@ -366,6 +366,22 @@
       "sha256": "85de819b918cef611cc9fd0751b989e3a85362e8ab8e5e76f8918aa17b3061ad",
       "changes": "Unmodified NIST source image; displayed at responsive sizes."
     },
+    "yoshua-bengio-iclr-2025": {
+      "src": "/assets/media/yoshua-bengio-iclr-2025.jpg",
+      "kind": "photo",
+      "width": 1280,
+      "height": 853,
+      "alt": "Yoshua Bengio speaking behind a laptop at ICLR 2025",
+      "caption": "Yoshua Bengio speaking at ICLR in Singapore, April 2025. Archive photograph, not the September 2026 Security Council meeting.",
+      "credit": "Xuthoria / Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Yoshua_Bengio_10.jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/ICLR_2025_-_Yoshua_Bengio_10.jpg/1280px-ICLR_2025_-_Yoshua_Bengio_10.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "retrieved": "2026-09-23",
+      "sha256": "6bb28a077b3baaec8dd338746b3924d4c7130665699fae97d41aaaa4228375e8",
+      "changes": "Unmodified Wikimedia-generated 1280-pixel thumbnail; displayed at responsive sizes."
+    },
     "yue-zhao": {
       "src": "/assets/media/yue-zhao.jpg",
       "kind": "photo",
@@ -384,6 +400,7 @@
     }
   },
   "articles": {
+    "news/bengio-un-security-council-agent-risks": "yoshua-bengio-iclr-2025",
     "news/peer-verification-collusion": "agent-collusion-figure1",
     "news/caisi-glm-5-3-cyber-assessment": "caisi-glm53-cyber-index",
     "news/anthropic-accenture-embedded-evaluation": "ai-leaders-2023",
