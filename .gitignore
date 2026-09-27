@@ -5,3 +5,8 @@ Review-*.md
 .agent-config/
 .claude/
 AGENTS.md
+agent-config.local.yaml
+/CLAUDE.md
+/agents/codex.md
+todo/*
+!todo/README.md
