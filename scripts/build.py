@@ -586,8 +586,13 @@ def build_homepage(
 
     editorial_kinds_priority = ["feature", "news", "guide", "introduction", "release"]
     editorial_pages = [p for p in pages if p.get("kind") not in ("about",)]
-    lead_page = None
+    lead_slug = site_data.get("homepage_lead")
+    lead_page = next((p for p in editorial_pages if p["slug"] == lead_slug), None)
+    if lead_slug and lead_page is None:
+        raise ValueError(f"Unknown editorial homepage lead: {lead_slug}")
     for kind in editorial_kinds_priority:
+        if lead_page:
+            break
         candidates = sorted(
             [p for p in editorial_pages if p.get("kind") == kind],
             key=lambda p: p.get("published", ""),
@@ -1567,9 +1572,9 @@ def build_article_page(
 
     sources_section = ""
     if locale == "zh":
-        source_heading = "原始来源" if kind in ("release", "news") else "相关资源"
+        source_heading = "资料来源" if kind in ("release", "news") else "相关资源"
     else:
-        source_heading = "Primary sources" if kind in ("release", "news") else "Related resources"
+        source_heading = "Sources" if kind in ("release", "news") else "Related resources"
 
     if source_urls:
         items = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
@@ -1699,8 +1704,9 @@ def build_article_page(
             '@type': 'ImageObject', 'url': base_url.rstrip('/') + media['src'],
             'width': media['width'], 'height': media['height'],
             'caption': media['caption'], 'creditText': media['credit'],
-            'license': media['license_url'],
         }
+        if not media.get('license_pending'):
+            json_ld['image']['license'] = media['license_url']
 
     return render_html_page(
         title=title,
@@ -1940,9 +1946,9 @@ def build_atom_feed(
         sources_html = ""
         if source_urls:
             s_list = "".join(f'<li><a href="{escape(u)}">{escape(u)}</a></li>' for u in source_urls)
-            source_label = "原始来源" if locale == "zh" and p.get("kind") in ("release", "news") else (
+            source_label = "资料来源" if locale == "zh" and p.get("kind") in ("release", "news") else (
                 "相关资源" if locale == "zh" else (
-                    "Primary sources" if p.get("kind") in ("release", "news") else "Related resources"
+                    "Sources" if p.get("kind") in ("release", "news") else "Related resources"
                 )
             )
             sources_html = f"<p><strong>{source_label}:</strong></p><ul>{s_list}</ul>"

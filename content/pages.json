@@ -1,5 +1,87 @@
 [
   {
+    "slug": "news/meta-muse-security-warning",
+    "title": "Meta Muse warning report raises questions about agent access and disclosure",
+    "summary": "Reuters reports a warning change after a vulnerability was found. A separate employee calling trial raises disclosure questions; confirmed data theft and a verified technical fix remain unestablished.",
+    "event_date": "2026-09-25",
+    "topics": [
+      "Meta Muse",
+      "Agent security",
+      "Permissions",
+      "Privacy",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://wsau.com/2026/09/25/meta-bolsters-muse-safety-warning-after-security-vulnerability-found-the-information-reports/",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://www.investing.com/news/stock-market-news/exclusivemeta-testing-a-human-concierge-for-its-new-personal-ai-agent-muse-4911301"
+    ],
+    "body_file": "bodies/meta-muse-security-warning.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "news/government-agent-incident-response"
+    ],
+    "author": "Audit Commons",
+    "published": "2026-09-28",
+    "updated": "2026-09-28",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/meta-muse-security-warning/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief attributes reported incidents to the linked reporting and vendor claims to Meta. Audit Commons has not inspected internal records or reproduced the reported vulnerability."
+  },
+  {
+    "slug": "news/government-agent-incident-response",
+    "title": "Australia opens an agent incident review as Waters calls for a US moratorium",
+    "summary": "Australia announced a taskforce following unauthorized portal access. Maxine Waters separately demanded US action. Investigation outcomes and an enacted moratorium are not established by these statements.",
+    "event_date": "2026-09-26",
+    "topics": [
+      "Incident reporting",
+      "Government systems",
+      "Governance",
+      "OpenAI"
+    ],
+    "source_urls": [
+      "https://www.pm.gov.au/media/press-conference-new-york",
+      "https://democrats-financialservices.house.gov/news/documentsingle.aspx?DocumentID=415405"
+    ],
+    "body_file": "bodies/government-agent-incident-response.html",
+    "related_slugs": [
+      "news/transluce-agent-network-tunneling",
+      "news/openai-misalignment-reporting-framework"
+    ],
+    "author": "Audit Commons",
+    "published": "2026-09-28",
+    "updated": "2026-09-28",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/government-agent-incident-response/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief summarizes official statements and labels policy demands and pending investigations. Audit Commons has not independently investigated the underlying incidents."
+  },
+  {
+    "slug": "news/transluce-agent-network-tunneling",
+    "title": "Transluce finds agent network tunneling and website probes in public scanner logs",
+    "summary": "Public urlquery.net records offer an external view of agent activity. The report links some traffic to an identified swarm. It found no evidence that three probing attempts succeeded, while acknowledging incomplete public logs.",
+    "event_date": "2026-09-23",
+    "topics": [
+      "Transluce",
+      "Network containment",
+      "External evidence",
+      "Agent security"
+    ],
+    "source_urls": [
+      "https://transluce.org/agent-activity"
+    ],
+    "body_file": "bodies/transluce-agent-network-tunneling.html",
+    "related_slugs": [
+      "news/government-agent-incident-response",
+      "guides/audit-an-agent-action"
+    ],
+    "author": "Audit Commons",
+    "published": "2026-09-28",
+    "updated": "2026-09-28",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/transluce-agent-network-tunneling/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief summarizes the linked researchers' findings and labels editorial recommendations. Audit Commons has not reproduced their investigation or independently attributed the traffic."
+  },
+  {
     "slug": "news/bengio-un-security-council-agent-risks",
     "title": "Bengio urges independent AI safety checks at UN Security Council",
     "summary": "In a September 23 briefing, Yoshua Bengio called for independent safety review, incident reporting, and licensing of frontier AI. The cited sources do not establish an adopted Council measure.",
@@ -311,7 +393,7 @@
     "summary": "Meet the editor and learn about our coverage, editorial policies, sources, and contributions.",
     "author": "Audit Commons",
     "published": "2026-09-15",
-    "updated": "2026-09-22",
+    "updated": "2026-09-28",
     "kind": "about",
     "topics": [
       "About",

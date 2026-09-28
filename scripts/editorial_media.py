@@ -12,6 +12,8 @@ import xml.etree.ElementTree as ET
 def bind_media(content_dir, assets_dir, pages, resources):
     manifest_path = content_dir / 'media.json'
     if not manifest_path.exists():
+        if any(page.get('kind') == 'news' for page in pages):
+            raise ValueError('News articles require registered lead images in media.json')
         return []
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     assets = manifest['assets']
@@ -24,6 +26,8 @@ def bind_media(content_dir, assets_dir, pages, resources):
                 raise ValueError(f'Media {key}: missing {field}')
         if media['kind'] not in {'photo', 'logo', 'screenshot', 'figure'}:
             raise ValueError(f'Media {key}: unknown kind')
+        if 'license_pending' in media and type(media['license_pending']) is not bool:
+            raise ValueError(f'Media {key}: license_pending must be a boolean')
         for field in ('width', 'height'):
             if type(media.get(field)) is not int or media[field] <= 0:
                 raise ValueError(f'Media {key}: invalid {field}')
@@ -66,6 +70,9 @@ def bind_media(content_dir, assets_dir, pages, resources):
             if record_id not in records or media_id not in assets:
                 raise ValueError(f'Media mapping {section}/{record_id}: unknown record or asset')
             records[record_id]['_media'] = assets[media_id]
+    for page in pages:
+        if page.get('kind') == 'news' and page['slug'] not in manifest['articles']:
+            raise ValueError(f'News article {page["slug"]}: missing registered lead image')
     return sorted(files)
 
 

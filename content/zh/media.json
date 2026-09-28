@@ -118,5 +118,15 @@
     "alt": "Yue Zhao 的肖像",
     "caption": "来自 Yue Zhao 个人主页的肖像。",
     "source_sha256": "b2c51ca0e68f1ae5e834cd74f3644476e3c0f8f85f166f6a45257d3d0529cc5c"
+  },
+  "mark-zuckerberg-f8-2019": {
+    "alt": "Mark Zuckerberg 在 2019 年 4 月的 F8 开发者大会上发言",
+    "caption": "Mark Zuckerberg 出席 2019 年 4 月 30 日的 F8 大会。历史资料照片，并非 2026 年 9 月 Muse 发布或事件的现场。",
+    "source_sha256": "7260acdbfee37d1c98f79047bbdf266c1ace91ca2c8b12b4e7753104b9cd8160"
+  },
+  "transluce-scanner-access": {
+    "alt": "编辑示意图：智能体通过 URL 扫描服务访问目标网站，公开扫描日志提供局部可见性",
+    "caption": "根据 Transluce 报告绘制的编辑示意图：URL 扫描服务可以代智能体发起网络请求，公开扫描日志提供局部视角。这是原理说明，并非实测流量轨迹或原报告图表的复制。",
+    "source_sha256": "da16f4df55efc47bee6dcc844e84f2d9900ac8aab54bccd6c78f54325af172ce"
   }
 }

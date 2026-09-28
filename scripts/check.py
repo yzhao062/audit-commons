@@ -1460,6 +1460,16 @@ def validate_editorial_media(output_dir, content_dir, report):
         expected_image = media['src'] if social_image_eligible(media) else '/assets/social-preview.png'
         if urlparse(og.get('content', '')).path != expected_image:
             report.error(f'{slug}: unexpected article social preview')
+        if media.get('license_pending'):
+            for prefix in ('', 'zh/'):
+                localized = HtmlStructureExtractor()
+                localized.feed((output_dir / prefix / slug / 'index.html').read_text(encoding='utf-8'))
+                for raw in localized.json_ld_scripts:
+                    schema = json.loads(raw)
+                    if schema.get('@type') in {'Article', 'NewsArticle'}:
+                        report.check()
+                        if 'license' in schema.get('image', {}):
+                            report.error(f'{prefix}{slug}: pending image license must be omitted from structured data')
 
 
 def main() -> int:

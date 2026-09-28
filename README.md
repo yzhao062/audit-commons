@@ -12,7 +12,7 @@ The **Learn** section provides a structured, three-step editorial learning path:
 
 Each step pairs clear learning outcomes with realistic reading-versus-activity time estimates, editorial source media, and direct links to foundational catalog resources (such as NIST AI RMF, Inspect, and AgentDojo). Additional guides appear in an additional reading section below the curated path.
 
-The homepage leads with the newest featured analysis, while its news column and Latest index are ordered by publication date. Dates remain visible, and editors should refresh featured coverage as the publication grows.
+The homepage leads with the article selected by `homepage_lead` in `content/site.json`, or with the newest featured analysis when none is selected. Its news column and Latest index are ordered by publication date. Dates remain visible; editors should review the selected lead at each refresh.
 
 The Resources library adapts the companion Awesome Auditable AI catalog into format tabs with topic filters, search, and links to papers, code, and data. All entries remain in the initial HTML for reading without JavaScript. Catalog provenance and the offline refresh procedure are documented in [Resource catalog](docs/resource-catalog.md).
 

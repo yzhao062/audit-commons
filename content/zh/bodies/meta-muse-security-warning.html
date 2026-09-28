@@ -1,0 +1,20 @@
+<section class="section">
+  <h2>漏洞报道仍有证据缺口</h2>
+  <p>据 <a href="https://wsau.com/2026/09/25/meta-bolsters-muse-safety-warning-after-security-vulnerability-found-the-information-reports/">Reuters 2026 年 9 月 25 日报道</a>，一名研究者报告了可能让攻击者访问用户专属云端计算机的漏洞，Meta 正为 Muse 增加更明确的警告。Reuters 引用了 The Information 对内部事件报告的报道。这台计算机可能存有邮件和文件。Meta 未立即回应 Reuters 的置评请求。</p>
+  <p>所引报道支持的是漏洞被报告以及警告发生变化。它没有证明用户数据实际被盗、受影响账户的数量，或技术修复已获验证。Audit Commons 未阅读 The Information 的完整报道、查看内部事件报告或复现该问题。</p>
+</section>
+<section class="section">
+  <h2>Meta 在发布时承诺了什么</h2>
+  <p>Meta 的 <a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">9 月 8 日公告</a>将 Muse 描述为通过已连接服务替用户执行任务的个人智能体。Meta 表示，每名用户都有独立的虚拟机，另设 Sentinel 智能体批准互联网操作，并在敏感操作前检查用户许可。这些是供应商对控制措施的描述。</p>
+  <p>Meta 还预告了 Confidential VM，拟通过加密保护内容，连 Meta 也无法访问。发布公告将其列为后续功能，因此不能假定它已经保护了 9 月 25 日报道所涉及的系统。</p>
+</section>
+<section class="section">
+  <h2>人工协助也需要单独披露</h2>
+  <p>此前，<a href="https://www.investing.com/news/stock-market-news/exclusivemeta-testing-a-human-concierge-for-its-new-personal-ai-agent-muse-4911301">Reuters 9 月 22 日的独家报道</a>介绍了一项员工试用，其中承包人员代替 Muse 完成部分电话任务。报道提到员工的隐私担忧，以及内部暂停该功能的决定。Meta 发言人表示，试用旨在帮助完善公开发布前的保护措施，并承诺进行适当披露。该报道没有证明这种人工协助已面向公众普遍推出。</p>
+  <p>这里补充了此前未覆盖的背景报道。它涉及谁实际执行智能体的任务，与所报道的云端漏洞是两个不同的问题。</p>
+</section>
+<section class="section">
+  <h2>智能体审计应检查什么</h2>
+  <p>我们的编辑建议是逐次检查任务交接中的权限：智能体可以读取什么、哪些外部操作需要批准，以及人工承包人员会收到哪些信息。一份有用的记录应连接请求、批准、接收方和实际操作。警告的措辞与技术控制的有效性，需要分别提供证据。</p>
+  <p>具体方法见<a href="/guides/audit-an-agent-action/">审计智能体行动</a>。后续事件更新应说明受影响版本、攻击条件、修复措施，以及证明修复有效的证据。</p>
+</section>

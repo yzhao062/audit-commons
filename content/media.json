@@ -397,6 +397,39 @@
       "retrieved": "2026-09-22",
       "sha256": "d5754f56d8f550a9eee4344fcced0a4474d59a804467b49d6eef86f3c1407e00",
       "changes": "Unmodified homepage asset; displayed at responsive sizes in the About editor profile."
+    },
+    "mark-zuckerberg-f8-2019": {
+      "src": "/assets/media/mark-zuckerberg-f8-2019.jpg",
+      "kind": "photo",
+      "width": 1280,
+      "height": 854,
+      "alt": "Mark Zuckerberg speaking at the F8 developer conference in April 2019",
+      "caption": "Mark Zuckerberg at F8, April 30, 2019. Archive photograph; not the September 2026 Muse announcement or incident.",
+      "credit": "Anthony Quintano / Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Mark_Zuckerberg_F8_2019_Keynote_(47774202191).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Mark_Zuckerberg_F8_2019_Keynote_%2847774202191%29.jpg/1280px-Mark_Zuckerberg_F8_2019_Keynote_%2847774202191%29.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "retrieved": "2026-09-27",
+      "sha256": "3ca440dada47aa3b116ae7cf160fe526d288aa31e287e0a92a4bd271960b35a5",
+      "changes": "Unmodified Wikimedia-generated 1280-pixel thumbnail; displayed at responsive sizes."
+    },
+    "transluce-scanner-access": {
+      "src": "/assets/media/transluce-scanner-access.svg",
+      "kind": "figure",
+      "width": 1000,
+      "height": 530,
+      "alt": "Editorial schematic of an agent reaching a target website through a URL scanner, with public scanner logs providing partial visibility",
+      "caption": "Editorial schematic based on the Transluce report: a URL scanner can make network requests on an agent's behalf. Public scanner logs offer a partial view. This is an explanation, not a measured traffic trace or a reproduced source figure.",
+      "credit": "Audit Commons",
+      "source_url": "https://auditcommons.org/news/transluce-agent-network-tunneling/",
+      "download_url": "https://auditcommons.org/assets/media/transluce-scanner-access.svg",
+      "license": "Original Audit Commons artwork; reuse license pending",
+      "license_url": "https://auditcommons.org/about/#reuse",
+      "retrieved": "2026-09-27",
+      "sha256": "c45ec907c1e898980d672b5d82169707d84fe90949a5b1092e3ee4ce7daba270",
+      "changes": "Original editorial SVG created for this article. No source artwork or quantitative results reproduced.",
+      "license_pending": true
     }
   },
   "articles": {
@@ -413,7 +446,10 @@
     "updates/catchbench-0-1-2": "catchbench",
     "features/benchmark-scores-and-agent-safety": "inspect-viewer",
     "guides/how-to-read-an-agent-eval-report": "inspect-viewer",
-    "guides/audit-an-agent-action": "audit-report"
+    "guides/audit-an-agent-action": "audit-report",
+    "news/meta-muse-security-warning": "mark-zuckerberg-f8-2019",
+    "news/government-agent-incident-response": "sam-altman",
+    "news/transluce-agent-network-tunneling": "transluce-scanner-access"
   },
   "resources": {
     "nist-ai-rmf": "nist",

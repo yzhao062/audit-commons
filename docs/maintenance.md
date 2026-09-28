@@ -6,7 +6,7 @@ This is the repeatable workflow for updating Audit Commons. It records decisions
 
 Readers should immediately recognize a place to learn, follow news, and find useful resources. Lead with identifiable stories, dates, sources, explanations, and a browsable library. Keep subscription invitations quiet and secondary to reading. Avoid a product-style hero, repeated calls to action, promotional claims, or giving maintainer projects disproportionate prominence.
 
-Use visual variety where it adds information: relevant photographs for news, author figures for research explanations, real interface screenshots for guides, and official project marks or previews for resources. A generic diagram does not substitute for a requested news photograph. Text-only entries are appropriate when no relevant, usable image exists. Do not require a picture on every card.
+Every news article requires a relevant lead image. Use source photographs, author figures, real screenshots, or official marks with verified rights. If suitable source imagery is unavailable, add a clearly labeled editorial illustration that explains the story. A generic diagram does not substitute for a requested news photograph. Other article types and resource cards may remain text-only.
 
 ## Where updates belong
 
@@ -29,6 +29,8 @@ Read [contribution rules](../CONTRIBUTING.md) before editing. The detailed refer
 ## Primary navigation and section roles
 
 The publication maintains an agreed four-item primary navigation across English and Chinese: **Latest**, **Learn**, **Resources**, and **About** (Chinese: **最新**, **学习**, **资源**, **关于**).
+
+Set `homepage_lead` in `content/site.json` to an existing editorial slug when selecting the homepage headline. Both language editions use that selection. The build rejects an unknown or About slug. Without a selection, the existing article-kind priority applies. Selecting a lead does not change its publication date or its position in Latest.
 
 - **Latest** (`/latest/`, `/zh/latest/`): Chronological stream of all published editorial items (news briefs, deep analysis, practical guides, and release updates). Features are integrated under Latest as **Analysis** (**深度解读**); existing `/features/` and `/zh/features/` URLs remain accessible as legacy topic archives. The stream includes accessible, progressively enhanced filter controls (`All`, `News`, `Analysis`, `Guides`, `Releases`) that persist `?kind=...` query state across reloads and language switches, while falling back gracefully to a complete readable list without JavaScript. Deep article breadcrumbs point back to Latest.
 - **Learn** (`/learn/`, `/zh/learn/`): A structured, three-step editorial learning path replacing the earlier flat list:

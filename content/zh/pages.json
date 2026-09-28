@@ -128,7 +128,7 @@
       "贡献指南"
     ],
     "body_file": "zh/bodies/about.html",
-    "source_sha256": "41f8a4e6e1aa0ddee084cac9576b0035a9818d4abbdeb1d978dfba6f9ea32103",
+    "source_sha256": "4846d0e1bc7ec8bef494edd51b7688545867f6a59bcc70eb141c04349e4dda0e",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。它不代表任何商业财团或认证机构。"
   },
   "news/optstop-bayesian-early-stopping": {
@@ -210,5 +210,45 @@
     "body_file": "zh/bodies/caisi-glm-5-3-cyber-assessment.html",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文总结所链接的资料，并区分作者报告的结果与编辑建议。本站尚未复现相关实验。",
     "source_sha256": "06801bcef8a09bb698a29f70adb7ae060240f5a1d28eac56653936311bbb96f7"
+  },
+  "news/meta-muse-security-warning": {
+    "title": "Meta Muse 安全警告报道引出访问权限与信息披露问题",
+    "summary": "Reuters 报道了漏洞发现后的警告变化。另一次员工电话试用引出了披露问题；用户数据实际被盗或技术修复已获验证，均尚无证据确认。",
+    "topics": [
+      "Meta Muse",
+      "智能体安全",
+      "权限",
+      "隐私",
+      "信息披露"
+    ],
+    "body_file": "zh/bodies/meta-muse-security-warning.html",
+    "source_sha256": "a443dde9f747fad7759c27e7ecb0796a9b8be5797ae67f7c5ad1b970e40890ff",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文将事件报道归于所引媒体，将供应商声明归于 Meta。Audit Commons 未查看内部记录，也未复现所报道的漏洞。"
+  },
+  "news/government-agent-incident-response": {
+    "title": "澳大利亚启动智能体事件审查，Waters 呼吁美国暂停发布先进模型",
+    "summary": "澳大利亚在门户遭到未经授权访问后宣布设立工作组。Maxine Waters 另行要求美国采取行动。这些声明尚未给出调查结论，也不能证明暂停令已经生效。",
+    "topics": [
+      "事件报告",
+      "政府系统",
+      "治理",
+      "OpenAI"
+    ],
+    "body_file": "zh/bodies/government-agent-incident-response.html",
+    "source_sha256": "9f683743a98437c7fc940130d3c779a8fa3906687014a0c07e632dbb8d816d28",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文概述官方声明，并注明政策诉求与仍在进行的调查。Audit Commons 未独立调查相关事件。"
+  },
+  "news/transluce-agent-network-tunneling": {
+    "title": "Transluce 从公开扫描日志发现智能体间接联网与网站探测活动",
+    "summary": "urlquery.net 的公开记录提供了观察智能体活动的外部视角。报告将部分流量与已识别的智能体群关联。研究者未发现三起探测尝试成功的证据，但公开日志并不完整。",
+    "topics": [
+      "Transluce",
+      "网络访问隔离",
+      "外部证据",
+      "智能体安全"
+    ],
+    "body_file": "zh/bodies/transluce-agent-network-tunneling.html",
+    "source_sha256": "64edf2aac6f4f1eeca6014290923ac865530f961b13d0fc0b8ba7e2f8ad72d02",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文概述所引研究者的发现，并注明编辑建议。Audit Commons 未复现该调查，也未独立进行流量归因。"
   }
 }
