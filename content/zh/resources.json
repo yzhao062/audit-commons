@@ -97,7 +97,7 @@
   },
   "who-when-pro": {
     "summary": "构建了 Who&When Pro，包含跨 3 种模态和 26 个源基准的 12,326 条带黄金标注的失败轨迹，通过精准重放成功前缀后注入单点故障构建而成。",
-    "source_sha256": "77749641d1cb47fa2dacb6223e75483ad162aa78ecdd6417083e0e828e6dca1c"
+    "source_sha256": "1407630ff528ecb312964d7208e6de01ad2d442c78619251fe79e0e584dee578"
   },
   "where-llm-agents-fail-and-how-they-can-learn-from": {
     "summary": "提出了涵盖记忆、反思、规划、行动和系统操作的 AgentErrorTaxonomy，发布了来自 ALFWorld、GAIA 和 WebShop 的标注失败轨迹数据集 AgentErrorBench，并报告其 AgentDebug 根因调试器的全对准确率提升了 24%。",
@@ -696,8 +696,8 @@
     "source_sha256": "f53409cdcdf887a3be7015449c1274fdead720d94e38907a202ede4f50e604db"
   },
   "orcareplay": {
-    "summary": "在脚手架底层记录编程智能体的运行，将模型调用、每轮工作区变更以及可选的 MCP 帧整合在同一时间轴上。随后可对照记录的模型回复重新执行智能体并报告偏差，或从文件系统检查点分叉运行至不同模型进行对比。采用 Apache-2.0 许可，2026 年至今。",
-    "source_sha256": "b12143eb3c4d5b76e0a08c7ab9a9e90ccaca5af31726b4f00744058cfee3d11a"
+    "summary": "在脚手架底层记录编程智能体的运行，将模型调用、每轮工作区变更以及可选的 MCP 帧整合在同一时间轴上。随后可对照记录的模型回复重新执行智能体并报告偏差，或从文件系统检查点分叉运行至不同模型进行对比。采用 Apache-2.0 许可，2026 年至今。配套档案 OrcaPromptVault 收录运行前的 system/developer 指令及工具和 skill 的 schema，并标记内容来自直接捕获还是模型自述。",
+    "source_sha256": "ea57d3116390a6e6dc1c28ffdd9e39a534ad42ea2e2c24c2612eea7fb8b244ac"
   },
   "plumb-line": {
     "summary": "零依赖的溯源原语，通过派生值传播模拟或低置信度污点标记，并配有五个 Claude Code 技能以审计代码仓中未经核实的断言与源头真实性差距。采用 Apache-2.0 许可，2026 年至今。",
@@ -810,5 +810,13 @@
   "mcp-granite": {
     "summary": "在边缘场景中测试 MCP 工具接口粒度。仓库提供场景和一次示例运行，完整实验输出仍待发布。评估器检查答案字符串，而非模拟器的最终状态。",
     "source_sha256": "99d2846cdd3a17861df8a6001ec4768e0b908a7a4e8374d19b05c8202934100c"
+  },
+  "agent-watch": {
+    "summary": "用于后台编程智能体的 Bash 启动器和单次状态检查器。根据进程是否存活、记录的退出码、日志末尾的失败标记以及 Codex JSONL 终止事件，报告运行中、完成、失败或停滞状态。DONE 判定仍需审查输出。采用 MIT 许可，2026 年至今。",
+    "source_sha256": "4212042054cd20a66a36a49c264b585b09a6ac591bd2bc85ef339887cc2cad0c"
+  },
+  "openclaw-monitor": {
+    "summary": "面向 OpenClaw 网关的 Node.js 与 Vue 仪表盘，展示 token 总用量、会话状态和运行时间，以及近七天的近似消息数量。会话存在用量记录时使用这些记录；完全没有用量记录时，按文本启发式规则和固定额度估算 token。采用 MIT 许可，2026 年（最近一次提交为 2026-05-14）。",
+    "source_sha256": "23f5ddbffa609c5be6dc1c713d64eb809e0d551f9548124a9ba1943e6e236dec"
   }
 }

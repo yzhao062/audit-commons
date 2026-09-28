@@ -1076,6 +1076,22 @@ def run_resources_contract_tests(repo_root: Path, content_dir: Path, assets_dir:
     if clean_markdown_text(r"See [\[Paper\]](https://example.org/paper)") != "See Paper":
         report.error("Importer left nested-bracket Markdown in plain text")
 
+    companion_fixture = (
+        "## Tools and Platforms\n"
+        "**[Tool] OrcaReplay** ([OrcaReplay](https://github.com/Continuum-AI-Corp/OrcaReplay)): "
+        "Replays agent traces. Companion archive "
+        "[OrcaPromptVault](https://github.com/Continuum-AI-Corp/OrcaPromptVault) keeps instructions."
+    )
+    parsed_companions = parse_awesome_markdown(companion_fixture)
+    report.check()
+    if (len(parsed_companions) != 1
+            or parsed_companions[0]["tag"] != "Tool"
+            or parsed_companions[0]["summary"] != "Replays agent traces. Companion archive OrcaPromptVault keeps instructions."
+            or parsed_companions[0]["links"] != [
+                {"label": "OrcaPromptVault", "url": "https://github.com/Continuum-AI-Corp/OrcaPromptVault"}
+            ]):
+        report.error("Importer lost an inline companion link or created an extra resource")
+
     # Render legacy records without the optional catalog fields.
     report.check()
     res_file = content_dir / "resources.json"

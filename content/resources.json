@@ -601,16 +601,17 @@
     "owner": "Authors listed in the paper",
     "relationship": "External resource",
     "source_urls": [
-      "https://arxiv.org/abs/2607.09996"
+      "https://arxiv.org/abs/2607.09996",
+      "https://github.com/ag2ai/whowhen_pro"
     ],
-    "checked": "2026-09-16",
+    "checked": "2026-09-28",
     "source_section": "Failure Attribution and Diagnosis",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#failure-attribution-and-diagnosis",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2d8c50b8b1d056575dd2424b4e54e337ec979427/README.md#failure-attribution-and-diagnosis",
     "venue": "Preprint 2026",
     "links": [
       {
         "label": "Code",
-        "url": "https://github.com/whowhenpro/whowhen_pro"
+        "url": "https://github.com/ag2ai/whowhen_pro"
       },
       {
         "label": "Project",
@@ -3879,18 +3880,25 @@
     "name": "OrcaReplay",
     "category": "Tools",
     "format": "Tool",
-    "summary": "records a coding-agent run below the harness, placing model calls, per-turn workspace changes, and opt-in MCP frames on one timeline. It then re-executes the agent against the recorded model responses and reports divergence, or forks the run from a filesystem checkpoint onto a different model for comparison. Apache-2.0, 2026-present.",
+    "summary": "records a coding-agent run below the harness, placing model calls, per-turn workspace changes, and opt-in MCP frames on one timeline. It then re-executes the agent against the recorded model responses and reports divergence, or forks the run from a filesystem checkpoint onto a different model for comparison. Apache-2.0, 2026-present. Companion archive OrcaPromptVault contains pre-run system/developer instructions and tool/skill schemas, with captured versus model-reported labels.",
     "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
     "owner": "Continuum AI",
     "relationship": "External resource",
     "source_urls": [
-      "https://github.com/Continuum-AI-Corp/OrcaReplay"
+      "https://github.com/Continuum-AI-Corp/OrcaReplay",
+      "https://github.com/Continuum-AI-Corp/OrcaPromptVault"
     ],
-    "checked": "2026-09-16",
+    "checked": "2026-09-28",
     "source_section": "Tools and Platforms",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2d8c50b8b1d056575dd2424b4e54e337ec979427/README.md#tools-and-platforms",
     "formats": [
       "Tool"
+    ],
+    "links": [
+      {
+        "label": "OrcaPromptVault",
+        "url": "https://github.com/Continuum-AI-Corp/OrcaPromptVault"
+      }
     ]
   },
   {
@@ -3929,6 +3937,44 @@
     "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#tools-and-platforms",
     "formats": [
       "Benchmark"
+    ]
+  },
+  {
+    "id": "agent-watch",
+    "name": "agent-watch",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Bash launcher and one-shot watcher for background coding agents. It reports running, done, failed, or stalled states from process liveness, recorded exit codes, tail-scoped failure markers, and Codex JSONL terminal events. A DONE verdict requires review of the output. MIT-licensed, 2026-present.",
+    "url": "https://github.com/soul-sol/agent-watch",
+    "owner": "soul-sol contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/soul-sol/agent-watch"
+    ],
+    "checked": "2026-09-28",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2d8c50b8b1d056575dd2424b4e54e337ec979427/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "openclaw-monitor",
+    "name": "OpenClaw Monitor",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Node.js and Vue dashboard for an OpenClaw gateway, showing total token usage, session status and runtime, and approximate seven-day message counts. Token counts use usage records when a session has them and fall back to text heuristics and fixed allowances when it has none. MIT-licensed, 2026 (last commit 2026-05-14).",
+    "url": "https://github.com/flik2002/openclaw-monitor",
+    "owner": "flik2002 contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/flik2002/openclaw-monitor"
+    ],
+    "checked": "2026-09-28",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2d8c50b8b1d056575dd2424b4e54e337ec979427/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
     ]
   },
   {

@@ -2,7 +2,7 @@
 """
 scripts/import_awesome.py
 Imports and synchronizes the curated catalog from awesome-auditable-ai
-(pinned snapshot at commit 2ac4b36328e9d84dbfb7a99c64fbe507dae28288, CC0 1.0)
+(pinned snapshot at commit 2d8c50b8b1d056575dd2424b4e54e337ec979427, CC0 1.0)
 into content/resources.json for Audit Commons.
 
 Usage:
@@ -17,7 +17,7 @@ Key invariants:
 - Requires existing content/resources.json with EXPECTED_ORIGINAL_IDS; errors before write
   if missing, corrupted, or missing any expected original IDs (order-independent lookup).
 - Preserves the original 6 curated resources at indices 0..5 with checked="2026-09-15".
-- Assigns checked="2026-09-16" to newly synchronized entries (snapshot review date).
+- Assigns checked="2026-09-28" to newly synchronized entries (snapshot review date).
 - Enforces maintainer affiliation mapping verified against Yue Zhao's publications registry.
 - Full snapshot refresh policy: non-upstream resources other than original 6 may be replaced.
 - Strictly zero network dependencies; no private machine absolute paths embedded.
@@ -38,11 +38,11 @@ from urllib.parse import urlparse
 from resource_formats import resource_formats, formats_error
 
 # Pinned snapshot metadata - MUST be updated together on refresh
-PINNED_REVISION = "2ac4b36328e9d84dbfb7a99c64fbe507dae28288"
+PINNED_REVISION = "2d8c50b8b1d056575dd2424b4e54e337ec979427"
 EXPECTED_SNAPSHOT_SHA256 = (
-    "bf51fe0299a4846663ab52e13452fe312167bf8f7ba425c8fd5ce642ba041976"
+    "12d408148434f0e8f744c9b2b9e6c61efd41e92c61a941468d8b8a9d982d050a"
 )
-SNAPSHOT_REVIEW_DATE = "2026-09-16"
+SNAPSHOT_REVIEW_DATE = "2026-09-28"
 ORIGINAL_CURATION_DATE = "2026-09-15"
 
 CATALOG_SOURCE_BASE = (
@@ -473,6 +473,13 @@ def parse_awesome_markdown(source_text: str) -> List[Dict[str, Any]]:
                     continue
                 primary_url = all_links[0]["url"]
                 sec_links = all_links[1:]
+                for inline_link in re.finditer(r"\[([^\]]+)\]\(([^)]+)\)", summary_text):
+                    inline_url = canonicalize_url(inline_link.group(2))
+                    if inline_url != primary_url and not any(link["url"] == inline_url for link in sec_links):
+                        sec_links.append({
+                            "label": clean_markdown_text(inline_link.group(1)),
+                            "url": inline_url,
+                        })
                 if artifact:
                     sec_links.append({
                         "label": artifact.group(1).strip(),

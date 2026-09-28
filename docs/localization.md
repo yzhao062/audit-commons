@@ -22,7 +22,7 @@ Audit Commons serves English as its canonical root edition (`/`) and publishes a
 content/
 ├── site.json               # Global publication metadata & base URL
 ├── pages.json              # English article registry & metadata
-├── resources.json          # English 201-resource catalog
+├── resources.json          # English resource catalog
 ├── media.json              # Media registry (dimensions, credits, source hashes)
 ├── bodies/                 # English article body HTML fragments
 │   ├── start-here.html
