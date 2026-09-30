@@ -44,6 +44,7 @@ class HtmlStructureExtractor(HTMLParser):
         self.has_site_nav: bool = False
         self.has_site_footer: bool = False
         self.brand_uses_mark_svg: bool = False
+        self.brand_uses_workshop_mark: bool = False
         self.json_ld_scripts: List[str] = []
         self.has_h1: bool = False
         self.h1_count: int = 0
@@ -106,6 +107,8 @@ class HtmlStructureExtractor(HTMLParser):
             src = urlparse(attr_dict.get("src", "")).path
             if src.endswith("mark.svg") or src == "/assets/mark.svg":
                 self.brand_uses_mark_svg = True
+            if src == "/assets/workshops/a3-iclr-2027/mark.svg":
+                self.brand_uses_workshop_mark = True
 
         # Headings
         if tag == "h1":
@@ -780,7 +783,12 @@ def validate_output_directory(
             report.error(f"{rel_path}: Missing <footer class='site-footer'>")
         if not ext.has_skip_link:
             report.error(f"{rel_path}: Missing skip link <a class='skip-link' href='#main'>")
-        if not ext.brand_uses_mark_svg:
+        if rel_path == "workshops/a3-iclr-2027/index.html":
+            if not ext.brand_uses_workshop_mark:
+                report.error(f"{rel_path}: workshop header must use its A³ mark")
+            if "Audit Commons" in ext.title:
+                report.error(f"{rel_path}: workshop title must lead with its own identity")
+        elif not ext.brand_uses_mark_svg:
             report.error(f"{rel_path}: .brand must use /assets/mark.svg")
 
         # Check required metadata

@@ -292,9 +292,10 @@ def render_html_page(
     social_image: Optional[Dict[str, Any]] = None,
     locale: str = "en",
     has_zh: bool = True,
+    workshop: bool = False,
 ) -> str:
     """Renders a complete HTML page matching the DOM, accessibility, and localization contracts."""
-    site_name = escape(site_data.get("name", "Audit Commons"))
+    site_name = "A³: Auditing AI Agents" if workshop else escape(site_data.get("name", "Audit Commons"))
     if locale == "zh":
         site_tagline = escape("关于 AI 审计的新闻、深度分析与实践学习。")
     else:
@@ -305,12 +306,15 @@ def render_html_page(
     maintainer_url = escape(maintainer.get("url", "https://viterbi-web.usc.edu/~yzhao010/"))
 
     escaped_title = escape(title)
-    full_title = f"{escaped_title} | {site_name}" if title != site_name else site_name
+    full_title = escaped_title if workshop else (f"{escaped_title} | {site_name}" if title != site_name else site_name)
     escaped_desc = escape(description)
     escaped_canonical = escape(canonical_url)
     social_png_url = f"{base_url.rstrip('/')}/assets/social-preview.png"
     social_width, social_height = 1200, 630
     social_alt = f"{site_name}: {site_tagline}"
+    if workshop:
+        social_png_url = f"{base_url.rstrip('/')}/assets/workshops/a3-iclr-2027/social-preview.png"
+        social_alt = "A³: Auditing AI Agents. Proposed ICLR 2027 Workshop. Under Submission."
     if social_image_eligible(social_image):
         social_png_url = base_url.rstrip('/') + social_image['src']
         social_width, social_height = social_image['width'], social_image['height']
@@ -440,6 +444,43 @@ def render_html_page(
     </div>
   </footer>"""
 
+    header_html = f"""  <header class="site-header">
+    <div class="container header-container">
+      <a href="{brand_href}" class="brand" aria-label="{brand_aria}">
+        <img src="/assets/mark.svg?v=graphite" alt="" width="38" height="38" class="brand-icon">
+        <span class="brand-text">
+          <span class="brand-title">Audit Commons</span>
+          <span class="brand-subtitle">{brand_subtitle}</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="{nav_aria}">
+        {nav_html}
+      </nav>
+{lang_switch_html}
+    </div>
+  </header>"""
+    feed_html = f'<link rel="alternate" type="application/atom+xml" title="{feed_title}" href="{feed_url}">'
+    favicon_href = "/favicon.svg?v=graphite"
+    if workshop:
+        header_html = """  <header class="site-header a3-site-header">
+    <div class="container">
+      <a href="#overview" class="brand a3-brand" aria-label="A³ Workshop Homepage">
+        <img src="/assets/workshops/a3-iclr-2027/mark.svg" alt="" width="48" height="48">
+        <span class="brand-text"><span class="brand-title">Auditing AI Agents</span><span class="brand-subtitle">ICLR 2027 Workshop Proposal</span></span>
+      </a>
+      <nav class="site-nav a3-nav" aria-label="Workshop Navigation">
+        <a href="#overview">Overview</a><a href="#program">Program</a><a href="#speakers">Speakers</a><a href="#organizers">Organizers</a><a href="#contributions">Contributions</a>
+      </nav>
+    </div>
+  </header>"""
+        footer_html = """  <footer class="site-footer a3-site-footer">
+    <div class="container a3-footer-inner">
+      <p>A<sup>3</sup> · Auditing AI Agents<br><span>Proposed ICLR 2027 Workshop · Under Submission</span></p>
+      <p class="a3-host-credit">Hosted by <a href="/">Audit Commons</a></p>
+    </div>
+  </footer>"""
+        feed_html = ""
+        favicon_href = "/assets/workshops/a3-iclr-2027/mark.svg"
     hreflang_block = f"\n{hreflang_tags}" if hreflang_tags else ""
 
     return f"""<!DOCTYPE html>
@@ -471,8 +512,8 @@ def render_html_page(
   <meta name="twitter:image" content="{social_png_url}">
 
   <!-- Feed and Favicon -->
-  <link rel="alternate" type="application/atom+xml" title="{feed_title}" href="{feed_url}">
-  <link rel="icon" href="/favicon.svg?v=graphite" type="image/svg+xml">
+  {feed_html}
+  <link rel="icon" href="{favicon_href}" type="image/svg+xml">
   <link rel="stylesheet" href="{escape(site_data.get('_style_href', '/assets/style.css'))}">
   <script src="/assets/site.js" defer></script>
   {extra_meta}
@@ -481,21 +522,7 @@ def render_html_page(
 <body>
   <a class="skip-link" href="#main">{skip_text}</a>
 
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="{brand_href}" class="brand" aria-label="{brand_aria}">
-        <img src="/assets/mark.svg?v=graphite" alt="" width="38" height="38" class="brand-icon">
-        <span class="brand-text">
-          <span class="brand-title">Audit Commons</span>
-          <span class="brand-subtitle">{brand_subtitle}</span>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="{nav_aria}">
-        {nav_html}
-      </nav>
-{lang_switch_html}
-    </div>
-  </header>
+{header_html}
 
   <main id="main" tabindex="-1">
 {body_content}
@@ -2042,6 +2069,15 @@ def copy_assets_safely(assets_dir: Path, output_dir: Path) -> None:
                 dest = out_assets / item.name
                 shutil.copy2(item, dest)
 
+        workshop_assets = assets_dir / "workshops" / "a3-iclr-2027"
+        for item in workshop_assets.rglob("*"):
+            if item.is_file() and item.suffix.lower() in {".svg", ".png", ".jpg", ".webp"}:
+                if not item.resolve().is_relative_to(assets_dir.resolve()):
+                    raise ValueError(f"Workshop asset escapes assets directory: {item}")
+                dest = out_assets / item.relative_to(assets_dir)
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(item, dest)
+
         fav = assets_dir / "favicon.svg"
         if fav.exists():
             shutil.copy2(fav, output_dir / "favicon.svg")
@@ -2262,6 +2298,26 @@ def build_site(
         (target_dir / "index.html").write_text(article_html, encoding="utf-8")
 
         all_sitemap_routes.append(slug)
+
+    workshop_body = content_dir / "workshops" / "a3-iclr-2027.html"
+    if workshop_body.is_file():
+        workshop_slug = "workshops/a3-iclr-2027"
+        workshop_html = render_html_page(
+            title="A³: Auditing AI Agents | Proposed ICLR 2027 Workshop",
+            description="Evidence, Evaluation, and Accountability. A proposed ICLR 2027 workshop on auditing AI agents. Under submission; program and participation are tentative.",
+            canonical_url=canonical_for(effective_base_url, workshop_slug, "en"),
+            base_url=effective_base_url,
+            site_data=site_data,
+            body_content=workshop_body.read_text(encoding="utf-8"),
+            current_slug=workshop_slug,
+            extra_meta='<link rel="stylesheet" href="/assets/workshop.css">',
+            has_zh=False,
+            workshop=True,
+        )
+        workshop_target = output_dir / workshop_slug
+        workshop_target.mkdir(parents=True, exist_ok=True)
+        (workshop_target / "index.html").write_text(workshop_html, encoding="utf-8")
+        all_sitemap_routes.append(workshop_slug)
 
     # 11. Render English Usable 404 Page (/404.html)
     page_404_html = build_404_page(site_data, effective_base_url, locale="en", has_zh=has_zh)

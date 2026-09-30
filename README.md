@@ -23,6 +23,12 @@ Audit Commons publishes in English (`/`) as its root canonical edition, alongsid
 For recurring updates, start with the [Editorial maintenance playbook](docs/maintenance.md).
 The repository-local [weekly-refresh skill](skills/weekly-refresh/SKILL.md) routes weekly editorial work across news, learning, resources, media, and Chinese translation. It is registered in `AGENTS.local.md` and can be invoked by asking for a weekly refresh; it does not install a schedule or enable automatic publication.
 
+## Workshop Pages
+
+The proposed A³ workshop page lives at `/workshops/a3-iclr-2027/`. Its source is `content/workshops/a3-iclr-2027.html`, with scoped styles in `assets/workshop.css`. The page has its own A³ header, workshop navigation, favicon, and social preview, while reusing Audit Commons' design tokens. AC appears only in the hosting footer. The generator includes the route in the sitemap. It is separate from editorial articles and feeds, and currently has only an English edition.
+
+The page displays **Under Submission**, seven confirmed organizers, Emilio Ferrara's confirmed tentative speaker participation, a proposed program, and a forthcoming call for papers. Timing and participation remain conditional on acceptance. Public copy comes from the workshop proposal; candidate lists and private planning stay outside this repository. Website hosting is credited to Audit Commons, with workshop organization assigned to the listed committee. Approved changes publish through the GitHub Pages workflow on `main`. See [the development record](docs/workshops/a3-iclr-2027.md).
+
 ---
 
 ## Quickstart & Local Development

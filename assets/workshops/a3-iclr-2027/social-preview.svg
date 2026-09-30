@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fff"/>
+  <rect width="16" height="630" fill="#254fc4"/>
+  <text x="78" y="95" fill="#254fc4" font-family="sans-serif" font-size="26" font-weight="bold" letter-spacing="2">PROPOSED ICLR 2027 WORKSHOP · A³</text>
+  <text x="72" y="244" fill="#171a21" font-family="Georgia, serif" font-size="103">Auditing AI Agents</text>
+  <text x="78" y="322" fill="#525966" font-family="Georgia, serif" font-size="39">Evidence, Evaluation, and Accountability</text>
+  <line x1="78" y1="382" x2="1122" y2="382" stroke="#d8dce3"/>
+  <rect x="78" y="438" width="304" height="62" fill="#edf1fc"/>
+  <text x="103" y="479" fill="#254fc4" font-family="sans-serif" font-size="29">Under Submission</text>
+  <text x="78" y="567" fill="#525966" font-family="sans-serif" font-size="24">San Francisco · Program and participation are tentative</text>
+</svg>
