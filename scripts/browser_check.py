@@ -539,10 +539,10 @@ class BrowserAcceptanceChecker:
                     details=landmarks,
                 )
 
-            # Internal navigation check on header nav (4 items: latest, learn, resources, about)
+            # Internal navigation check on header nav
             nav_links = page.locator("nav.site-nav a")
             link_hrefs = [nav_links.nth(i).get_attribute("href") or "" for i in range(nav_links.count())]
-            expected_destinations = ["latest", "learn", "resources", "about"]
+            expected_destinations = ["latest", "learn", "resources", "workshops/a3-iclr-2027", "about"]
             missing_links = []
             for dest in expected_destinations:
                 matched = any(dest in href for href in link_hrefs)
@@ -551,13 +551,13 @@ class BrowserAcceptanceChecker:
 
             unexpected_features = [h for h in link_hrefs if "/features/" in h or "/zh/features/" in h]
 
-            if not missing_links and not unexpected_features:
+            if not missing_links and not unexpected_features and len(link_hrefs) == 5:
                 self.add_check(
                     check_id=f"nav_links_{route}",
                     category="navigation",
                     name=f"Primary nav links on {route}",
                     status="PASS",
-                    observation=f"Found internal navigation links (4 items): {link_hrefs}",
+                    observation=f"Found internal navigation links (5 items): {link_hrefs}",
                     details={"hrefs": link_hrefs},
                 )
             else:

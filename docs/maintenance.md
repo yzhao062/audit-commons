@@ -28,7 +28,7 @@ Read [contribution rules](../CONTRIBUTING.md) before editing. The detailed refer
 
 ## Primary navigation and section roles
 
-The publication maintains an agreed four-item primary navigation across English and Chinese: **Latest**, **Learn**, **Resources**, and **About** (Chinese: **最新**, **学习**, **资源**, **关于**).
+The publication maintains five primary navigation links across English and Chinese: **Latest**, **Learn**, **Resources**, **ICLR Workshop**, and **About** (Chinese: **最新**, **学习**, **资源**, **ICLR 工作坊**, **关于**). Both workshop links point to `/workshops/a3-iclr-2027/`, the existing English workshop page. Its own navigation continues to link to workshop sections.
 
 Set `homepage_lead` in `content/site.json` to an existing editorial slug when selecting the homepage headline. Both language editions use that selection. The build rejects an unknown or About slug. Without a selection, the existing article-kind priority applies. Selecting a lead does not change its publication date or its position in Latest.
 

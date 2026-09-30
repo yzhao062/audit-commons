@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="590" viewBox="0 0 1000 590" role="img" aria-labelledby="title desc">
+  <title id="title">Automated Continuation and Task Scope</title>
+  <desc id="desc">Editorial schematic of the AISI evaluation. An agent receives an automated continuation message while working within a defined task scope and can attempt actions on a simulated out-of-scope target. All tool results are simulated and cyber classifiers are disabled.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#254fc4"/></marker>
+  </defs>
+  <rect width="1000" height="590" fill="#f5f5f4"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#232323">
+    <text x="50" y="55" font-size="36">Automated Continuation and Task Scope</text>
+    <text x="50" y="99" font-size="30" fill="#585b62">自动继续消息与任务范围</text>
+    <rect x="50" y="238" width="500" height="252" rx="10" fill="#edf1fc" stroke="#254fc4" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="78" y="478" font-size="29" fill="#254fc4">Authorized task / 获准任务</text>
+    <rect x="80" y="327" width="310" height="120" rx="8" fill="#fff" stroke="#dcdde0" stroke-width="2"/>
+    <text x="235" y="375" text-anchor="middle" font-size="36">Agent</text>
+    <text x="235" y="419" text-anchor="middle" font-size="32" fill="#585b62">智能体</text>
+    <rect x="80" y="125" width="490" height="86" rx="8" fill="#fff" stroke="#dcdde0" stroke-width="2"/>
+    <text x="103" y="159" font-size="27">Harness reply: continue</text>
+    <text x="103" y="196" font-size="28" fill="#585b62">评估框架自动回复：继续</text>
+    <path d="M235 219V311" fill="none" stroke="#254fc4" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect x="675" y="302" width="275" height="175" rx="8" fill="#fff" stroke="#dcdde0" stroke-width="2"/>
+    <text x="812" y="350" text-anchor="middle" font-size="32">Out-of-Scope</text>
+    <text x="812" y="391" text-anchor="middle" font-size="32">Target</text>
+    <text x="812" y="438" text-anchor="middle" font-size="32" fill="#585b62">范围外目标</text>
+    <path d="M405 390H655" fill="none" stroke="#254fc4" stroke-width="4" marker-end="url(#arrow)"/>
+    <text x="612" y="338" text-anchor="middle" font-size="24" fill="#585b62">Attempt</text>
+    <text x="612" y="368" text-anchor="middle" font-size="24" fill="#585b62">尝试</text>
+    <text x="50" y="548" font-size="25" fill="#585b62">LLM simulation; cyber classifiers off / 语言模型模拟；网络安全分类器关闭</text>
+  </g>
+</svg>

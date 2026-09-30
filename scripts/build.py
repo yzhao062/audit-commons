@@ -63,6 +63,7 @@ REQUIRED_NAV_ITEMS = [
     ("Latest", "/latest/"),
     ("Learn", "/learn/"),
     ("Resources", "/resources/"),
+    ("ICLR Workshop", "/workshops/a3-iclr-2027/"),
     ("About", "/about/"),
 ]
 

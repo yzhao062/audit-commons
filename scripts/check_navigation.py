@@ -3,9 +3,9 @@
 scripts/check_navigation.py - Dedicated Acceptance Suite for Site Navigation & Latest Filtering.
 
 Verifies:
-1. 4-item Main Navigation:
-   - English: Latest, Learn, Resources, About across all pages
-   - Chinese (/zh/): 最新, 学习, 资源, 关于 across all pages
+1. 5-item Main Navigation:
+   - English: Latest, Learn, Resources, ICLR Workshop, About across portal pages
+   - Chinese (/zh/): 最新, 学习, 资源, ICLR 工作坊, 关于 across portal pages
    - "Features" / "专栏" is NEVER present as a primary navigation item
 2. Active Navigation Highlighting:
    - /latest/, /news/*, /updates/*, /features/, /features/* activate Latest
@@ -30,7 +30,7 @@ Verifies:
 7. Discovery & Footer Terminology:
    - Features replaced with Analysis (English) and 深度解读 (Chinese) in footers & 404 pages
 8. Localization Invariants:
-   - REQUIRED_NAV_ITEMS_ZH contains exactly 4 items
+   - REQUIRED_NAV_ITEMS_ZH contains exactly 5 items
    - KIND_LABELS_ZH["feature"] == "深度解读"
 """
 
@@ -167,18 +167,18 @@ def run_checks() -> int:
 
     print("Checking localization & build constants...")
     report.check()
-    if len(localization.REQUIRED_NAV_ITEMS_ZH) != 4:
-        report.error(f"REQUIRED_NAV_ITEMS_ZH must have 4 items, got {len(localization.REQUIRED_NAV_ITEMS_ZH)}: {localization.REQUIRED_NAV_ITEMS_ZH}")
+    if len(localization.REQUIRED_NAV_ITEMS_ZH) != 5:
+        report.error(f"REQUIRED_NAV_ITEMS_ZH must have 5 items, got {len(localization.REQUIRED_NAV_ITEMS_ZH)}: {localization.REQUIRED_NAV_ITEMS_ZH}")
     zh_targets = [t for _, t in localization.REQUIRED_NAV_ITEMS_ZH]
-    expected_zh_targets = ["/zh/latest/", "/zh/learn/", "/zh/resources/", "/zh/about/"]
+    expected_zh_targets = ["/zh/latest/", "/zh/learn/", "/zh/resources/", "/workshops/a3-iclr-2027/", "/zh/about/"]
     if zh_targets != expected_zh_targets:
         report.error(f"REQUIRED_NAV_ITEMS_ZH targets mismatch: expected {expected_zh_targets}, got {zh_targets}")
 
     report.check()
-    if len(build.REQUIRED_NAV_ITEMS) != 4:
-        report.error(f"REQUIRED_NAV_ITEMS must have 4 items, got {len(build.REQUIRED_NAV_ITEMS)}: {build.REQUIRED_NAV_ITEMS}")
+    if len(build.REQUIRED_NAV_ITEMS) != 5:
+        report.error(f"REQUIRED_NAV_ITEMS must have 5 items, got {len(build.REQUIRED_NAV_ITEMS)}: {build.REQUIRED_NAV_ITEMS}")
     en_targets = [t for _, t in build.REQUIRED_NAV_ITEMS]
-    expected_en_targets = ["/latest/", "/learn/", "/resources/", "/about/"]
+    expected_en_targets = ["/latest/", "/learn/", "/resources/", "/workshops/a3-iclr-2027/", "/about/"]
     if en_targets != expected_en_targets:
         report.error(f"REQUIRED_NAV_ITEMS targets mismatch: expected {expected_en_targets}, got {en_targets}")
 
@@ -217,7 +217,7 @@ def run_checks() -> int:
         expected_nav_hrefs = expected_zh_targets if is_zh else expected_en_targets
 
         if nav_hrefs != expected_nav_hrefs:
-            report.error(f"{rel}: Nav links do not match expected 4 items: expected {expected_nav_hrefs}, got {nav_hrefs}")
+            report.error(f"{rel}: Nav links do not match expected 5 items: expected {expected_nav_hrefs}, got {nav_hrefs}")
 
         # Check Features / 专栏 is never in main nav
         report.check()

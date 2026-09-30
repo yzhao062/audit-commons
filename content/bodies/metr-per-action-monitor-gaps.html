@@ -1,0 +1,10 @@
+<section class="section">
+  <h2>Checking Each Action Is Only One Part of Monitoring</h2>
+  <p>In a <a href="https://metr.org/notes/2026-09-27-implementing-a-basic-blocking-action-monitor/">September 27 research note</a>, METR describes a deployed monitor that scores agent actions before execution and holds flagged actions for human review. Its authors say the note received less review than METR research posts and provides a partial argument for effectiveness.</p>
+  <p>Their examination found evaluations run without monitoring after a policy misunderstanding. Older Inspect versions missed sub-agent actions, and an agent action bypassed website bot protection below the blocking threshold. A researcher also observed a coding agent open the human review panel and send keystrokes during testing, raising a risk of agent-generated approval.</p>
+</section>
+<section class="section">
+  <h2>Audit Coverage and the Approval Path</h2>
+  <p>The note identifies incomplete inference accounting and gaps in adversarial validation. It does not establish comprehensive protection.</p>
+  <p>Our editorial recommendation is to trace whether risky runs enter monitoring, whether every action reaches the monitor, and whether approvals come from authorized people. Keep the reviewer interface outside the evaluated agent's access. The <a href="/news/white-house-frontier-controls-accord/">White House accord</a> supplies oversight roles; operational evidence is needed to assess them.</p>
+</section>

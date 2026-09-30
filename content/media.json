@@ -430,6 +430,56 @@
       "sha256": "c45ec907c1e898980d672b5d82169707d84fe90949a5b1092e3ee4ce7daba270",
       "changes": "Original editorial SVG created for this article. No source artwork or quantitative results reproduced.",
       "license_pending": true
+    },
+    "white-house-controls": {
+      "src": "/assets/media/white-house-controls.svg",
+      "kind": "figure",
+      "width": 1000,
+      "height": 600,
+      "alt": "Editorial diagram of the White House accord's four layers: internal controls, internal review, external assessment, and board oversight",
+      "caption": "Editorial diagram of the September 29 accord's proposed control and audit structure. It shows voluntary commitments, not completed audits or measured effectiveness.",
+      "credit": "Audit Commons",
+      "source_url": "https://auditcommons.org/news/white-house-frontier-controls-accord/",
+      "download_url": "https://auditcommons.org/assets/media/white-house-controls.svg",
+      "license": "Original Audit Commons artwork; reuse license pending",
+      "license_url": "https://auditcommons.org/about/#reuse",
+      "retrieved": "2026-09-30",
+      "sha256": "6e2ace5e88b4b86e73e06a13c504b43dfafadb63341129293d58afc2d13da89c",
+      "changes": "Original editorial SVG. No source artwork or quantitative results reproduced.",
+      "license_pending": true
+    },
+    "aisi-simulated-authorization": {
+      "src": "/assets/media/aisi-simulated-authorization.svg",
+      "kind": "figure",
+      "width": 1000,
+      "height": 590,
+      "alt": "Editorial schematic of an automated harness reply and an agent attempting an action on a simulated out-of-scope target",
+      "caption": "Editorial explanation of scope and automated continuation in the AISI evaluation. Tool results were simulated and cyber classifiers disabled. This is not a source figure or a measured attack trace.",
+      "credit": "Audit Commons",
+      "source_url": "https://auditcommons.org/news/aisi-astra-simulated-supply-chain-attacks/",
+      "download_url": "https://auditcommons.org/assets/media/aisi-simulated-authorization.svg",
+      "license": "Original Audit Commons artwork; reuse license pending",
+      "license_url": "https://auditcommons.org/about/#reuse",
+      "retrieved": "2026-09-30",
+      "sha256": "b8bd2dec586f816f71c2dca5c60c8ac100337c3109aafe9f2c154a4f4033fec0",
+      "changes": "Original editorial SVG. No source artwork or quantitative results reproduced.",
+      "license_pending": true
+    },
+    "metr-monitor": {
+      "src": "/assets/media/metr.svg",
+      "kind": "logo",
+      "width": 151,
+      "height": 33,
+      "alt": "METR logo",
+      "caption": "METR, whose September 27 research note examines its action-monitoring pipeline.",
+      "credit": "METR",
+      "source_url": "https://metr.org/",
+      "download_url": "https://metr.org/assets/images/logo/logo.svg",
+      "license": "Trademark; editorial identification",
+      "license_url": "https://metr.org/",
+      "retrieved": "2026-09-16",
+      "sha256": "8c7aa4ca5083383de3523496d05a88aac1e44e695c0e1dcc7afd95ac2c204c50",
+      "changes": "Unmodified source asset; displayed at responsive sizes."
     }
   },
   "articles": {
@@ -449,7 +499,10 @@
     "guides/audit-an-agent-action": "audit-report",
     "news/meta-muse-security-warning": "mark-zuckerberg-f8-2019",
     "news/government-agent-incident-response": "sam-altman",
-    "news/transluce-agent-network-tunneling": "transluce-scanner-access"
+    "news/transluce-agent-network-tunneling": "transluce-scanner-access",
+    "news/white-house-frontier-controls-accord": "white-house-controls",
+    "news/aisi-astra-simulated-supply-chain-attacks": "aisi-simulated-authorization",
+    "news/metr-per-action-monitor-gaps": "metr-monitor"
   },
   "resources": {
     "nist-ai-rmf": "nist",

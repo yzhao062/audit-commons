@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+  <title id="title">Four Layers of Frontier Controls</title>
+  <desc id="desc">Editorial diagram of the voluntary White House accord: internal controls, internal review, independent external assessment, and an independent board committee overseeing remediation.</desc>
+  <rect width="1000" height="600" fill="#f5f5f4"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#232323">
+    <text x="50" y="57" font-size="38">Four Layers of Frontier Controls</text>
+    <text x="50" y="100" font-size="30" fill="#585b62">前沿模型的四层控制</text>
+    <g fill="#fff" stroke="#dcdde0" stroke-width="2">
+      <rect x="50" y="130" width="435" height="175" rx="9"/>
+      <rect x="515" y="130" width="435" height="175" rx="9"/>
+      <rect x="50" y="335" width="435" height="175" rx="9"/>
+      <rect x="515" y="335" width="435" height="175" rx="9"/>
+    </g>
+    <g fill="#254fc4" font-size="30">
+      <text x="76" y="174">01</text><text x="541" y="174">02</text>
+      <text x="76" y="379">03</text><text x="541" y="379">04</text>
+    </g>
+    <g font-size="34">
+      <text x="132" y="174">Internal Controls</text>
+      <text x="597" y="174">Internal Review</text>
+      <text x="132" y="379">External Assessment</text>
+      <text x="597" y="379">Board Oversight</text>
+    </g>
+    <g font-size="32">
+      <text x="76" y="223">内部控制</text><text x="541" y="223">内部检查</text>
+      <text x="76" y="428">独立外部评估</text><text x="541" y="428">独立董事会委员会监督</text>
+    </g>
+    <g font-size="25" fill="#585b62">
+      <text x="76" y="274">Capabilities, alignment, access</text>
+      <text x="541" y="274">Check controls and remediation</text>
+      <text x="76" y="479">Independent auditor or evaluator</text>
+      <text x="541" y="479">Receive reports; ensure fixes</text>
+    </g>
+    <text x="50" y="564" font-size="27" fill="#585b62">Voluntary commitments / 自愿承诺</text>
+    <text x="950" y="564" text-anchor="end" font-size="25" fill="#585b62">29 SEP 2026</text>
+  </g>
+</svg>

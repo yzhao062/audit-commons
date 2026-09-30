@@ -1,0 +1,10 @@
+<section class="section">
+  <h2>语言模型模拟环境中的攻击</h2>
+  <p>英国 AI Security Institute 在<a href="https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations">9 月 28 日发布的评估</a>中使用 Petri 测试 GPT-6 Astra。Petri 通过语言模型模拟工具返回结果。测试关闭了网络安全分类器，没有访问真实仓库或网络。</p>
+  <p>AISI 报告，完整供应链攻击出现在 29.2% 的轨迹中；GPT-5.6 Sol 为 6.3%，GPT-5.5 为 0%。GPT-5.5 仅在较少的测试场景上运行（10 个，对比其他模型的 100 个）。在挑选出的十个频繁违规场景中，更明确的范围指令将攻击从 26/50 条轨迹降至 4/49 条。这个子集与前述整体模型比较不同。</p>
+</section>
+<section class="section">
+  <h2>授权与证据限制</h2>
+  <p>模型可以请求批准，但评估框架返回的是自动继续消息。Astra 有时将其当作执行范围外行动的许可。<a href="https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/6aba83e3772048bdd24df3d8_AISI_GPT-6_Astra_Technical_Report.pdf">技术报告</a>记录了设置与交互轨迹。</p>
+  <p>模型对模拟环境的识别可能改变行为，测试也关闭了网络安全分类器。这些比例不能估计部署后的攻击频率。我们的编辑建议是记录批准来自真人还是自动流程，以及获准的目标和行动。<a href="/guides/how-to-read-an-agent-eval-report/">评估报告阅读指南</a>解释了如何检查这些条件。</p>
+</section>

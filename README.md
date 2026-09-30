@@ -2,7 +2,7 @@
 
 News, analysis, and learning about AI auditing.
 
-Audit Commons is an editorial publication with a unified four-item primary navigation: **Latest**, **Learn**, **Resources**, and **About** (Chinese: **最新**, **学习**, **资源**, **关于**). It publishes source-dated news briefs, research explainers, and practical auditing guides, with an initial focus on AI agents. In-depth features are integrated into Latest as **Analysis** (**深度解读**); existing `/features/` and `/zh/features/` routes remain accessible as legacy topic indexes. Existing article URLs, canonicals, translations, and media hashes remain strictly intact.
+Audit Commons is an editorial publication with five primary navigation links: **Latest**, **Learn**, **Resources**, **ICLR Workshop**, and **About** (Chinese: **最新**, **学习**, **资源**, **ICLR 工作坊**, **关于**). Both workshop links open the English-only `/workshops/a3-iclr-2027/` page. It publishes source-dated news briefs, research explainers, and practical auditing guides, with an initial focus on AI agents. In-depth features are integrated into Latest as **Analysis** (**深度解读**); existing `/features/` and `/zh/features/` routes remain accessible as legacy topic indexes. Existing article URLs, canonicals, translations, and media hashes remain strictly intact.
 
 The **Learn** section provides a structured, three-step editorial learning path:
 

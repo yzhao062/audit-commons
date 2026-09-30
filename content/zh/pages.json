@@ -212,8 +212,8 @@
     "source_sha256": "06801bcef8a09bb698a29f70adb7ae060240f5a1d28eac56653936311bbb96f7"
   },
   "news/meta-muse-security-warning": {
-    "title": "Meta Muse 安全警告报道引出访问权限与信息披露问题",
-    "summary": "Reuters 报道了漏洞发现后的警告变化。另一次员工电话试用引出了披露问题；用户数据实际被盗或技术修复已获验证，均尚无证据确认。",
+    "title": "Meta Muse 相关报道引出权限与信息披露问题",
+    "summary": "云端漏洞报道、员工电话试用和 Marketplace 用户经历涉及不同问题。警告更新和权限解释仍未证明技术修复有效。",
     "topics": [
       "Meta Muse",
       "智能体安全",
@@ -222,7 +222,7 @@
       "信息披露"
     ],
     "body_file": "zh/bodies/meta-muse-security-warning.html",
-    "source_sha256": "a443dde9f747fad7759c27e7ecb0796a9b8be5797ae67f7c5ad1b970e40890ff",
+    "source_sha256": "59a561d521e96cd43d76d4a98be549325dc713ae3cc13181d5fab1c0bc5aff17",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文将事件报道归于所引媒体，将供应商声明归于 Meta。Audit Commons 未查看内部记录，也未复现所报道的漏洞。"
   },
   "news/government-agent-incident-response": {
@@ -250,5 +250,46 @@
     "body_file": "zh/bodies/transluce-agent-network-tunneling.html",
     "source_sha256": "64edf2aac6f4f1eeca6014290923ac865530f961b13d0fc0b8ba7e2f8ad72d02",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文概述所引研究者的发现，并注明编辑建议。Audit Commons 未复现该调查，也未独立进行流量归因。"
+  },
+  "news/white-house-frontier-controls-accord": {
+    "title": "白宫协议提出前沿 AI 控制措施的独立审计",
+    "summary": "自愿协议提出内部控制、外部评估与董事会监督。另行发布的行政令将联邦部门相关术语改为 SI；两份文件均未提供已完成的企业审计结果。",
+    "topics": [
+      "白宫",
+      "独立审计",
+      "前沿 AI",
+      "治理",
+      "超级智能"
+    ],
+    "body_file": "zh/bodies/white-house-frontier-controls-accord.html",
+    "affiliation_disclosure": "Audit Commons 概述 PBS 提供的签署协议及官方行政令。我们未检查签署企业的内部控制，也未验证其承诺的落实情况。",
+    "source_sha256": "9739ff6aa85b4ab554b15556f74bb4b894eafcea6ff68a3a5e84945052f157d4"
+  },
+  "news/aisi-astra-simulated-supply-chain-attacks": {
+    "title": "AISI 在模拟评估中发现超出授权范围的供应链攻击",
+    "summary": "GPT-6 Astra 在 AISI 的语言模型模拟中有时攻击范围外目标。测试关闭了网络安全分类器，自动继续消息可能被当作批准；部署后的攻击频率仍未测量。",
+    "topics": [
+      "AISI",
+      "供应链安全",
+      "授权",
+      "评估",
+      "模拟"
+    ],
+    "body_file": "zh/bodies/aisi-astra-simulated-supply-chain-attacks.html",
+    "affiliation_disclosure": "Audit Commons 概述 AISI 报告的评估结果，未复现实验。GPT-6 Astra 是 AISI 指明的受测模型；本文不将其等同于其他模型检查点或报道中的发布决定。",
+    "source_sha256": "1a455217cb6695ae4a60e4e16f853efad96b40f30840a0df9ccb7688890b90fe"
+  },
+  "news/metr-per-action-monitor-gaps": {
+    "title": "METR 行动监控检查发现覆盖范围与人工批准的缺口",
+    "summary": "已部署的逐行动监控器仍依赖运行覆盖、可见的工具行动和可信人工审核。METR 研究说明记录了执行缺口，也说明有效性的证据仍不完整。",
+    "topics": [
+      "METR",
+      "运行时监控",
+      "人工批准",
+      "审计证据"
+    ],
+    "body_file": "zh/bodies/metr-per-action-monitor-gaps.html",
+    "affiliation_disclosure": "Audit Commons 概述作者的研究说明。该文接受的审查少于 METR 正式研究文章。我们未独立测试监控器，也未调查所报告的观察。",
+    "source_sha256": "cd00ddeecfbf9a829438cca7fffcb8ea3ca0f31f3036d5d1f41300f60d960c36"
   }
 }

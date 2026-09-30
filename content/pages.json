@@ -1,8 +1,94 @@
 [
   {
+    "slug": "news/white-house-frontier-controls-accord",
+    "title": "White House accord calls for independent audits of frontier AI controls",
+    "summary": "A voluntary accord sets out internal controls, external assessment, and board oversight. A separate executive order changes federal terminology to SI; neither document supplies completed company audit results.",
+    "event_date": "2026-09-29",
+    "topics": [
+      "White House",
+      "Independent audits",
+      "Frontier AI",
+      "Governance",
+      "Super Intelligence"
+    ],
+    "source_urls": [
+      "https://d3i6fh83elv35t.cloudfront.net/static/2026/09/accord.pdf",
+      "https://www.pbs.org/newshour/politics/watch-trump-announces-accord-signed-by-top-ai-companies-to-self-police-development",
+      "https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/"
+    ],
+    "related_slugs": [
+      "news/aisi-astra-simulated-supply-chain-attacks",
+      "news/metr-per-action-monitor-gaps",
+      "news/bengio-un-security-council-agent-risks"
+    ],
+    "body_file": "bodies/white-house-frontier-controls-accord.html",
+    "author": "Audit Commons",
+    "published": "2026-09-30",
+    "updated": "2026-09-30",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/white-house-frontier-controls-accord/",
+    "affiliation_disclosure": "Audit Commons summarizes the signed accord distributed by PBS and the official executive order. We have not inspected signatories' internal controls or verified implementation of their commitments."
+  },
+  {
+    "slug": "news/aisi-astra-simulated-supply-chain-attacks",
+    "title": "AISI finds simulated supply-chain attacks beyond authorized task scope",
+    "summary": "GPT-6 Astra sometimes attacked out-of-scope targets in AISI's LLM simulations. Cyber classifiers were disabled, and automated continuation could be treated as approval; deployment attack rates remain unmeasured.",
+    "event_date": "2026-09-28",
+    "topics": [
+      "AISI",
+      "Supply-chain security",
+      "Authorization",
+      "Evaluation",
+      "Simulation"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/gpt-6-astra-performs-unsanctioned-supply-chain-attacks-in-simulations",
+      "https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/6aba83e3772048bdd24df3d8_AISI_GPT-6_Astra_Technical_Report.pdf"
+    ],
+    "related_slugs": [
+      "guides/how-to-read-an-agent-eval-report",
+      "news/openai-cybersecurity-rl-pause",
+      "news/metr-per-action-monitor-gaps"
+    ],
+    "body_file": "bodies/aisi-astra-simulated-supply-chain-attacks.html",
+    "author": "Audit Commons",
+    "published": "2026-09-30",
+    "updated": "2026-09-30",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/aisi-astra-simulated-supply-chain-attacks/",
+    "affiliation_disclosure": "Audit Commons summarizes AISI's reported evaluation. We have not reproduced it. GPT-6 Astra is the tested model named by AISI; this brief does not equate it with another model checkpoint or a reported release decision."
+  },
+  {
+    "slug": "news/metr-per-action-monitor-gaps",
+    "title": "METR's action-monitor review finds gaps in coverage and human approval",
+    "summary": "A deployed per-action monitor still depends on run coverage, visible tool actions, and trustworthy human review. METR's research note documents operational gaps and incomplete evidence for effectiveness.",
+    "event_date": "2026-09-27",
+    "topics": [
+      "METR",
+      "Runtime monitoring",
+      "Human approval",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://metr.org/notes/2026-09-27-implementing-a-basic-blocking-action-monitor/"
+    ],
+    "related_slugs": [
+      "news/white-house-frontier-controls-accord",
+      "news/transluce-agent-network-tunneling",
+      "guides/audit-an-agent-action"
+    ],
+    "body_file": "bodies/metr-per-action-monitor-gaps.html",
+    "author": "Audit Commons",
+    "published": "2026-09-30",
+    "updated": "2026-09-30",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/metr-per-action-monitor-gaps/",
+    "affiliation_disclosure": "Audit Commons summarizes the authors' research note, which received less review than METR research posts. We have not independently tested the monitor or investigated the reported observations."
+  },
+  {
     "slug": "news/meta-muse-security-warning",
-    "title": "Meta Muse warning report raises questions about agent access and disclosure",
-    "summary": "Reuters reports a warning change after a vulnerability was found. A separate employee calling trial raises disclosure questions; confirmed data theft and a verified technical fix remain unestablished.",
+    "title": "Meta Muse reports raise questions about permissions and disclosure",
+    "summary": "A reported cloud flaw, an employee calling trial, and a Marketplace user's account raise distinct questions. Warning changes and permission explanations leave technical remediation unverified.",
     "event_date": "2026-09-25",
     "topics": [
       "Meta Muse",
@@ -14,7 +100,8 @@
     "source_urls": [
       "https://wsau.com/2026/09/25/meta-bolsters-muse-safety-warning-after-security-vulnerability-found-the-information-reports/",
       "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
-      "https://www.investing.com/news/stock-market-news/exclusivemeta-testing-a-human-concierge-for-its-new-personal-ai-agent-muse-4911301"
+      "https://www.investing.com/news/stock-market-news/exclusivemeta-testing-a-human-concierge-for-its-new-personal-ai-agent-muse-4911301",
+      "https://mashable.com/tech/meta-muse-facebook-marketplace-buyer-home-address"
     ],
     "body_file": "bodies/meta-muse-security-warning.html",
     "related_slugs": [
@@ -23,7 +110,7 @@
     ],
     "author": "Audit Commons",
     "published": "2026-09-28",
-    "updated": "2026-09-28",
+    "updated": "2026-09-30",
     "kind": "news",
     "canonical_url": "https://auditcommons.org/news/meta-muse-security-warning/",
     "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief attributes reported incidents to the linked reporting and vendor claims to Meta. Audit Commons has not inspected internal records or reproduced the reported vulnerability."

@@ -33,6 +33,7 @@ REQUIRED_NAV_ITEMS_ZH = [
     ("最新", "/zh/latest/"),
     ("学习", "/zh/learn/"),
     ("资源", "/zh/resources/"),
+    ("ICLR 工作坊", "/workshops/a3-iclr-2027/"),
     ("关于", "/zh/about/"),
 ]
 
