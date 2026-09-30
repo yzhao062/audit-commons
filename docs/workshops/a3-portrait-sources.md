@@ -12,5 +12,7 @@ These public personal and university pages supplied the workshop portraits on Se
 | Yan Liu | [USC MELADY Lab](https://usc-melady.github.io/melady_website/author/yan-liu/) | [Portrait](https://usc-melady.github.io/melady_website/author/yan-liu/avatar_hu7069925973700092081.jpg) |
 | Leman Akoglu | [CMU Computer Science](https://www.csd.cs.cmu.edu/people/faculty/leman-akoglu) | [Portrait](https://www.csd.cs.cmu.edu/sites/default/files/2025-10/LemanAkoglu.jpg) |
 | Emilio Ferrara | [USC Viterbi](https://viterbi.usc.edu/directory/faculty/Ferrara/Emilio) | [Portrait](https://viterbi.usc.edu/directory/images/913e692ef9baa40c3d9b7f7c20ee2979.png) |
+| Linsey Pang | [Northeastern University Silicon Valley](https://siliconvalley.northeastern.edu/faculty/xiaolin-linsey-pang/) | [Portrait](https://siliconvalley.northeastern.edu/wp-content/uploads/2025/09/linsey-pang-300x300.jpeg) |
+| Sharon Li | [University of Wisconsin-Madison](https://pages.cs.wisc.edu/~sharonli/) | [Portrait](https://pages.cs.wisc.edu/~sharonli/images/yixuanli-2019.JPG) |
 
 Agy's portrait lookup located the JHU image behind the profile's lazy-loading attributes and the MELADY lab crop. These replaced Chaowei's informal aquarium photograph and Yan's 150-pixel directory version. The chosen images are 500 by 500 and 270 by 270 pixels, respectively, sufficient for the 128-pixel portrait cards and Retina display. The lab crop keeps Yan's original studio photograph.
