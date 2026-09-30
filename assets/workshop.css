@@ -1,7 +1,9 @@
 .workshop-page { padding-top: 0; }
 .workshop-page sup { font-size: .65em; line-height: 0; }
 header.a3-site-header { border-top: 4px solid var(--color-accent); }
-header.a3-site-header .container { gap: 1rem 2rem; }
+header.a3-site-header .container { gap: 1rem 1.5rem; }
+.a3-home-link { color: var(--color-accent); font-size: .8rem; font-weight: 600; white-space: nowrap; text-decoration: none; }
+.a3-home-link:hover { text-decoration: underline; }
 .a3-brand img { width: 48px; height: 48px; }
 .a3-brand .brand-title { font-size: 1.15rem; }
 .a3-brand .brand-subtitle { margin-top: .2rem; font-size: .65rem; }
@@ -9,7 +11,7 @@ header.a3-site-header .container { gap: 1rem 2rem; }
 .a3-workshop-label { font-size: .95rem; font-weight: 650; color: var(--color-accent); letter-spacing: .035em; }
 .a3-status { display: inline-block; color: var(--color-accent); background: var(--color-accent-subtle); border: 1px solid #ccd6f3; padding: .45rem .75rem; font-size: .8rem; font-weight: 650; letter-spacing: .04em; white-space: nowrap; }
 .a3-status::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: .5rem; border-radius: 50%; background: currentColor; vertical-align: middle; }
-nav.a3-nav { gap: .5rem 1.5rem; }
+nav.a3-nav { gap: .5rem 1rem; }
 nav.a3-nav a { font-size: .85rem; }
 .a3-hero { display: grid; grid-template-columns: 1.8fr 1fr; gap: 5rem; padding: 4.5rem 0; scroll-margin-top: 110px; }
 .a3-kicker { color: var(--color-accent); }
@@ -90,8 +92,9 @@ footer.a3-site-footer { padding: 1.5rem 0; margin-top: 0; border-top: 2px solid 
   .a3-brand img { width: 42px; height: 42px; }
   nav.a3-nav { width: 100%; gap: .2rem 1rem; }
   nav.a3-nav a { font-size: .72rem; }
+  .a3-home-link { margin-left: auto; order: -1; font-size: .72rem; }
   .a3-workshop-label { font-size: .8rem; }
-  .a3-hero, .a3-section { scroll-margin-top: 150px; }
+  .a3-hero, .a3-section { scroll-margin-top: 190px; }
   .a3-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 0 3rem; }
   .a3-hero h1 { font-size: 3.6rem; }
   .a3-subtitle { font-size: 1.5rem; }

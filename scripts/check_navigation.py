@@ -203,9 +203,9 @@ def run_checks() -> int:
 
         if rel == "workshops/a3-iclr-2027/index.html":
             report.check()
-            expected_workshop_hrefs = ["#overview", "#program", "#speakers", "#organizers", "#contributions"]
+            expected_workshop_hrefs = ["#overview", "#program", "#speakers", "#panelists", "#organizers", "#contributions"]
             if [h for h, _, _ in parser.nav_links] != expected_workshop_hrefs:
-                report.error(f"{rel}: workshop navigation must link to its five sections")
+                report.error(f"{rel}: workshop navigation must link to its six sections")
             report.check()
             if parser.footer_links != [("/", "Audit Commons")]:
                 report.error(f"{rel}: workshop footer must keep only the hosting credit")
