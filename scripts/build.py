@@ -470,7 +470,7 @@ def render_html_page(
         <span class="brand-text"><span class="brand-title">Auditing AI Agents</span><span class="brand-subtitle">ICLR 2027 Workshop Proposal</span></span>
       </a>
       <nav class="site-nav a3-nav" aria-label="Workshop Navigation">
-        <a href="#overview">Overview</a><a href="#program">Program</a><a href="#speakers">Speakers</a><a href="#panelists">Panelists</a><a href="#organizers">Organizers</a><a href="#contributions">Contributions</a>
+        <a href="#overview">Overview</a><a href="#program">Program</a><a href="#participants">Participants</a><a href="#organizers">Organizers</a><a href="#contributions">Contributions</a>
       </nav>
       <a class="a3-home-link" href="/" aria-label="Back to Audit Commons"><span aria-hidden="true">←</span> Audit Commons</a>
     </div>
