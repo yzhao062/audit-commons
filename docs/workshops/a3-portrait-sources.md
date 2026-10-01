@@ -5,6 +5,7 @@ These public personal and university pages supplied the workshop portraits on Se
 | Person | Profile | Image Source |
 | --- | --- | --- |
 | Yue Zhao | [Personal website](https://yzhao062.github.io/) | [Portrait](https://yzhao062.github.io/images/rsz_300.jpg) |
+| Manling Li | [Personal website](https://limanling.github.io/) | [Portrait](https://limanling.github.io/authors/admin/avatar_hudd2cb509b9271810998b42a25e34ae22_4743348_270x270_fill_q75_lanczos_center.jpg) |
 | Kaize Ding | [Northwestern](https://statistics.northwestern.edu/people/faculty/kaize-ding.html) | [Portrait](https://statistics.northwestern.edu/images/faculty/kaize_ding168x210.jpg) |
 | Xiyang Hu | [Personal website](https://xiyanghu.github.io/) | [Portrait](https://xiyanghu.github.io/assets/img/prof_pic-800.webp) |
 | Hao Dong | [Personal website](https://donghao51.github.io/) | [Portrait](https://donghao51.github.io/assets/img/haodong2-800.webp) |

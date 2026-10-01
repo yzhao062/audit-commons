@@ -6,6 +6,7 @@ Checked on September 30, 2026, using current personal profiles, institutional di
 
 | Participant | Displayed Affiliation | Current Roles and Primary Sources |
 | --- | --- | --- |
+| Manling Li | Northwestern University | Assistant Professor of Computer Science and director of the MLL Lab. Her homepage also lists Amazon Scholar, retained here as background under the primary-affiliation policy. Checked October 1, 2026. [Homepage](https://limanling.github.io/), [Northwestern directory](https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/li-manling.html). |
 | Yue Zhao | USC | Computer Science faculty; Associate Co-Director, Institute on Ethics and Trust in Computing. His homepage identifies the concurrent Figwork Chief Scientific Advisor role, which Yue requested adding on September 30. [USC profile](https://viterbi.usc.edu/directory/faculty/Zhao/Yue), [homepage](https://yzhao062.github.io/). |
 | Kaize Ding | Northwestern University | Statistics and Data Science faculty. [Northwestern profile](https://statistics.northwestern.edu/people/faculty/kaize-ding.html). |
 | Xiyang Hu | Arizona State University | Information Systems faculty, W. P. Carey School of Business. [Homepage](https://xiyanghu.github.io/). |
