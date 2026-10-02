@@ -1,5 +1,83 @@
 [
   {
+    "slug": "news/aisi-evaluation-security-controls",
+    "title": "AISI resumes most evaluations with stronger isolation and action monitoring",
+    "summary": "An October 1 update describes changes to evaluation infrastructure. The audit question is whether each run actually used the stated controls.",
+    "event_date": "2026-10-01",
+    "topics": [
+      "AISI",
+      "Evaluation security",
+      "Runtime monitoring"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/building-a-more-secure-environment-for-evaluating-dangerous-capabilities"
+    ],
+    "related_slugs": [
+      "news/aisi-astra-simulated-supply-chain-attacks",
+      "news/metr-per-action-monitor-gaps",
+      "guides/how-to-read-an-agent-eval-report"
+    ],
+    "body_file": "bodies/aisi-evaluation-security-controls.html",
+    "author": "Audit Commons",
+    "published": "2026-10-02",
+    "updated": "2026-10-02",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/aisi-evaluation-security-controls/",
+    "affiliation_disclosure": "Audit Commons summarizes AISI's published update. We have not inspected or independently tested its evaluation infrastructure."
+  },
+  {
+    "slug": "news/metr-senate-agent-incident-testimony",
+    "title": "METR Senate testimony calls for better visibility into frontier agent risks",
+    "summary": "Chris Painter ties incident reporting and outside investigation to public visibility into agent risks. The September 30 testimony revisits a summer incident; it does not report a new breach.",
+    "event_date": "2026-09-30",
+    "topics": [
+      "METR",
+      "Independent evaluation",
+      "Incident reporting"
+    ],
+    "source_urls": [
+      "https://metr.org/blog/2026-09-30-chris-painter-senate-testimony/"
+    ],
+    "related_slugs": [
+      "news/white-house-frontier-controls-accord",
+      "news/anthropic-metr-incident-review",
+      "guides/audit-an-agent-action"
+    ],
+    "body_file": "bodies/metr-senate-agent-incident-testimony.html",
+    "author": "Audit Commons",
+    "published": "2026-10-02",
+    "updated": "2026-10-02",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/metr-senate-agent-incident-testimony/",
+    "affiliation_disclosure": "Audit Commons summarizes the published testimony. We did not participate in the investigation or examine its nonpublic records."
+  },
+  {
+    "slug": "news/ftc-ai-consumer-risk-investigation",
+    "title": "AP: FTC confirms investigation into AI risks to consumers",
+    "summary": "The agency confirmed an inquiry involving OpenAI, Anthropic, and other AI companies. Its confirmation supplies no finding of a legal violation.",
+    "event_date": "2026-09-30",
+    "topics": [
+      "FTC",
+      "Consumer protection",
+      "Accountability"
+    ],
+    "source_urls": [
+      "https://apnews.com/article/89ac416717adbfb1d72f2d85e6ce83d1"
+    ],
+    "related_slugs": [
+      "news/white-house-frontier-controls-accord",
+      "news/metr-senate-agent-incident-testimony",
+      "news/meta-muse-security-warning"
+    ],
+    "body_file": "bodies/ftc-ai-consumer-risk-investigation.html",
+    "author": "Audit Commons",
+    "published": "2026-10-02",
+    "updated": "2026-10-02",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/ftc-ai-consumer-risk-investigation/",
+    "affiliation_disclosure": "Audit Commons relies on AP's report of the FTC spokesperson's confirmation. We have not examined nonpublic investigative material or established any legal violation."
+  },
+  {
     "slug": "news/white-house-frontier-controls-accord",
     "title": "White House accord calls for independent audits of frontier AI controls",
     "summary": "A voluntary accord sets out internal controls, external assessment, and board oversight. A separate executive order changes federal terminology to SI; neither document supplies completed company audit results.",

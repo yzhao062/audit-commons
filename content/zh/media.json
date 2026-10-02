@@ -143,5 +143,20 @@
     "alt": "METR 标志",
     "caption": "METR，其 9 月 27 日研究说明检查了自身的行动监控流程。",
     "source_sha256": "1b4711f0f900e8a7d512c86ad630e2d4ef9b593f52ae13f1ece1a1fcaf153c23"
+  },
+  "aisi-evaluation-security-controls": {
+    "alt": "网络阻断、行动监控及运行前检查的编辑示意图。",
+    "caption": "原创编辑示意图，概括 AISI 说明的三类控制措施。它并非原始报告配图，也不代表对措施效果的测试。",
+    "source_sha256": "56f720fc91ea7703bb1541a09548b65ce539f71036ff65a50e3b112f112f48db"
+  },
+  "ftc-ai-consumer-risk-investigation": {
+    "alt": "区分调查、指控和最终认定的编辑示意图。",
+    "caption": "原创编辑示意图，区分不同证据阶段。所引报道仅确认调查；此图不预测指控或最终决定。",
+    "source_sha256": "4d7555bd9e15dd7c12dea5df459af59ea3c46e85c4680608491edfe8d8168e11"
+  },
+  "metr-senate-testimony": {
+    "alt": "METR 标志",
+    "caption": "METR，其总裁于 9 月 30 日就智能体事故与公共可见性作证。",
+    "source_sha256": "7493750627d7065e4e60cdd153253b638e6977235e7f4b44b44602b9ee697a0e"
   }
 }

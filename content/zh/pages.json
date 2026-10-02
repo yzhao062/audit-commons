@@ -291,5 +291,41 @@
     "body_file": "zh/bodies/metr-per-action-monitor-gaps.html",
     "affiliation_disclosure": "Audit Commons 概述作者的研究说明。该文接受的审查少于 METR 正式研究文章。我们未独立测试监控器，也未调查所报告的观察。",
     "source_sha256": "cd00ddeecfbf9a829438cca7fffcb8ea3ca0f31f3036d5d1f41300f60d960c36"
+  },
+  "news/aisi-evaluation-security-controls": {
+    "title": "AISI 加强隔离与行动监控，恢复多数评测",
+    "summary": "10 月 1 日的更新说明了评测基础设施的改动。审计仍需核实每次运行是否实际启用了所述控制措施。",
+    "topics": [
+      "AISI",
+      "评测安全",
+      "运行时监控"
+    ],
+    "body_file": "zh/bodies/aisi-evaluation-security-controls.html",
+    "affiliation_disclosure": "Audit Commons 汇总 AISI 已发布的更新。我们未检查或独立测试其评测基础设施。",
+    "source_sha256": "0fe22f4eadb0fa4bc6d7a973f8137014c1a17d8c4bbfaee6fa48ac1a647fb4d1"
+  },
+  "news/metr-senate-agent-incident-testimony": {
+    "title": "METR 参议院证词呼吁提高前沿智能体风险的透明度",
+    "summary": "Chris Painter 说明事故披露和外部调查如何提高智能体风险的公共可见性。9 月 30 日的证词回顾了夏季事故，并未报告新的入侵。",
+    "topics": [
+      "METR",
+      "独立评测",
+      "事故披露"
+    ],
+    "body_file": "zh/bodies/metr-senate-agent-incident-testimony.html",
+    "affiliation_disclosure": "Audit Commons 汇总公开证词。我们未参与调查，也未查阅其非公开记录。",
+    "source_sha256": "14e30aab4d8ad6ab20c427429d7559e1af1d3b1df35ecb161a8e4479beb35970"
+  },
+  "news/ftc-ai-consumer-risk-investigation": {
+    "title": "AP：FTC 确认调查 AI 对消费者的潜在风险",
+    "summary": "该机构确认了涉及 OpenAI、Anthropic 及其他 AI 公司的调查。这一确认并不构成违法认定。",
+    "topics": [
+      "FTC",
+      "消费者保护",
+      "问责"
+    ],
+    "body_file": "zh/bodies/ftc-ai-consumer-risk-investigation.html",
+    "affiliation_disclosure": "Audit Commons 依据 AP 对 FTC 发言人确认的报道。我们未查阅非公开调查材料，也未认定任何违法行为。",
+    "source_sha256": "8cf390057233ce7c56bdc6f880ac5b83b4d0349ee3a262de60b522f473b9229a"
   }
 }

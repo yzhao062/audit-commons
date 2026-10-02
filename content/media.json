@@ -480,6 +480,56 @@
       "retrieved": "2026-09-16",
       "sha256": "8c7aa4ca5083383de3523496d05a88aac1e44e695c0e1dcc7afd95ac2c204c50",
       "changes": "Unmodified source asset; displayed at responsive sizes."
+    },
+    "aisi-evaluation-security-controls": {
+      "src": "/assets/media/aisi-evaluation-security-controls.svg",
+      "kind": "figure",
+      "width": 1000,
+      "height": 560,
+      "alt": "Editorial diagram of network blocking, action monitoring, and pre-run control checks.",
+      "caption": "Original editorial illustration summarizing three controls described by AISI. It is not a source figure or a test of their effectiveness.",
+      "credit": "Audit Commons",
+      "source_url": "https://auditcommons.org/news/aisi-evaluation-security-controls/",
+      "download_url": "https://auditcommons.org/assets/media/aisi-evaluation-security-controls.svg",
+      "license": "Original Audit Commons artwork; reuse license pending",
+      "license_url": "https://auditcommons.org/about/#reuse",
+      "retrieved": "2026-10-02",
+      "sha256": "a1bf3f29118e49c841cc1319c2f29cd1a160eb1f01e83422e7218256aa2ebdb0",
+      "changes": "Original editorial SVG. No source artwork or quantitative results reproduced.",
+      "license_pending": true
+    },
+    "ftc-ai-consumer-risk-investigation": {
+      "src": "/assets/media/ftc-ai-consumer-risk-investigation.svg",
+      "kind": "figure",
+      "width": 1000,
+      "height": 560,
+      "alt": "Editorial diagram distinguishing an inquiry, allegations, and final findings.",
+      "caption": "Original editorial illustration of evidence stages. Only the inquiry is confirmed in the cited reporting; the diagram does not predict charges or a decision.",
+      "credit": "Audit Commons",
+      "source_url": "https://auditcommons.org/news/ftc-ai-consumer-risk-investigation/",
+      "download_url": "https://auditcommons.org/assets/media/ftc-ai-consumer-risk-investigation.svg",
+      "license": "Original Audit Commons artwork; reuse license pending",
+      "license_url": "https://auditcommons.org/about/#reuse",
+      "retrieved": "2026-10-02",
+      "sha256": "466f0586e3029b7856233e1445db7173568a78908fd1ff6c1997e1ba7b1634cd",
+      "changes": "Original editorial SVG. No source artwork or quantitative results reproduced.",
+      "license_pending": true
+    },
+    "metr-senate-testimony": {
+      "src": "/assets/media/metr.svg",
+      "kind": "logo",
+      "width": 151,
+      "height": 33,
+      "alt": "METR logo",
+      "caption": "METR, whose president testified on September 30 about agent incidents and public visibility.",
+      "credit": "METR",
+      "source_url": "https://metr.org/",
+      "download_url": "https://metr.org/assets/images/logo/logo.svg",
+      "license": "Trademark; editorial identification",
+      "license_url": "https://metr.org/",
+      "retrieved": "2026-09-16",
+      "sha256": "8c7aa4ca5083383de3523496d05a88aac1e44e695c0e1dcc7afd95ac2c204c50",
+      "changes": "Unmodified source asset; displayed at responsive sizes."
     }
   },
   "articles": {
@@ -502,7 +552,10 @@
     "news/transluce-agent-network-tunneling": "transluce-scanner-access",
     "news/white-house-frontier-controls-accord": "white-house-controls",
     "news/aisi-astra-simulated-supply-chain-attacks": "aisi-simulated-authorization",
-    "news/metr-per-action-monitor-gaps": "metr-monitor"
+    "news/metr-per-action-monitor-gaps": "metr-monitor",
+    "news/aisi-evaluation-security-controls": "aisi-evaluation-security-controls",
+    "news/ftc-ai-consumer-risk-investigation": "ftc-ai-consumer-risk-investigation",
+    "news/metr-senate-agent-incident-testimony": "metr-senate-testimony"
   },
   "resources": {
     "nist-ai-rmf": "nist",

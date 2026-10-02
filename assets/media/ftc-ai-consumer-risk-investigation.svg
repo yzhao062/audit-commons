@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">Following an AI Investigation</title><desc id="desc">跟进 AI 调查时，区分证据阶段. Original editorial illustration.</desc>
+  <rect width="1000" height="560" fill="#f5f5f4"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#232323">
+    <text x="48" y="65" font-size="36">Following an AI Investigation</text>
+    <text x="48" y="111" font-size="29" fill="#585b62">跟进 AI 调查时，区分证据阶段</text>
+    <rect x="48" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="70" y="215" font-size="25" fill="#254fc4">01</text>
+    <text x="70" y="265" font-size="29">Inquiry</text>
+    <text x="70" y="310" font-size="28">调查</text>
+    <text x="70" y="356" font-size="22" fill="#585b62">FTC confirmed (AP)</text>
+    <text x="70" y="390" font-size="22" fill="#585b62">据 AP，FTC 已确认</text>
+    <rect x="356" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="378" y="215" font-size="25" fill="#254fc4">02</text>
+    <text x="378" y="265" font-size="29">Allegations</text>
+    <text x="378" y="310" font-size="28">指控</text>
+    <text x="378" y="356" font-size="22" fill="#585b62">Need documentation</text>
+    <text x="378" y="390" font-size="22" fill="#585b62">需文件支持</text>
+    <rect x="664" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="686" y="215" font-size="25" fill="#254fc4">03</text>
+    <text x="686" y="265" font-size="29">Findings</text>
+    <text x="686" y="310" font-size="28">最终认定</text>
+    <text x="686" y="356" font-size="22" fill="#585b62">Need a decision</text>
+    <text x="686" y="390" font-size="22" fill="#585b62">需正式决定</text>
+    <text x="48" y="482" font-size="23" fill="#585b62">Stages are distinct; later outcomes are unresolved / 不同阶段，后续结果待核实</text>
+    <text x="48" y="525" font-size="21" fill="#585b62">Audit Commons • Editorial illustration / 编辑示意图</text>
+  </g>
+</svg>

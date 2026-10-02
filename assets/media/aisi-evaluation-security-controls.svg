@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">AISI Evaluation Controls</title><desc id="desc">AISI 评测控制措施. Original editorial illustration.</desc>
+  <rect width="1000" height="560" fill="#f5f5f4"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#232323">
+    <text x="48" y="65" font-size="36">AISI Evaluation Controls</text>
+    <text x="48" y="111" font-size="29" fill="#585b62">AISI 评测控制措施</text>
+    <rect x="48" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="70" y="215" font-size="25" fill="#254fc4">01</text>
+    <text x="70" y="265" font-size="29">Network blocks</text>
+    <text x="70" y="310" font-size="28">网络阻断</text>
+    <text x="70" y="356" font-size="22" fill="#585b62">Sandbox + host</text>
+    <text x="70" y="390" font-size="22" fill="#585b62">沙箱与主机两层</text>
+    <rect x="356" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="378" y="215" font-size="25" fill="#254fc4">02</text>
+    <text x="378" y="265" font-size="29">Action monitoring</text>
+    <text x="378" y="310" font-size="28">行动监控</text>
+    <text x="378" y="356" font-size="22" fill="#585b62">Before execution</text>
+    <text x="378" y="390" font-size="22" fill="#585b62">在执行前检查</text>
+    <rect x="664" y="170" width="288" height="250" rx="12" fill="#ffffff" stroke="#c6cfdf" stroke-width="2"/>
+    <text x="686" y="215" font-size="25" fill="#254fc4">03</text>
+    <text x="686" y="265" font-size="29">Pre-run checks</text>
+    <text x="686" y="310" font-size="28">运行前检查</text>
+    <text x="686" y="356" font-size="22" fill="#585b62">Verify controls</text>
+    <text x="686" y="390" font-size="22" fill="#585b62">核实措施已启用</text>
+    <text x="48" y="482" font-size="23" fill="#585b62">Reported controls; verify each run / 已披露控制措施，逐次核实运行</text>
+    <text x="48" y="525" font-size="21" fill="#585b62">Audit Commons • Editorial illustration / 编辑示意图</text>
+  </g>
+</svg>
