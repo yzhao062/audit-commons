@@ -66,10 +66,20 @@ python scripts/check.py
 python scripts/check_localization.py
 python scripts/check_navigation.py
 python scripts/check_reading_lists.py
+python scripts/test_news_media.py
 git diff --check
 ```
 
-Inspect changed English and Chinese pages, the homepage/Latest placement, and relevant full-content feed entries. Confirm that every new or updated news article displays its registered image, caption, and credit in both languages and in the feed. For image, layout, navigation, or filtering changes, also run the browser checks from the maintenance playbook using the actual preview port and inspect narrow-screen rendering. For skill/documentation-only edits, validate paths and the diff instead of rebuilding the site.
+### Required News Illustration Check
+
+Every `news` item must pass this check before publication:
+
+- Confirm a relevant lead image is registered, its local asset exists, and both languages have reviewed alt text, caption, credit, and rights information. Run `scripts/test_news_media.py` to verify the missing-image rejection gate.
+- Open the rendered article and its Latest card in both languages. Scroll each image into view so lazy loading runs; confirm that it loads, has nonzero intrinsic dimensions, and is visibly displayed on desktop and narrow screens. An image path or a passing registry check alone does not establish a visible illustration.
+- Inspect the actual picture and caption together for relevance and legibility. Retain a screenshot of the checked news card and article. Confirm that full-content feed entries also include the image and attribution.
+- After an authorized deployment, repeat the visual check on the public URLs. A missing, broken, hidden, or unrelated image leaves the news item incomplete; repair it before reporting the refresh complete.
+
+Inspect homepage/Latest placement alongside changed articles. For image, layout, navigation, or filtering changes, also run the browser checks from the maintenance playbook using the actual preview port. For skill/documentation-only edits, validate paths and the diff instead of rebuilding the site.
 
 For a research-only request, stop after returning a source-grounded candidate set. For an implemented refresh, follow the established `/prun` discovery and `/vet both` gate above. Identify an unavailable reviewer and do not substitute a self-review for that reviewer.
 
