@@ -6,7 +6,7 @@ This is the repeatable workflow for updating Audit Commons. It records decisions
 
 Readers should immediately recognize a place to learn, follow news, and find useful resources. Lead with identifiable stories, dates, sources, explanations, and a browsable library. Keep subscription invitations quiet and secondary to reading. Avoid a product-style hero, repeated calls to action, promotional claims, or giving maintainer projects disproportionate prominence.
 
-Every news article requires a relevant lead image. Use source photographs, author figures, real screenshots, or official marks with verified rights. If suitable source imagery is unavailable, add a clearly labeled editorial illustration that explains the story. A generic diagram does not substitute for a requested news photograph. Other article types and resource cards may remain text-only.
+Every news article requires a relevant lead image. Use relevant source photographs, author figures, or real screenshots with verified rights. If suitable source imagery is unavailable, add a clearly labeled editorial illustration that explains the story. A generic diagram does not substitute for a requested news photograph. Every news lead must carry substantive visual content. Logos, wordmarks, title cards, generic decoration, and pure text-box diagrams do not qualify. Original pictorial illustrations must explain the story, and AI-generated images must be disclosed in both language captions. The build rejects news logos; editors must visually review relevance and substance. Other article types and resource cards may remain text-only.
 
 ## Where updates belong
 

@@ -71,8 +71,11 @@ def bind_media(content_dir, assets_dir, pages, resources):
                 raise ValueError(f'Media mapping {section}/{record_id}: unknown record or asset')
             records[record_id]['_media'] = assets[media_id]
     for page in pages:
-        if page.get('kind') == 'news' and page['slug'] not in manifest['articles']:
-            raise ValueError(f'News article {page["slug"]}: missing registered lead image')
+        if page.get('kind') == 'news':
+            if page['slug'] not in manifest['articles']:
+                raise ValueError(f'News article {page["slug"]}: missing registered lead image')
+            if page['_media']['kind'] == 'logo':
+                raise ValueError(f'News article {page["slug"]}: a logo cannot serve as a substantive news image')
     return sorted(files)
 
 

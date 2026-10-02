@@ -158,5 +158,45 @@
     "alt": "METR 标志",
     "caption": "METR，其总裁于 9 月 30 日就智能体事故与公共可见性作证。",
     "source_sha256": "7493750627d7065e4e60cdd153253b638e6977235e7f4b44b44602b9ee697a0e"
+  },
+  "ftc-sign-2025": {
+    "alt": "华盛顿联邦贸易委员会大楼外的标牌",
+    "caption": "联邦贸易委员会大楼，摄于2025年2月7日。用于介绍此次 AI 消费者风险调查机构的历史资料照片。",
+    "source_sha256": "c1235eaaed199201b16ba4b4a8998e3a31e91608fe6bfeaf706e9552135cd3aa"
+  },
+  "capitol-2011": {
+    "alt": "秋日树木环绕的美国国会大厦东立面",
+    "caption": "美国国会大厦，摄于2011年11月7日。用于配合 METR 参议院证词报道的历史资料照片，并非2026年9月听证会现场。",
+    "source_sha256": "0ef01cb44775d369362c617c2de13f225057a19ac93f4ed27e43e6290a660d82"
+  },
+  "white-house-2008": {
+    "alt": "华盛顿白宫及南草坪",
+    "caption": "白宫，摄于2008年5月30日。用于前沿 AI 控制协议报道的历史资料照片，并非2026年9月会议现场。",
+    "source_sha256": "b19c1aa403511dfd56603d2be0074eba315326a3256024e3a2e5b73bb2ea0609"
+  },
+  "agent-scanner-relay": {
+    "alt": "受限服务器的直接路径被阻挡，另一条路径经网站扫描器转接的插图",
+    "caption": "AI 生成的编辑插图，表现 URL 扫描器替智能体转接请求的机制。这是委托网络访问的概念图，不是观测流量记录，也不表示攻击已成功。",
+    "source_sha256": "4b661837f0bea3dd6cbea0a8a552179babb391d62cd428dc4e212112d47f4806"
+  },
+  "agent-monitor-coverage": {
+    "alt": "评估人员检查智能体工具操作，旁路绕过检查，人工暂停杆位于桌边的插图",
+    "caption": "AI 生成的编辑插图，表现动作监控、覆盖缺口和人工审核。画面为概念示意，并非 METR 工作人员照片或真实界面截图。",
+    "source_sha256": "bfbd4470d388564dde7afca114552fe8f06aad1513faa9b18c4091c4a2e067f3"
+  },
+  "agent-supply-chain-simulation": {
+    "alt": "模拟箱内的软件包传送链和自动批准装置，箱外的人手持钥匙的插图",
+    "caption": "AI 生成的编辑插图，表现模拟软件供应链操纵和自动批准。实体模型是对 AISI 语言模型模拟的视觉比喻；该评估未连接真实代码仓库或网络。",
+    "source_sha256": "6de74626c5ac3e6ee985390527e8818f2be3147d5479a2cb345b936f1b58a2b0"
+  },
+  "anthropic-incident-archive": {
+    "alt": "Rishi Sunak 于2023年5月在唐宁街会见 Sam Altman、Demis Hassabis 和 Dario Amodei",
+    "caption": "Rishi Sunak 与 Sam Altman、Demis Hassabis 和 Dario Amodei 于2023年5月在唐宁街会面。包含 Anthropic 首席执行官的历史资料照片，并非 METR 事件审查现场。",
+    "source_sha256": "fdfa0aaa0505133afe231c8a5cabdc3d9f314e9f219c4ea5d06bb9613c6e88bf"
+  },
+  "evaluation-security-controls": {
+    "alt": "隔离的评估服务器、两道网络屏障、工具操作检查和运行前检查清单的插图",
+    "caption": "AI 生成的编辑插图，表现 AISI 所述的分层网络阻断、工具操作监控和运行前检查。画面为概念示意，并非真实基础设施，也不衡量控制措施的效果。",
+    "source_sha256": "9996ea1c04bffcc937b89f5651287bedc9191b091528cb2115e40317d3a6f9d6"
   }
 }

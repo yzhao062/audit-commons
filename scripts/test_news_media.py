@@ -1,3 +1,4 @@
+from hashlib import sha256
 import json
 from pathlib import Path
 import tempfile
@@ -27,6 +28,29 @@ class NewsMediaTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             self.assertEqual(bind_media(root, root, [{'slug': 'guide/example', 'kind': 'guide'}], []), [])
+
+    def test_logos_are_rejected_for_news_but_allowed_for_resources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'media').mkdir()
+            data = b'<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"/>'
+            (root / 'media/logo.svg').write_bytes(data)
+            media = {
+                'src': '/assets/media/logo.svg', 'kind': 'logo', 'width': 10, 'height': 10,
+                'alt': 'Project logo', 'caption': 'Project logo.', 'credit': 'Project',
+                'source_url': 'https://example.org/', 'download_url': 'https://example.org/logo.svg',
+                'license': 'Editorial identification', 'license_url': 'https://example.org/',
+                'sha256': sha256(data).hexdigest(), 'changes': 'Unmodified.',
+            }
+            manifest = {'assets': {'logo': media}, 'articles': {'news/example': 'logo'}, 'resources': {}}
+            (root / 'media.json').write_text(json.dumps(manifest), encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'a logo cannot serve as a substantive news image'):
+                bind_media(root, root, [{'slug': 'news/example', 'kind': 'news'}], [])
+            manifest.update(articles={}, resources={'example': 'logo'})
+            (root / 'media.json').write_text(json.dumps(manifest), encoding='utf-8')
+            resources = [{'id': 'example'}]
+            bind_media(root, root, [], resources)
+            self.assertEqual(resources[0]['_media']['kind'], 'logo')
 
     def test_pending_rights_are_visible_without_a_structured_license_claim(self):
         site = {
