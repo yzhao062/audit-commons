@@ -4,6 +4,7 @@ These public personal and university pages supplied the workshop portraits on Se
 
 | Person | Profile | Image Source |
 | --- | --- | --- |
+| Chen-Yu Lee | [Personal website](https://chenyulee.com/index.html) | [Portrait](https://chenyulee.com/assets/profile/me3.JPG) |
 | David Rein | [METR](https://metr.org/team/david-rein/) | [Portrait](https://metr.org/assets/images/team/david-rein.webp) |
 | Yue Zhao | [Personal website](https://yzhao062.github.io/) | [Portrait](https://yzhao062.github.io/images/rsz_300.jpg) |
 | Manling Li | [Personal website](https://limanling.github.io/) | [Portrait](https://limanling.github.io/authors/admin/avatar_hudd2cb509b9271810998b42a25e34ae22_4743348_270x270_fill_q75_lanczos_center.jpg) |
