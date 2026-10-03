@@ -1,9 +1,12 @@
 # A³ Portrait Sources
 
+Sean McGregor's portrait was retrieved from AVERI on October 3, 2026. The local JPEG is unchanged, 516 by 491 pixels and 21,084 bytes. SHA-256: `4a3f88022500bb185626b4a9849a75b970400986d4c39ac5e71c7972fbd192ed`. The linked AVERI profile supplies the credit; no general reuse license or photographer attribution is inferred.
+
 These public personal and university pages supplied the workshop portraits on September 29, 2026. The displayed names link to the corresponding profiles. The site keeps local copies to avoid third-party requests when a reader loads a portrait.
 
 | Person | Profile | Image Source |
 | --- | --- | --- |
+| Sean McGregor | [AVERI](https://www.averi.org/team) | [Portrait](https://images.squarespace-cdn.com/content/v1/685262a5f3a19135202ed5b6/0c5a7895-a908-43f6-a813-e96103254276/2026-02-05---Averi0005.jpg) |
 | Chen-Yu Lee | [Personal website](https://chenyulee.com/index.html) | [Portrait](https://chenyulee.com/assets/profile/me3.JPG) |
 | David Rein | [METR](https://metr.org/team/david-rein/) | [Portrait](https://metr.org/assets/images/team/david-rein.webp) |
 | Yue Zhao | [Personal website](https://yzhao062.github.io/) | [Portrait](https://yzhao062.github.io/images/rsz_300.jpg) |
