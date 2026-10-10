@@ -9,5 +9,6 @@ Before recurring content, catalog, or media updates, read [docs/maintenance.md](
 | Request | Project-local skill |
 |---|---|
 | Audit Commons weekly refresh, editorial refresh, 每周更新, 内容刷新 | [skills/weekly-refresh/SKILL.md](skills/weekly-refresh/SKILL.md) |
+| Ecosystem refresh, combined upstream/downstream refresh, full ecosystem update, 端到端生态刷新, Awesome PR merge and portal refresh | [skills/ecosystem-refresh/SKILL.md](skills/ecosystem-refresh/SKILL.md) |
 
 Read the local skill directly when the shared router is unavailable. It supports scoped research or implementation according to the request; routine refresh does not imply scheduling, email delivery, or publication authorization.

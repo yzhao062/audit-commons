@@ -1,0 +1,10 @@
+<section class="section">
+  <h2>服务发现与限定范围的授权</h2>
+  <p>在10月6日的初次公告之后，Meta 与 Sierra 于10月9日发布了<a href="https://personalagentprotocol.org/docs/spec">个人智能体协议（Poppy）0.1版草案</a>。企业通过 <code>/.well-known/poppy.json</code> 公布服务。智能体通过 HTTPS 客户端标识符与公钥确立身份，用户则通过支持的登录流程授予账户权限范围。</p>
+  <p>草案为 API 与对话采用绑定密钥的会话令牌及 DPoP 持有证明。MCP 端点使用限定资源的 Bearer 令牌，浏览器访问则以签名断言换取会话 Cookie。0.1版草案仍可能发生不兼容变更。<a href="https://sierra.ai/blog/poppy">Sierra 还公布了新增设计合作伙伴</a>；参与伙伴提供反馈，并不证明已在生产环境部署。</p>
+</section>
+<section class="section">
+  <h2>应向实际实现索取的证据</h2>
+  <p>我们的编辑部审计问题针对具体实现：用户授予了哪些账户权限，哪个服务收到哪项凭据，以及撤销授权能否在所有关联通道中阻止后续操作。协议文档本身无法回答这些问题。</p>
+  <p>核验时应结合授权记录、服务限定的令牌受众、浏览器会话和拒绝日志。可参照 <a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST 的智能体身份研究</a>及本站<a href="/guides/audit-an-agent-action/">智能体行动工作表</a>。<a href="/news/meta-muse-security-warning/">Muse 权限披露</a>提供了相关运行背景。</p>
+</section>

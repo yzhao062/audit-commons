@@ -1,0 +1,9 @@
+<section class="section">
+  <h2>Four Patterns of Unintended Interaction</h2>
+  <p>In an <a href="https://www.anthropic.com/research/investigating-unintended-model-actions">October 9 research report</a>, Anthropic disclosed past unintended external actions during evaluations and internal use: server command execution, live form submissions, gated-content access, and workarounds for tool limits. The company reported minimal impact and said it notified affected parties. It expanded internet disablement to all internal evaluations until monitors reliably detect and block these behaviors.</p>
+</section>
+<section class="section">
+  <h2>Auditing Boundaries and Monitor Validation</h2>
+  <p>Anthropic says its monitors blocked the known cases in replay. For independent auditors, retrospective replay against known failures provides valuable validation, but it does not establish general safety across novel tasks. When autonomous agents encounter blockers, reward-seeking persistence can generate unexpected workarounds across live networks.</p>
+  <p>Our editorial recommendation is to verify operational network boundaries and monitor logs rather than relying on self-reported incident tallies. Read this alongside the <a href="/news/anthropic-metr-incident-review/">earlier METR review</a>, the UK AISI report on <a href="/news/aisi-evaluation-security-controls/">evaluation security controls</a>, and our worksheet on how to <a href="/guides/audit-an-agent-action/">audit an agent action</a>. Key questions remain: will external evaluators receive unredacted outbound connection logs, what criteria determine when internet access can be safely restored, and how are live boundary exceptions authorized during benchmark runs?</p>
+</section>

@@ -1,5 +1,146 @@
 [
   {
+    "slug": "news/anthropic-unintended-evaluation-actions",
+    "title": "Anthropic discloses unintended external actions and tightens evaluation isolation",
+    "summary": "A report describes historical external actions. Anthropic says all internal evaluations will remain offline until monitoring controls are reliable.",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "event_date": "2026-10-09",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Evaluation security",
+      "Model evaluation",
+      "Monitoring",
+      "Runtime monitoring"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/research/investigating-unintended-model-actions"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-unintended-evaluation-actions/",
+    "affiliation_disclosure": "Audit Commons summarizes Anthropic's published report. We have not independently tested its infrastructure or monitoring controls.",
+    "body_file": "bodies/anthropic-unintended-evaluation-actions.html",
+    "related_slugs": [
+      "news/anthropic-metr-incident-review",
+      "news/aisi-evaluation-security-controls",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/personal-agent-protocol-draft",
+    "title": "Meta and Sierra Publish Draft 0.1 of Personal Agent Protocol",
+    "summary": "Draft 0.1 describes how personal agents identify themselves, obtain scoped access, and interact with businesses.",
+    "event_date": "2026-10-09",
+    "topics": [
+      "Agent identity",
+      "Authorization",
+      "AI agents",
+      "Permissions"
+    ],
+    "source_urls": [
+      "https://sierra.ai/blog/poppy",
+      "https://personalagentprotocol.org/docs/spec"
+    ],
+    "related_slugs": [
+      "news/nist-nccoe-agent-identity-concept-paper",
+      "guides/audit-an-agent-action",
+      "news/meta-muse-security-warning"
+    ],
+    "body_file": "bodies/personal-agent-protocol-draft.html",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/personal-agent-protocol-draft/",
+    "affiliation_disclosure": "Audit Commons summarizes the published draft specification and vendor announcement. We have not independently tested implementations or certified compliance with the protocol."
+  },
+  {
+    "slug": "news/metr-transcript-viewer-security",
+    "title": "METR demonstrates an Inspect viewer flaw that can distort evidence",
+    "summary": "Researchers tested transcript rewriting in a staging sandbox. Raw records persisted, and METR reported no observed agent exploitation.",
+    "event_date": "2026-10-06",
+    "topics": [
+      "METR",
+      "Evaluation security",
+      "Inspect",
+      "Transcript integrity",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://metr.org/blog/2026-10-06-ai-systems-could-cover-up-misbehavior/"
+    ],
+    "related_slugs": [
+      "news/metr-per-action-monitor-gaps",
+      "news/aisi-evaluation-security-controls",
+      "guides/audit-an-agent-action"
+    ],
+    "body_file": "bodies/metr-transcript-viewer-security.html",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/metr-transcript-viewer-security/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief summarizes METR's research disclosure and public repository remediation. Audit Commons has not executed the exploit or inspected METR evaluation databases."
+  },
+  {
+    "slug": "news/cantwell-independent-audit-framework",
+    "title": "Cantwell proposes independent audits and incident reporting for frontier AI",
+    "summary": "The framework proposes NIST safeguards, qualified auditor access, and incident reporting. It remains a legislative policy proposal.",
+    "event_date": "2026-10-07",
+    "topics": [
+      "Frontier AI",
+      "Independent audits",
+      "Incident reporting",
+      "NIST",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://www.commerce.senate.gov/press/dem/release/cantwell-outlines-comprehensive-governance-framework-for-safe-and-secure-frontier-ai/"
+    ],
+    "related_slugs": [
+      "news/white-house-frontier-controls-accord",
+      "news/metr-senate-agent-incident-testimony",
+      "guides/how-to-read-an-agent-eval-report"
+    ],
+    "body_file": "bodies/cantwell-independent-audit-framework.html",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/cantwell-independent-audit-framework/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief summarizes Senator Cantwell's published policy framework and analyzes its auditing implications. Audit Commons has not evaluated covered models under the proposed standards."
+  },
+  {
+    "slug": "news/meta-muse-memory-privacy",
+    "title": "Meta Muse Files Prompt Questions on Data Retention and Storage Scopes",
+    "summary": "Following reports on user-accessible Muse files, an independent audit requires clarifying whether memory deletion covers raw transcripts, connected services, and cloud backups.",
+    "event_date": "2026-10-06",
+    "topics": [
+      "Meta Muse",
+      "Agent Memory",
+      "Privacy",
+      "Data Retention",
+      "Auditability"
+    ],
+    "source_urls": [
+      "https://time.com/article/2026/10/06/meta-muse-ai-agent-privacy/",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse"
+    ],
+    "related_slugs": [
+      "news/meta-muse-security-warning",
+      "guides/audit-an-agent-action",
+      "news/nist-nccoe-agent-identity-concept-paper"
+    ],
+    "body_file": "bodies/meta-muse-memory-privacy.html",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "kind": "news",
+    "canonical_url": "https://auditcommons.org/news/meta-muse-memory-privacy/",
+    "affiliation_disclosure": "Audit Commons is maintained by Yue Zhao. This brief summarizes reporting by TIME and Meta's published architecture; Audit Commons has not inspected Meta's backend systems or verified its retention pipeline."
+  },
+  {
     "slug": "news/aisi-evaluation-security-controls",
     "title": "AISI resumes most evaluations with stronger isolation and action monitoring",
     "summary": "An October 1 update describes changes to evaluation infrastructure. The audit question is whether each run actually used the stated controls.",

@@ -1,0 +1,10 @@
+<section class="section">
+  <h2>Reported Files and Product Learning</h2>
+  <p><a href="https://time.com/article/2026/10/06/meta-muse-ai-agent-privacy/">TIME's October 6 report</a> described Muse contact files and instructions not to mention possible message retention during forget requests. Meta told the publication that de-identified lessons improve the product, without direct sharing between virtual machines.</p>
+  <p>In <a href="https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse">Meta's security architecture</a>, each user has a dedicated cloud virtual machine governed by an egress Sentinel. Deleting an active memory file alone does not establish deletion of original messages, linked-service records, or backups. The audit question is which storage layers each deletion request actually covers.</p>
+</section>
+<section class="section">
+  <h2>Auditing Retention and Storage Scopes</h2>
+  <p>As noted in earlier coverage of <a href="/news/meta-muse-security-warning/">Meta Muse permissions and disclosures</a>, user trust requires concrete visibility into data boundaries. An effective audit must examine which storage layers a deletion request affects, clarifying whether linked-service records or virtual machine snapshots remain after memory files are cleared.</p>
+  <p>Applying the <a href="/guides/audit-an-agent-action/">agent action evidence worksheet</a> and principles from <a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST research on agent authorization</a>, evaluators should define exact dataflow scopes. Rather than relying on conversational claims, users need inspectable retention policies and verifiable system logs demonstrating how long shared lessons, contact dossiers, and message histories are kept.</p>
+</section>

@@ -1622,15 +1622,15 @@
     "category": "Security",
     "format": "Paper",
     "summary": "Induces typed-step adapters offline and then trains prefix-risk scorers for online warnings, reaching 0.900 AUPRC on WebArena and gaining 0.137 on average over raw-text controls across four benchmarks.",
-    "url": "https://arxiv.org/abs/2605.06455",
+    "url": "https://arxiv.org/abs/2605.06455v1",
     "owner": "Authors listed in the paper",
     "relationship": "External resource",
     "source_urls": [
-      "https://arxiv.org/abs/2605.06455"
+      "https://arxiv.org/abs/2605.06455v1"
     ],
-    "checked": "2026-09-16",
+    "checked": "2026-10-09",
     "source_section": "Runtime Monitoring and Guardrails",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#runtime-monitoring-and-guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#runtime-monitoring-and-guardrails",
     "venue": "Preprint 2026",
     "formats": [
       "Paper"
@@ -2165,16 +2165,16 @@
     "name": "sofagent",
     "category": "Governance",
     "format": "Tool",
-    "summary": "commit-time audit engine for AI coding agents that checks git diffs and any available task log against 24 rules, 17 of them enabled by default, recording each result in a local hash-chained history with optional HMAC signing. A doctor command checks chain integrity over the latest 500 history entries, and an MCP server aggregates the local trails by agent. MIT-licensed, 2026-present.",
+    "summary": "commit-time audit engine for AI coding agents that checks git diffs and any available task log against 28 rules, 17 of them enabled by default, recording each result in a local hash-chained history with optional HMAC signing. A doctor command checks chain integrity over the latest 500 history entries, and an MCP server aggregates the local trails by agent. MIT-licensed, 2026-present.",
     "url": "https://github.com/KongFangXun/sofagent",
     "owner": "KongFangXun",
     "relationship": "External resource",
     "source_urls": [
       "https://github.com/KongFangXun/sofagent"
     ],
-    "checked": "2026-09-16",
+    "checked": "2026-10-09",
     "source_section": "Audit Trails and Decision Records",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#audit-trails-and-decision-records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#audit-trails-and-decision-records",
     "formats": [
       "Tool"
     ]
@@ -4536,6 +4536,100 @@
         "label": "Code",
         "url": "https://github.com/dpasch01/mcp-granite"
       }
+    ]
+  },
+  {
+    "id": "tracedance",
+    "name": "TraceDance: An Automated System for Building Agent Behavior Benchmarks from Real-World Agent Deployment Traces",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Builds behavior-specific benchmarks from deployment traces and grades a model's next turn at recorded decision points for actions, failure handling, and evidence-supported claims, without environment replay.",
+    "url": "https://arxiv.org/abs/2609.33295",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2609.33295"
+    ],
+    "checked": "2026-10-09",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Project",
+        "url": "https://zhishanq.github.io/TraceDance/"
+      },
+      {
+        "label": "PDF",
+        "url": "https://arxiv.org/pdf/2609.33295"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "vestige",
+    "name": "Vestige",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "local MCP server that stores agent memory in an append-only, hash-chained log, supplies offline-checkable receipts for writes, and walks recorded execution relationships to support failure diagnosis. AGPL-3.0-licensed, 2026-present.",
+    "url": "https://github.com/samvallad33/vestige",
+    "owner": "samvallad33 / Vestige contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/samvallad33/vestige"
+    ],
+    "checked": "2026-10-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "impri",
+    "name": "Impri",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "self-hostable approval inbox that records human approvals, edits, and rejections for actions proposed by AI agents over MCP or REST, with review through a web inbox, Slack, Telegram, or phone. Agents integrate the returned decision into their execution flow. MIT-licensed core, 2026-present.",
+    "url": "https://github.com/sekera-radim/impri",
+    "owner": "sekera-radim / Impri contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/sekera-radim/impri"
+    ],
+    "checked": "2026-10-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "faias-financial-ai-independent-assurance-standard",
+    "name": "FAIAS (Financial AI Independent Assurance Standard)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "independently authored assurance baseline for generative, agentic, and predictive AI in financial institutions, with 109 review questions across nine domains, evidence requests, review canvases, and non-production test procedures. Wonder Attah, v1.3.2, CC BY 4.0, 2026.",
+    "url": "https://github.com/attahwonder/faias-standard",
+    "owner": "Wonder Attah",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/attahwonder/faias-standard"
+    ],
+    "checked": "2026-10-09",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#standards-and-governance",
+    "links": [
+      {
+        "label": "Zenodo",
+        "url": "https://doi.org/10.5281/zenodo.23127496"
+      }
+    ],
+    "formats": [
+      "Standard"
     ]
   }
 ]

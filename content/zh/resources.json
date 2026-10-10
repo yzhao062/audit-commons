@@ -277,7 +277,7 @@
   },
   "prefixguard": {
     "summary": "离线归纳带类型的步骤适配器，进而训练用于在线预警的前缀风险评分器，在 WebArena 上达到 0.900 AUPRC，并在四个基准上相比原始文本对照组平均提升 0.137。",
-    "source_sha256": "86ced5abe1d23bde78990da1805d37ff019259189f8ad287d68fbd51d6d20a05"
+    "source_sha256": "ce44f9b696596fa14b38027bd424f30312bf7ccf82a7401c383a47894cd8db21"
   },
   "agentdog-1-5": {
     "summary": "基于约 1,000 个分类体系指导的样本训练了参数量在 0.8B 至 8B 之间的四款开源权重防护模型，并将其作为免训练的在线护栏进行部署。",
@@ -376,8 +376,8 @@
     "source_sha256": "6fa49a2a30c8631e8727b4728129202a713c730817624e061bb42219c384d27e"
   },
   "sofagent": {
-    "summary": "针对 AI 编程智能体的提交时审计引擎，根据 24 条规则（其中 17 条默认启用）检查 git diff 及所有可用的任务日志，并将每次结果记录在支持可选 HMAC 签名的本地哈希链历史中。提供 doctor 命令检查最近 500 条历史条目的链完整性，并通过 MCP 服务器按智能体聚合本地追踪记录。采用 MIT 许可，2026 年至今。",
-    "source_sha256": "8956cf39763872e3b040a241089ee0bfa155b5caece072aa78ec71bda846c4a7"
+    "summary": "针对 AI 编程智能体的提交时审计引擎，根据 28 条规则（其中 17 条默认启用）检查 git diff 及所有可用的任务日志，并将每次结果记录在支持可选 HMAC 签名的本地哈希链历史中。提供 doctor 命令检查最近 500 条历史条目的链完整性，并通过 MCP 服务器按智能体聚合本地追踪记录。采用 MIT 许可，2026 年至今。",
+    "source_sha256": "d3e09d536dc21d13626a7b53ccc73487a04784fe026fcae9d4403cbc405dce75"
   },
   "halo-record": {
     "summary": "无外部依赖的记录器，将工具调用、模型调用及审批封存至 SHA-256 哈希链式 JSONL 日志中，无需信任操作员即可独立验证，支持可选的 RFC 3161 时间戳与 OpenTelemetry GenAI span 摄取。采用 Apache-2.0 许可，2026 年至今。",
@@ -818,5 +818,21 @@
   "openclaw-monitor": {
     "summary": "面向 OpenClaw 网关的 Node.js 与 Vue 仪表盘，展示 token 总用量、会话状态和运行时间，以及近七天的近似消息数量。会话存在用量记录时使用这些记录；完全没有用量记录时，按文本启发式规则和固定额度估算 token。采用 MIT 许可，2026 年（最近一次提交为 2026-05-14）。",
     "source_sha256": "23f5ddbffa609c5be6dc1c713d64eb809e0d551f9548124a9ba1943e6e236dec"
+  },
+  "tracedance": {
+    "summary": "从部署追踪中构建特定行为的基准，在记录的决策点上对模型在行动、故障处理以及有证据支持的主张等方面的下一轮表现进行评分，且无需环境重放。",
+    "source_sha256": "1047e69d6df9defda10b38409098fba95fc28462942a698cdb75a04156b381a1"
+  },
+  "vestige": {
+    "summary": "本地 MCP 服务器，将智能体记忆存储在仅追加的哈希链日志中，为写入操作提供可离线检查的回执，并遍历已记录的执行关系以支持故障诊断。采用 AGPL-3.0 许可，2026 年至今。",
+    "source_sha256": "d5d12abe436b3a84381c7c14cf3272507f50c21f25c67635bfd0521379bbbe47"
+  },
+  "impri": {
+    "summary": "可自托管的审批收件箱，记录人工对 AI 智能体通过 MCP 或 REST 提议行动的批准、编辑与拒绝，支持通过 Web 收件箱、Slack、Telegram 或电话进行审查。智能体将返回的决定集成到其执行流程中。核心采用 MIT 许可，2026 年至今。",
+    "source_sha256": "f318a21ffffb1a4e29c1b805e592ba19c5f862e44833a587f0b5d1acd837a5a4"
+  },
+  "faias-financial-ai-independent-assurance-standard": {
+    "summary": "针对金融机构中生成式、智能体型与预测式 AI 的独立编制评估基线，包含跨九个领域的 109 个审查问题、证据要求、审查画布及非生产环境测试流程。Wonder Attah，v1.3.2，采用 CC BY 4.0 许可，2026 年。",
+    "source_sha256": "d122b3acce0312184142556f5ff9be324ef33402c1120053d8565baf5641ac8c"
   }
 }

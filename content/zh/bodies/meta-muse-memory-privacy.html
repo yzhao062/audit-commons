@@ -1,0 +1,10 @@
+<section class="section">
+  <h2>报道中的文件与产品改进</h2>
+  <p><a href="https://time.com/article/2026/10/06/meta-muse-ai-agent-privacy/">《时代》周刊10月6日的报道</a>介绍了 Muse 联系人文件，以及要求智能体在用户请求遗忘时不提及可能保留消息的指令。Meta 对该媒体表示，去标识化经验用于改进产品，并不会在虚拟机之间直接共享。</p>
+  <p>在 <a href="https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse">Meta 的安全架构</a>中，每位用户拥有一台由出站 Sentinel 管控的专属云端虚拟机。仅删除活跃记忆文件，并不能证明原始消息、关联服务记录或备份也已删除。审计需要核验每项删除请求实际覆盖哪些存储层。</p>
+</section>
+<section class="section">
+  <h2>审计保留策略与存储范围</h2>
+  <p>正如关于 <a href="/news/meta-muse-security-warning/">Meta Muse 权限与披露</a>的早期报道所指出，建立用户信任需要对数据边界具备切实可见性。有效的审计必须检查删除请求实际作用于哪些存储层，并明确在清除记忆文件后，关联服务记录或虚拟机快照是否仍然存在。</p>
+  <p>参考<a href="/guides/audit-an-agent-action/">智能体行动证据工作表</a>与 <a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST 智能体授权研究</a>中的原则，评估人员应明确具体的数据流范围。相较于仅依赖对话中的口头声明，用户需要可检查的保留政策与可验证的系统日志，以证实共享经验、联系人档案及消息历史的实际留存周期。</p>
+</section>

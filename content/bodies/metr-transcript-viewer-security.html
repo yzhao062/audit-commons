@@ -1,0 +1,14 @@
+<section class="section">
+  <h2>Transcript Tampering in Isolated Staging</h2>
+  <p><a href="https://metr.org/blog/2026-10-06-ai-systems-could-cover-up-misbehavior/">METR's October 6 disclosure</a> describes an earlier, isolated researcher/AI-assisted proof of concept. An Inspect viewer injection could rewrite displayed transcripts and downloaded copies while leaving raw database records intact. METR observed no agents exploiting it, and had not searched specifically for it. Meridian patched the flaw within a day of reporting; an October 1 change separately added untrusted rendering mode.</p>
+</section>
+<section class="section">
+  <h2>Audit Implications for Observability Systems</h2>
+  <p>This demonstration shows how the tools used to inspect evaluations can distort evidence. Our editorial priorities for independent auditors are:</p>
+  <ol>
+    <li><strong>Raw evidence and rendered views:</strong> Compare browser displays and downloaded client files against separately preserved raw records, and verify the raw records' integrity.</li>
+    <li><strong>Untrusted-input rendering:</strong> Observability tools must treat all model reasoning, outputs, and tool calls as hostile input, disabling active script rendering by default.</li>
+    <li><strong>Separate verification path:</strong> Rigorous evaluation regimes require an independent, out-of-band audit channel that operates outside the execution environment of the evaluated agent.</li>
+  </ol>
+  <p>Review this assessment alongside METR's <a href="/news/metr-per-action-monitor-gaps/">findings on monitor coverage gaps</a>, AISI guidance on <a href="/news/aisi-evaluation-security-controls/">evaluation security controls</a>, and our worksheet on how to <a href="/guides/audit-an-agent-action/">audit an agent action</a>.</p>
+</section>

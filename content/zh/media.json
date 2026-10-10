@@ -198,5 +198,30 @@
     "alt": "隔离的评估服务器、两道网络屏障、工具操作检查和运行前检查清单的插图",
     "caption": "AI 生成的编辑插图，表现 AISI 所述的分层网络阻断、工具操作监控和运行前检查。画面为概念示意，并非真实基础设施，也不衡量控制措施的效果。",
     "source_sha256": "9996ea1c04bffcc937b89f5651287bedc9191b091528cb2115e40317d3a6f9d6"
+  },
+  "anthropic-unintended-actions-archive": {
+    "alt": "Rishi Sunak 于 2023 年 5 月在唐宁街会见 Sam Altman、Demis Hassabis 和 Dario Amodei",
+    "caption": "Rishi Sunak 与 Sam Altman、Demis Hassabis 和 Dario Amodei 于 2023 年 5 月在唐宁街会面。包含 Anthropic 首席执行官的历史资料照片，并非非预期评测行动报告的现场。",
+    "source_sha256": "abe944e20d0a8a9291d897bfb4b6f5ee8b1cb1c02b2fd6fd453fbfcf34d20eb1"
+  },
+  "poppy-agent-authorization": {
+    "alt": "一位用户将钥匙交给携带包裹与机票、走向企业的机器人，旁边有上锁的个人文件夹",
+    "caption": "AI 生成的编辑部插图，表现用户授权智能体与企业处理限定任务的概念。并非已部署的 Poppy 界面或测试结果。",
+    "source_sha256": "b4271e0730db442d4e62b4f3fc515023c7f755fa9c76d369c73856396d53133e"
+  },
+  "inspect-viewer-metr-report": {
+    "alt": "展示样本评测与分数的 Inspect 日志查看器界面",
+    "caption": "Inspect 日志查看器，如项目文档所示。来自项目文档的归档界面示例，并非 METR 漏洞利用复现或 Audit Commons 测试。",
+    "source_sha256": "12dc5fc68d58a072ab2897069bec3ffd52e64115c9b7ea1d150cd5f09bf79b43"
+  },
+  "capitol-cantwell-framework": {
+    "alt": "秋日树木环绕的美国国会大厦东立面",
+    "caption": "美国国会大厦，摄于2011年11月7日。用于配合参议员玛丽亚·坎特韦尔（Maria Cantwell）AI 治理框架提案报道的历史资料照片，并非2026年10月参议院会议现场。",
+    "source_sha256": "37bf12896a7e45f347225d07fc9c6132e16690e79425cb0c62a5c5a9c0c71a25"
+  },
+  "mark-zuckerberg-f8-2019-muse-privacy": {
+    "alt": "Mark Zuckerberg 在 2019 年 4 月 30 日的 F8 开发者大会上发言",
+    "caption": "Mark Zuckerberg 出席 2019 年 4 月 30 日的 F8 大会。历史资料照片，并非 2026 年 10 月 Muse 运行指令或记忆隐私调查的现场。",
+    "source_sha256": "238acfaf447e957fa5c581c1926eeba03dbcfc8ba113d0315d4ed8f7395609e6"
   }
 }

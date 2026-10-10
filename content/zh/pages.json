@@ -327,5 +327,74 @@
     "body_file": "zh/bodies/ftc-ai-consumer-risk-investigation.html",
     "affiliation_disclosure": "Audit Commons 依据 AP 对 FTC 发言人确认的报道。我们未查阅非公开调查材料，也未认定任何违法行为。",
     "source_sha256": "8cf390057233ce7c56bdc6f880ac5b83b4d0349ee3a262de60b522f473b9229a"
+  },
+  "news/anthropic-unintended-evaluation-actions": {
+    "title": "Anthropic 披露非预期外部操作并收紧评测隔离",
+    "summary": "报告概述了历史外部操作案例。Anthropic 表示，所有内部评测将保持断网，直至监控控制措施能够可靠运行。",
+    "topics": [
+      "Anthropic",
+      "评测安全",
+      "模型评估",
+      "监控",
+      "运行时监控"
+    ],
+    "body_file": "zh/bodies/anthropic-unintended-evaluation-actions.html",
+    "affiliation_disclosure": "Audit Commons 概述 Anthropic 已发布的报告。我们未独立测试其基础设施或监控控制措施。",
+    "source_sha256": "a7aae429f923112ca78a67b8ad0455e617b4608a6f68d668573f07fd7199c9c4"
+  },
+  "news/personal-agent-protocol-draft": {
+    "title": "Meta 与 Sierra 发布个人智能体协议 0.1 版草案",
+    "summary": "0.1版草案介绍了个人智能体如何确立身份、取得限定范围的访问权限，并与企业开展交互。",
+    "topics": [
+      "智能体身份",
+      "授权机制",
+      "AI 智能体",
+      "权限"
+    ],
+    "body_file": "zh/bodies/personal-agent-protocol-draft.html",
+    "affiliation_disclosure": "Audit Commons 总结了已发布的草案规范与厂商公告。我们未独立测试相关实现，亦未对协议合规性进行认证。",
+    "source_sha256": "c0249a89ebe70663dd243eb3ed1a3a702893ed5538ee1aa89df645cffa5f1efb"
+  },
+  "news/metr-transcript-viewer-security": {
+    "title": "METR 演示可能扭曲审计证据的 Inspect 查看器漏洞",
+    "summary": "研究人员在暂存沙箱中测试了交互记录改写。原始记录仍然保留，METR 报告称未观察到智能体利用该漏洞。",
+    "topics": [
+      "METR",
+      "评测安全",
+      "Inspect",
+      "记录完整性",
+      "审计证据"
+    ],
+    "body_file": "zh/bodies/metr-transcript-viewer-security.html",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文总结了 METR 的研究文章及公开仓库修复。Audit Commons 未执行漏洞利用代码，亦未检查 METR 评测数据库。",
+    "source_sha256": "952d2f707c61de9f86ca4f8d77f5f53e16f85f32530a7b9a8a0c0205fb541cb5"
+  },
+  "news/cantwell-independent-audit-framework": {
+    "title": "Cantwell 提出前沿 AI 独立审计与事件报告框架",
+    "summary": "该框架主张 NIST 防护标准、具备资格的审计人员访问权限与事件报告。其仍属于立法政策构想。",
+    "topics": [
+      "前沿 AI",
+      "独立审计",
+      "事件报告",
+      "NIST",
+      "治理"
+    ],
+    "body_file": "zh/bodies/cantwell-independent-audit-framework.html",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本文概述参议员 Cantwell 公布的政策框架并分析其审计含义。Audit Commons 未依据拟议标准评估受管辖模型。",
+    "source_sha256": "96acfcf859f513509bfd5bb7dbbd96b7feaded27fe6f3771fd5258114f1621d8"
+  },
+  "news/meta-muse-memory-privacy": {
+    "title": "Meta Muse 工作区文件引发数据保留与存储范围疑问",
+    "summary": "在有关用户可访问 Muse 文件的报道后，独立审计需要厘清记忆删除是否覆盖了原始对话记录、关联服务以及云端备份。",
+    "topics": [
+      "Meta Muse",
+      "智能体记忆",
+      "隐私",
+      "数据保留",
+      "可审计性"
+    ],
+    "body_file": "zh/bodies/meta-muse-memory-privacy.html",
+    "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本简报汇总了《时代》周刊的报道与 Meta 公布的技术架构；Audit Commons 未审查 Meta 的后端系统，亦未验证其数据保留处理流程。",
+    "source_sha256": "f6fbe09d53762499a127e3fc126502d2abec0ad4da53cad233c0960e4f8d1f28"
   }
 }
