@@ -75,6 +75,8 @@ Run this phase inside the Awesome checkout or integration clone.
    (format classifications, maintainer relationship disclosures, and custom secondary links).
 3. **Sync bilingual overlays:** Update `content/resources.json` and `content/zh/resources.json`, recomputing
    affected translation digests (`source_sha256`) with `scripts/localization.py`.
+4. **Catalog feed digest:** For substantive changes, publish one bilingual `release` digest under
+   `updates/catalog-YYYY-MM-DD` in the same reviewed batch. Follow the [weekly-refresh catalog feed check](../weekly-refresh/SKILL.md#required-catalog-feed-check): list additions, material revisions, and removals with sources and useful catalog links; preserve IDs and dates for corrections. Metadata-only changes produce no digest.
 
 ### Phase 3: Editorial Refresh, Validation, and Deployment
 

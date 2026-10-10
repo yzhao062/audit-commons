@@ -396,5 +396,18 @@
     "body_file": "zh/bodies/meta-muse-memory-privacy.html",
     "affiliation_disclosure": "Audit Commons 由 Yue Zhao 维护。本简报汇总了《时代》周刊的报道与 Meta 公布的技术架构；Audit Commons 未审查 Meta 的后端系统，亦未验证其数据保留处理流程。",
     "source_sha256": "f6fbe09d53762499a127e3fc126502d2abec0ad4da53cad233c0960e4f8d1f28"
+  },
+  "updates/catalog-2026-10-09": {
+    "title": "资源目录更新：TraceDance、Vestige、Impri 与 FAIAS",
+    "summary": "四项新增和两项修正使目录达到 209 项，覆盖行为评测、执行记录、人工审批和金融 AI 保障。",
+    "topics": [
+      "资源目录",
+      "基准评测",
+      "智能体治理",
+      "金融 AI"
+    ],
+    "body_file": "zh/bodies/catalog-2026-10-09.html",
+    "affiliation_disclosure": "这些说明概述了所链接文档。Audit Commons 未独立测试这些工具；目录收录不构成软件认证或框架批准。",
+    "source_sha256": "b0531676b29e5c31eb518dad3a92d6bd133d2b45c91531fb393831a3995683bd"
   }
 }

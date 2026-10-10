@@ -1,5 +1,34 @@
 [
   {
+    "slug": "updates/catalog-2026-10-09",
+    "title": "Resource catalog update: TraceDance, Vestige, Impri, and FAIAS",
+    "summary": "Four additions and two corrections bring the catalog to 209 entries. The update covers behavior evaluation, execution records, human approval, and financial AI assurance.",
+    "author": "Audit Commons",
+    "published": "2026-10-09",
+    "updated": "2026-10-09",
+    "event_date": "2026-10-09",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Benchmarks",
+      "Agent governance",
+      "Financial AI"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md",
+      "https://arxiv.org/abs/2609.33295",
+      "https://github.com/samvallad33/vestige",
+      "https://github.com/sekera-radim/impri",
+      "https://github.com/attahwonder/faias-standard",
+      "https://github.com/KongFangXun/sofagent",
+      "https://arxiv.org/abs/2605.06455v1"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-09/",
+    "affiliation_disclosure": "The descriptions summarize linked documentation. Audit Commons has not independently tested these tools; catalog inclusion does not certify software or ratify a framework.",
+    "body_file": "bodies/catalog-2026-10-09.html",
+    "related_slugs": []
+  },
+  {
     "slug": "news/anthropic-unintended-evaluation-actions",
     "title": "Anthropic discloses unintended external actions and tightens evaluation isolation",
     "summary": "A report describes historical external actions. Anthropic says all internal evaluations will remain offline until monitoring controls are reliable.",

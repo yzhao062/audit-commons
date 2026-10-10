@@ -33,7 +33,7 @@ The [official pricing page](https://buttondown.com/pricing?plan=free), checked o
 
 The bilingual Atom feeds remain the working subscription channels. A free email pilot could begin with manually curated issues, subject to the provider's current limits. Do not add an email form until delivery, confirmation, unsubscribe, and provider disclosures are configured and tested.
 
-Start with weekly draft generation or manual curation from `https://auditcommons.org/feed.xml`, then edit the selection and add the library item before sending. The current article feed does not include individual catalog additions. Do not treat a feed connection as permission to email contacts or enable unattended sending.
+Start with weekly draft generation or manual curation from `https://auditcommons.org/feed.xml`, then edit the selection before sending. Substantive catalog refreshes appear in the feed as bilingual resource-update digests listing additions, revisions, and removals. Select useful library items from those digests. Do not treat a feed connection as permission to email contacts or enable unattended sending.
 
 Before enabling the email signup, confirm the real account URL, sender and reply-to addresses, subscription confirmation flow, unsubscribe link, and a concise explanation of which provider receives the submitted email address. Keep all API credentials and subscriber data outside the public repository. Test signup, confirmation, one test issue, and unsubscribe using an explicitly authorized test address. Domain sender verification follows the chosen provider's actual DNS instructions.
 
