@@ -223,5 +223,35 @@
     "alt": "Mark Zuckerberg 在 2019 年 4 月 30 日的 F8 开发者大会上发言",
     "caption": "Mark Zuckerberg 出席 2019 年 4 月 30 日的 F8 大会。历史资料照片，并非 2026 年 10 月 Muse 运行指令或记忆隐私调查的现场。",
     "source_sha256": "238acfaf447e957fa5c581c1926eeba03dbcfc8ba113d0315d4ed8f7395609e6"
+  },
+  "meta-muse-wonder-safety-disclosure-f8-2019": {
+    "alt": "2019年4月30日 Meta 首席执行官马克·扎克伯格在 F8 开发者大会台上发言的档案照片。",
+    "caption": "2019年4月30日 F8 大会上的马克·扎克伯格档案照片（CC BY 2.0 许可）。此图仅为相关企业主体背景资料，并非 2026年10月 Muse Wonder 发布现场或任何模型安全测试画面。",
+    "source_sha256": "c3fc0caa1227106845cb3c482c0d446aa0e098ce0cda0be7f0d209b6ac01aa09"
+  },
+  "argon-evaluation-controls": {
+    "alt": "由人工智能生成的概念插图，展示隔离的评估沙盒容器与持续审查智能体遥测数据的多层监测机制。",
+    "caption": "由人工智能生成的智能体评估沙盒隔离与运行时监测控制概念场景插图；该图像仅为概念示意，不代表 Google DeepMind 基础设施、测试环境或基准测试图表。",
+    "source_sha256": "ea86a3a0f632d60a9a0a4d4fdd0003b7639b1c710c42cd236b9e2373edf79483"
+  },
+  "iot-replication-lab": {
+    "alt": "概念性防火墙隔离实验室工作台的原创插图，展示隔离网络内连接的消费级电视盒、单板计算机与模型权重包。",
+    "caption": "AI 生成的编辑插画，展示隔离实验室中的消费级设备、模型包、外部计算资源和研究人员监督。该图为概念场景，复用许可待定。",
+    "source_sha256": "4ee5c8c647df42d072ff58c3bd77c9cbe99447a0859195e029ad237e922f103b"
+  },
+  "eu-ai-office-berlaymont": {
+    "alt": "位于布鲁塞尔的欧盟委员会贝莱蒙总部大楼外部档案照片。",
+    "caption": "2020年8月8日摄于布鲁塞尔的欧盟委员会贝莱蒙总部大楼档案照片。该图不代表2026年10月专家组会议现场。",
+    "source_sha256": "b5a2321efd41af8a4a3f1f1c517189160f53164ee323e1246aa2b3c154b9b0fe"
+  },
+  "portcullis-house-ai-hearing": {
+    "alt": "伦敦威斯敏斯特保得利大厦外观档案照片",
+    "caption": "会场档案图像而非听证会现场：摄于2011年10月18日的伦敦威斯敏斯特保得利大厦（摄影：Tony Hisgett，维基共享资源，CC BY 2.0）。英国下议院商业、创新、科学与贸易委员会于2026年10月13日在该大厦格里蒙德厅举行口头听证会。",
+    "source_sha256": "fed1503c0264e24aa77ca93643bf849b5e9d70b7badea567cecf367edd741dc0"
+  },
+  "aicpa-ai-audit-illustration": {
+    "alt": "由人工智能生成的概念示意插图，展示人类审计师在辅助机器人配合下审阅财务工作底稿，同时企业端机器人整理会计记录；并非AICPA活动或真实审计现场。",
+    "caption": "AI 生成的编辑插画，展示企业侧 AI 记录，以及人类审计师复核 AI 辅助底稿的概念场景。复用许可待定。",
+    "source_sha256": "3073a430911945548a2aaab446e148e88308db3535f217fab5fc221c02cef030"
   }
 }

@@ -1,0 +1,8 @@
+<section class="section">
+  <h2>Supported Study Findings and Boundaries</h2>
+  <p>On October 12, 2026, <a href="https://www.anthropic.com/research/self-replicating-ai">Anthropic's Frontier Red Team study</a> tested open-weight models on consumer hardware and a firewalled Android emulator network using unauthenticated debugging access. With an iterative harness, Qwen3.5-9B configured inference on eight of nine platforms, and smaller models solved subtasks but failed full chains. Simplified end-to-end trials succeeded only when an external GLM-5.2 server deployed Llama3.1-8B onto emulated nodes. Researchers also manually networked 15 physical 4GB Android TV boxes for sharded inference, separate from autonomous replication trials.</p>
+</section>
+<section class="section">
+  <h2>Editorial Scope and Original Audit Questions</h2>
+  <p>Controlled emulator success does not demonstrate live Internet device takeover, self-sufficient general intelligence, or autonomous bootstrapping without external inference compute. Comparing <a href="/news/anthropic-unintended-evaluation-actions">unintended evaluation actions</a> and <a href="/news/aisi-evaluation-security-controls">evaluation security controls</a>, auditors applying our <a href="/guides/audit-an-agent-action">agent action audit guide</a> should examine five areas: how network boundaries isolate testbeds, how identity and authorization controls govern device access, which host supplies actual inference compute, what logs record model weight and compute transfers, and whether replication succeeds under realistic authentication.</p>
+</section>

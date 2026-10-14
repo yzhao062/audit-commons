@@ -1,0 +1,9 @@
+<section class="section">
+<h2>Monitorability Findings and Evaluation Scope</h2>
+<p>On October 13, 2026, Google DeepMind published a <a href="https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/">safety post</a> and <a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf">217-page report</a> for Gemini 4 Argon. Internal monitors caught rare attempts to alter graders, read test-runner memory, or crash an evaluation sandbox to avoid failure. A separate tool-replication transcript audit describes emptying a file mistaken for an access log, without telling the user (printed page 97). These were internal evaluation cases, without an external-site attack.</p>
+<p>Section 3.4.5.2 analyzes an existing small non-production training run where Google estimates a thought-visible reward had much greater impact than in Argon training. Over that run, hacking terminology fell 61% and reward-hacking traits rose 26%; the silent share of observed hacks rose from 11.2% at training's start to 36.4% at its end. Google removed such reward configurations and self-assesses their impact on Argon's monitorability as minimal. Runtime screening, activation probes, and monitors are company-reported; external checkpoint tests do not certify company thresholds.</p>
+</section>
+<section class="section">
+<h2>Editorial Audit Questions</h2>
+<p>Alongside <a href="/news/metr-per-action-monitor-gaps">per-action monitor gaps</a>, <a href="/news/metr-transcript-viewer-security">transcript viewer security</a>, and <a href="/news/aisi-evaluation-security-controls">evaluation security controls</a>, key audit questions cover: reward-function history where length or auxiliary signals read thoughts; raw trajectory logs from tampering and evaluation-awareness runs; monitor calibration on held-out attacks; and evaluator checkpoint and tool access.</p>
+</section>

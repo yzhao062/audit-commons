@@ -4631,5 +4631,82 @@
     "formats": [
       "Standard"
     ]
+  },
+  {
+    "id": "ztac",
+    "name": "ZTAC",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "macOS Seatbelt and Unix-socket broker prototype with object-resolved policies, single-use approval bindings, and Ed25519-signed hash-chained audit logs for coding-agent requests; evaluated on scripted attacks, with restrictions that break some benign workflows. MIT-licensed, 2026-present.",
+    "url": "https://github.com/dcommey/ztac",
+    "owner": "dcommey contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/dcommey/ztac"
+    ],
+    "checked": "2026-10-13",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/233d44a76ab7060b85c9786d49e07b345fe914ca/README.md#runtime-monitoring-and-guardrails",
+    "links": [
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2610.14488"
+      }
+    ],
+    "formats": [
+      "Tool",
+      "Paper"
+    ]
+  },
+  {
+    "id": "centrol",
+    "name": "centrol",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "local CLI that records file events in a coding agent's git working tree and proxied MCP tool calls in a SHA-256 hash-chained JSONL ledger, with policy gates for proxy calls, an offline verifier, and pre-run file restoration; guard mode observes writes without sandboxing the child process or isolating same-user ledger access. Apache-2.0 core (MIT verifier), 2026-present.",
+    "url": "https://github.com/baitelmal/centrol",
+    "owner": "baitelmal contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/baitelmal/centrol"
+    ],
+    "checked": "2026-10-13",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/233d44a76ab7060b85c9786d49e07b345fe914ca/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "scalable-weak-to-strong-verifier-hardening-for-age",
+    "name": "Scalable Weak-to-Strong Verifier Hardening for Agent Environments",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Studies automated verifier separation and iterative repair for reward-hacking resistance, releasing Terminal Wrench task environments and trajectories while the hardening runner remains unreleased.",
+    "url": "https://arxiv.org/abs/2610.15924",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.15924"
+    ],
+    "checked": "2026-10-13",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/233d44a76ab7060b85c9786d49e07b345fe914ca/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Data",
+        "url": "https://github.com/few-sh/terminal-wrench"
+      },
+      {
+        "label": "Project",
+        "url": "https://verifier-hardening.github.io/"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper",
+      "Dataset"
+    ]
   }
 ]

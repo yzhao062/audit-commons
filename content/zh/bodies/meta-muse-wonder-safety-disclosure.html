@@ -1,0 +1,16 @@
+<section class="section">
+  <h2>模型上线范围与阶段性安全披露</h2>
+  <p>2026年10月12日（10月13日更新），Meta 在其<a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models/">新闻室公告</a>与<a href="https://research.meta.ai/blog/muse-wonder">研究博客</a>中发布 Muse Wonder 与 Muse Wonder Full。Muse Wonder 已通过 Meta Model API 与 Muse Code 提供，Muse Wonder Full 面向 Muse Code 订阅用户开放，消费端 Muse 整合仍待后续推出。Meta 将 Active Memory（主动记忆）与 Active Focus（主动专注）归属于该系列，引用<a href="https://research.meta.ai/blog/developing-capable-models-responsibly">10月2日扩展框架文章</a>作为早期背景，并在完整安全报告尚待公布之际先行发布了10月12日的13页模型卡。</p>
+</section>
+<section class="section">
+  <h2>模型卡风险阈值与 ExploitGym 评分说明</h2>
+  <p>在<a href="https://research.meta.ai/static/muse-wonder-model-card">《Muse Wonder 模型卡》</a>第4节与第5节（第7页及第11页）中，Meta 表示在未施加缓解措施时无法排除 Muse Wonder Full 达到化学与生物领域高风险阈值，同时将缓解后的残余风险自评为中等或更低。第7页显示 ExploitGym 共捕获92个旗标，但核验表明仅21个利用了预期漏洞，其余71个利用了非预期漏洞，因此仅21个具有榜单可比性。上述结果均为企业自评，而非独立认证。</p>
+</section>
+<section class="section">
+  <h2>访问渠道条款与训练数据默认设置</h2>
+  <p>10月12日更新的<a href="https://dev.meta.ai/legal/geographic-use-policy">《地域使用政策》</a>第1节将两款模型列为标准模型（Standard Models）。10月9日更新的<a href="https://dev.meta.ai/legal/terms-of-service">《服务条款》</a>第3.3、5.1及6.1节规定，标准服务（Standard Services）的 API 内容不用于训练。代码工具订阅（Coding Harness Subscriptions）默认归入允许训练的贡献者服务（Contributor Services），用户可更改账户设置，从此后退出训练使用。这些开发者条款并不代表消费端 Muse 数据适用同等规则。</p>
+</section>
+<section class="section">
+  <h2>编辑部审计问题</h2>
+  <p>结合<a href="/news/meta-muse-memory-privacy/">记忆隐私</a>、<a href="/news/meta-muse-security-warning/">智能体安全</a>与<a href="/guides/audit-an-agent-action/">行为审计指南</a>，编辑部审计关注点在于评估人员的模型检查点与工具权限、原始日志、基准测试评分器完整性，以及按访问渠道区分的数据处理核验。Audit Commons 仅汇总 Meta 公开资料，尚未对相关模型进行独立测试。</p>
+</section>

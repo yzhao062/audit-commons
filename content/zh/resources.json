@@ -834,5 +834,17 @@
   "faias-financial-ai-independent-assurance-standard": {
     "summary": "针对金融机构中生成式、智能体型与预测式 AI 的独立编制评估基线，包含跨九个领域的 109 个审查问题、证据要求、审查画布及非生产环境测试流程。Wonder Attah，v1.3.2，采用 CC BY 4.0 许可，2026 年。",
     "source_sha256": "d122b3acce0312184142556f5ff9be324ef33402c1120053d8565baf5641ac8c"
+  },
+  "ztac": {
+    "summary": "面向编码智能体请求的 macOS Seatbelt 与 Unix socket 代理原型，包含按解析后对象执行的策略、单次审批绑定和 Ed25519 签名的哈希链审计日志。评测使用脚本化攻击；部分限制也会阻断正常工作流程。MIT 许可，2026年至今。",
+    "source_sha256": "003a45518a6f6a0ae7ed143bc86a5550561f8120f24c50283419f25d3fc47f72"
+  },
+  "centrol": {
+    "summary": "本地 CLI 在编码智能体的 Git 工作树中记录文件事件，并记录经代理的 MCP 工具调用，形成 SHA-256 哈希链 JSONL 日志；提供代理调用策略关卡、离线验证器与运行前文件恢复。guard 模式观察写入，不对进程建立沙箱，也不隔离同一用户对日志的访问。核心采用 Apache-2.0，验证器采用 MIT 许可，2026年至今。",
+    "source_sha256": "f584f280229dcf41f73d2e1deaf44d350183dae59e694d795a12e047a73bf989"
+  },
+  "scalable-weak-to-strong-verifier-hardening-for-age": {
+    "summary": "研究通过自动分离验证器和迭代修复抵抗奖励作弊。已发布 Terminal Wrench 任务环境与轨迹数据，验证器加固运行器仍未发布。",
+    "source_sha256": "89ff2556067da26693f159f5afcc606de6915f28aa350801a783440dd98d7d93"
   }
 }

@@ -409,5 +409,99 @@
     "body_file": "zh/bodies/catalog-2026-10-09.html",
     "affiliation_disclosure": "这些说明概述了所链接文档。Audit Commons 未独立测试这些工具；目录收录不构成软件认证或框架批准。",
     "source_sha256": "b0531676b29e5c31eb518dad3a92d6bd133d2b45c91531fb393831a3995683bd"
+  },
+  "news/meta-muse-wonder-safety-disclosure": {
+    "title": "Meta 发布 Muse Wonder 系列模型，扩展安全评估报告尚待公布",
+    "summary": "Meta 发布 Muse Wonder 与 Muse Wonder Full，同步公开13页模型卡并更新开发者渠道条款，同时表示包含更多安全评估的完整报告将于近期公布。",
+    "topics": [
+      "人工智能安全",
+      "智能体系统",
+      "模型治理",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 仅汇总 Meta 公开资料，尚未对相关模型进行独立测试。",
+    "body_file": "zh/bodies/meta-muse-wonder-safety-disclosure.html",
+    "source_sha256": "c9b7886c88ca21e59280fbf65975f86351a28c8cc8e978961a6ccca69ec3420f"
+  },
+  "news/gemini-argon-monitorability-safety-report": {
+    "title": "Google DeepMind 发布 Gemini 4 Argon 安全报告，披露可监测性与沙盒评估控制发现",
+    "summary": "Google DeepMind 报告了小规模非生产训练分析、内部评估案例、实时防护措施及 Gemini 4 Argon 外部检查点测试的局限。",
+    "topics": [
+      "可监测性",
+      "评估完整性",
+      "思维链",
+      "运行时防护",
+      "前沿安全"
+    ],
+    "affiliation_disclosure": "独立编辑分析，与 Google DeepMind 及文中提及的评估机构无隶属关系。",
+    "body_file": "zh/bodies/gemini-argon-monitorability-safety-report.html",
+    "source_sha256": "9b88de0857d337d1d7ce80cc190b993c06781066f6bb351fd57feaa821ae76d5"
+  },
+  "news/anthropic-iot-replication-study": {
+    "title": "Anthropic 评估消费级硬件上开放权重模型的复制边界",
+    "summary": "Anthropic 研究人员在消费级设备与模拟 Android 网络中测试了开放权重模型的推理部署与复制能力。较小模型仅完成了拆解子任务，仅有外部服务器托管的较大模型完成了简化复制测试。",
+    "topics": [
+      "智能体评估",
+      "自主复制",
+      "开放权重模型",
+      "物联网安全",
+      "红队测试"
+    ],
+    "affiliation_disclosure": "Audit Commons 是独立的编辑出版物，与 Anthropic 不存在财务或治理关联。",
+    "body_file": "zh/bodies/anthropic-iot-replication-study.html",
+    "source_sha256": "5e6db4fb00640d4dc2f63d764590be7ce1b8486aeb497077cac2028a9fc78f6b"
+  },
+  "news/eu-ai-office-evaluator-access-requests": {
+    "title": "欧盟人工智能办公室就模型安全隔离、外部评估权限与失控事件发出信息请求",
+    "summary": "继10月9日科学专家组特别会议后，欧盟委员会通报已根据《人工智能法案》就模型安全隔离、独立外部评估访问权限及上市后监测发出首批信息请求，并正就近期失控事件准备联合追问。",
+    "topics": [
+      "欧盟",
+      "人工智能法案",
+      "模型评估",
+      "评估安全",
+      "事件响应",
+      "运行时监测"
+    ],
+    "affiliation_disclosure": "Audit Commons 根据欧盟委员会公开通报与演讲稿整理本文，未审阅尚未公开的信息请求原文或模型提供商答复。",
+    "body_file": "zh/bodies/eu-ai-office-evaluator-access-requests.html",
+    "source_sha256": "27bcf3cfbdd8e867eb316db4e3ee52919255dac5d0beb82b0f1feea8a8fb2068"
+  },
+  "news/uk-ai-hearing-independent-testing": {
+    "title": "英国议会委员会审视人工智能独立测试访问权限与发布叫停权",
+    "summary": "2026年10月13日，英国下议院商业、创新、科学与贸易委员会举行口头听证会，审视人工智能独立测试机制、早期评估访问权限、发布叫停权以及强制性问题报告。",
+    "topics": [
+      "人工智能治理",
+      "独立测试",
+      "评估访问权限",
+      "英国人工智能安全研究所"
+    ],
+    "affiliation_disclosure": "Audit Commons 与英国议会、英国人工智能安全研究所及听证会议程所列证人机构均无财务或治理关联。",
+    "body_file": "zh/bodies/uk-ai-hearing-independent-testing.html",
+    "source_sha256": "56e85ddc12b9dcf5dd0378b1dfd6a0cecb08b6fb8cebb008fc17ba8f003f82de"
+  },
+  "news/aicpa-ai-financial-audit-practice-aid": {
+    "title": "AICPA 发布财务报表审计中的 AI 实践指引",
+    "summary": "10月13日发布的指引区分企业使用 AI 与审计机构自身使用 AI，保留审计师责任，并计划进一步补充审计证据指引。",
+    "topics": [
+      "财务审计",
+      "AI 治理",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 概述 AICPA 的公开公告，未检查具体审计项目。完整实践指引需要会员访问。",
+    "body_file": "zh/bodies/aicpa-ai-financial-audit-practice-aid.html",
+    "source_sha256": "f98f61e9987daa1c1dbeb86a9d0d33b18dc8d71a2fc624cd6e997dfcce502f93"
+  },
+  "updates/catalog-2026-10-13": {
+    "title": "资源目录更新：centrol、Terminal Wrench 与 ZTAC",
+    "summary": "三项新增使目录达到 212 项，覆盖本地执行记录、奖励作弊基准与数据，以及 macOS 策略代理原型。",
+    "topics": [
+      "资源目录",
+      "智能体治理",
+      "基准评测",
+      "安全"
+    ],
+    "body_file": "zh/bodies/catalog-2026-10-13.html",
+    "affiliation_disclosure": "Audit Commons 概述所链接文档，未独立测试这些工具或复现研究结果。目录收录不构成安全认证。",
+    "source_sha256": "c8b06bcc1be4b6fe638d147527fba55677325de70b7399b23d0d8c108869dd99"
   }
 }

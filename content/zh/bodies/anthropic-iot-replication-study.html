@@ -1,0 +1,8 @@
+<section class="section">
+  <h2>研究支持的事实与实验边界</h2>
+  <p>2026年10月12日，<a href="https://www.anthropic.com/research/self-replicating-ai">Anthropic 前沿红队发布实验报告</a>，在消费级硬件以及开启无认证调试接口的防火墙隔离 Android 模拟器网络中测试了开放权重模型。借助迭代反思框架，Qwen3.5-9B 在九类设备中的八类上完成了本地推理配置；较小模型能够解决拆解后的子任务，但未能完成完整复制链路。端到端简化测试仅在外部服务器托管的 GLM-5.2 向模拟节点部署 Llama3.1-8B 时取得成功。此外，研究人员手动将 15 台 4GB 内存的实体 Android 电视盒联网以运行分片推理，该演示独立于自主复制测试。</p>
+</section>
+<section class="section">
+  <h2>编辑界定与原创审计问题</h2>
+  <p>受控模拟环境中的局部成功并不代表模型能够接管真实互联网设备、实现自给自足的通用人工智能，或在缺乏外部推理算力的情况下完成自主引导。结合<a href="/news/anthropic-unintended-evaluation-actions">非预期评估行为报告</a>与<a href="/news/aisi-evaluation-security-controls">评估安全控制分析</a>，参考<a href="/guides/audit-an-agent-action">智能体行为审计指南</a>的审计人员应重点核查五个问题：网络边界如何隔离测试床、身份与授权控制如何管理设备访问、实际推理算力由何处主机提供、模型权重与算力传输日志如何留存，以及在真实身份认证条件下复制是否仍能成功。</p>
+</section>

@@ -1,5 +1,208 @@
 [
   {
+    "slug": "updates/catalog-2026-10-13",
+    "title": "Resource catalog update: centrol, Terminal Wrench, and ZTAC",
+    "summary": "Three additions bring the catalog to 212 entries, covering local execution records, reward-hacking benchmarks and data, and a macOS policy broker prototype.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-13",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Agent governance",
+      "Benchmarks",
+      "Security"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/233d44a76ab7060b85c9786d49e07b345fe914ca/README.md",
+      "https://github.com/baitelmal/centrol",
+      "https://github.com/dcommey/ztac",
+      "https://arxiv.org/abs/2610.15924",
+      "https://github.com/few-sh/terminal-wrench",
+      "https://arxiv.org/abs/2610.14488"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-13/",
+    "affiliation_disclosure": "Audit Commons summarizes the linked documentation and has not independently tested these tools or replicated the research results. Catalog inclusion does not certify safety.",
+    "body_file": "bodies/catalog-2026-10-13.html",
+    "related_slugs": []
+  },
+  {
+    "slug": "news/meta-muse-wonder-safety-disclosure",
+    "title": "Meta Releases Muse Wonder Models as Extended Safety Report Remains Pending",
+    "summary": "Meta released Muse Wonder and Muse Wonder Full with a 13-page model card and updated developer channel terms while stating that a full report with additional safety evaluations will arrive soon.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-12",
+    "kind": "news",
+    "topics": [
+      "AI Safety",
+      "Agentic Systems",
+      "Model Governance",
+      "Audit Evidence"
+    ],
+    "source_urls": [
+      "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "https://research.meta.ai/blog/muse-wonder",
+      "https://research.meta.ai/static/muse-wonder-model-card",
+      "https://dev.meta.ai/legal/terms-of-service",
+      "https://dev.meta.ai/legal/geographic-use-policy",
+      "https://research.meta.ai/blog/developing-capable-models-responsibly"
+    ],
+    "canonical_url": "https://auditcommons.org/news/meta-muse-wonder-safety-disclosure/",
+    "affiliation_disclosure": "Audit Commons summarizes public Meta materials and has not independently tested the models.",
+    "body_file": "bodies/meta-muse-wonder-safety-disclosure.html",
+    "related_slugs": [
+      "news/meta-muse-memory-privacy",
+      "news/meta-muse-security-warning",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/gemini-argon-monitorability-safety-report",
+    "title": "Google DeepMind Gemini 4 Argon Safety Report Details Monitorability and Sandbox Controls",
+    "summary": "Google DeepMind reports analysis of a small non-production training run, internal evaluation cases, runtime safeguards, and limits of external checkpoint testing for Gemini 4 Argon.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-13",
+    "kind": "news",
+    "topics": [
+      "Monitorability",
+      "Evaluation Integrity",
+      "Chain of Thought",
+      "Runtime Safeguards",
+      "Frontier Safety"
+    ],
+    "source_urls": [
+      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
+      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/gemini-argon-monitorability-safety-report/",
+    "affiliation_disclosure": "Independent editorial analysis; no affiliation with Google DeepMind or cited evaluation organizations.",
+    "body_file": "bodies/gemini-argon-monitorability-safety-report.html",
+    "related_slugs": [
+      "news/metr-per-action-monitor-gaps",
+      "news/metr-transcript-viewer-security",
+      "news/aisi-evaluation-security-controls"
+    ]
+  },
+  {
+    "slug": "news/anthropic-iot-replication-study",
+    "title": "Anthropic Evaluates Open-Weight Model Replication Limits Across Consumer Hardware",
+    "summary": "Anthropic researchers tested open-weight model inference setup and replication across consumer devices and emulated Android networks. Smaller models solved isolated components, while only an externally hosted larger model completed simplified trials.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-12",
+    "kind": "news",
+    "topics": [
+      "agent-evaluation",
+      "autonomous-replication",
+      "open-weight-models",
+      "iot-security",
+      "red-teaming"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/research/self-replicating-ai"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-iot-replication-study/",
+    "affiliation_disclosure": "Audit Commons is an independent editorial publication with no financial or governance affiliation with Anthropic.",
+    "body_file": "bodies/anthropic-iot-replication-study.html",
+    "related_slugs": [
+      "news/anthropic-unintended-evaluation-actions",
+      "news/aisi-evaluation-security-controls",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/eu-ai-office-evaluator-access-requests",
+    "title": "EU AI Office Issues Evaluator Access and Containment Information Requests",
+    "summary": "Following an October 9 Scientific Panel meeting, the European Commission reported initial information requests on model security, external evaluator access, and post-market monitoring, and prepared further incident questions.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-09",
+    "kind": "news",
+    "topics": [
+      "European Union",
+      "AI Act",
+      "Model evaluation",
+      "Evaluation security",
+      "Incident response",
+      "Runtime monitoring"
+    ],
+    "source_urls": [
+      "https://digital-strategy.ec.europa.eu/en/news/special-meeting-ai-scientific-panel",
+      "https://ec.europa.eu/commission/presscorner/detail/en/speech_26_2148",
+      "https://digital-strategy.ec.europa.eu/en/news/commission-holds-special-meeting-scientific-panel-frontier-ai-safety-and-risks"
+    ],
+    "canonical_url": "https://auditcommons.org/news/eu-ai-office-evaluator-access-requests/",
+    "affiliation_disclosure": "Audit Commons summarizes public European Commission announcements and speeches. We have not inspected the non-public information requests or provider responses.",
+    "body_file": "bodies/eu-ai-office-evaluator-access-requests.html",
+    "related_slugs": [
+      "news/anthropic-unintended-evaluation-actions",
+      "news/government-agent-incident-response",
+      "news/cantwell-independent-audit-framework"
+    ]
+  },
+  {
+    "slug": "news/uk-ai-hearing-independent-testing",
+    "title": "UK Parliament Committee Examines Independent AI Testing Access and Release Authority",
+    "summary": "On October 13, 2026, a UK House of Commons committee held an oral evidence session examining independent AI testing, early evaluator access, release halting authority, and mandatory problem reporting.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-13",
+    "kind": "news",
+    "topics": [
+      "AI Governance",
+      "Independent Testing",
+      "Evaluator Access",
+      "UK AI Security Institute"
+    ],
+    "source_urls": [
+      "https://committees.parliament.uk/event/28282/formal-meeting-oral-evidence-session/",
+      "https://committees-api.parliament.uk/api/Events/28282",
+      "https://www.parliamentlive.tv/Event/Index/f203f178-4a14-4010-8f72-5e0a28664e12"
+    ],
+    "canonical_url": "https://auditcommons.org/news/uk-ai-hearing-independent-testing/",
+    "affiliation_disclosure": "Audit Commons has no financial or governance affiliation with the UK Parliament, the AI Security Institute, or the witness organizations listed on the session agenda.",
+    "body_file": "bodies/uk-ai-hearing-independent-testing.html",
+    "related_slugs": [
+      "news/anthropic-accenture-embedded-evaluation",
+      "news/cantwell-independent-audit-framework",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/aicpa-ai-financial-audit-practice-aid",
+    "title": "AICPA Publishes AI Practice Aid for Financial Statement Auditors",
+    "summary": "The October 13 guidance separates company AI use from audit firms' own tools. It retains auditor responsibility and plans further guidance on audit evidence.",
+    "author": "Audit Commons",
+    "published": "2026-10-13",
+    "updated": "2026-10-13",
+    "event_date": "2026-10-13",
+    "kind": "news",
+    "topics": [
+      "Financial audit",
+      "AI governance",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.aicpa-cima.com/news/article/aicpa-releases-guidance-to-help-auditors-address-the-use-of-ai-in-financial-reporting-and-auditing",
+      "https://www.aicpa-cima.com/resources/article/explore-new-aicpa-guidance-on-artificial-intelligence-ai-and-the-financial-statement-audit"
+    ],
+    "canonical_url": "https://auditcommons.org/news/aicpa-ai-financial-audit-practice-aid/",
+    "affiliation_disclosure": "Audit Commons summarizes the public AICPA announcement and has not inspected an audit engagement. The full practice aid requires member access.",
+    "body_file": "bodies/aicpa-ai-financial-audit-practice-aid.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "news/cantwell-independent-audit-framework"
+    ]
+  },
+  {
     "slug": "updates/catalog-2026-10-09",
     "title": "Resource catalog update: TraceDance, Vestige, Impri, and FAIAS",
     "summary": "Four additions and two corrections bring the catalog to 209 entries. The update covers behavior evaluation, execution records, human approval, and financial AI assurance.",
