@@ -6,6 +6,7 @@ These public personal and university pages supplied the workshop portraits on Se
 
 | Person | Profile | Image Source |
 | --- | --- | --- |
+| Ben Goldhaber | [Coefficient Giving](https://coefficientgiving.org/team/ben-goldhaber/) | [Portrait](https://coefficientgiving.org/wp-content/uploads/Goldhaber_Ben_783-0227-e1778278035744.jpg), retrieved October 17, 2026; unchanged JPEG, 778 by 986 pixels, 150,060 bytes; SHA-256 `792b213a5ebcaee9c0f1731c49395a29818b0e24cd17b6e6bc539a1cd105cde5`. |
 | Sean McGregor | [AVERI](https://www.averi.org/team) | [Portrait](https://images.squarespace-cdn.com/content/v1/685262a5f3a19135202ed5b6/0c5a7895-a908-43f6-a813-e96103254276/2026-02-05---Averi0005.jpg) |
 | Chen-Yu Lee | [Personal website](https://chenyulee.com/index.html) | [Portrait](https://chenyulee.com/assets/profile/me3.JPG) |
 | David Rein | [METR](https://metr.org/team/david-rein/) | [Portrait](https://metr.org/assets/images/team/david-rein.webp) |

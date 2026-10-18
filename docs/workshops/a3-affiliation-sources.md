@@ -6,6 +6,7 @@ Checked on September 30, 2026, using current personal profiles, institutional di
 
 | Participant | Displayed Affiliation | Current Roles and Primary Sources |
 | --- | --- | --- |
+| Ben Goldhaber | Coefficient Giving | Program Officer, AI Governance & International Policy. [Official profile](https://coefficientgiving.org/team/ben-goldhaber/), checked October 17, 2026. |
 | Sean McGregor | AVERI | Lead Research Engineer, verified on the [AVERI team page](https://www.averi.org/team), October 3, 2026. |
 | Chen-Yu Lee | Google | Principal Scientist and Director, Google Cloud AI Research. Checked October 3, 2026 against his [Google profile](https://research.google/people/107149/) and [personal homepage](https://chenyulee.com/index.html). |
 | Manling Li | Northwestern University | Assistant Professor of Computer Science and director of the MLL Lab. Her homepage also lists Amazon Scholar, retained here as background under the primary-affiliation policy. Checked October 1, 2026. [Homepage](https://limanling.github.io/), [Northwestern directory](https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/li-manling.html). |
