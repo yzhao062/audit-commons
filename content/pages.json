@@ -1301,5 +1301,32 @@
     "affiliation_disclosure": "Audit Commons summarizes the linked documentation and its own pre-merge build and test review of the verifier. The contributor disclosed an affiliation with Praesidia. Catalog inclusion does not certify safety or assess Praesidia's hosted platform.",
     "body_file": "bodies/catalog-2026-10-18.html",
     "related_slugs": []
+  },
+  {
+    "slug": "updates/catalog-2026-10-18-maintainer-papers",
+    "title": "Resource catalog update: four papers co-authored by the maintainer",
+    "summary": "Four additions bring the catalog to 217 entries. All four papers are co-authored by Audit Commons maintainer Yue Zhao, and the CatchBench record now links its paper.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-18",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Agent security",
+      "Benchmarks"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/aa9a2a996cec23b4d6a89457b9a079bdb0810dd7/README.md",
+      "https://arxiv.org/abs/2610.07459",
+      "https://arxiv.org/abs/2610.16280",
+      "https://arxiv.org/abs/2603.19423",
+      "https://arxiv.org/abs/2608.03499",
+      "https://arxiv.org/abs/2608.22808"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-18-maintainer-papers/",
+    "affiliation_disclosure": "Audit Commons maintainer Yue Zhao co-authored all four added papers and CatchBench, and each carries the Maintainer project tag in the catalog. The summaries follow the papers' abstracts. Catalog inclusion does not certify any method or result.",
+    "body_file": "bodies/catalog-2026-10-18-maintainer-papers.html",
+    "related_slugs": []
   }
 ]

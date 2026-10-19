@@ -620,5 +620,17 @@
     "affiliation_disclosure": "Audit Commons 根据所链接的文档以及我们在合并前对该核验工具进行的构建与测试审查整理本文。提交者披露了与 Praesidia 的关联。收录进目录不代表认证其安全性，也不评估 Praesidia 的托管平台。",
     "body_file": "zh/bodies/catalog-2026-10-18.html",
     "source_sha256": "ba1c7f3830813a2eeed273c4cf97b07239497ef92276febe3eeec2b733bef1bc"
+  },
+  "updates/catalog-2026-10-18-maintainer-papers": {
+    "title": "资源目录更新：维护者合著的四篇论文",
+    "summary": "新增四项资源，使目录增至217项。四篇论文均由 Audit Commons 维护者 Yue Zhao 合著；CatchBench 条目现已链接其论文。",
+    "topics": [
+      "资源目录",
+      "智能体安全",
+      "基准测试"
+    ],
+    "affiliation_disclosure": "Audit Commons 维护者 Yue Zhao 是新增四篇论文及 CatchBench 的合著者，这些条目在目录中均带有“维护者项目”标签。摘要依据各论文的摘要撰写。收录进目录不代表认证其中的任何方法或结果。",
+    "body_file": "zh/bodies/catalog-2026-10-18-maintainer-papers.html",
+    "source_sha256": "58ef151cc48eff86ba1efcb074d84b85fca1d72d792404a4120a3a2cc3db5635"
   }
 }

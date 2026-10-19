@@ -115,11 +115,17 @@
       {
         "label": "Release v0.1.2",
         "url": "https://github.com/yzhao062/catchbench/releases/tag/v0.1.2"
+      },
+      {
+        "label": "Paper",
+        "url": "https://arxiv.org/abs/2608.22808"
       }
     ],
     "formats": [
-      "Benchmark"
-    ]
+      "Benchmark",
+      "Paper"
+    ],
+    "venue": "Preprint 2026"
   },
   {
     "id": "auditable-agents",
@@ -1222,6 +1228,32 @@
     ]
   },
   {
+    "id": "agent-risk",
+    "name": "agent-risk: Risk Assessment for Changes to AI Agents",
+    "category": "Evaluation",
+    "format": "Paper",
+    "summary": "Assesses a proposed change to a deployed agent from its existing logs by replaying logged episodes and rerunning only unsettled ones from saved states; in a bash sandbox, these reruns reached both retry-gate decisions with half the agent calls of a live test sized post hoc.",
+    "url": "https://arxiv.org/abs/2610.16280",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.16280"
+    ],
+    "checked": "2026-10-18",
+    "source_section": "Reliability and Robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/aa9a2a996cec23b4d6a89457b9a079bdb0810dd7/README.md#reliability-and-robustness",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/yzhao062/agent-risk"
+      }
+    ],
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
     "id": "ai-control",
     "name": "AI Control: Improving Safety Despite Intentional Subversion",
     "category": "Security",
@@ -1964,6 +1996,26 @@
     ]
   },
   {
+    "id": "auditable-claims-about-ai-agents",
+    "name": "Auditable Claims about AI Agents",
+    "category": "Governance",
+    "format": "Paper",
+    "summary": "Argues that a claim about an agent is checkable only when its policy, scope, decision rule, and obtainable records with their writers are fixed before any verdict, proves three conditions agents add, and applies the check to six common claims.",
+    "url": "https://arxiv.org/abs/2610.07459",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.07459"
+    ],
+    "checked": "2026-10-18",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/aa9a2a996cec23b4d6a89457b9a079bdb0810dd7/README.md#audit-trails-and-decision-records",
+    "venue": "Preprint 2026",
+    "formats": [
+      "Paper"
+    ]
+  },
+  {
     "id": "towards-security-auditable-llm-agents-a-unified-gr",
     "name": "Towards Security-Auditable LLM Agents: A Unified Graph Representation",
     "category": "Governance",
@@ -2551,6 +2603,26 @@
     ],
     "formats": [
       "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "the-autonomy-tax",
+    "name": "The Autonomy Tax: Defense Training Breaks LLM Agents",
+    "category": "Security",
+    "format": "Paper",
+    "summary": "Evaluates prompt-injection defense-trained models against undefended baselines on 97 agent tasks and 1,000 adversarial prompts; defended models fail benign tool calls, time out on 99% of tasks versus 13%, and are still bypassed by straightforward attacks.",
+    "url": "https://arxiv.org/abs/2603.19423",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2603.19423"
+    ],
+    "checked": "2026-10-18",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/aa9a2a996cec23b4d6a89457b9a079bdb0810dd7/README.md#security-auditing-and-scanners",
+    "venue": "EMNLP 2026",
+    "formats": [
       "Paper"
     ]
   },
@@ -4567,6 +4639,38 @@
     "formats": [
       "Benchmark",
       "Paper"
+    ]
+  },
+  {
+    "id": "weclawarena",
+    "name": "WeClawArena: An Auditable Sandbox and Benchmark for Cross-User Agents Collaboration and Security in Human-Centered Agent Networks",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Sandbox and benchmark for agents acting for different users over personal workspaces, with 124 base tasks expanded to 620 benign and attack variants; it audits attack success from recorded runtime evidence, separately from task utility.",
+    "url": "https://arxiv.org/abs/2608.03499",
+    "owner": "Authors listed in the paper",
+    "relationship": "Maintainer project",
+    "source_urls": [
+      "https://arxiv.org/abs/2608.03499"
+    ],
+    "checked": "2026-10-18",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/aa9a2a996cec23b4d6a89457b9a079bdb0810dd7/README.md#datasets-and-benchmarks",
+    "venue": "EMNLP Findings 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/kingofspace0wzz/WeClawArena"
+      },
+      {
+        "label": "Data",
+        "url": "https://huggingface.co/datasets/kingofspace0wzz/WeClawArena"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper",
+      "Dataset"
     ]
   },
   {

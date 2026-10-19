@@ -9,8 +9,8 @@ This document records the provenance, licensing, schema contract, and synchroniz
 The Resource Catalog imports curated entries from the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository.
 
 - **Upstream Repository**: [`https://github.com/yzhao062/awesome-auditable-ai`](https://github.com/yzhao062/awesome-auditable-ai)
-- **Pinned Commit Revision**: `cf984ead2e954b79e2a65650ec2af40401b3c31d`
-- **Normalized LF UTF-8 SHA256**: `f3f2116b38fe5cf42a72f05ec3713de7978087512f24854f6e06ba166b41a9ee`
+- **Pinned Commit Revision**: `aa9a2a996cec23b4d6a89457b9a079bdb0810dd7`
+- **Normalized LF UTF-8 SHA256**: `bd651d5b1e7a02e0366c42583572fc694ec7ebdb9fbc603092ee2e77d1a887c3`
 - **Snapshot Review Date**: `2026-10-18`
 - **Upstream License**: Creative Commons Zero v1.0 Universal (CC0 1.0) Public Domain Dedication ([`awesome-LICENSE`](https://creativecommons.org/publicdomain/zero/1.0/))
 - **Site-Wide License Status**: Site-wide license selection for Audit Commons remains **pending**. Upstream catalog metadata is imported under CC0 1.0 attribution, but Audit Commons does not inherit another site's license or bind unpublished sections.
@@ -32,6 +32,8 @@ The October 13 scoped sync adds centrol, Terminal Wrench / verifier hardening, a
 
 A scoped sync on October 18 adds the Praesidia audit verifier from merged community PR #40 and the maintainer recount at `cf984ea`. The contributor disclosed an affiliation with Praesidia, whose export format the tool checks; the record keeps the importer's External resource relationship and default owner label. All 212 prior records remain unchanged, including dates, pinned sources, links, disclosures, and translations. As at earlier revisions, a disposable full import would have removed `mcp-granite` and `agent-collusion`, so only the new record was applied. The bilingual catalog digest records this one-item batch in both Atom feeds.
 
+A second scoped sync on October 18 adds four papers co-authored by the maintainer at `aa9a2a9`: Auditable Claims about AI Agents, agent-risk, The Autonomy Tax, and WeClawArena. Each carries the Maintainer project relationship; because Auditable Claims, The Autonomy Tax, and WeClawArena link no `yzhao062` repository, the importer's maintainer identity list now names all four arXiv records and their repositories. CatchBench gains its paper link, a `Preprint 2026` venue, and Paper membership, with its review date and other fields unchanged. Both EMNLP venues rest on the program chairs' decision notifications to the authors, since the conference has not yet published its accepted-paper lists. All 212 other records remain unchanged, and only this batch was applied. A separate bilingual digest records it in both Atom feeds.
+
 The September 28 sync adds two tools, repairs the Who&When Pro code link, and preserves OrcaReplay's inline OrcaPromptVault companion link as a secondary link. OrcaPromptVault remains part of the OrcaReplay record. Its description distinguishes directly captured instructions from model-reported text; it makes no archive-wide license claim.
 
 The `checked` date indicates that a catalog entry was verified against the pinned snapshot records and confirmed for:
@@ -43,7 +45,7 @@ The `checked` date indicates that a catalog entry was verified against the pinne
 
 ### Affiliation & Maintainer Project Disclosure
 In accordance with [`CONTRIBUTING.md`](../CONTRIBUTING.md), transparent affiliation disclosure is strictly enforced to avoid undisclosed self-promotion:
-- **Maintainer Projects (`"relationship": "Maintainer project"`)**: Any tool, benchmark, catalog, or research paper authored, co-authored, or maintained by Audit Commons maintainer Yue Zhao is explicitly classified as a Maintainer project. Exactly **9** records carry this designation:
+- **Maintainer Projects (`"relationship": "Maintainer project"`)**: Any tool, benchmark, catalog, or research paper authored, co-authored, or maintained by Audit Commons maintainer Yue Zhao is explicitly classified as a Maintainer project. Exactly **13** records carry this designation:
   1. `awesome-auditable-ai`: Companion upstream curated catalog maintained by Yue Zhao.
   2. `auditable-agents`: Auditable Agents ecosystem portal and community registry.
   3. `catchbench`: Benchmark for behavioral consistency and failure detection in tool-using agents.
@@ -53,7 +55,11 @@ In accordance with [`CONTRIBUTING.md`](../CONTRIBUTING.md), transparent affiliat
   7. `aegis-runtime`: Runtime policy enforcement and kill switch wrapper (Justin0504/Aegis, co-authored paper arXiv:2603.12621).
   8. `agent-audit-paper`: Static security analysis system for agent applications (CAIS 2026, arXiv:2603.22853).
   9. `agent-audit`: Static security scanner for LLM agents mapping to OWASP Agentic Top 10 (HeadyZhang/agent-audit).
-- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**200** records).
+  10. `auditable-claims-about-ai-agents`: Paper on fixing a claim's policy, scope, records, and decision rule before checking it (arXiv:2610.07459).
+  11. `agent-risk`: Paper and package for assessing changes to deployed agents from existing logs (arXiv:2610.16280).
+  12. `the-autonomy-tax`: Paper on agent failures caused by prompt-injection defense training (EMNLP 2026, arXiv:2603.19423).
+  13. `weclawarena`: Sandbox and benchmark for cross-user agent collaboration and security (EMNLP Findings 2026, arXiv:2608.03499).
+- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**204** records).
 
 ### Attribution Policy
 - For academic research papers without a single institutional author, the `owner` field neutrally records `"Authors listed in the paper"` rather than inventing speculative or partial author rosters.
@@ -76,7 +82,7 @@ Every record in `content/resources.json` conforms to the following schema contra
 | `summary` | string | Required | Factual, concise summary | Plain text stripped of Markdown markup |
 | `url` | string | Required | Canonical primary URL | Valid HTTP/HTTPS URL |
 | `owner` | string | Required | Publisher or neutral attribution | Institution, organization, or `"Authors listed in the paper"` |
-| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (9 items) or `"External resource"` (204 items) |
+| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (13 items) or `"External resource"` (204 items) |
 | `source_urls` | string[] | Required | Primary source URLs | Non-empty array of valid URLs |
 | `checked` | string | Required | Record-specific review date | `YYYY-MM-DD`; retain the prior date when the record is unchanged |
 | `source_section` | string | Optional | Upstream section heading | Exact section heading name from source snapshot |
@@ -88,11 +94,11 @@ Every record in `content/resources.json` conforms to the following schema contra
 
 ## 4. Coverage & Deduplication Statistics
 
-Across 9 substantive sections, the snapshot contains 214 raw entries. Importing it with the original 6 curated resources produces 211 unique records. The published catalog contains 213 records because this sync also preserves two independent editorial additions.
+Across 9 substantive sections, the snapshot contains 218 raw entries. Importing it with the original 6 curated resources produces 215 unique records. The published catalog contains 217 records because this sync also preserves two independent editorial additions.
 
 ### Deduplication & Baseline Preservation
 1. **Original 6 Preservation**: The 6 baseline entries are identified by explicit IDs (`nist-ai-rmf`, `inspect-aisi`, `agentdojo`, `awesome-auditable-ai`, `catchbench`, `auditable-agents`) and preserved at indices `0..5` of `content/resources.json` to keep homepage featured resources intact.
-2. **Upstream Matching against Original 6**: 4 entries in the 214 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
+2. **Upstream Matching against Original 6**: 4 entries in the 218 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
    - `NIST AI 100-1, AI Risk Management Framework` &rarr; enriched `nist-ai-rmf`
    - `Inspect` &rarr; enriched `inspect-aisi`
    - `AgentDojo` &rarr; enriched `agentdojo`
@@ -105,70 +111,70 @@ Across 9 substantive sections, the snapshot contains 214 raw entries. Importing 
    - `τ-bench` (Reliability and Robustness &harr; Datasets and Benchmarks)
 
 ### Exact Counts
-- **Total Raw Items Parsed**: 214
+- **Total Raw Items Parsed**: 218
 - **Preserved Original Entries**: 6
 - **Deduplicated vs Original Entries**: 4
 - **Deduplicated Cross-Listed Entries**: 5
-- **Unique Snapshot Entries beyond the Baseline**: 205
-- **Import-Only Catalog**: 211
+- **Unique Snapshot Entries beyond the Baseline**: 209
+- **Import-Only Catalog**: 215
 - **Preserved Independent Editorial Additions**: 2
-- **Added in This Sync**: 1
-- **Updated in This Sync**: 0
+- **Added in This Sync**: 4
+- **Updated in This Sync**: 1
 - **Unchanged Existing Records**: 212
-- **Total Resources in Catalog**: **213**
+- **Total Resources in Catalog**: **217**
 
 ### Breakdown by Relationship (`relationship`)
 | Relationship | Count | Description |
 |---|---|---|
 | `External resource` | 204 | Independent academic research, industry tools, benchmarks, and standards |
-| `Maintainer project` | 9 | Resources authored, co-authored, or maintained by Yue Zhao |
-| **Total** | **213** | |
+| `Maintainer project` | 13 | Resources authored, co-authored, or maintained by Yue Zhao |
+| **Total** | **217** | |
 
 ### Breakdown by Primary Format (`format`)
 
 These mutually exclusive primary labels preserve the original classification. The interface filters on `formats`, so its tab counts overlap instead of using this table.
 | Format | Count | Semantic Definition |
 |---|---|---|
-| `Paper` | 95 | Standalone research papers, diagnostic studies, and surveys |
+| `Paper` | 98 | Standalone research papers, diagnostic studies, and surveys |
 | `Tool` | 52 | Software libraries, runtime platforms, debuggers, scanners, or guardrails |
-| `Benchmark` | 43 | Evaluative testbeds, benchmark suites, and testing environments |
+| `Benchmark` | 44 | Evaluative testbeds, benchmark suites, and testing environments |
 | `Standard` | 19 | Formal specifications, protocols, regulatory articles, and risk frameworks |
 | `Collection` | 3 | Curated catalogs, ecosystems, or reading list collections |
 | `Dataset` | 1 | Standalone corpora and annotated trajectory datasets |
-| **Total** | **213** | |
+| **Total** | **217** | |
 
 ### Tab Memberships (`formats`)
 
-Paper: 144; Tool: 52; Benchmark: 44; Dataset: 8; Standard: 19; Collection: 3. The All tab contains 213 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
+Paper: 149; Tool: 52; Benchmark: 45; Dataset: 9; Standard: 19; Collection: 3. The All tab contains 217 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
 
 The importer merges format memberships from cross-listed records. A linked paper or arXiv abstract adds Paper membership. Dataset requires a specifically identified dataset link or a Hugging Face dataset URL. It does not classify a code repository as a tool or dataset merely because it has code. Plain-text mentions and venue names alone do not add Dataset membership. Inline summary links enter the same membership inference as other secondary links, so review their classification before publication. Legacy records without `formats` use their single `format`, or Collection if both fields are absent.
 
-The MAST dataset link was added during editorial review on September 16, 2026, following the [authors' repository](https://github.com/multi-agent-systems-failure-taxonomy/MAST) to [MAST-Data](https://huggingface.co/datasets/mcemri/MAST-Data). It supplements the pinned catalog record. The eight Dataset entries are Who&When, MAST-Data, TRAIL, AEGIS (attribution), PALADIN, GAIA, PACT, and Terminal Wrench. A dataset label indicates an identified artifact, not unrestricted access, licensing approval, or independent validation of its contents.
+The MAST dataset link was added during editorial review on September 16, 2026, following the [authors' repository](https://github.com/multi-agent-systems-failure-taxonomy/MAST) to [MAST-Data](https://huggingface.co/datasets/mcemri/MAST-Data). It supplements the pinned catalog record. Nine records carry Dataset membership: Who&When, MAST-Data, TRAIL, AEGIS (attribution), PALADIN, GAIA, PACT, Terminal Wrench, and WeClawArena. A dataset label indicates an identified artifact, not unrestricted access, licensing approval, or independent validation of its contents.
 
 ### Breakdown by Category (`category`)
 | Category | Count | Topic Focus |
 |---|---|---|
-| `Evaluation` | 70 | Benchmarks, failure attribution, and reliability measurement |
-| `Governance` | 52 | Audit trails, decision records, specifications, and regulatory frameworks |
-| `Security` | 41 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
+| `Evaluation` | 72 | Benchmarks, failure attribution, and reliability measurement |
+| `Governance` | 53 | Audit trails, decision records, specifications, and regulatory frameworks |
+| `Security` | 42 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
 | `Tools` | 40 | Tracing platforms, telemetry instrumentation, and runtime execution |
 | `Reading` | 10 | Surveys, foundational literature, and curated reading lists |
-| **Total** | **213** | |
+| **Total** | **217** | |
 
 ### Breakdown by Section (`source_section`)
 | Section | Count |
 |---|---|
 | Tools and Platforms | 30 |
 | Runtime Monitoring and Guardrails | 30 |
-| Datasets and Benchmarks | 29 |
+| Datasets and Benchmarks | 30 |
 | Failure Attribution and Diagnosis | 26 |
 | Standards and Governance | 26 |
-| Security Auditing and Scanners | 23 |
-| Audit Trails and Decision Records | 26 |
-| Reliability and Robustness | 13 |
+| Security Auditing and Scanners | 24 |
+| Audit Trails and Decision Records | 27 |
+| Reliability and Robustness | 14 |
 | Surveys and Foundations | 9 |
 | The Auditable Agents Ecosystem | 1 |
-| **Total** | **213** |
+| **Total** | **217** |
 
 The two editorial additions use existing topic headings in `source_section`. Those headings describe their classification; they do not imply inclusion in the pinned README.
 
@@ -189,9 +195,9 @@ python scripts/import_awesome.py --source-file <path-to-awesome-source.md>
 
 ### Fail-Closed Integrity & Validation Invariants
 - **Mandatory `--source-file`**: The importer requires an explicit `--source-file` argument. Ambient path guessing or default search paths are prohibited to avoid reading arbitrary files.
-- **Fail-Closed Snapshot Verification**: Before parsing, the importer computes the normalized LF UTF-8 SHA256 checksum of the source snapshot and asserts exact match with `EXPECTED_SNAPSHOT_SHA256` (`f3f2116b38fe5cf42a72f05ec3713de7978087512f24854f6e06ba166b41a9ee`). If the hash differs, the script aborts immediately with a non-zero status without modifying `content/resources.json`.
+- **Fail-Closed Snapshot Verification**: Before parsing, the importer computes the normalized LF UTF-8 SHA256 checksum of the source snapshot and asserts exact match with `EXPECTED_SNAPSHOT_SHA256` (`bd651d5b1e7a02e0366c42583572fc694ec7ebdb9fbc603092ee2e77d1a887c3`). If the hash differs, the script aborts immediately with a non-zero status without modifying `content/resources.json`.
 - **Lockstep Constant Updates**: On future snapshot updates, the three metadata constants in `scripts/import_awesome.py` must be updated together in lockstep:
-  1. `PINNED_REVISION`: Commit SHA of the upstream snapshot (`cf984ead2e954b79e2a65650ec2af40401b3c31d`).
+  1. `PINNED_REVISION`: Commit SHA of the upstream snapshot (`aa9a2a996cec23b4d6a89457b9a079bdb0810dd7`).
   2. `EXPECTED_SNAPSHOT_SHA256`: Normalized LF UTF-8 SHA256 digest of the new snapshot file.
   3. `SNAPSHOT_REVIEW_DATE`: Date of snapshot review and verification (`YYYY-MM-DD`).
 - **Output Path Safety**: The output path cannot match the source path, preventing accidental source destruction. Output files must have `.json` extension.
@@ -211,7 +217,7 @@ python scripts/build.py
 # 2. Run full schema, link, and accessibility validation
 python scripts/check.py
 ```
-All 213 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
+All 217 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
 
 The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization.
 

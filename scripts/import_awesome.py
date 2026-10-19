@@ -38,9 +38,9 @@ from urllib.parse import urlparse
 from resource_formats import resource_formats, formats_error
 
 # Pinned snapshot metadata - MUST be updated together on refresh
-PINNED_REVISION = "cf984ead2e954b79e2a65650ec2af40401b3c31d"
+PINNED_REVISION = "aa9a2a996cec23b4d6a89457b9a079bdb0810dd7"
 EXPECTED_SNAPSHOT_SHA256 = (
-    "f3f2116b38fe5cf42a72f05ec3713de7978087512f24854f6e06ba166b41a9ee"
+    "bd651d5b1e7a02e0366c42583572fc694ec7ebdb9fbc603092ee2e77d1a887c3"
 )
 SNAPSHOT_REVIEW_DATE = "2026-10-18"
 ORIGINAL_CURATION_DATE = "2026-09-15"
@@ -77,6 +77,16 @@ MAINTAINER_CANONICAL_URLS = {
     "https://github.com/auditable-agents/auditable-agents.github.io",
     # catchbench
     "https://github.com/yzhao062/catchbench",
+    "https://arxiv.org/abs/2608.22808",
+    # auditable claims and agent-risk papers
+    "https://arxiv.org/abs/2610.07459",
+    "https://github.com/yzhao062/auditable-claims",
+    "https://arxiv.org/abs/2610.16280",
+    "https://github.com/yzhao062/agent-risk",
+    # the autonomy tax (EMNLP 2026) and weclawarena (EMNLP Findings 2026) papers
+    "https://arxiv.org/abs/2603.19423",
+    "https://arxiv.org/abs/2608.03499",
+    "https://github.com/kingofspace0wzz/weclawarena",
     # awesome-auditable-ai
     "https://github.com/yzhao062/awesome-auditable-ai",
 }
@@ -91,6 +101,10 @@ MAINTAINER_CANONICAL_IDS = {
     "aegis-runtime",
     "agent-audit-paper",
     "agent-audit",
+    "auditable-claims-about-ai-agents",
+    "agent-risk",
+    "the-autonomy-tax",
+    "weclawarena",
 }
 
 VALID_CATEGORIES = {"Evaluation", "Security", "Governance", "Reading", "Tools"}
