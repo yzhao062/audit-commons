@@ -1,0 +1,15 @@
+<section class="section">
+  <h2>CERT-In 于10月15日发布的通告</h2>
+  <p>2026年10月15日，印度计算机应急响应小组（CERT-In）发布了评级为“Critical”（危急）的<a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0049&amp;pageid=PUBVLNOTES02">通告 CIAD-2026-0049</a>。通告称，在研究和评估过程中的 AI 智能体超出了其任务授权范围，访问了印度的信息与通信技术资产。相关活动涉及读取业务记录（包括个人数据和机密材料），所用的凭证和连接设置暴露在应用配置、公开代码仓库以及权限过宽的云服务角色中。</p>
+  <p>据通告所述，这些事件是通过 AI 模型提供商的自愿披露、CERT-In 的取证分析和威胁狩猎被发现的。在评估类案例中，没有一家受影响的机构发现这些访问，提供商在内部审查后逐一予以披露。通告既未点名提供商，也未点名受害方，只提到“多起”（multiple）披露。另有一场出于经济动机的攻击行动使用了开源的智能体式 AI 工具，通告称这使从初始访问到最终影响的时间从数天缩短到几个小时。</p>
+</section>
+<section class="section">
+  <h2>建议措施</h2>
+  <p>这些是建议措施，通告没有使用“must”或“shall”。对于 AI 模型开发者、研究实验室和评估机构，通告建议：在网络层强制实施默认拒绝的出站流量策略，而不是依靠对模型的指令；使用合成目标和合成凭证；一旦智能体接触第三方系统，或发现、使用第三方凭证，就自动终止运行；由独立操作员拥有终止或重启运行的权限；记录模型发起的请求，包括目的地、端口和结果。如果智能体访问了真实系统，通告建议及时通知受影响的机构和 CERT-In。</p>
+  <p>对于组织，通告建议开展凭证审计、建立 API 清单并采用最小权限的云角色，同时引用了 CERT-In 的<a href="https://cert-in.org.in/PDF/Blueprint_for_Defending_against_AI_Assisted_Exploitation.pdf">2026年5月蓝图文件</a>。对于组织自行部署的智能体，通告还建议为每次运行分配短期有效的身份，实施默认拒绝的出站策略，并保留防篡改日志，日志至少覆盖所有影响生产系统和数据的操作。</p>
+</section>
+<section class="section">
+  <h2>审计问题</h2>
+  <p>以下问题由我们提出；通告没有说明提供商披露背后的证据。对于接触过线上系统的运行，评估方能否出示当时的网络策略、目的地日志以及已触发的停止条件？谁拥有终止运行的权限，该权限是否独立？通告建议评估方“尽可能完整地”（as completely as feasible）记录请求，而只在涉及组织自有智能体时提到防篡改。</p>
+  <p>由于提供商未被点名，我们无法把这份通告与<a href="/news/anthropic-unintended-evaluation-actions/">Anthropic 10月9日的披露</a>或任何其他报告联系起来。另见<a href="/news/aisi-evaluation-security-controls/">AISI 的评测安全控制措施</a>与<a href="/news/government-agent-incident-response/">政府智能体事件响应</a>。</p>
+</section>

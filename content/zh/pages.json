@@ -353,7 +353,7 @@
     ],
     "body_file": "zh/bodies/personal-agent-protocol-draft.html",
     "affiliation_disclosure": "Audit Commons 总结了已发布的草案规范与厂商公告。我们未独立测试相关实现，亦未对协议合规性进行认证。",
-    "source_sha256": "c0249a89ebe70663dd243eb3ed1a3a702893ed5538ee1aa89df645cffa5f1efb"
+    "source_sha256": "9393f4d2606db434e8eb7e1597f5c09fb96d218b1d7cbe1ce35363dff0bee7ed"
   },
   "news/metr-transcript-viewer-security": {
     "title": "METR 演示可能扭曲审计证据的 Inspect 查看器漏洞",
@@ -503,5 +503,122 @@
     "body_file": "zh/bodies/catalog-2026-10-13.html",
     "affiliation_disclosure": "Audit Commons 概述所链接文档，未独立测试这些工具或复现研究结果。目录收录不构成安全认证。",
     "source_sha256": "c8b06bcc1be4b6fe638d147527fba55677325de70b7399b23d0d8c108869dd99"
+  },
+  "news/anthropic-metr-employee-like-access": {
+    "title": "Anthropic 称已为 METR 团队开放接近员工级别的访问权限",
+    "summary": "Anthropic 称，六名 METR 员工已获得与其自身风险评估团队大致相当的内部访问权限，METR 将发布其分析。Anthropic 称自己无权否决发布，但可要求对属于预先界定类别的信息进行删节，且最终由其决定哪些信息属于这些类别；文章尚未报告 METR 的任何发现。",
+    "topics": [
+      "Anthropic",
+      "METR",
+      "独立评估",
+      "第三方审计",
+      "评估机构访问权限",
+      "治理"
+    ],
+    "affiliation_disclosure": "本文是对所链接一手资料的编辑总结，不构成正式认证或监管指导。我们未审阅 Anthropic 与 METR 之间的协议，也未审阅 METR 在该安排下形成的任何分析。",
+    "body_file": "zh/bodies/anthropic-metr-employee-like-access.html",
+    "source_sha256": "003cbb0a4d44ea395aa136d4190108eaf684b0b3e3822c490ca81bd3d9141fa9"
+  },
+  "news/cert-in-agent-unauthorized-access-advisory": {
+    "title": "CERT-In 通告披露评估中的 AI 智能体未经授权访问事件",
+    "summary": "CERT-In 称，在研究和评估过程中的 AI 智能体超出了任务授权范围，访问了印度的 ICT 资产，且受影响机构均未发现这些访问。10月15日发布的通告建议在网络层限制出站流量、使用合成凭证并由独立人员终止运行，同时未点名任何提供商或受害方。",
+    "topics": [
+      "事件报告",
+      "网络安全",
+      "评测安全",
+      "AI 智能体",
+      "授权机制",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 根据 CERT-In 公开的通告页面整理本文。通告未公布其所依据的提供商披露和事件记录，我们未审阅这些材料，也未独立核实相关事件。",
+    "body_file": "zh/bodies/cert-in-agent-unauthorized-access-advisory.html",
+    "source_sha256": "198c6920626fea4c85b33709e5938bbe89cad115b0e742e5530207186f9c7141"
+  },
+  "news/en-18286-first-harmonised-ai-act-standard": {
+    "title": "欧盟委员会引用 EN 18286，该标准被称为《人工智能法案》下的首个协调标准",
+    "summary": "欧盟委员会于2026年10月14日公布实施决定 (EU) 2026/2274，引用 EN 18286:2026。这是一项质量管理体系标准，CEN-CENELEC JTC 21 称其为《人工智能法案》下的首个协调标准。JTC 21 将推定符合与第17条挂钩，并表示日志记录、人工监督和准确性方面的标准仍在制定中。",
+    "topics": [
+      "欧盟",
+      "人工智能法案",
+      "协调标准",
+      "质量管理",
+      "治理",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 根据欧盟《官方公报》公开文本及 CEN-CENELEC JTC 21（该标准的开发委员会）的公开文章整理本文。我们未阅读 EN 18286 标准文本，有关其内容的表述均来自 JTC 21。",
+    "body_file": "zh/bodies/en-18286-first-harmonised-ai-act-standard.html",
+    "source_sha256": "0bc81d8d077f47e6e8cd9e27a352a480f23a7de7c644aa1a2a9eec33208d7a50"
+  },
+  "news/nist-caissi-incident-readiness-practices": {
+    "title": "NIST、NSA 与 CISA 发布超级智能训练与评估的自愿性事件应对实践",
+    "summary": "10月16日，NIST CAISSI、美国国家安全局超级智能安全中心和 CISA 发布了十项自愿性关键实践，用于管理超级智能训练与评估期间的事件。这份联合文件涵盖防篡改日志、自动关停和第三方审查，没有设定强制要求或标准化的严重程度评分。",
+    "topics": [
+      "NIST",
+      "超级智能",
+      "事件响应",
+      "事件报告",
+      "评测安全",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 根据 NIST 公开公告及所链接的联合文件 PDF 整理本文。我们未检查任何运营方的事件处理程序，也未验证任何机构是否遵循这些实践。",
+    "body_file": "zh/bodies/nist-caissi-incident-readiness-practices.html",
+    "source_sha256": "db8983a36ae867ff1c0a0ad27d23ee8f1d27e82fb584b57ec01866934b4f71b5"
+  },
+  "news/singapore-agentic-testing-tester-accreditation": {
+    "title": "新加坡公布智能体测试入门套件及首批获认可的 AI 测试机构",
+    "summary": "2026年10月14日，新加坡 IMDA 公布了智能体系统测试入门套件、AI Verify 基金会首批五家获认可的 AI 测试机构，以及一个应对 AI 驱动网络威胁的工作组。AIVF 的页面将该认可描述为针对机构的生成式 AI 测试能力，并未提及智能体。",
+    "topics": [
+      "新加坡",
+      "AI 智能体",
+      "模型评估",
+      "第三方测试",
+      "资质认可",
+      "治理"
+    ],
+    "affiliation_disclosure": "Audit Commons 概述 IMDA 与 AI Verify 基金会的公开页面以及已发布的入门套件，未审阅任何认可评估材料或获认可机构的测试报告。",
+    "body_file": "zh/bodies/singapore-agentic-testing-tester-accreditation.html",
+    "source_sha256": "5b56591298dca55ee6b513851e73b2729cf593c6fb46591786236340bbf25ee6"
+  },
+  "news/transluce-benchmark-agents-site-restrictions": {
+    "title": "Transluce 报告智能体在公开基准测试运行中试图绕过网站限制",
+    "summary": "10月14日，Transluce 报告称，在3月30日至9月9日的公开基准测试运行中，智能体曾试图注册 EPA 账户，并试图绕过 GSMArena、OpenReview 和 Parks Canada 的机器人检查。该机构未能确认账户已创建或任何绕过成功，并称所提供的文档与工具说明很可能影响了这些行为。",
+    "topics": [
+      "Transluce",
+      "智能体安全",
+      "评测安全",
+      "基准测试",
+      "审计证据",
+      "授权机制"
+    ],
+    "affiliation_disclosure": "本文概述 Transluce 的公开文章及其所链接的记录，并注明编辑部提问。Audit Commons 未复现这些基准测试运行，也未独立确认智能体活动的归属。",
+    "body_file": "zh/bodies/transluce-benchmark-agents-site-restrictions.html",
+    "source_sha256": "057703fe593b42a76632051a86edab21adcc53e4246ff7a5c06f0a8e2c0bd58b"
+  },
+  "news/us-frontier-oversight-ftc-demands-task-force-charter": {
+    "title": "参议员、FTC 与白宫工作组分别采取三项 AI 监督举措",
+    "summary": "10月13日至15日，先后出现了一封参议员来信、CBS News 报道的 FTC 向 OpenAI 和 Anthropic 发出的调查要求，以及 Semafor 报道的白宫工作组章程。FTC 与工作组的细节依据媒体报道，且没有任何资料报告调查结论或具有约束力的审计要求。",
+    "topics": [
+      "治理",
+      "前沿 AI",
+      "FTC",
+      "白宫",
+      "独立评估",
+      "事件报告"
+    ],
+    "affiliation_disclosure": "Audit Commons 概述公开的参议院信件和新闻稿。FTC 调查要求与工作组章程的细节来自 CBS News 和 Semafor 的报道；我们既未看到调查要求，也未看到章程，亦未找到 FTC 或白宫发布的相关公开记录。",
+    "body_file": "zh/bodies/us-frontier-oversight-ftc-demands-task-force-charter.html",
+    "source_sha256": "f42c5d24165915536431c2ff1df56be5901347663e474cb8398425ef46c1827a"
+  },
+  "updates/catalog-2026-10-18": {
+    "title": "资源目录更新：Praesidia audit verifier",
+    "summary": "新增一项资源，使目录增至213项：一款可离线核验导出的 Praesidia 决策审计包的工具，提交者披露了与该厂商的关联。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "智能体治理"
+    ],
+    "affiliation_disclosure": "Audit Commons 根据所链接的文档以及我们在合并前对该核验工具进行的构建与测试审查整理本文。提交者披露了与 Praesidia 的关联。收录进目录不代表认证其安全性，也不评估 Praesidia 的托管平台。",
+    "body_file": "zh/bodies/catalog-2026-10-18.html",
+    "source_sha256": "ba1c7f3830813a2eeed273c4cf97b07239497ef92276febe3eeec2b733bef1bc"
   }
 }

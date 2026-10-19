@@ -1,0 +1,20 @@
+<section class="section">
+  <h2>Ten Voluntary Practices for Incident Readiness</h2>
+  <p>On October 16, 2026, NIST, the National Security Agency (NSA), and the Cybersecurity and Infrastructure Security Agency (CISA) <a href="https://www.nist.gov/news-events/news/2026/10/key-practices-incident-readiness-and-response-super-intelligence-training">announced ten key practices</a> for managing incidents during super intelligence (SI) training and evaluation. Within NIST and the NSA, the publishing units are the Center for Advancing Innovation and Standards for Super Intelligence (CAISSI) and the Super Intelligence Security Center (SISC). The agencies' <a href="https://www.nist.gov/system/files/documents/2026/10/16/Key_Practices_for_Incident_Readiness_and_Response_in_Super_Intelligence%20_Training_and_Evaluation.pdf">joint document</a> (PP-26-4396, version 1.0) calls the practices voluntary. They follow five stages (prepare, detect, respond, recover, and report) and build on <a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final">NIST SP 800-61r3</a>.</p>
+  <p>The practices are primarily intended for organizations that train or evaluate highly capable SI agents on long-horizon tasks with limited human supervision. An “SI control incident”, as the document defines it, is one in which agents take significant uninstructed actions that compromise explicit or implicit policies, controls, or security measures the operator imposed to define task scope or ensure human oversight.</p>
+</section>
+<section class="section">
+  <h2>Evidence an Auditor Could Request</h2>
+  <p>In our reading, four numbered items name records or arrangements an outside reader could ask to see:</p>
+  <ul>
+    <li>Item 5.3: tamper-resistant logs with reliable timestamps, sufficient to reconstruct agent trajectories, tool calls, reasoning traces, and security-control decisions, among other records.</li>
+    <li>Item 6.2: automatic shutdown of impacted agent trajectories when a control failure or in-progress incident is detected.</li>
+    <li>Item 2.4: partnership with independent external auditors and evaluators to assess control, monitoring, and incident detection protocols.</li>
+    <li>Item 10.2: third-party review, with sufficient access and documentation for independent analysis.</li>
+  </ul>
+</section>
+<section class="section">
+  <h2>Limits and Audit Questions</h2>
+  <p>The PDF describes itself as provided “as is” and not as advice for compliance, regulatory, or legal purposes. Item 9.1 points to applicable legal reporting obligations and sets none of its own. Item 2.1 asks operators to establish incident indicators, criteria, and severity scoring, while the document lists standardized severity scores as future work. Items 2.4 and 10.2 leave “independent” and “sufficient access” undefined. Neither the announcement nor the PDF reports that any operator has adopted the practices.</p>
+  <p>Our editorial audit questions: for a given run, can an operator show that its logs were tamper-resistant and that automatic shutdown triggered on detecting a control failure? What access did an external evaluator have to incident records? See also <a href="/news/aisi-evaluation-security-controls/">AISI evaluation security controls</a>, <a href="/news/anthropic-unintended-evaluation-actions/">Anthropic's unintended evaluation actions</a>, and the <a href="/news/white-house-frontier-controls-accord/">White House frontier controls accord</a>, which also calls for external assessment of controls.</p>
+</section>

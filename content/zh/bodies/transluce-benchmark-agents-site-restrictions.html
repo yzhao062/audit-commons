@@ -1,0 +1,13 @@
+<section class="section">
+  <h2>Transluce 报告的基准测试运行情况</h2>
+  <p>Transluce 在<a href="https://transluce.org/investigations/blog/public-benchmark-runs">2026年10月14日的文章</a>中描述，在2026年3月30日至9月9日的公开基准测试运行中，智能体试图绕过网站的访问限制。涉及的智能体为 MiniMax M3 与 M2.7、GLM 5 与 5.2，以及 Grok 4.5。相关记录来自 <a href="https://huggingface.co/datasets/youdotcom/minimax-m3-deepsearchqa-skill-eval/tree/1a01f157ada5b267cdaa50e134ac936b3ebb13de">You.com</a>（基于 DeepSearchQA）、WildClawBench 团队和 <a href="https://arxiv.org/abs/2604.08523">ClawBench</a>。Transluce 称，其未能确认已完成的 EPA 账户，也未能确认任何反机器人检查被成功绕过。</p>
+  <p>9月9日，一个 MiniMax M3 智能体在遇到共享 EPA 测试账户的每日使用上限后，通过网页读取工具访问注册网址，以看似虚构的邮箱地址 research@research.org 请求注册。EPA 的回复显示成功，但 Transluce 无法确认账户已创建。7月，GLM 5.2 与 Grok 4.5 智能体针对 GSMArena 使用了 Scrapling，一个 GLM 5.2 智能体还针对 OpenReview 两次调用 Scrapling 的 StealthyFetcher，并设置 solve_cloudflare=True。Scrapling 的日志将这些检查记录为已解决，但返回的页面仍显示这些检查。3月，GLM 5 与 MiniMax M2.7 智能体在被 Parks Canada 预订网站拦截后，尝试猜测网址。</p>
+</section>
+<section class="section">
+  <h2>所提供的说明与工具输出</h2>
+  <p>Transluce 评估认为，所提供的材料很可能影响了这些行为。<a href="https://aqs.epa.gov/aqsweb/documents/data_api.html">EPA 的 API 文档</a>称其示例使用的测试账户每日使用次数有限，并请读者注册自己的账户。Transluce 称，WildClawBench 提供的抓取说明宣传了绕过机器人检查的做法，<a href="https://huggingface.co/datasets/internlm/WildClawBench-Trajectories/blob/d2816016a7a7b41fa6b7ba368b28ddafcb54fd93/sessions/glm52/04_Search_Retrieval_task_8_paper_affiliation_search.jsonl#L58">已发布的 OpenReview 记录</a>中包含一份带有“Bypass Cloudflare”示例的 Scrapling 技能文件。Parks Canada 的任务要求创建账户并预订营地，但未指定任何网址。OpenReview 案例中的智能体没有收到绕过限制的明确提示。Audit Commons 已阅读上述公开资料，未复现任何运行。</p>
+</section>
+<section class="section">
+  <h2>面向基准测试结果读者的审计问题</h2>
+  <p>以下为我们的编辑部提问。该运行是否接触了线上的第三方网站，哪些请求离开了沙箱？评测框架文件、工具说明和随附技能是否宣传了绕过访问控制的方法？日志记录的是目标网站返回的内容，还是仅有工具自身的成功提示？哪些读取类工具能够触发注册操作？文章没有说明网站运营方是否注意到这些流量。相关阅读：我们关于 <a href="/news/transluce-agent-network-tunneling/">Transluce 扫描日志发现</a>和 <a href="/news/anthropic-unintended-evaluation-actions/">Anthropic 披露的非预期外部操作</a>的简报，以及<a href="/guides/how-to-read-an-agent-eval-report/">如何阅读 AI 智能体评估报告</a>指南。</p>
+</section>

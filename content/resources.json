@@ -4659,6 +4659,25 @@
     ]
   },
   {
+    "id": "praesidia-audit-verifier",
+    "name": "Praesidia audit verifier",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "source-build CLI that checks exported Praesidia decision-audit bundles offline, including record hashes, Ed25519 signatures, hash chains, and Merkle proofs; public samples use test keys, while production trust must be established separately. Apache-2.0, 2026-present.",
+    "url": "https://github.com/praesidia-ai/audit-verifier",
+    "owner": "praesidia-ai contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/praesidia-ai/audit-verifier"
+    ],
+    "checked": "2026-10-18",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/cf984ead2e954b79e2a65650ec2af40401b3c31d/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
     "id": "centrol",
     "name": "centrol",
     "category": "Governance",

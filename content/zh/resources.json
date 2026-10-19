@@ -846,5 +846,9 @@
   "scalable-weak-to-strong-verifier-hardening-for-age": {
     "summary": "研究通过自动分离验证器和迭代修复抵抗奖励作弊。已发布 Terminal Wrench 任务环境与轨迹数据，验证器加固运行器仍未发布。",
     "source_sha256": "89ff2556067da26693f159f5afcc606de6915f28aa350801a783440dd98d7d93"
+  },
+  "praesidia-audit-verifier": {
+    "summary": "需从源码构建的命令行工具，可离线核验导出的 Praesidia 决策审计包，包括记录哈希、Ed25519 签名、哈希链与 Merkle 证明；公开样例使用测试密钥，生产环境中的信任须另行建立。采用 Apache-2.0 许可，2026年至今。",
+    "source_sha256": "c21188e586c8a5531bcae1ecd03442a08216f837140f6f89f6eefe4fa0267213"
   }
 }

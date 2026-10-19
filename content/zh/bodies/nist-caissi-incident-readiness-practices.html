@@ -1,0 +1,20 @@
+<section class="section">
+  <h2>十项自愿性事件应对实践</h2>
+  <p>2026年10月16日，NIST 超级智能创新与标准推进中心（CAISSI）、美国国家安全局超级智能安全中心（SISC）和美国网络安全与基础设施安全局（CISA）<a href="https://www.nist.gov/news-events/news/2026/10/key-practices-incident-readiness-and-response-super-intelligence-training">公布了十项关键实践</a>，用于管理超级智能（SI）训练与评估期间的事件。这份<a href="https://www.nist.gov/system/files/documents/2026/10/16/Key_Practices_for_Incident_Readiness_and_Response_in_Super_Intelligence%20_Training_and_Evaluation.pdf">联合文件</a>（编号 PP-26-4396，1.0 版）称这些实践为自愿性质。实践分为准备、检测、响应、恢复和报告五个阶段，并以 <a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final">NIST SP 800-61r3</a> 为基础。</p>
+  <p>这些实践主要面向在长周期任务中、仅有有限人工监督的情况下训练或评估高能力 SI 智能体的组织。文件将“SI 控制事件”定义为：智能体采取重大的未经指示行动，从而破坏运营方为界定任务范围或确保人工监督而设定的明示或隐含政策、控制或安全措施。</p>
+</section>
+<section class="section">
+  <h2>审计者可以要求查看的证据</h2>
+  <p>在我们看来，四个编号条目列出了外部读者可以要求查看的记录或安排：</p>
+  <ul>
+    <li>条目 5.3：防篡改日志，带有可靠时间戳，足以重建智能体运行轨迹、工具调用、推理痕迹和安全控制决策，以及其他记录。</li>
+    <li>条目 6.2：检测到控制失效或正在发生的事件时，自动关停受影响的智能体运行轨迹。</li>
+    <li>条目 2.4：与独立的外部审计者和评估者合作，评估控制、监测和事件检测协议。</li>
+    <li>条目 10.2：第三方审查，并提供足以支持独立分析的访问权限和文档。</li>
+  </ul>
+</section>
+<section class="section">
+  <h2>局限与审计问题</h2>
+  <p>PDF 自称“按原样”提供，不构成合规、监管或法律方面的建议。条目 9.1 指向适用的法定报告义务，自身并未设定任何义务。条目 2.1 要求运营方建立事件指标、标准和严重程度评分，而文件把标准化的严重程度评分列为未来工作。条目 2.4 和 10.2 没有界定“独立”和“充分访问”。公告和 PDF 均未报告任何运营方采用了这些实践。</p>
+  <p>我们的编辑部审计问题：就某一次运行而言，运营方能否证明其日志具有防篡改能力，并证明在检测到控制失效时自动关停确实被触发？外部评估者对事件记录拥有怎样的访问权限？另见 <a href="/news/aisi-evaluation-security-controls/">AISI 评测安全控制措施</a>、<a href="/news/anthropic-unintended-evaluation-actions/">Anthropic 的非预期评测操作</a>，以及<a href="/news/white-house-frontier-controls-accord/">白宫前沿 AI 控制措施协议</a>，该协议同样要求对控制措施进行外部评估。</p>
+</section>

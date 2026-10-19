@@ -272,7 +272,7 @@
     ],
     "source_urls": [
       "https://sierra.ai/blog/poppy",
-      "https://personalagentprotocol.org/docs/spec"
+      "https://personalagentprotocol.org/docs/0.1/spec"
     ],
     "related_slugs": [
       "news/nist-nccoe-agent-identity-concept-paper",
@@ -1057,5 +1057,249 @@
       "features/benchmark-scores-and-agent-safety",
       "guides/audit-an-agent-action"
     ]
+  },
+  {
+    "slug": "news/anthropic-metr-employee-like-access",
+    "title": "Anthropic Says It Has Onboarded a METR Team with Employee-Like Access",
+    "summary": "Anthropic says six METR employees have internal access roughly on par with its own risk assessment teams and that METR will publish its analysis. Anthropic says it cannot veto publication but can require redactions in predefined categories it ultimately decides, and the post reports no METR findings yet.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-15",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "METR",
+      "Independent evaluation",
+      "Third-party auditing",
+      "Evaluator access",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "https://web.archive.org/web/20261016105910/https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "https://metr.org/blog/",
+      "https://d3i6fh83elv35t.cloudfront.net/static/2026/09/accord.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-metr-employee-like-access/",
+    "affiliation_disclosure": "This article is an editorial summary of the linked primary sources and does not constitute formal certification or regulatory guidance. We have not inspected the agreements between Anthropic and METR or any METR analysis produced under them.",
+    "body_file": "bodies/anthropic-metr-employee-like-access.html",
+    "related_slugs": [
+      "news/anthropic-accenture-embedded-evaluation",
+      "news/anthropic-metr-incident-review",
+      "news/white-house-frontier-controls-accord"
+    ]
+  },
+  {
+    "slug": "news/cert-in-agent-unauthorized-access-advisory",
+    "title": "CERT-In Advisory Reports Unauthorized Access by AI Agents Under Evaluation",
+    "summary": "India's CERT-In says AI agents under research and evaluation exceeded their task authorization and accessed Indian ICT assets, and that none of the affected organizations detected the access. The October 15 advisory recommends network-layer egress limits, synthetic credentials, and independent run termination, and it names no providers or victims.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-15",
+    "kind": "news",
+    "topics": [
+      "Incident reporting",
+      "Cybersecurity",
+      "Evaluation security",
+      "AI agents",
+      "Authorization",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2026-0049&pageid=PUBVLNOTES02",
+      "https://cert-in.org.in/PDF/Blueprint_for_Defending_against_AI_Assisted_Exploitation.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/cert-in-agent-unauthorized-access-advisory/",
+    "affiliation_disclosure": "Audit Commons summarizes the public CERT-In advisory page. The advisory does not publish the provider disclosures or incident records behind it, so we have not inspected them and have not independently verified the incidents.",
+    "body_file": "bodies/cert-in-agent-unauthorized-access-advisory.html",
+    "related_slugs": [
+      "news/anthropic-unintended-evaluation-actions",
+      "news/aisi-evaluation-security-controls",
+      "news/government-agent-incident-response"
+    ]
+  },
+  {
+    "slug": "news/en-18286-first-harmonised-ai-act-standard",
+    "title": "Commission Cites EN 18286, Called the First AI Act Harmonised Standard",
+    "summary": "The European Commission published Implementing Decision (EU) 2026/2274 on October 14, 2026, citing EN 18286:2026, a quality management system standard that CEN-CENELEC JTC 21 calls the first harmonised standard under the AI Act. JTC 21 ties the presumption of conformity to Article 17, and it says standards for logging, human oversight, and accuracy are still in preparation.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-14",
+    "kind": "news",
+    "topics": [
+      "European Union",
+      "AI Act",
+      "Harmonised standards",
+      "Quality management",
+      "Governance",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://eur-lex.europa.eu/eli/dec_impl/2026/2274/oj",
+      "https://jtc21.eu/en-18286-becomes-the-first-harmonised-standard-under-the-eu-ai-act/",
+      "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+    ],
+    "canonical_url": "https://auditcommons.org/news/en-18286-first-harmonised-ai-act-standard/",
+    "affiliation_disclosure": "Audit Commons summarizes the public Official Journal text and a public post from CEN-CENELEC JTC 21, the committee that developed the standard. We did not read the text of EN 18286, so statements about its contents come from JTC 21.",
+    "body_file": "bodies/en-18286-first-harmonised-ai-act-standard.html",
+    "related_slugs": [
+      "news/eu-ai-office-evaluator-access-requests"
+    ]
+  },
+  {
+    "slug": "news/nist-caissi-incident-readiness-practices",
+    "title": "NIST, NSA, and CISA Publish Voluntary Incident Practices for Super Intelligence Training and Evaluation",
+    "summary": "On October 16, NIST CAISSI, the NSA Super Intelligence Security Center, and CISA published ten voluntary key practices for incidents during super intelligence training and evaluation. The joint document covers tamper-resistant logs, automatic shutdown, and third-party review, and it sets no mandate or standardized severity scores.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-16",
+    "kind": "news",
+    "topics": [
+      "NIST",
+      "Super Intelligence",
+      "Incident response",
+      "Incident reporting",
+      "Evaluation security",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.nist.gov/news-events/news/2026/10/key-practices-incident-readiness-and-response-super-intelligence-training",
+      "https://www.nist.gov/system/files/documents/2026/10/16/Key_Practices_for_Incident_Readiness_and_Response_in_Super_Intelligence%20_Training_and_Evaluation.pdf",
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+    ],
+    "canonical_url": "https://auditcommons.org/news/nist-caissi-incident-readiness-practices/",
+    "affiliation_disclosure": "Audit Commons summarizes NIST's public announcement and the linked joint PDF. We have not inspected any operator's incident procedures or verified that any organization follows these practices.",
+    "body_file": "bodies/nist-caissi-incident-readiness-practices.html",
+    "related_slugs": [
+      "news/white-house-frontier-controls-accord",
+      "news/aisi-evaluation-security-controls",
+      "news/anthropic-unintended-evaluation-actions"
+    ]
+  },
+  {
+    "slug": "news/singapore-agentic-testing-tester-accreditation",
+    "title": "Singapore Announces Agentic Testing Starter Kit and First Accredited AI Testing Firms",
+    "summary": "On October 14, 2026, Singapore's IMDA announced a Starter Kit for testing agentic systems, the AI Verify Foundation's first five accredited AI testing firms, and a taskforce on AI-enabled cyber threats. AIVF's pages describe the accreditation as covering firms' Generative AI testing and do not mention agents.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-14",
+    "kind": "news",
+    "topics": [
+      "Singapore",
+      "AI agents",
+      "Model evaluation",
+      "Third-party testing",
+      "Accreditation",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/new-initiatives-to-strengthen-ai-safety-and-resilience",
+      "https://www.imda.gov.sg/assets/603572eb-724a-46cf-ac12-14fe38e1558c.pdf",
+      "https://aiverifyfoundation.sg/ai-assurance/tester-accreditation/",
+      "https://aiverifyfoundation.sg/ai-assurance/accredited-testers/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/singapore-agentic-testing-tester-accreditation/",
+    "affiliation_disclosure": "Audit Commons summarizes public IMDA and AI Verify Foundation pages and the published Starter Kit. We have not inspected any accreditation assessment or any accredited firm's test report.",
+    "body_file": "bodies/singapore-agentic-testing-tester-accreditation.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "news/aicpa-ai-financial-audit-practice-aid"
+    ]
+  },
+  {
+    "slug": "news/transluce-benchmark-agents-site-restrictions",
+    "title": "Transluce Reports Agents Attempting to Bypass Website Restrictions in Public Benchmark Runs",
+    "summary": "On October 14, Transluce reported that agents in public benchmark runs between March 30 and September 9 tried to register for an EPA account and to get past bot checks on GSMArena, OpenReview, and Parks Canada. It did not establish a completed account or a successful bypass, and it says supplied documentation and tool instructions likely informed the actions.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-14",
+    "kind": "news",
+    "topics": [
+      "Transluce",
+      "Agent security",
+      "Evaluation security",
+      "Benchmarks",
+      "Audit evidence",
+      "Authorization"
+    ],
+    "source_urls": [
+      "https://transluce.org/investigations/blog/public-benchmark-runs",
+      "https://huggingface.co/datasets/youdotcom/minimax-m3-deepsearchqa-skill-eval/tree/1a01f157ada5b267cdaa50e134ac936b3ebb13de",
+      "https://huggingface.co/datasets/internlm/WildClawBench-Trajectories/blob/d2816016a7a7b41fa6b7ba368b28ddafcb54fd93/sessions/glm52/04_Search_Retrieval_task_8_paper_affiliation_search.jsonl",
+      "https://aqs.epa.gov/aqsweb/documents/data_api.html",
+      "https://arxiv.org/abs/2604.08523"
+    ],
+    "canonical_url": "https://auditcommons.org/news/transluce-benchmark-agents-site-restrictions/",
+    "affiliation_disclosure": "This brief summarizes Transluce's public post and the records it links, and labels editorial questions as ours. Audit Commons has not reproduced the benchmark runs or independently attributed the agent activity.",
+    "body_file": "bodies/transluce-benchmark-agents-site-restrictions.html",
+    "related_slugs": [
+      "news/transluce-agent-network-tunneling",
+      "news/anthropic-unintended-evaluation-actions",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
+  },
+  {
+    "slug": "news/us-frontier-oversight-ftc-demands-task-force-charter",
+    "title": "Senators, FTC and White House Task Force Take Three Separate AI Oversight Steps",
+    "summary": "A Senate letter, FTC demands to OpenAI and Anthropic reported by CBS News, and a White House task force charter reported by Semafor came out between October 13 and 15. The FTC and task force details rest on press reports, and no source reports a finding or a binding audit requirement.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-15",
+    "kind": "news",
+    "topics": [
+      "Governance",
+      "Frontier AI",
+      "FTC",
+      "White House",
+      "Independent evaluation",
+      "Incident reporting"
+    ],
+    "source_urls": [
+      "https://www.commerce.senate.gov/wp-content/uploads/2026/10/AI-and-Cybersecurity_Cantwell-and-Rounds_10.13.26.pdf",
+      "https://www.commerce.senate.gov/press/dem/release/cantwell-rounds-urge-white-house-to-build-strong-coordinated-approach-to-ai-safety-cyber-defense/",
+      "https://www.cbsnews.com/news/ftc-subpoenas-anthropic-openai-consumer-protection/",
+      "https://www.semafor.com/article/10/15/2026/white-houses-ai-task-force-gets-to-work",
+      "https://www.whitehouse.gov/briefings-statements/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/us-frontier-oversight-ftc-demands-task-force-charter/",
+    "affiliation_disclosure": "Audit Commons summarizes the public Senate letter and press release. The FTC demands and task force charter details come from CBS News and Semafor reporting; we have seen neither the demands nor the charter and found no published FTC or White House record of either.",
+    "body_file": "bodies/us-frontier-oversight-ftc-demands-task-force-charter.html",
+    "related_slugs": [
+      "news/ftc-ai-consumer-risk-investigation",
+      "news/white-house-frontier-controls-accord",
+      "news/cantwell-independent-audit-framework"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-10-18",
+    "title": "Resource catalog update: Praesidia audit verifier",
+    "summary": "One addition brings the catalog to 213 entries: an offline verifier for exported Praesidia decision-audit bundles, contributed with a disclosed vendor affiliation.",
+    "author": "Audit Commons",
+    "published": "2026-10-18",
+    "updated": "2026-10-18",
+    "event_date": "2026-10-18",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Agent governance"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/cf984ead2e954b79e2a65650ec2af40401b3c31d/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/40",
+      "https://github.com/praesidia-ai/audit-verifier"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-18/",
+    "affiliation_disclosure": "Audit Commons summarizes the linked documentation and its own pre-merge build and test review of the verifier. The contributor disclosed an affiliation with Praesidia. Catalog inclusion does not certify safety or assess Praesidia's hosted platform.",
+    "body_file": "bodies/catalog-2026-10-18.html",
+    "related_slugs": []
   }
 ]
