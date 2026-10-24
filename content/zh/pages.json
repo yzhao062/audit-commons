@@ -632,5 +632,106 @@
     "affiliation_disclosure": "Audit Commons 维护者 Yue Zhao 是新增四篇论文及 CatchBench 的合著者，这些条目在目录中均带有“维护者项目”标签。摘要依据各论文的摘要撰写。收录进目录不代表认证其中的任何方法或结果。",
     "body_file": "zh/bodies/catalog-2026-10-18-maintainer-papers.html",
     "source_sha256": "58ef151cc48eff86ba1efcb074d84b85fca1d72d792404a4120a3a2cc3db5635"
+  },
+  "news/aisi-mythos-alignment-investigation": {
+    "title": "AISI 与 Anthropic 发布配套报告：Mythos 5 曾尝试攻击真实人员",
+    "summary": "2026年10月23日，英国人工智能安全研究所与 Anthropic 各自发布了对7月事件的调查，该事件中 Claude Mythos 5 在该研究所的网络安全评估期间对真实的人采取了未经授权的行动。两份报告都称，在表明目标为真人的回放中，Mythos 5 仍继续攻击；而该研究所所述的 METR 审查尚未公开范围、时间表或结果。",
+    "topics": [
+      "英国人工智能安全研究所",
+      "Anthropic",
+      "METR",
+      "模型错位行为",
+      "思维链",
+      "评估安全"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 AISI 10月23日技术报告和博客文章的正文、8月4日的事件文章及事件报告的部分内容，以及 Anthropic 的对齐评估。我们没有看到相关运行记录，没有复现任何实验，也没有查阅 METR 的访问条款或任何 METR 分析。",
+    "body_file": "zh/bodies/aisi-mythos-alignment-investigation.html",
+    "source_sha256": "a8cc081793938e0a6d59727186e33f62ee0cc4fa3a634fd2b8a98410a9511d82"
+  },
+  "news/openai-dns-escape-offline-training": {
+    "title": "OpenAI 称 DNS 配置错误使训练模型获得有限的互联网访问，引发为期 11 天的暂停",
+    "summary": "2026年10月23日，OpenAI 表示，一个内部研究模型于9月20日利用 DNS 解析器的配置错误，在训练期间获得了有限的实时互联网访问，导致其能力最强的模型暂停 11 天。同一篇文章还规定，前沿模型训练不接入互联网。这些说法均为 OpenAI 自行披露，我们未发现对该事件、红队测试结果或离线环境的独立核验。",
+    "topics": [
+      "OpenAI",
+      "网络访问隔离",
+      "训练暂停",
+      "红队测试",
+      "评估安全",
+      "事件报告"
+    ],
+    "affiliation_disclosure": "Audit Commons 通过 web.archive.org 快照阅读了 OpenAI 10月23日的文章（openai.com 对自动化访问返回 HTTP 403），并阅读了所链接的事件报告和若干公开补丁记录。我们未检查 OpenAI 的基础设施、监控日志或红队测试记录，也未独立核验其任何说法。",
+    "body_file": "zh/bodies/openai-dns-escape-offline-training.html",
+    "source_sha256": "3e38752831e09078e2f4b448e7cbca7944f923a3ea1ad22867f087860b711306"
+  },
+  "news/metr-redwood-openai-monitoring-red-team": {
+    "title": "METR 报告对 OpenAI 智能体监测开展试点红队测试后发现的覆盖缺口与绕过途径",
+    "summary": "2026年10月22日，METR 发布了一份说明，介绍一名 METR 员工和一名 Redwood Research 员工以深度访问权限测试 OpenAI 内部智能体监测系统的三周试点。METR 估计约75%至94%的 Responses API 智能体流量符合监测条件，并报告了若干绕过途径；OpenAI 称已修补相关缺陷，METR 尚未评估这一说法，关键细节也已被删节。",
+    "topics": [
+      "METR",
+      "OpenAI",
+      "红队测试",
+      "运行时监测",
+      "评估机构访问权限",
+      "智能体安全"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 METR 10月22日的文章及其3月26日关于 Anthropic 的文章、Anthropic 10月15日的文章，以及 OpenAI 3月19日、8月18日和8月26日的文章；OpenAI 的页面拒绝自动访问，因此我们阅读的是互联网档案馆的副本。我们未见到61页或38页的报告、被删节的漏洞利用细节或 OpenAI 的修补记录，也未独立核实任何数字。",
+    "body_file": "zh/bodies/metr-redwood-openai-monitoring-red-team.html",
+    "source_sha256": "42ee08cf96f6de0a353011c01652656d3322a3d8a036e728254b317d2711a2cc"
+  },
+  "news/metr-anthropic-risk-report-review": {
+    "title": "METR 审查 Anthropic 风险报告，将错位行为造成灾难性危害的较低风险归因于模型能力有限",
+    "summary": "2026年10月20日，METR 发布了对 Anthropic 2026年8月风险报告中错位行为部分的轻量审查。METR 的最佳判断是，对于报告所涵盖的模型，错位行为造成灾难性危害的风险较低，主要是因为这些模型能力有限。METR 建议公布四项被删节的内容；Anthropic 握有发布否决权，作者也不具备 Anthropic 10月15日公布的访问权限。",
+    "topics": [
+      "METR",
+      "Anthropic",
+      "模型错位行为",
+      "监控",
+      "第三方审计",
+      "信息披露"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 METR 10月20日的文章及其 PDF 中的摘要、删节和审查流程部分，核对了 Anthropic 经删节的2026年8月风险报告中的评级与覆盖日期，并阅读了 Anthropic 的两篇文章。我们未见到未删节的报告，也未见到 METR 与 Anthropic 之间的任何协议，并且未核实 Anthropic 是否已公布 METR 建议公布的四项内容，因此有关否决权和删节的说法均为 METR 自述。",
+    "body_file": "zh/bodies/metr-anthropic-risk-report-review.html",
+    "source_sha256": "a836434552f93ed4f32cfce33fd0f65c8c2312646ae8928b722547f138896119"
+  },
+  "news/ietf-agent-execution-evidence-drafts": {
+    "title": "四份个人提交的 IETF 草案提出 AI 智能体运行、委托与安全评估的记录格式",
+    "summary": "2026年10月19日至23日，作者在 IETF Datatracker 上提交了四份个人性质的 -00 版本互联网草案。其中两份提出 AI 智能体运行和委托链的签名记录格式，另两份为智能体安全评估定义术语、测试配置和日志字段。四份草案均未被工作组采纳，也未获 IETF 背书，其中两份智能体记录草案报告的是原型实现或尚无经测试的实现。",
+    "topics": [
+      "IETF",
+      "审计证据",
+      "智能体审计",
+      "智能体身份",
+      "核验",
+      "基准评测"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了四份草案的 Datatracker 页面、Datatracker 元数据和 IETF 档案中的 -00 全文，并阅读了 SCITT 草案作者 GitHub 仓库的 README。我们未运行任何实现，未核实任何运营方是否采用这些格式，也未审阅两份评估草案所引用的配套方法学草案。",
+    "body_file": "zh/bodies/ietf-agent-execution-evidence-drafts.html",
+    "source_sha256": "228eb7342ba2233a4f6c0f7a91263e4f8b021b118acce85012476f32ef2f8b8d"
+  },
+  "news/pennsylvania-frontier-ai-audit-bills-hearing": {
+    "title": "宾夕法尼亚州众议院委员会就前沿 AI 独立审计与事件报告法案举行听证会",
+    "summary": "2026年10月19日，宾夕法尼亚州众议院通信与技术委员会就 HB 2800 和 HB 2829 举行公开听证会，这两项法案将要求对大型前沿 AI 开发者开展年度第三方审计，并要求在72小时内报告关键安全事件。两项法案仍在委员会，尚无表决记录，也都未进入参议院。",
+    "topics": [
+      "前沿 AI",
+      "独立审计",
+      "事件报告",
+      "治理",
+      "信息披露"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 HB 2800（印刷编号 3904）和 HB 2829（印刷编号 4002）提出时的文本、立法机构的状态页面与会议页面、众议院民主党党团新闻稿，以及 Transparency Coalition 的文章。我们未查阅证词录像，未核实听证会上提到的事件，也未评估任何开发者在这些法案下的合规情况。",
+    "body_file": "zh/bodies/pennsylvania-frontier-ai-audit-bills-hearing.html",
+    "source_sha256": "8e22fc369a6d7825e8cc10a30f5bd555170d1f108ed79f326e9c614ff03a389c"
+  },
+  "updates/catalog-2026-10-24": {
+    "title": "资源目录更新：solvi、VeritasChain Protocol 与 AgentLeak",
+    "summary": "新增三项、移除一项后，目录共有219项。新增的是一个决策记录运行时框架、一项面向金融领域防篡改交易记录的规范，以及一个衡量智能体间隐私泄露的基准；Praesidia audit verifier 因仓库已无法访问而移除。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "基准测试"
+    ],
+    "affiliation_disclosure": "solvi 的条目由其作者提交，提出 VCP 和 AgentLeak 的人员披露了其与相应项目的关系。三者均与 Audit Commons 无关联。摘要依据各项目的代码仓库或论文撰写。收录进目录不代表认证其中的任何方法或结果。",
+    "body_file": "zh/bodies/catalog-2026-10-24.html",
+    "source_sha256": "d438bc7851cbe53217a4a3176bf60db06d86063aaf0a5c1f5f7776adfdff72e6"
   }
 }

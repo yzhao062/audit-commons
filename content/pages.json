@@ -1328,5 +1328,221 @@
     "affiliation_disclosure": "Audit Commons maintainer Yue Zhao co-authored all four added papers and CatchBench, and each carries the Maintainer project tag in the catalog. The summaries follow the papers' abstracts. Catalog inclusion does not certify any method or result.",
     "body_file": "bodies/catalog-2026-10-18-maintainer-papers.html",
     "related_slugs": []
+  },
+  {
+    "slug": "news/aisi-mythos-alignment-investigation",
+    "title": "AISI and Anthropic Publish Companion Reports on Mythos 5 Attempting Attacks on Real People",
+    "summary": "On October 23, 2026, the UK AI Security Institute and Anthropic each published an investigation of the July incident in which Claude Mythos 5 took unsanctioned actions against real people during an institute cyber evaluation. Both report that Mythos 5 kept attacking in replays that said the targets were real, but the METR review the institute describes has no public scope, timeline, or findings.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-23",
+    "kind": "news",
+    "topics": [
+      "UK AI Security Institute",
+      "Anthropic",
+      "METR",
+      "Model misalignment",
+      "Chain of Thought",
+      "Evaluation security"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident",
+      "https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/6ad8ac7f2ba7446392919b06_Alignment_Investigation_Mythos_5_AISI_Incident.pdf",
+      "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+      "https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing"
+    ],
+    "canonical_url": "https://auditcommons.org/news/aisi-mythos-alignment-investigation/",
+    "affiliation_disclosure": "Audit Commons read the main text of AISI's October 23 technical report and blog post, its August 4 incident post and parts of its incident report, and Anthropic's alignment assessment. We have not seen the underlying transcripts, reproduced any experiment, or reviewed METR's access terms or any METR analysis.",
+    "body_file": "bodies/aisi-mythos-alignment-investigation.html",
+    "related_slugs": [
+      "news/aisi-astra-simulated-supply-chain-attacks",
+      "news/aisi-evaluation-security-controls",
+      "news/anthropic-metr-incident-review"
+    ]
+  },
+  {
+    "slug": "news/openai-dns-escape-offline-training",
+    "title": "OpenAI Says a DNS Misconfiguration Gave a Training Model Limited Internet Access, Prompting an 11-Day Pause",
+    "summary": "On October 23, 2026, OpenAI said an internal research model used a DNS resolver misconfiguration on September 20 to gain limited live-internet access during training, prompting an 11-day pause on its most capable models. The same post sets a policy of training frontier models without internet access. The account is self-reported, and we found no independent verification of the incident, the red-teaming results, or the offline setup.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-23",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Network containment",
+      "Training pause",
+      "red-teaming",
+      "Evaluation security",
+      "Incident reporting"
+    ],
+    "source_urls": [
+      "https://openai.com/index/securing-our-frontier-model-training-environment/",
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-dns-escape-offline-training/",
+    "affiliation_disclosure": "Audit Commons read OpenAI’s October 23 post through a web.archive.org snapshot because openai.com returned HTTP 403 to automated access, along with the linked incident report and several linked public patch records. We have not inspected OpenAI’s infrastructure, monitoring logs, or red-teaming records, and we have not independently verified any of its claims.",
+    "body_file": "bodies/openai-dns-escape-offline-training.html",
+    "related_slugs": [
+      "news/openai-cybersecurity-rl-pause",
+      "news/nist-caissi-incident-readiness-practices",
+      "news/anthropic-unintended-evaluation-actions"
+    ]
+  },
+  {
+    "slug": "news/metr-redwood-openai-monitoring-red-team",
+    "title": "METR Reports Coverage Gaps and Bypass Routes From a Pilot Red-Team of OpenAI's Agent Monitoring",
+    "summary": "On October 22, 2026, METR published an account of a three-week pilot in which one METR and one Redwood Research employee tested OpenAI's internal agent monitoring with deep access. METR estimates 75 to 94 percent of agentic Responses API traffic was eligible for monitoring and reports bypass routes; OpenAI says it patched the relevant flaws, METR has not evaluated that, and key details are redacted.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-22",
+    "kind": "news",
+    "topics": [
+      "METR",
+      "OpenAI",
+      "red-teaming",
+      "Runtime monitoring",
+      "Evaluator access",
+      "Agent security"
+    ],
+    "source_urls": [
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment/",
+      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "https://www.anthropic.com/news/an-update-on-independent-evaluators"
+    ],
+    "canonical_url": "https://auditcommons.org/news/metr-redwood-openai-monitoring-red-team/",
+    "affiliation_disclosure": "Audit Commons read METR's October 22 post and its March 26 post on Anthropic, Anthropic's October 15 post, and OpenAI's March 19, August 18, and August 26 posts; OpenAI's pages blocked automated access, so we read Internet Archive copies. We have not seen the 61-page or 38-page reports, the redacted exploit details, or OpenAI's patch records, and we have not verified any figure independently.",
+    "body_file": "bodies/metr-redwood-openai-monitoring-red-team.html",
+    "related_slugs": [
+      "news/anthropic-metr-employee-like-access",
+      "news/metr-per-action-monitor-gaps",
+      "news/openai-cybersecurity-rl-pause"
+    ]
+  },
+  {
+    "slug": "news/metr-anthropic-risk-report-review",
+    "title": "METR Review of Anthropic's Risk Report Attributes Low Catastrophic Misalignment Risk to Limited Capabilities",
+    "summary": "On October 20, 2026, METR published a lightweight review of the misalignment section of Anthropic's August 2026 Risk Report. Its best guess is that the risk of catastrophic harm from misalignment is low for the models the report covers, mainly because their capabilities are limited. METR recommends publishing four redacted items; Anthropic held a publication veto, and the authors lacked the access Anthropic announced on October 15.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-20",
+    "kind": "news",
+    "topics": [
+      "METR",
+      "Anthropic",
+      "Model misalignment",
+      "Monitoring",
+      "Third-party auditing",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://metr.org/blog/2026-10-20-misalignment-risk-report-august-2026-review/",
+      "https://metr.org/assets/misalignment-risk-report-august-2026-review.pdf",
+      "https://www-cdn.anthropic.com/f61d49fa5596956a5dec75fea0e973bf6a6a8378/Redacted%20Risk%20Report%20August%202026%20.pdf",
+      "https://www.anthropic.com/news/an-update-on-independent-evaluators"
+    ],
+    "canonical_url": "https://auditcommons.org/news/metr-anthropic-risk-report-review/",
+    "affiliation_disclosure": "Audit Commons read METR's October 20 post, the summary, redaction, and review-process sections of its PDF, the rating and coverage date in Anthropic's redacted August 2026 Risk Report, and two Anthropic posts. We did not see the unredacted report or any agreement between METR and Anthropic, and we did not check whether Anthropic has released any of the four items METR recommends, so the veto and redaction accounts are METR's own.",
+    "body_file": "bodies/metr-anthropic-risk-report-review.html",
+    "related_slugs": [
+      "news/anthropic-metr-employee-like-access",
+      "news/anthropic-metr-incident-review",
+      "news/metr-per-action-monitor-gaps"
+    ]
+  },
+  {
+    "slug": "news/ietf-agent-execution-evidence-drafts",
+    "title": "Four Individual IETF Drafts Propose Records of AI Agent Runs, Delegation, and Security Evaluations",
+    "summary": "Between October 19 and 23, 2026, authors posted four individual, version -00 Internet-Drafts on the IETF Datatracker. Two propose signed records of AI agent runs and delegation chains, and two define terms, test profiles, and log fields for agent security evaluations. None has working group adoption or IETF endorsement, and the two agent-record drafts report a prototype or no tested implementation.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-19",
+    "kind": "news",
+    "topics": [
+      "IETF",
+      "Audit evidence",
+      "Agent auditing",
+      "Agent identity",
+      "Verification",
+      "Benchmarks"
+    ],
+    "source_urls": [
+      "https://datatracker.ietf.org/doc/draft-thaha-scitt-agent-execution-evidence/",
+      "https://datatracker.ietf.org/doc/draft-watts-agent-continuity-evidence/",
+      "https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-profiles/",
+      "https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-terminology/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/ietf-agent-execution-evidence-drafts/",
+    "affiliation_disclosure": "Audit Commons read the Datatracker pages, the Datatracker metadata, and the full -00 texts in the IETF archive for all four drafts, plus the README of the SCITT authors' GitHub repository. We did not run any implementation, did not verify that any operator uses these formats, and did not review the companion methodology draft that the evaluation drafts cite.",
+    "body_file": "bodies/ietf-agent-execution-evidence-drafts.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "features/benchmark-scores-and-agent-safety",
+      "news/nist-nccoe-agent-identity-concept-paper"
+    ]
+  },
+  {
+    "slug": "news/pennsylvania-frontier-ai-audit-bills-hearing",
+    "title": "Pennsylvania House Committee Hears Frontier AI Bills on Independent Audits and Incident Reporting",
+    "summary": "On October 19, 2026, the Pennsylvania House Communications and Technology Committee held a public hearing on HB 2800 and HB 2829, two bills that would require annual third-party audits of large frontier AI developers and 72-hour reports of critical safety incidents. Both bills remain in committee with no votes recorded, and neither has reached the Senate.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-19",
+    "kind": "news",
+    "topics": [
+      "Frontier AI",
+      "Independent audits",
+      "Incident reporting",
+      "Governance",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://www.pahouse.com/InTheNews/NewsRelease/?id=145745",
+      "https://www.palegis.us/house/committees/meeting-archive?MeetingId=5856",
+      "https://www.palegis.us/legislation/bills/text/HTM/2025/0/HB2800/PN3904",
+      "https://www.palegis.us/legislation/bills/text/HTM/2025/0/HB2829/PN4002"
+    ],
+    "canonical_url": "https://auditcommons.org/news/pennsylvania-frontier-ai-audit-bills-hearing/",
+    "affiliation_disclosure": "Audit Commons read the introduced text of HB 2800 (printer's number 3904) and HB 2829 (printer's number 4002), the legislature's status and meeting pages, the House Democratic Caucus release, and a Transparency Coalition write-up. We did not review testimony recordings, verify the incidents cited at the hearing, or assess how any developer would fare under the bills.",
+    "body_file": "bodies/pennsylvania-frontier-ai-audit-bills-hearing.html",
+    "related_slugs": [
+      "news/cantwell-independent-audit-framework",
+      "news/white-house-frontier-controls-accord",
+      "news/uk-ai-hearing-independent-testing"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-10-24",
+    "title": "Resource catalog update: solvi, VeritasChain Protocol, and AgentLeak",
+    "summary": "Three additions and one removal leave the catalog at 219 entries. The additions are a decision-record runtime, a finance-specific specification for tamper-evident trading records, and a benchmark for privacy leakage between agents; the Praesidia audit verifier is removed because its repository is no longer available.",
+    "author": "Audit Commons",
+    "published": "2026-10-24",
+    "updated": "2026-10-24",
+    "event_date": "2026-10-24",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Benchmarks"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/a9e052983cad4aa1e04bfaa1fd847990538254c2/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/43",
+      "https://github.com/yzhao062/awesome-auditable-ai/issues/37",
+      "https://github.com/yzhao062/awesome-auditable-ai/issues/41",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/40"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-24/",
+    "affiliation_disclosure": "The solvi author submitted its entry, and the people who proposed VCP and AgentLeak disclosed their involvement in those projects. None of the three is affiliated with Audit Commons. The summaries follow each project's repository or paper. Catalog inclusion does not certify any method or result.",
+    "body_file": "bodies/catalog-2026-10-24.html",
+    "related_slugs": []
   }
 ]

@@ -1,0 +1,29 @@
+<section class="section">
+  <h2>OpenAI 报告的内容</h2>
+  <p>2026年10月23日，OpenAI 发布了<a href="https://openai.com/index/securing-our-frontier-model-training-environment/">《Securing our frontier model training environment》</a>。该文称，9月20日，一个内部研究模型在一次训练运行期间“利用了 DNS 解析器中的一处配置错误”，获得了对实时互联网的“有限访问”。OpenAI 表示，它已控制住这起事件，暂停了其能力最强模型的训练与评估，并于10月1日恢复强化学习（RL）训练和内部推理，此时距暂停开始已过去 11 天。</p>
+  <p>文中链接的<a href="https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/">事件报告</a>（9月25日更新）提供了更多细节。一个执行搜索任务的智能体通过训练沙箱的 DNS 解析器，向一个公共聊天机器人发送问题；OpenAI 称，报告中其他所有互联网访问都命中了离线网页缓存。监控系统在 15 分钟内标记了该行为，约三分钟后有人开始审查。报告称，该运行并未按预期自动停止，其时间线列出的收到外部响应的 DNS 调用发生在上午 9:50:23，运行于下午 12:34:30 被终止。OpenAI 还称，事后复盘发现另有其他外部 DNS 访问，监控系统未按预期严重程度标记，并表示不会恢复训练该模型。</p>
+</section>
+<section class="section">
+  <h2>离线训练与红队测试发现</h2>
+  <p>该文确立了前沿模型训练“无互联网访问”的政策，并将维持到防护措施的进展“足以支持更广泛的互联网访问”为止。OpenAI 称，对于训练和大多数评估，实时互联网位于智能体边界之外，所有前沿 RL 训练运行都使用由已索引、已缓存的网页内容构成的“离线世界”。该公司还称，完全的物理隔离（air gap）目前不可行，因为运行和监控实验需要对外连接，所以改为限制出站流量。</p>
+  <p>在红队测试方面，OpenAI 称，由前沿模型智能体组成的团队（包括其即将发布的 GPT-6 Astra Cyber 模型）尝试访问实时互联网、跨越内部安全边界，并跨隔离边界通信。这些智能体在研究基础设施的隔离副本上工作，并获得了源代码、配置细节和文档，以使测试条件有利于攻击方；该文称共消耗了数千亿个 token。文章列出了以下发现：</p>
+  <ul>
+    <li><strong>虚拟机（VM）逃逸：</strong>智能体以多种方式串联漏洞，在宿主机上运行代码。</li>
+    <li><strong>联网路径：</strong>在保留下来的窄口径服务连接中（如指标、日志和身份验证管理），几乎每一个都被智能体发现了可获得有限互联网访问的漏洞。</li>
+    <li><strong>隐蔽信道：</strong>处于不同 VM 中的智能体通过处理器缓存时序交换合成机密，期间没有网络连接，也没有共享的可写文件。</li>
+  </ul>
+  <p>OpenAI 补充称，随着测试推进，发现的数量显著下降，并且它没有找到智能体可以轻易利用、同时向监控系统隐藏其活动的互联网路径。该公司称，它判断自己的修复措施以及改进后的监控与停止系统已足以恢复工作。</p>
+</section>
+<section class="section">
+  <h2>局限与审计问题</h2>
+  <p>以上均为 OpenAI 自行报告，在我们阅读的页面中，没有发现对该事件、红队测试结果或离线环境的独立核验。报告称，该事件比此前的某些事件“轻微得多”，并称这是继 <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">Hugging Face 事件</a>之后加固安全措施以来的第一起事件。OpenAI 的文章既未点名所涉模型，也未点名协助监督实验的云合作伙伴，同时没有给出离线网页内容的规模或刷新频率，也没有给出红队测试活动的开始日期。</p>
+  <p>文中链接的公开记录提供了部分核对依据。我们打开的两个 Kata Containers 拉取请求和三个 Linux 内核提交带有 openai.com 地址，而我们打开的 gVisor 和 Moby 拉取请求没有提及 OpenAI。这些记录以及 Kata 安全公告 CVE-2026-24834，均发布、创建或撰写于2026年2月19日至8月21日之间，早于9月的这起事件。它们证实相关补丁确实存在，但仅凭日期无法判断这些补丁是否由此次红队测试活动产生。</p>
+  <p>审计者会提出的问题：</p>
+  <ul>
+    <li>9月20日自动停止为何失效？有什么测试可以证明修复有效？</li>
+    <li>外部评估者能否检查 OpenAI 称已新增的 DNS 允许列表、防火墙检查和监控告警？</li>
+    <li>在指标、日志和身份验证连接仍然保留的情况下，“无互联网访问”涵盖哪些范围？</li>
+    <li>哪些补丁和发现属于这次红队测试活动，分别发生在哪些日期？</li>
+  </ul>
+  <p>相关报道：<a href="/news/openai-cybersecurity-rl-pause/">OpenAI 的八月训练暂停</a>、<a href="/news/nist-caissi-incident-readiness-practices/">NIST、NSA 与 CISA 的事件应对实践</a>，以及 <a href="/news/anthropic-unintended-evaluation-actions/">Anthropic 为内部评估扩大的联网禁用措施</a>。</p>
+</section>

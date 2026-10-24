@@ -1,0 +1,19 @@
+<section class="section">
+  <h2>听证记录与立法状态</h2>
+  <p>2026年10月19日，宾夕法尼亚州众议院通信与技术委员会就 HB 2800 和 HB 2829 举行了<a href="https://www.palegis.us/house/committees/meeting-archive?MeetingId=5856">公开听证会</a>。众议院民主党党团的<a href="https://www.pahouse.com/InTheNews/NewsRelease/?id=145745">新闻稿</a>引述了提案人，即众议员 Melissa Shusterman（HB 2800）和众议员 Manuel Guzman（HB 2829），以及 Alliance for Secure AI 的首席执行官。会议页面嵌入了听证会视频，但未列出证词文件。我们未观看录像，关于证词还参考了 <a href="https://www.transparencycoalition.ai/news/pennsylvania-house-considers-two-frontier-ai-safety-bills">Transparency Coalition 的文章</a>，该组织的分析师在听证会上作证。</p>
+  <p>两项法案均仍在委员会。立法机构网站上 <a href="https://www.palegis.us/legislation/bills/2025/hb2800">HB 2800</a>（9月23日交付委员会）和 <a href="https://www.palegis.us/legislation/bills/2025/hb2829">HB 2829</a>（10月5日交付委员会）的页面均将交付委员会列为最近一次行动，并显示没有表决记录。截至10月24日，“委员会报出”和“参议院审议”均标注为尚未达到。</p>
+</section>
+<section class="section">
+  <h2>法案文本的要求</h2>
+  <p>我们阅读了 <a href="https://www.palegis.us/legislation/bills/text/HTM/2025/0/HB2800/PN3904">HB 2800</a> 和 <a href="https://www.palegis.us/legislation/bills/text/HTM/2025/0/HB2829/PN4002">HB 2829</a> 提出时的文本。审计和公开发布的安全框架适用于“大型前沿开发者”（large frontier developer），即年总收入超过5亿美元、且训练过算力超过某一门槛的基础模型的开发者。该门槛在 HB 2829 中印为 10^26 次运算，在 HB 2800 中印为“1,026”，看起来是同一数字丢失了上标，Transparency Coalition 则报告两项法案均为 10^26。</p>
+  <p>自2028年1月1日起，或自开发者首次符合条件之日起90天，以较晚者为准，大型前沿开发者每年须聘请第三方审计其合规情况。审计者依据“公认审计准则与最佳实践”（generally accepted auditing standards and best practices）开展工作，并须具备已证明的胜任能力，包括前沿模型安全方面的专业知识。双方均不得持有对方的财务利益，付款也不得取决于审计结果。审计者可获得“合理必要的全部材料”，但开发者可以要求现场审阅或限制记笔记。开发者须在收到报告后30天内公布摘要和经删节的副本，并将该副本送交宾夕法尼亚州应急管理局（PEMA）和州检察长。</p>
+  <p>任何前沿开发者，无论规模大小，都须在获知足以形成合理相信某一“关键安全事件”已发生的事实后72小时内，向 PEMA 和州检察长报告。如果事件带来迫在眉睫的死亡或严重人身伤害风险，则须在24小时内向适当的主管机关（例如执法部门）披露。HB 2800 界定了四类事件，包括造成死亡或伤害的失控，以及提高灾难性风险的、对开发者控制措施的欺骗性破坏，而 HB 2829 另增加了自主行为、模型权重被窃取或外逃，以及控制失效，条件是这些情形显示灾难性风险上升。</p>
+  <p>只有 HB 2829 禁止开发者在其自身评估显示部署会带来灾难性规模伤害的不合理风险时进行部署，也只有 HB 2829 要求保存详细到足以让独立方复现测试的测试记录。两项法案都对大型开发者设定民事罚款：首次违规最高100万美元，此后每次违规最高300万美元，且均未创设私人诉权。</p>
+</section>
+<section class="section">
+  <h2>局限与审计问题</h2>
+  <p>两项法案均尚未成为法律，修正案可能改变提出时的文本。HB 2829 于2028年1月1日生效。HB 2800 的大部分条款在 PEMA 临时规章的通知刊登于《宾夕法尼亚公报》一年后生效，但该法案又为其审计和框架义务规定了2028年1月1日，Transparency Coalition 也指出了这一矛盾。</p>
+  <p>党团新闻稿没有说明任何门槛或期限。它转述了 Alliance for Secure AI 负责人关于失控 AI 模型入侵公司、向警方提交虚假凶杀线索的说法，我们未核实这些事件。</p>
+  <p>我们的编辑部审计问题：文本只提到“公认审计准则与最佳实践”，那么审计者在前沿安全合规方面应适用哪一项标准，由谁来判断其胜任能力？当开发者可以限制记笔记和复制时，审计者能检查什么？公众又能在经删节的报告中看到什么？两项法案都只把“在旨在诱发此行为的评估之外”发生的欺骗性控制破坏算作事件，那么如何确认某次评估确实是这样设计的？HB 2800 仅在失控造成死亡或身体伤害时才将其计为事件，Transparency Coalition 的分析师在作证时也这样说，那么沙盒逃逸这类无人受伤的事件，哪些应视为需要报告？</p>
+  <p>另见 <a href="/news/cantwell-independent-audit-framework/">Cantwell 审计框架</a>、<a href="/news/white-house-frontier-controls-accord/">白宫前沿 AI 控制措施协议</a>以及<a href="/news/uk-ai-hearing-independent-testing/">英国议会委员会关于独立测试的听证会</a>。</p>
+</section>

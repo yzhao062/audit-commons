@@ -4674,6 +4674,37 @@
     ]
   },
   {
+    "id": "agentleak",
+    "name": "AgentLeak: A Benchmark for Internal-Channel Privacy Leakage in Multi-Agent LLM Systems",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Benchmark scenarios and reproduction code for measuring privacy leakage in multi-agent LLM runs, covering final outputs and two internal channels that output-only audits miss: inter-agent messages and shared memory.",
+    "url": "https://arxiv.org/abs/2602.11510",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2602.11510"
+    ],
+    "checked": "2026-10-24",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/ca82c349095f40c0d51f514e3e1fc7a268b24c89/README.md#datasets-and-benchmarks",
+    "venue": "IEEE Access 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/Privatris/AgentLeak"
+      },
+      {
+        "label": "Paper",
+        "url": "https://doi.org/10.1109/ACCESS.2026.3704541"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
     "id": "vestige",
     "name": "Vestige",
     "category": "Governance",
@@ -4688,6 +4719,25 @@
     "checked": "2026-10-09",
     "source_section": "Audit Trails and Decision Records",
     "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/c6a240102531f893483a2996696165d8b9afe29d/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "solvi",
+    "name": "solvi",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "runtime where a model proposes typed decisions and hard checks, rules and calibrated thresholds decide; each step record is hashed and chained to the previous one, replay recomputes every step from recorded inputs and reports mismatches or broken links, and its Guard allows, denies or escalates agent tool calls. Apache-2.0, 2026-present.",
+    "url": "https://github.com/solvi-ai/solvi",
+    "owner": "mxkuzn / solvi contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/solvi-ai/solvi"
+    ],
+    "checked": "2026-10-24",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/ca82c349095f40c0d51f514e3e1fc7a268b24c89/README.md#audit-trails-and-decision-records",
     "formats": [
       "Tool"
     ]
@@ -4737,6 +4787,25 @@
     ]
   },
   {
+    "id": "veritaschain-protocol-vcp",
+    "name": "VeritasChain Protocol (VCP)",
+    "category": "Governance",
+    "format": "Standard",
+    "summary": "finance-specific specification for tamper-evident records of algorithmic and AI-driven trading decisions, orders, executions, and risk controls, with JSON schemas and validation tests for checking recorded evidence; verification of a record does not establish that the decision was correct or lawful. VeritasChain Standards Organization (VSO), v1.2.0, CC BY 4.0, 2026; its maintainer reports no external implementations and no standards-body adoption.",
+    "url": "https://github.com/veritaschain/vcp-spec",
+    "owner": "VeritasChain Standards Organization (VSO)",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/veritaschain/vcp-spec"
+    ],
+    "checked": "2026-10-24",
+    "source_section": "Standards and Governance",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/ca82c349095f40c0d51f514e3e1fc7a268b24c89/README.md#standards-and-governance",
+    "formats": [
+      "Standard"
+    ]
+  },
+  {
     "id": "ztac",
     "name": "ZTAC",
     "category": "Tools",
@@ -4760,25 +4829,6 @@
     "formats": [
       "Tool",
       "Paper"
-    ]
-  },
-  {
-    "id": "praesidia-audit-verifier",
-    "name": "Praesidia audit verifier",
-    "category": "Governance",
-    "format": "Tool",
-    "summary": "source-build CLI that checks exported Praesidia decision-audit bundles offline, including record hashes, Ed25519 signatures, hash chains, and Merkle proofs; public samples use test keys, while production trust must be established separately. Apache-2.0, 2026-present.",
-    "url": "https://github.com/praesidia-ai/audit-verifier",
-    "owner": "praesidia-ai contributors",
-    "relationship": "External resource",
-    "source_urls": [
-      "https://github.com/praesidia-ai/audit-verifier"
-    ],
-    "checked": "2026-10-18",
-    "source_section": "Audit Trails and Decision Records",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/cf984ead2e954b79e2a65650ec2af40401b3c31d/README.md#audit-trails-and-decision-records",
-    "formats": [
-      "Tool"
     ]
   },
   {

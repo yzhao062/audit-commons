@@ -1,0 +1,25 @@
+<section class="section">
+  <h2>为期三周的现场访问试点</h2>
+  <p>2026年10月22日，METR 发布了<a href="https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/">一篇文章</a>，介绍7月21日至8月11日进行的一次试点演练。一名 METR 员工和一名 Redwood Research 员工对 OpenAI 的<a href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment/">内部错位监测系统</a>进行了压力测试。他们撰写的61页报告交给了 OpenAI 的研究与安全人员，经 OpenAI 删节的38页版本交给了 METR 和 Redwood 的领导层。公开文章简短而概括，这是事先与 OpenAI 约定的。</p>
+  <p>两人可以查阅 OpenAI 的内部代码库、监测器提示词与配置以及内部文档。他们使用 OpenAI 配发的设备工作，设备从未离开场所，现场期间始终有人陪同。研究发现描述的是7月21日及之前的系统；METR 称 OpenAI 在演练期间正在扩展该系统，因此当前的覆盖情况并未得到确认。</p>
+</section>
+<section class="section">
+  <h2>覆盖率估计与绕过途径</h2>
+  <p>METR 估计，来自能力不低于 GPT-5.5 的模型的内部 Responses API 智能体流量中，约75%至94%符合监测条件，两个方向上的不确定性都很大；其中供内部 Codex 智能体使用的那部分流量为99.2%。符合条件的流量本应送达监测器，但负载削减（load shedding）、错误或缺陷仍可能使其中一部分未经审查。内部研究推理流量因访问权限和时间所限，不在估计范围内。</p>
+  <ul>
+    <li><strong>压缩（compaction）。</strong>未监测压缩事件，很可能使2026年5月至7月期间量级约为10%的符合条件的内部 Codex 流量未被监测，不确定性很大。由于监测器在智能体将控制权交还用户时触发，智能体在这段时间内可以通过持续行动来推迟被审查；METR 无法核查是否有智能体这样做。OpenAI 员工在演练前已发现这一缺口，并在演练期间修复。</li>
+    <li><strong>训练。</strong>演练开始时，强化学习训练运行未纳入监测，不过员工称3月至6月期间有一部分 rollout（采样轨迹）受到监测。</li>
+    <li><strong>绕过途径。</strong>METR 报告了几类途径：Codex 智能体原则上可以绕过 Codex 沙箱和 Auto-Review；一种可使数百条近期行动不受监测的漏洞利用方式（细节已由 OpenAI 删节）；很可能借助序列化差异构造出使监测器失效的输入；以及两个由客户端控制、可对新智能体关闭监测的请求头，不过设置这些请求头本身也可能被监测发现。</li>
+    <li><strong>经检查成立的方面。</strong>除少数例外，监测器能看到智能体所见的完整轨迹，其提示词涵盖的风险包括蓄意谋划（scheming）、蓄意破坏、数据外泄和提示词注入。</li>
+  </ul>
+</section>
+<section class="section">
+  <h2>OpenAI 的说法与尚未核实的部分</h2>
+  <p>METR 报告称，OpenAI 已声明所有已发现的、影响其生产环境防护体系的漏洞均已修补，并称 OpenAI 描述了此后对监测预期覆盖范围的重大调整；METR 尚未评估这两项说法。OpenAI 的<a href="https://openai.com/index/pacing-model-development-cyber-capabilities/">8月18日</a>和<a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">8月26日</a>文章介绍了扩大的监测要求。我们阅读的三篇 OpenAI 页面均未提及此次演练或这一修补声明，网络搜索也未发现独立报道。</p>
+  <p>OpenAI 在3月19日的文章中称，不到0.1%的流量（主要来自定制或本地配置）处于监测覆盖范围之外。METR 的压缩事件估计针对较晚的时间段，且对流量的衡量口径不同，因此这两个数字无法直接比较。</p>
+</section>
+<section class="section">
+  <h2>与 Anthropic 安排的对比及审计问题</h2>
+  <p>此次演练与我们报道的<a href="/news/anthropic-metr-employee-like-access/">Anthropic 向 METR 开放接近员工级别的访问权限</a>是两种不同的安排。10月15日，<a href="https://www.anthropic.com/news/an-update-on-independent-evaluators">Anthropic 表示</a>已接入六名 METR 员工，METR 将发布其分析；该文章未报告任何研究发现。OpenAI 这次演练是一次有时限的试点，外部人员为两名，METR 已发布了一份发现摘要。METR 的文章没有提及 Anthropic 的这一安排，而是指向其<a href="https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/">此前与 Anthropic 开展的为期三周的演练</a>。两者的删节条款由不同的当事方描述：METR 称，OpenAI 可以删节其“全权裁量”（in its sole discretion）认定为机密或敏感的材料，而 Anthropic 称，由它决定哪些信息属于预先界定的类别。</p>
+  <p>我们的编辑部问题：把推理日志与监测日志交叉核对后，符合条件的流量中实际被监测的比例是多少？METR 认可文中呈现的每一项发现，但与一些较早的合作不同，它没有单方面描述删节内容的权利，那么读者如何判断被删节的细节是否会改变整体图景？是否有人独立复测过这些修补？另见<a href="/news/anthropic-metr-employee-like-access/">Anthropic 与 METR 的访问安排</a>、<a href="/news/metr-per-action-monitor-gaps/">METR 的行动监测器检查</a>和<a href="/news/openai-cybersecurity-rl-pause/">OpenAI 的8月训练暂停</a>。</p>
+</section>

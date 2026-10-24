@@ -9,9 +9,9 @@ This document records the provenance, licensing, schema contract, and synchroniz
 The Resource Catalog imports curated entries from the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository.
 
 - **Upstream Repository**: [`https://github.com/yzhao062/awesome-auditable-ai`](https://github.com/yzhao062/awesome-auditable-ai)
-- **Pinned Commit Revision**: `aa9a2a996cec23b4d6a89457b9a079bdb0810dd7`
-- **Normalized LF UTF-8 SHA256**: `bd651d5b1e7a02e0366c42583572fc694ec7ebdb9fbc603092ee2e77d1a887c3`
-- **Snapshot Review Date**: `2026-10-18`
+- **Pinned Commit Revision**: `a9e052983cad4aa1e04bfaa1fd847990538254c2`
+- **Normalized LF UTF-8 SHA256**: `1ff6416110523200687f911520ae785a141694ad7352cc37606d0907329fc1cc`
+- **Snapshot Review Date**: `2026-10-24`
 - **Upstream License**: Creative Commons Zero v1.0 Universal (CC0 1.0) Public Domain Dedication ([`awesome-LICENSE`](https://creativecommons.org/publicdomain/zero/1.0/))
 - **Site-Wide License Status**: Site-wide license selection for Audit Commons remains **pending**. Upstream catalog metadata is imported under CC0 1.0 attribution, but Audit Commons does not inherit another site's license or bind unpublished sections.
 
@@ -33,6 +33,8 @@ The October 13 scoped sync adds centrol, Terminal Wrench / verifier hardening, a
 A scoped sync on October 18 adds the Praesidia audit verifier from merged community PR #40 and the maintainer recount at `cf984ea`. The contributor disclosed an affiliation with Praesidia, whose export format the tool checks; the record keeps the importer's External resource relationship and default owner label. All 212 prior records remain unchanged, including dates, pinned sources, links, disclosures, and translations. As at earlier revisions, a disposable full import would have removed `mcp-granite` and `agent-collusion`, so only the new record was applied. The bilingual catalog digest records this one-item batch in both Atom feeds.
 
 A second scoped sync on October 18 adds four papers co-authored by the maintainer at `aa9a2a9`: Auditable Claims about AI Agents, agent-risk, The Autonomy Tax, and WeClawArena. Each carries the Maintainer project relationship; because Auditable Claims, The Autonomy Tax, and WeClawArena link no `yzhao062` repository, the importer's maintainer identity list now names all four arXiv records and their repositories. CatchBench gains its paper link, a `Preprint 2026` venue, and Paper membership, with its review date and other fields unchanged. Both EMNLP venues rest on the program chairs' decision notifications to the authors, since the conference has not yet published its accepted-paper lists. All 212 other records remain unchanged, and only this batch was applied. A separate bilingual digest records it in both Atom feeds.
+
+A scoped sync on October 24 adds three records checked at `ca82c34`: solvi from merged community PR #43, and the VeritasChain Protocol (VCP) and AgentLeak, which the list maintainer added from issues #37 and #41. The solvi author submitted its entry, VSO submitted VCP, and an AgentLeak co-author proposed AgentLeak; all three disclosed the relationship, and none is affiliated with Audit Commons, so each keeps the External resource relationship. Owner labels name the solvi maintainer and VSO; AgentLeak keeps the paper-author default. VCP uses the Standard format, which covers independently issued frameworks and does not assert ratification; its summary carries the maintainer's statement that there are no external implementations or standards-body adoption. This sync pins `a9e0529`, which removes the Praesidia audit verifier from the companion list because `praesidia-ai/audit-verifier` now returns 404, and its record and translation are removed here. The other 216 prior records remain unchanged, and only these changes were applied. A bilingual digest records the batch in both Atom feeds.
 
 The September 28 sync adds two tools, repairs the Who&When Pro code link, and preserves OrcaReplay's inline OrcaPromptVault companion link as a secondary link. OrcaPromptVault remains part of the OrcaReplay record. Its description distinguishes directly captured instructions from model-reported text; it makes no archive-wide license claim.
 
@@ -59,7 +61,7 @@ In accordance with [`CONTRIBUTING.md`](../CONTRIBUTING.md), transparent affiliat
   11. `agent-risk`: Paper and package for assessing changes to deployed agents from existing logs (arXiv:2610.16280).
   12. `the-autonomy-tax`: Paper on agent failures caused by prompt-injection defense training (EMNLP 2026, arXiv:2603.19423).
   13. `weclawarena`: Sandbox and benchmark for cross-user agent collaboration and security (EMNLP Findings 2026, arXiv:2608.03499).
-- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**204** records).
+- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**206** records).
 
 ### Attribution Policy
 - For academic research papers without a single institutional author, the `owner` field neutrally records `"Authors listed in the paper"` rather than inventing speculative or partial author rosters.
@@ -82,7 +84,7 @@ Every record in `content/resources.json` conforms to the following schema contra
 | `summary` | string | Required | Factual, concise summary | Plain text stripped of Markdown markup |
 | `url` | string | Required | Canonical primary URL | Valid HTTP/HTTPS URL |
 | `owner` | string | Required | Publisher or neutral attribution | Institution, organization, or `"Authors listed in the paper"` |
-| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (13 items) or `"External resource"` (204 items) |
+| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (13 items) or `"External resource"` (206 items) |
 | `source_urls` | string[] | Required | Primary source URLs | Non-empty array of valid URLs |
 | `checked` | string | Required | Record-specific review date | `YYYY-MM-DD`; retain the prior date when the record is unchanged |
 | `source_section` | string | Optional | Upstream section heading | Exact section heading name from source snapshot |
@@ -94,11 +96,11 @@ Every record in `content/resources.json` conforms to the following schema contra
 
 ## 4. Coverage & Deduplication Statistics
 
-Across 9 substantive sections, the snapshot contains 218 raw entries. Importing it with the original 6 curated resources produces 215 unique records. The published catalog contains 217 records because this sync also preserves two independent editorial additions.
+Across 9 substantive sections, the snapshot contains 220 raw entries. Importing it with the original 6 curated resources produces 217 unique records. The published catalog contains 219 records because this sync also preserves two independent editorial additions.
 
 ### Deduplication & Baseline Preservation
 1. **Original 6 Preservation**: The 6 baseline entries are identified by explicit IDs (`nist-ai-rmf`, `inspect-aisi`, `agentdojo`, `awesome-auditable-ai`, `catchbench`, `auditable-agents`) and preserved at indices `0..5` of `content/resources.json` to keep homepage featured resources intact.
-2. **Upstream Matching against Original 6**: 4 entries in the 218 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
+2. **Upstream Matching against Original 6**: 4 entries in the 220 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
    - `NIST AI 100-1, AI Risk Management Framework` &rarr; enriched `nist-ai-rmf`
    - `Inspect` &rarr; enriched `inspect-aisi`
    - `AgentDojo` &rarr; enriched `agentdojo`
@@ -111,24 +113,25 @@ Across 9 substantive sections, the snapshot contains 218 raw entries. Importing 
    - `τ-bench` (Reliability and Robustness &harr; Datasets and Benchmarks)
 
 ### Exact Counts
-- **Total Raw Items Parsed**: 218
+- **Total Raw Items Parsed**: 220
 - **Preserved Original Entries**: 6
 - **Deduplicated vs Original Entries**: 4
 - **Deduplicated Cross-Listed Entries**: 5
-- **Unique Snapshot Entries beyond the Baseline**: 209
-- **Import-Only Catalog**: 215
+- **Unique Snapshot Entries beyond the Baseline**: 211
+- **Import-Only Catalog**: 217
 - **Preserved Independent Editorial Additions**: 2
-- **Added in This Sync**: 4
-- **Updated in This Sync**: 1
-- **Unchanged Existing Records**: 212
-- **Total Resources in Catalog**: **217**
+- **Added in This Sync**: 3
+- **Updated in This Sync**: 0
+- **Removed in This Sync**: 1
+- **Unchanged Existing Records**: 216
+- **Total Resources in Catalog**: **219**
 
 ### Breakdown by Relationship (`relationship`)
 | Relationship | Count | Description |
 |---|---|---|
-| `External resource` | 204 | Independent academic research, industry tools, benchmarks, and standards |
+| `External resource` | 206 | Independent academic research, industry tools, benchmarks, and standards |
 | `Maintainer project` | 13 | Resources authored, co-authored, or maintained by Yue Zhao |
-| **Total** | **217** | |
+| **Total** | **219** | |
 
 ### Breakdown by Primary Format (`format`)
 
@@ -137,15 +140,15 @@ These mutually exclusive primary labels preserve the original classification. Th
 |---|---|---|
 | `Paper` | 98 | Standalone research papers, diagnostic studies, and surveys |
 | `Tool` | 52 | Software libraries, runtime platforms, debuggers, scanners, or guardrails |
-| `Benchmark` | 44 | Evaluative testbeds, benchmark suites, and testing environments |
-| `Standard` | 19 | Formal specifications, protocols, regulatory articles, and risk frameworks |
+| `Benchmark` | 45 | Evaluative testbeds, benchmark suites, and testing environments |
+| `Standard` | 20 | Formal specifications, protocols, regulatory articles, and risk frameworks |
 | `Collection` | 3 | Curated catalogs, ecosystems, or reading list collections |
 | `Dataset` | 1 | Standalone corpora and annotated trajectory datasets |
-| **Total** | **217** | |
+| **Total** | **219** | |
 
 ### Tab Memberships (`formats`)
 
-Paper: 149; Tool: 52; Benchmark: 45; Dataset: 9; Standard: 19; Collection: 3. The All tab contains 217 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
+Paper: 150; Tool: 52; Benchmark: 46; Dataset: 9; Standard: 20; Collection: 3. The All tab contains 219 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
 
 The importer merges format memberships from cross-listed records. A linked paper or arXiv abstract adds Paper membership. Dataset requires a specifically identified dataset link or a Hugging Face dataset URL. It does not classify a code repository as a tool or dataset merely because it has code. Plain-text mentions and venue names alone do not add Dataset membership. Inline summary links enter the same membership inference as other secondary links, so review their classification before publication. Legacy records without `formats` use their single `format`, or Collection if both fields are absent.
 
@@ -154,27 +157,27 @@ The MAST dataset link was added during editorial review on September 16, 2026, f
 ### Breakdown by Category (`category`)
 | Category | Count | Topic Focus |
 |---|---|---|
-| `Evaluation` | 72 | Benchmarks, failure attribution, and reliability measurement |
-| `Governance` | 53 | Audit trails, decision records, specifications, and regulatory frameworks |
+| `Evaluation` | 73 | Benchmarks, failure attribution, and reliability measurement |
+| `Governance` | 54 | Audit trails, decision records, specifications, and regulatory frameworks |
 | `Security` | 42 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
 | `Tools` | 40 | Tracing platforms, telemetry instrumentation, and runtime execution |
 | `Reading` | 10 | Surveys, foundational literature, and curated reading lists |
-| **Total** | **217** | |
+| **Total** | **219** | |
 
 ### Breakdown by Section (`source_section`)
 | Section | Count |
 |---|---|
 | Tools and Platforms | 30 |
 | Runtime Monitoring and Guardrails | 30 |
-| Datasets and Benchmarks | 30 |
+| Datasets and Benchmarks | 31 |
 | Failure Attribution and Diagnosis | 26 |
-| Standards and Governance | 26 |
+| Standards and Governance | 27 |
 | Security Auditing and Scanners | 24 |
 | Audit Trails and Decision Records | 27 |
 | Reliability and Robustness | 14 |
 | Surveys and Foundations | 9 |
 | The Auditable Agents Ecosystem | 1 |
-| **Total** | **217** |
+| **Total** | **219** |
 
 The two editorial additions use existing topic headings in `source_section`. Those headings describe their classification; they do not imply inclusion in the pinned README.
 
@@ -195,9 +198,9 @@ python scripts/import_awesome.py --source-file <path-to-awesome-source.md>
 
 ### Fail-Closed Integrity & Validation Invariants
 - **Mandatory `--source-file`**: The importer requires an explicit `--source-file` argument. Ambient path guessing or default search paths are prohibited to avoid reading arbitrary files.
-- **Fail-Closed Snapshot Verification**: Before parsing, the importer computes the normalized LF UTF-8 SHA256 checksum of the source snapshot and asserts exact match with `EXPECTED_SNAPSHOT_SHA256` (`bd651d5b1e7a02e0366c42583572fc694ec7ebdb9fbc603092ee2e77d1a887c3`). If the hash differs, the script aborts immediately with a non-zero status without modifying `content/resources.json`.
+- **Fail-Closed Snapshot Verification**: Before parsing, the importer computes the normalized LF UTF-8 SHA256 checksum of the source snapshot and asserts exact match with `EXPECTED_SNAPSHOT_SHA256` (`1ff6416110523200687f911520ae785a141694ad7352cc37606d0907329fc1cc`). If the hash differs, the script aborts immediately with a non-zero status without modifying `content/resources.json`.
 - **Lockstep Constant Updates**: On future snapshot updates, the three metadata constants in `scripts/import_awesome.py` must be updated together in lockstep:
-  1. `PINNED_REVISION`: Commit SHA of the upstream snapshot (`aa9a2a996cec23b4d6a89457b9a079bdb0810dd7`).
+  1. `PINNED_REVISION`: Commit SHA of the upstream snapshot (`a9e052983cad4aa1e04bfaa1fd847990538254c2`).
   2. `EXPECTED_SNAPSHOT_SHA256`: Normalized LF UTF-8 SHA256 digest of the new snapshot file.
   3. `SNAPSHOT_REVIEW_DATE`: Date of snapshot review and verification (`YYYY-MM-DD`).
 - **Output Path Safety**: The output path cannot match the source path, preventing accidental source destruction. Output files must have `.json` extension.
@@ -217,7 +220,7 @@ python scripts/build.py
 # 2. Run full schema, link, and accessibility validation
 python scripts/check.py
 ```
-All 217 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
+All 219 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
 
 The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization.
 

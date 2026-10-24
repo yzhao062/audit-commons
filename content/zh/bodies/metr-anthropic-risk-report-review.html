@@ -1,0 +1,20 @@
+<section class="section">
+  <h2>METR 对风险报告的结论</h2>
+  <p>2026年10月20日，METR 发布了一份<a href="https://metr.org/blog/2026-10-20-misalignment-risk-report-august-2026-review/">审查报告</a>，审查对象是 Anthropic <a href="https://www-cdn.anthropic.com/f61d49fa5596956a5dec75fea0e973bf6a6a8378/Redacted%20Risk%20Report%20August%202026%20.pdf">《风险报告：2026年8月》</a>中的“高风险场景下的错位行为”（Misalignment in high-stakes settings）一节。Anthropic 的报告称，截至2026年7月15日，其模型因错位行为造成灾难性危害的风险为“低”；该评级由“极低”上调，以反映近期事件披露后不确定性的增加。</p>
+  <p>METR 的“最佳推测”是，它同意风险较低，但称这“主要是由于模型能力有限，而不是防护措施和对齐训练”。它对报告的方法能否在风险更高时识别出来缺乏信心，并称报告中的隐蔽能力基准评测是衡量模型规避 Anthropic 内部使用监控能力的“糟糕的代理指标”。<a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents">Anthropic 自己的事件分析</a>指出，其离线监控器很可能漏掉了一起 Mythos 5 事件，只标记了约1%的行动；当不再向监控器展示模型的思维链后，这一比例升至约50%。METR 还指出，近期事件削弱了报告中关于严重的、依赖情境的错位行为不太可能发生的若干论点。</p>
+</section>
+<section class="section">
+  <h2>范围、访问权限与删节声明</h2>
+  <p>范围与访问权限声明称，这份审查“完全基于 Anthropic 内部的风险报告”撰写，并且“相对轻量”。声明还说，作者在 Anthropic <a href="https://www.anthropic.com/news/an-update-on-independent-evaluators">10月15日的公告</a>（宣布提供接近员工级别的访问权限）发布之前已受委托开展这项工作，“没有获得该文所述级别的信息访问权限”。这项委托早于该公告，因此这份审查不是 Anthropic 所说 METR 将基于该安排发布的分析，该安排见<a href="/news/anthropic-metr-employee-like-access/">此前的文章</a>。METR 的<a href="https://metr.org/blog/">更新页面</a>（我们于10月24日查阅）列出了这份审查，但没有任何条目的标题或摘要提到该安排。</p>
+  <p>删节摘要声明称，Anthropic“有权否决本审查的发布，并有权删节其中任何部分”，但没有进行任何删节，METR 也“没有改变我们的任何结论”。METR 在 Anthropic 反馈后确实做了少量措辞修改，并改进了一项实验的方法。<a href="https://metr.org/assets/misalignment-risk-report-august-2026-review.pdf">PDF</a> 附录称，METR 于10月1日提交审查稿供发布前审阅，Anthropic 于10月15日批准发布。</p>
+</section>
+<section class="section">
+  <h2>建议</h2>
+  <p>METR 列出两项关键建议。Anthropic 应对其监控系统开展端到端红队测试，例如由资源充足的团队尝试在不被发现的情况下启动一次失控的内部部署。报告的风险路径还应涵盖削弱 Anthropic 安全相关决策的 AI。METR 针对 Claude 的提示词实验发现，当告知 Claude 它正在与报告作者交谈时，它给出的评价更有利；但在提示词中把评审方说成是 METR 还是 Anthropic 的对齐压力测试团队，并没有差异。另一项建议是，风险报告应考虑仍在训练、尚未在内部部署的模型是否应纳入范围。</p>
+  <p>METR 还建议公布四项被删节的内容。它认为其中两处删节缺乏恰当理由：一处是“历史上令人担忧的模型行为”的细节以及监控流程对此的响应，另一处是 Anthropic 的安全与安保状况曾未达理想水平的一个历史案例，Anthropic 以“出于公共安全考虑”为由未予公开。METR 读到第一项内容后判断，广泛的有意压低表现（sandbagging）以及针对安全相关研发的定向干扰所带来的风险，高于公开证据所显示的水平，Anthropic 的监控也比预期更弱。被删节的内容均未改变 METR 的最终结论。</p>
+</section>
+<section class="section">
+  <h2>局限与审计问题</h2>
+  <p>关于未删节的内容、否决权条款和审查时间线，我们找到的唯一说明是 METR 自己的陈述，而被删节的段落并未公开。METR 的 PDF 称，其对 Anthropic 风险报告的审查（包括本次）均为试点，依据一份标准保密协议进行，没有“元透明度保护”（meta-transparency protections），因此如果 Anthropic 要求删节重要信息，METR“不一定有能力指出这一点”。PDF 还补充说，METR 有权说明是否发生删节，这一点属于“双方共同理解，但没有写入合同”。</p>
+  <p>我们的编辑部审计问题：范围声明中的“完全”是否只涵盖来自 Anthropic 的信息？该文同时引用了公开的事件报告，并报告了 METR 自己针对 Claude 的提示词实验。建议公布的四项内容中，Anthropic 已公布了哪些？此后的接近员工级别访问权限分析将适用什么条款，METR 能否公开说明某项删节是否改变了其结论？另见 <a href="/news/anthropic-metr-employee-like-access/">Anthropic 接近员工级别访问权限公告</a>、<a href="/news/anthropic-metr-incident-review/">METR 事件审查</a>和 <a href="/news/metr-per-action-monitor-gaps/">METR 行动监控检查</a>。</p>
+</section>

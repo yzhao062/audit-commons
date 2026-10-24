@@ -1,0 +1,22 @@
+<section class="section">
+  <h2>10月19日至23日提交的四份草案</h2>
+  <p>2026年10月19日至23日，作者向 IETF 提交了四份个人互联网草案（Internet-Draft），提出与 AI 智能体审计相关的记录格式。四份均为 -00 版本。Datatracker 对每份草案均未列出流（stream）和预期状态，IESG 状态为“I-D Exists”，该标签表示草案不在 IESG 处理流程之内。按下文讨论的顺序，各草案文首依次标注标准轨道（Standards Track）、实验性（Experimental）和信息性（Informational）状态，最后一项适用于两份评估草案。</p>
+  <p><strong>执行回执。</strong><a href="https://datatracker.ietf.org/doc/draft-thaha-scitt-agent-execution-evidence/">draft-thaha-scitt-agent-execution-evidence-00</a>（10月19日）由 Shameer Thaha 和 Shaibi Shamsudeen 提交，二人署名为个人贡献者。该草案是对 SCITT 架构（Supply Chain Integrity, Transparency, and Trust，即供应链完整性、透明性与可信）的一份配置规范（profile）。草案定义了十一种签名声明类型，其中包括“执行回执”（Execution Receipt）：在决策点为每一次模型调用或工具调用生成的哈希链式记录，被拦截的调用也包括在内，并附有当时生效的策略与配置的摘要。草案<a href="https://www.ietf.org/archive/id/draft-thaha-scitt-agent-execution-evidence-00.txt">引言</a>阐明了目标：第三方应当能够确认“智能体做了什么、依据哪些规则、采用了何种配置，而无需信任运营方自己的日志。”</p>
+  <p><strong>连续性记录。</strong><a href="https://datatracker.ietf.org/doc/draft-watts-agent-continuity-evidence/">draft-watts-agent-continuity-evidence-00</a>（10月21日）由 GoodShyt Group Inc. 的 Deonté Watts 提交。草案规定了一种 JSON 信封，对声明的规范化形式使用 JSON Web Signature 签名，包含从 session-start 到 session-end 的九种事件类型，其中有 delegation、action-attempt、gate-decision 和 effect。每条声明都带有模型、智能体、运行时实例、执行和授权许可各自独立的标识符，以及其前序记录的摘要。验证方返回 VERIFIED、INVALID 或 INDETERMINATE，<a href="https://www.ietf.org/archive/id/draft-watts-agent-continuity-evidence-00.txt">草案正文</a>声明“VERIFIED 绝不意味着已获授权，或在更广的事实意义上为真”。</p>
+  <p><strong>评估日志。</strong>10月23日的两份配套草案由中国移动的 Yu Han、Meiling Chen 和 Qiguang Fan 以及华为的 Qin Wu 提交：<a href="https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-terminology/">Benchmarking Terminology for AI Agent Security Evaluation</a>（AI 智能体安全评估基准术语）和<a href="https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-profiles/">Evaluation Profiles for AI Agent Security Assessment</a>（AI 智能体安全评估配置规范）。术语草案定义了四个评估维度、55 项指标和三个风险等级。根据配置规范草案，每个测试用例都必须记录若干字段，其中包括会话与主体（principal）、所提供的输入（input as served）、声明的边界以及结果。无法记录相关字段的指标，应报告为“取决于插桩”（instrumentation-dependent），“而不是记录为通过”。两份草案的文首都带有“Benchmarking &amp; Performance Measurements”一行，但 Datatracker 均未显示所属工作组。</p>
+</section>
+<section class="section">
+  <h2>状态与局限</h2>
+  <p>每份草案都附有 IETF 的声明：互联网草案只应被引用为“进行中的工作”（work in progress）。四份草案均未被任何工作组采纳，因此它们都是提案，没有一份是 IETF 标准。</p>
+  <p>经过测试的实现很少。SCITT 草案把一个名为 Sijil 的系统描述为原型，并称“尚无导出为本文所定义编码的功能”；草案把 epoch、bundle 和 assurance statement 检查列为未实现。连续性草案的作者则声明：“本文档中尚未针对由 RFCXML 派生的参考实现执行任何一致性测试。”两份评估草案均不含实现状态章节。SCITT 草案作者的 GitHub 仓库描述了一个 -01 版本，我们在 IETF 档案中未找到该版本。</p>
+  <p>按这些草案自己的说法，签名记录仍留有缺口。SCITT 草案称，PASS 结果“并不能证明运行框架（Harness）记录了每一次调用”；连续性草案承认：“恶意智能体可以对自身活动签署虚假描述。”在评估草案中，术语草案将综合得分映射为三个风险等级，80 分及以上记为低风险，而配置规范草案警告，得分可能使用户相信“得分等于绝对安全”。</p>
+</section>
+<section class="section">
+  <h2>审计者会问的问题</h2>
+  <ul>
+    <li>负责写入记录的组件由谁运营？有哪些独立观察可以证明它为每一次调用都写入了记录？</li>
+    <li>验证方会依赖哪个透明度服务、注册机构或可信密钥，这些由谁运营？连续性草案规定，当可信密钥或前序记录无法解析时返回 INDETERMINATE。</li>
+    <li>评估报告是否说明了其边界和所记录的字段，使两个得分可以相互比较？</li>
+  </ul>
+  <p>另见<a href="/guides/audit-an-agent-action/">审计智能体行动</a>、<a href="/features/benchmark-scores-and-agent-safety/">为什么基准得分不能确立智能体的安全性</a>和 <a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST 探讨 AI 智能体的身份标识与授权机制</a>。</p>
+</section>
