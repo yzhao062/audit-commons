@@ -1,6 +1,6 @@
 ---
 name: weekly-refresh
-description: Refresh Audit Commons news, learning articles, and resource selections from verified sources, including Chinese translations and relevant media. Use for weekly refresh, editorial refresh, 每周更新, or 内容刷新 in this repository. Produces reviewed local changes; scheduling, email delivery, and publication are separate actions.
+description: Refresh Audit Commons news, learning articles, and resource selections from verified sources, including Chinese translations and relevant media, plus companion Auditable Agents ecosystem news. Use for weekly refresh, editorial refresh, 每周更新, or 内容刷新 in this repository. Produces reviewed local changes; scheduling, email delivery, and publication are separate actions.
 ---
 
 # Audit Commons weekly refresh
@@ -14,7 +14,8 @@ For an implemented weekly refresh, use this sequence unless the user narrows it:
 1. **Catalog delta:** Treat [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) as the default resource intake. Compare its current upstream state with the pinned revision and digest. Compare parsed resource records, not only raw README text. A companion-link, count, formatting, or other metadata-only change does not justify a repin or a catalog rewrite. (For the combined upstream intake and downstream refresh workflow, see [skills/ecosystem-refresh/SKILL.md](../ecosystem-refresh/SKILL.md).)
 2. **Low-cost discovery:** Use `/prun` for bounded, read-only discovery. Separate the work into an upstream catalog delta, official news, and new papers or tools when those units are useful. Each unit returns primary URLs, dates, supported claims, evidence limits, and a proposed destination. Approved drafting units may prepare isolated content packets; workers never commit, push, or edit shared registries. The coordinating agent selects the batch and owns integration.
 3. **Local integration:** The coordinating agent integrates and checks the English source, adds or verifies media, checks the Chinese edition, recomputes affected translation hashes, and builds locally. It keeps one integration owner for shared registries and generated routes.
-4. **Prepublication gate:** Stage only intended paths, then run `/vet both` sequentially on the final staged batch, resolving to two independent reviewers (for a Claude coordinator, Codex and Agy; for a Codex coordinator, Claude and Agy). Resolve blocking findings and repeat affected checks. Commit and push only after current-scope authorization, then verify the Pages run and changed public routes.
+4. **Companion ecosystem news:** Unless the user limits scope to Audit Commons only, run the [Auditable Agents companion pass](references/auditable-agents.md) for new talks, media coverage, and papers on the separate ecosystem site. It follows its own additive-only rules, not the article image or bilingual requirements in this skill.
+5. **Prepublication gate:** Stage only intended paths, then run `/vet both` sequentially on the final staged batch, resolving to two independent reviewers (for a Claude coordinator, Codex and Agy; for a Codex coordinator, Claude and Agy). Resolve blocking findings and repeat affected checks. Commit and push only after current-scope authorization, then verify the Pages run and changed public routes.
 
 A quiet week may produce no content change. Record a no-change outcome in the response instead of repinning, redating, or publishing a placeholder.
 
