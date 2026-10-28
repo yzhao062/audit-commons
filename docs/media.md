@@ -4,6 +4,18 @@
 
 Every `news` article requires a relevant registered lead image and bilingual alt text and caption. Use real imagery: original-source research figures, author-supplied figures, genuine news photographs, or original-source screenshots of a substantive report passage, table, chart, or interface, labeled as screenshots in both captions. Every news lead must carry substantive visual content. Logos, wordmarks, title cards, title-only screenshots, generic decoration, and pure text-box diagrams do not qualify. AI-generated or other generated illustrations are never a default or fallback: use one only at the user's explicit request or approval, and disclose AI generation in both language captions. Without that approval, keep searching sources and report the missing real image. The build rejects news logos; editors must visually review relevance and substance. Images remain optional for other article types. Do not invent a project logo or represent an illustration as documentary photography. Archive photographs carry their original dates in captions. A project screenshot or published chart is illustrative source material, not an experiment performed by Audit Commons.
 
+## News Lead Preferences
+
+*Recorded October 28, 2026 (maintainer instruction).*
+
+1. Prefer authentic real-world photographs of relevant people, events, places, or tasks.
+2. Next, use genuine product or task interface screenshots.
+3. Relevant official organization or product logos may be appropriate identifying imagery. Do not imply affiliation.
+4. Published paper charts are secondary supporting evidence, not the default lead image.
+5. Generated images still require explicit approval.
+
+This records preference only. It does not replace any images or change validators. The current build rejects logo-only news leads, so that gate must be reconciled before a logo lead is selected.
+
 ## Adding an image
 
 1. Verify the source page, rights statement, depicted subject, and relevance to the entry. Prefer the project's own repository or documentation, licensed photographs, and public government material.

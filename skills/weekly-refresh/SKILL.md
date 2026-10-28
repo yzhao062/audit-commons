@@ -74,6 +74,8 @@ git diff --check
 
 ### Required News Image Check
 
+Apply the maintainer's [news lead preferences](../../docs/media.md#news-lead-preferences) when selecting images.
+
 Every `news` item, including existing news, must pass this check before publication:
 
 - Require a substantive real news image: a relevant photograph, source figure, or labeled original-source screenshot. A generated illustration qualifies only with the user's explicit approval for that article and disclosure in both language captions. Logos, wordmarks, title cards, title-only screenshots, generic decoration, and pure text-box diagrams do not satisfy this requirement. Inspect the visual content rather than accepting its registry kind.
