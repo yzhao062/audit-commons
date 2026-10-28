@@ -421,7 +421,7 @@
     ],
     "affiliation_disclosure": "Audit Commons 仅汇总 Meta 公开资料，尚未对相关模型进行独立测试。",
     "body_file": "zh/bodies/meta-muse-wonder-safety-disclosure.html",
-    "source_sha256": "c9b7886c88ca21e59280fbf65975f86351a28c8cc8e978961a6ccca69ec3420f"
+    "source_sha256": "5568c9ec6ac48a0a20276266d0ace0f23961f1c0ff3d5f9dd344a89ba526fb6c"
   },
   "news/gemini-argon-monitorability-safety-report": {
     "title": "Google DeepMind 发布 Gemini 4 Argon 安全报告，披露可监测性与沙盒评估控制发现",
@@ -733,5 +733,103 @@
     "affiliation_disclosure": "solvi 的条目由其作者提交，提出 VCP 和 AgentLeak 的人员披露了其与相应项目的关系。三者均与 Audit Commons 无关联。摘要依据各项目的代码仓库或论文撰写。收录进目录不代表认证其中的任何方法或结果。",
     "body_file": "zh/bodies/catalog-2026-10-24.html",
     "source_sha256": "d438bc7851cbe53217a4a3176bf60db06d86063aaf0a5c1f5f7776adfdff72e6"
+  },
+  "news/anthropic-expert-deference-agent-judgment": {
+    "title": "Anthropic 试验发现，50 名专家分析人员多数采纳了 AI 智能体被随机设定的倾向",
+    "summary": "在 Anthropic 于2026年10月27日发布的一项随机试验中，50 名使用 Claude Code 的因果推断从业者在86%的分析决策上，选择了智能体被暗中设定偏向的选项。多数人用智能体的论点解释自己的选择，却未注明来源。该研究只涉及一项任务和一个模型。",
+    "topics": [
+      "Anthropic",
+      "AI 智能体",
+      "人工监督",
+      "审计证据",
+      "核验"
+    ],
+    "body_file": "zh/bodies/anthropic-expert-deference-agent-judgment.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 Anthropic 10月27日的文章及所链接的论文。我们没有看到研究数据、会话录像或已登记的分析计划，也没有复现任何分析。",
+    "source_sha256": "06af6b5e92183d8b5ee8fdcc1457f7aca31e1d35c6faad932ad19622a510f168"
+  },
+  "news/gpt-6-1-terra-safety-addendum": {
+    "title": "OpenAI 在网络安全方面按“严重”级对待 GPT-6.1 Terra，并报告其更常回应植入的智能体消息",
+    "summary": "OpenAI 于2026年10月26日发布的附录在网络安全方面按“严重”（Critical）级对待 GPT-6.1 Terra，并沿用 GPT-6 Astra 的防护措施。在一项模拟留言板测试中，Terra 在80个样本中有11个执行了植入的未授权操作，比 GPT-6.1 Sol 更频繁。报告的所有结果均来自 OpenAI 自己的评估。",
+    "topics": [
+      "OpenAI",
+      "Preparedness Framework",
+      "网络安全",
+      "多智能体系统",
+      "模型评估",
+      "可监测性"
+    ],
+    "body_file": "zh/bodies/gpt-6-1-terra-safety-addendum.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 OpenAI 10月26日的附录及其链接的 GPT-6 Astra 系统卡相关章节；openai.com 对自动访问返回 HTTP 403，因此我们通过互联网档案馆的副本阅读了发布公告。我们没有看到 OpenAI 的内部防护报告，也没有运行任何评估。",
+    "source_sha256": "7bbb6da9ecee0f3846ab20d81b3dec5b7c1a3751d482bcf2a1a2d417f0730377"
+  },
+  "news/anthropic-autonomous-vulnerability-discovery": {
+    "title": "Anthropic 称一款未发布模型针对 Chrome、Safari、Android、Windows 和 Linux 构建了漏洞利用链",
+    "summary": "2026年10月27日，Anthropic 称一款未发布的研究模型在五款广泛使用的产品中发现并串联了漏洞，并已按协调披露流程报告。Microsoft、Apple、Linux 和 Chrome 的记录将相关修复归功于 Anthropic 研究人员，但这些记录都无法核实模型的自主程度，也无法核实 Anthropic 给出的全部数字。",
+    "topics": [
+      "Anthropic",
+      "网络安全",
+      "漏洞披露",
+      "审计证据",
+      "前沿 AI"
+    ],
+    "body_file": "zh/bodies/anthropic-autonomous-vulnerability-discovery.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 Anthropic 10月27日的文章，并核查了该文链接或致谢其研究人员的厂商记录：Microsoft 安全更新指南条目、Apple 的 iOS 26.5.2 说明、Linux 内核修复，以及六篇 Chrome 稳定版发布说明。我们没有测试任何漏洞。",
+    "source_sha256": "efb9ce7d1b6b19a09143cd727492bdc74814219a219b484ef7f5dfea077a9721"
+  },
+  "news/redwood-simulated-control-evaluations": {
+    "title": "Redwood Research 用模拟工具响应测试智能体监测器，保真度仅在 LinuxArena 中得到检验",
+    "summary": "Redwood Research 的模拟控制评估用模型写出的响应代替实际执行的工具调用，使监测器可以在智能体于真实代码库中工作的记录上接受测试。在 LinuxArena 中，模拟对安全性预测的均方根误差为3.6个百分点，BashArena 为10.1个百分点。向生产系统和多智能体攻击的迁移仍未经检验。",
+    "topics": [
+      "Redwood Research",
+      "控制评估",
+      "运行时监测",
+      "模拟",
+      "评估"
+    ],
+    "body_file": "zh/bodies/redwood-simulated-control-evaluations.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 Redwood Research 10月24日的文章和该论文的 arXiv 摘要。我们没有运行这些评估，没有检查模拟器，也没有核对论文中的表格。",
+    "source_sha256": "02ac614e10f724d5d1e449c4689e1e52aa10ad98b96363419efc5faad5d13537"
+  },
+  "news/aisi-reprobait-managed-access": {
+    "title": "AISI 发现编码智能体能重建较简单生物 AI 工具的部分功能，但未能重建最复杂的工具",
+    "summary": "英国人工智能安全研究所与 SecureBio 的一项研究发现，获得工具说明及其训练数据的编码智能体，在两款较简单的生物 AI 工具上达到了所选指标，但没有重建出 RFdiffusion3。AISI 的结论是，仅仅不公开代码并不能使发布变得安全。",
+    "topics": [
+      "英国人工智能安全研究所",
+      "生物安全",
+      "受控访问",
+      "编码智能体",
+      "模型评估"
+    ],
+    "body_file": "zh/bodies/aisi-reprobait-managed-access.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 AISI 10月26日的文章，以及该论文的摘要、局限和结论部分。本文略去运行预算、技术方法和生物学细节，我们也没有复现任何结果。",
+    "source_sha256": "8ac1918ae64b04cf525eb831691bdb8d653ca12493b6832c0e4c623336c7f607"
+  },
+  "news/ari-ai-research-automation-disclosure": {
+    "title": "ARI 提议建立关于 AI 研究自动化的联邦保密报告制度，并设四个工作日通报期",
+    "summary": "倡导组织 Americans for Responsible Innovation 于2026年10月26日提议，由国会要求前沿开发者以保密方式按季度报告其 AI 研究的自动化程度，并在出现重大变化后四个工作日内通报。这只是一项提议，文中未引用任何法案或规则。",
+    "topics": [
+      "AI 研发自动化",
+      "信息披露",
+      "前沿 AI",
+      "治理",
+      "人工监督"
+    ],
+    "body_file": "zh/bodies/ari-ai-research-automation-disclosure.html",
+    "affiliation_disclosure": "Audit Commons 阅读了 ARI 10月26日的文章、其8月蓝图中关于 AI 研发披露的部分，以及文中引用的 Anthropic 度量页面。我们没有检索国会记录中的相关法案。",
+    "source_sha256": "0a3cf3ec86bdc2c77468a023e3fb1c00b2b16c8dabe5ca7f24c81c7ffd9084cf"
+  },
+  "updates/catalog-2026-10-27": {
+    "title": "资源目录更新：SciΠvot、agent-claimcheck、V³AST-Bench 与 Concordat",
+    "summary": "新增四项资源，使目录增至223项：一个依据人类对 LLM 研究智能体的纠正构建的科研判断基准、一个对照记录证据核查智能体成功声明的工具包、一个编码智能体安全基准，以及一个在运行时强制执行行动协议的库。",
+    "topics": [
+      "资源目录",
+      "基准测试",
+      "审计证据",
+      "智能体安全"
+    ],
+    "affiliation_disclosure": "SciΠvot 的条目由其第一作者提交，agent-claimcheck 由其作者推荐，V³AST-Bench 和 Concordat 由列表维护者选出。四者均与 Audit Commons 无关联。摘要依据各项目的论文或代码仓库撰写。收录进目录不代表认证其中的任何方法或结果。",
+    "body_file": "zh/bodies/catalog-2026-10-27.html",
+    "source_sha256": "4f87e96372ba6c8898b671a1dea19ee54cf35125d175671aa061a8deea817cba"
   }
 }

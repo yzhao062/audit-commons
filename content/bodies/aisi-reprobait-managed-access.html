@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>Can a Tool Be Rebuilt From Its Description?</h2>
+  <p>Some developers of biological AI tools publish a paper but withhold code, sometimes to limit misuse. On October 26, 2026, the UK AI Security Institute (AISI) <a href="https://www.aisi.gov.uk/blog/can-ai-coding-agents-rebuild-biological-ai-tools-from-a-paper">reported</a> on ReproBAIT, an evaluation built with SecureBio and described in a <a href="https://arxiv.org/abs/2610.19810">paper posted October 14</a>. Four coding agents, Claude Opus 5, GPT-5.6 Sol, Kimi K3, and Qwen3.8-2.4T, worked in an isolated sandbox without internet access under a fixed time and compute budget. In the main conditions, each received the tool's abstract or full paper, plus its training data. Rebuilt tools were scored on held-out data against one primary metric from the original publication, and the best of three attempts was reported.</p>
+</section>
+<section class="section">
+  <h2>Results by Tool</h2>
+  <ul>
+    <li><strong>A closed-source molecular design tool.</strong> All four agents matched or exceeded its chemical validity score, a metric already near saturation, with a modest loss of novelty.</li>
+    <li><strong>ProteinMPNN.</strong> The strongest agents approached the original; Claude Opus 5 reached 96.5 percent of its score with the full paper, and results varied across agents.</li>
+    <li><strong>RFdiffusion3, the most complex tool.</strong> No agent produced a successful reproduction within the time budget, even for the single function evaluated.</li>
+  </ul>
+  <p>Giving the full paper instead of the abstract did not consistently help. The authors found moderate evidence consistent with memorization for ProteinMPNN and little for RFdiffusion3, and they say their diagnostics cannot settle how much memorization explains.</p>
+</section>
+<section class="section">
+  <h2>Release Governance</h2>
+  <p>AISI concludes that withholding code does not by itself make a release safe and that controlling access to the underlying data looks more promising. The evidence is narrow: three tools, one metric each rather than full capability, best-of-three scoring, and supplied training data. Our editorial view is that a managed-access claim should state what is withheld, including data, and what was tested. See also <a href="/features/benchmark-scores-and-agent-safety/">why a benchmark score does not establish safety</a>.</p>
+</section>

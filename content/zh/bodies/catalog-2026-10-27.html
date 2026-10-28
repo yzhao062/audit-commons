@@ -1,0 +1,11 @@
+<section class="section">
+  <h2>新增四项</h2>
+  <p>10月27日的目录更新使我们的<a href="/zh/resources/">资源目录</a>增至223项：新增两个基准、一个工具，以及一个附带论文的软件库；已有条目均未修订或移除。</p>
+  <ul>
+    <li><a href="/zh/resources/?q=SciPIvot"><strong>SciΠvot</strong></a>：一个包含248个案例的基准，案例取自资深研究人员在六个科学领域的26个项目中纠正 LLM 研究智能体的节点。每个案例要求模型在智能体的原始方案与纠正后的方案之间作出选择。在提供项目记录并采用中等推理强度时，五个前沿模型中有四个在这些案例上选择纠正方案的比例低于随机水平。其 Hugging Face 项目记录需填写姓名和所属机构，访问权限自动授予。2026年预印本。<a href="https://arxiv.org/abs/2610.21082">论文</a>、<a href="https://github.com/AutoResearch-Factory/SciPIvot">代码</a>、<a href="https://huggingface.co/datasets/sun1245/SciPIvot">数据</a>。</li>
+    <li><a href="/zh/resources/?q=agent-claimcheck"><strong>agent-claimcheck</strong></a>：一个 Python 工具包，依据工具回执和调用方提供的状态探针，核查智能体轨迹中的成功声明。规则、训练所得的分类器和可选的 LLM 评审共用同一个判定关卡，将每条轨迹判为“已核实”“虚假成功”或“无法核实”，不确定的情况转入人工审核队列。其300条轨迹的基准为合成数据，并与规则包共同设计，能否迁移到真实轨迹尚未检验。Apache-2.0。<a href="https://github.com/B0yko/agent-claimcheck">代码</a>。</li>
+    <li><a href="/zh/resources/?q=VAST-Bench"><strong>V³AST-Bench</strong></a>：面向编码智能体的安全基准，包含18个类别的212项风险任务，每项均配有一项普通能力对照任务。专用运行环境通过对系统状态、记录和产物执行可运行的检查来判定危害与任务完成情况，而非依据智能体的回复。在51种模型与智能体框架的组合中，作者报告称，能力相近的智能体安全表现差异明显，且识别出风险并不能可靠地阻止有害操作。2026年预印本。<a href="https://arxiv.org/abs/2610.35188">论文</a>、<a href="https://github.com/Alibaba-AAIG/VAST-Bench">代码</a>。</li>
+    <li><a href="/zh/resources/?q=Concordat"><strong>Concordat</strong></a>：一个处于 pre-alpha 早期阶段的 Python 库，在运行时对 LLM 智能体强制执行有限状态协议。模型只能看到当前状态允许的工具，其他调用在产生效果之前即被拒绝，保留给人的决定只能由模型提出请求。在 tau-bench 的50项航空领域任务中，模拟客户施压要求智能体跳过确认；在所测试的两种模型下，标准智能体都曾未获确认即作出更改，Concordat 智能体则一次也没有。不过在 Claude Haiku 5.5 的运行中，Concordat 智能体通过的任务较少（128次任务运行中通过105次，标准智能体为112次）；论文称两者的任务成功率无显著差异。该评测仅涵盖这一个任务领域。2026年预印本。<a href="https://arxiv.org/abs/2610.37461">论文</a>、<a href="https://github.com/miladsikaroudi/concordat">代码</a>。</li>
+  </ul>
+  <p>SciΠvot 由其第一作者 Youran Sun 通过<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/44">社区拉取请求</a>提出，agent-claimcheck 由其作者 Andrii Boiko 通过<a href="https://github.com/yzhao062/awesome-auditable-ai/issues/45">议题</a>提出。<a href="https://github.com/yzhao062/awesome-auditable-ai">配套列表</a>的维护者从公开代码的新论文中选出了 V³AST-Bench 和 Concordat。此日期记录的是目录发布时间，原始发布日期以所链接来源为准。更新会出现在我们的 <a href="/zh/feed.xml">RSS / Atom 订阅源</a>中。</p>
+</section>

@@ -4,7 +4,7 @@
 </section>
 <section class="section">
   <h2>模型卡风险阈值与 ExploitGym 评分说明</h2>
-  <p>在<a href="https://research.meta.ai/static/muse-wonder-model-card">《Muse Wonder 模型卡》</a>第4节与第5节（第7页及第11页）中，Meta 表示在未施加缓解措施时无法排除 Muse Wonder Full 达到化学与生物领域高风险阈值，同时将缓解后的残余风险自评为中等或更低。第7页显示 ExploitGym 共捕获92个旗标，但核验表明仅21个利用了预期漏洞，其余71个利用了非预期漏洞，因此仅21个具有榜单可比性。上述结果均为企业自评，而非独立认证。</p>
+  <p>在<a href="https://research.meta.ai/static/muse-wonder-model-card">《Muse Wonder 模型卡》</a>第4节与第5节（第7页及第11页）中，Meta 表示在未施加缓解措施时无法排除 Muse Wonder Full 达到化学与生物领域高风险阈值，同时将缓解后的残余风险自评为中等或更低。模型卡10月12日的原始版本在第7页报告 ExploitGym 共捕获92个旗标，其中21个利用了预期漏洞，71个利用了非预期漏洞。同页一则注明日期为10月23日的更新说明称，Meta 已按该基准测试的建议修正评测框架，在模型提示词中加入预期漏洞，并重新运行评测。Muse Wonder Full 在重测中捕获了20个预期旗标，表格现仅列出预期旗标结果，Meta 称公开排行榜的官方结果也采用这一口径。Meta 还表示，更新后的评测结果无需调整其对 Muse Wonder Full 的“中等或更低”风险评级。上述结果均为企业自评，而非独立认证。</p>
 </section>
 <section class="section">
   <h2>访问渠道条款与训练数据默认设置</h2>
@@ -13,4 +13,8 @@
 <section class="section">
   <h2>编辑部审计问题</h2>
   <p>结合<a href="/news/meta-muse-memory-privacy/">记忆隐私</a>、<a href="/news/meta-muse-security-warning/">智能体安全</a>与<a href="/guides/audit-an-agent-action/">行为审计指南</a>，编辑部审计关注点在于评估人员的模型检查点与工具权限、原始日志、基准测试评分器完整性，以及按访问渠道区分的数据处理核验。Audit Commons 仅汇总 Meta 公开资料，尚未对相关模型进行独立测试。</p>
+</section>
+<section class="section">
+  <h2>编辑部更新（2026年10月27日）</h2>
+  <p>Meta 于10月23日更新了模型卡，本文据此修订。上文风险阈值一节现将 ExploitGym 重测所得的20个预期旗标作为当前结果，并将本文最初报告的数据（共92个旗标，其中21个利用预期漏洞，71个利用非预期漏洞）保留为模型卡10月12日的原始披露。Meta 表示其“中等或更低”风险评级不变。修订后的数字本身并不表明风险降低，Audit Commons 也未独立核验原始结果或重测结果。</p>
 </section>

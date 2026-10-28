@@ -4,7 +4,7 @@
 </section>
 <section class="section">
   <h2>Model Card Risk Thresholds and ExploitGym</h2>
-  <p>In the <a href="https://research.meta.ai/static/muse-wonder-model-card">Muse Wonder Model Card</a> (Sections 4 and 5, pages 7 and 11), Meta states it cannot rule out unmitigated Muse Wonder Full reaching the high-risk chemical and biological threshold, while self-assessing mitigated residual risk as moderate or lower. On page 7, Meta reports 92 ExploitGym flags, noting only 21 used intended vulnerabilities and 71 used unintended vulnerabilities, making 21 the ranking-comparable figure. All figures are company self-assessments, not independent certification.</p>
+  <p>In the <a href="https://research.meta.ai/static/muse-wonder-model-card">Muse Wonder Model Card</a> (Sections 4 and 5, pages 7 and 11), Meta states it cannot rule out unmitigated Muse Wonder Full reaching the high-risk chemical and biological threshold, while self-assessing mitigated residual risk as moderate or lower. The card's original October 12 version reported 92 ExploitGym flags on page 7, of which 21 used intended vulnerabilities and 71 used unintended vulnerabilities. An October 23 update on the same page says Meta corrected its harness to include the intended vulnerability in the model's prompts, as the benchmark recommends, and reran the evaluation. In the rerun, Muse Wonder Full captured 20 intended flags, and the table now lists only intended flags, which Meta says is how the public leaderboard reports results. According to Meta, the updated results do not require a change to its "moderate or lower" risk rating for Muse Wonder Full. All figures are company self-assessments, not independent certification.</p>
 </section>
 <section class="section">
   <h2>Channel Terms and Training Defaults</h2>
@@ -13,4 +13,8 @@
 <section class="section">
   <h2>Editorial Audit Questions</h2>
   <p>Editorial review alongside <a href="/news/meta-muse-memory-privacy/">memory privacy</a>, <a href="/news/meta-muse-security-warning/">agent security</a>, and <a href="/guides/audit-an-agent-action/">action auditing</a> centers on evaluator checkpoint and tool access, raw logs, benchmark grader integrity, and channel data handling. Audit Commons summarizes public Meta materials and has not independently tested the models.</p>
+</section>
+<section class="section">
+  <h2>Editorial Update, October 27, 2026</h2>
+  <p>This article was revised after Meta updated the model card on October 23. The risk threshold section above now reports the rerun ExploitGym result of 20 intended flags as current and keeps the figures this article first reported (92 total, 21 intended, and 71 unintended flags) as the card's original October 12 disclosure. Meta says its "moderate or lower" risk rating is unchanged. The revised count does not by itself show lower risk, and Audit Commons has not independently verified the original or rerun results.</p>
 </section>

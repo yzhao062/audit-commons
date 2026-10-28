@@ -33,7 +33,7 @@
     "summary": "Meta released Muse Wonder and Muse Wonder Full with a 13-page model card and updated developer channel terms while stating that a full report with additional safety evaluations will arrive soon.",
     "author": "Audit Commons",
     "published": "2026-10-13",
-    "updated": "2026-10-13",
+    "updated": "2026-10-27",
     "event_date": "2026-10-12",
     "kind": "news",
     "topics": [
@@ -1543,6 +1543,223 @@
     "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-24/",
     "affiliation_disclosure": "The solvi author submitted its entry, and the people who proposed VCP and AgentLeak disclosed their involvement in those projects. None of the three is affiliated with Audit Commons. The summaries follow each project's repository or paper. Catalog inclusion does not certify any method or result.",
     "body_file": "bodies/catalog-2026-10-24.html",
+    "related_slugs": []
+  },
+  {
+    "slug": "news/anthropic-expert-deference-agent-judgment",
+    "title": "Anthropic Trial Finds 50 Expert Analysts Mostly Followed Their AI Agent's Randomly Assigned Lean",
+    "summary": "In an Anthropic randomized trial published October 27, 2026, 50 causal-inference practitioners using Claude Code chose the option their agent was secretly assigned to favor on 86 percent of analytical decisions. Most justified choices in the agent's words without crediting it. The study covers one task and one model.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-27",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "AI agents",
+      "Human oversight",
+      "Audit evidence",
+      "Verification"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/research/agents-judgment-calls",
+      "https://www-cdn.anthropic.com/519c17a5d23a794e8b6d50a854048d0b61e0d73a.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-expert-deference-agent-judgment/",
+    "affiliation_disclosure": "Audit Commons read Anthropic's October 27 post and the linked paper. We have not seen the study data, session recordings, or the registered analysis plan, and we have not reproduced any analysis.",
+    "body_file": "bodies/anthropic-expert-deference-agent-judgment.html",
+    "related_slugs": [
+      "news/metr-per-action-monitor-gaps",
+      "news/peer-verification-collusion",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/gpt-6-1-terra-safety-addendum",
+    "title": "OpenAI Treats GPT-6.1 Terra as Critical in Cybersecurity and Reports More Engagement With Planted Agent Messages",
+    "summary": "OpenAI's October 26, 2026 addendum treats GPT-6.1 Terra as Critical in cybersecurity and applies the GPT-6 Astra safeguards. In a simulated message-board test, Terra performed a planted unauthorized action in 11 of 80 samples, more often than GPT-6.1 Sol. All reported results come from OpenAI's own evaluations.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-26",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Preparedness Framework",
+      "Cybersecurity",
+      "Multi-agent systems",
+      "Model evaluation",
+      "Monitorability"
+    ],
+    "source_urls": [
+      "https://deploymentsafety.openai.com/gpt-6-1-terra",
+      "https://openai.com/index/introducing-gpt-6-1-terra/",
+      "https://deploymentsafety.openai.com/gpt-6-astra/unintended-engagement-with-external-agent-messages",
+      "https://deploymentsafety.openai.com/gpt-6-astra/cot-controllability"
+    ],
+    "canonical_url": "https://auditcommons.org/news/gpt-6-1-terra-safety-addendum/",
+    "affiliation_disclosure": "Audit Commons read OpenAI's October 26 addendum and the linked GPT-6 Astra card sections; openai.com returned HTTP 403 to automated access, so we read the announcement through an Internet Archive copy. We have not seen OpenAI's internal Safeguards Report or run any evaluation.",
+    "body_file": "bodies/gpt-6-1-terra-safety-addendum.html",
+    "related_slugs": [
+      "news/openai-dns-escape-offline-training",
+      "news/openai-cybersecurity-rl-pause",
+      "news/gemini-argon-monitorability-safety-report"
+    ]
+  },
+  {
+    "slug": "news/anthropic-autonomous-vulnerability-discovery",
+    "title": "Anthropic Says an Unreleased Model Built Exploit Chains for Chrome, Safari, Android, Windows, and Linux",
+    "summary": "On October 27, 2026, Anthropic said an unreleased research model found and chained vulnerabilities in five widely used products, which it reported under coordinated disclosure. Microsoft, Apple, Linux, and Chrome records credit Anthropic researchers for fixes, but none verifies the model's autonomy or all of Anthropic's counts.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-27",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Cybersecurity",
+      "Vulnerability disclosure",
+      "Audit evidence",
+      "Frontier AI"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
+      "https://www.anthropic.com/coordinated-vulnerability-disclosure",
+      "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33096",
+      "https://support.apple.com/en-us/127594",
+      "https://github.com/torvalds/linux/commit/e3f33b0a1d89d738e2b913dab519226eaf76e15b",
+      "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_02018666648.html",
+      "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/security-guidance",
+      "https://www.anthropic.com/news/cyber-verification-program"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-autonomous-vulnerability-discovery/",
+    "affiliation_disclosure": "Audit Commons read Anthropic's October 27 post and checked the vendor records it links or that credit its researchers: Microsoft's update guide entry, Apple's iOS 26.5.2 notes, the Linux kernel fix, and six Chrome stable release posts. We did not test any vulnerability.",
+    "body_file": "bodies/anthropic-autonomous-vulnerability-discovery.html",
+    "related_slugs": [
+      "news/caisi-glm-5-3-cyber-assessment",
+      "news/openai-cybersecurity-rl-pause",
+      "news/aisi-mythos-alignment-investigation"
+    ]
+  },
+  {
+    "slug": "news/redwood-simulated-control-evaluations",
+    "title": "Redwood Research Tests Agent Monitors Against Simulated Tool Responses, With Fidelity Checked Only in LinuxArena",
+    "summary": "Redwood Research's simulated control evaluations replace executed tool calls with model-written responses, so monitors can be tested on transcripts of agents working in real codebases. In LinuxArena, simulation predicted safety with a root mean squared error of 3.6 percentage points, against 10.1 for BashArena. Transfer to production systems and to multi-agent attacks remains untested.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-24",
+    "kind": "news",
+    "topics": [
+      "Redwood Research",
+      "Control evaluations",
+      "Runtime monitoring",
+      "Simulation",
+      "Evaluation"
+    ],
+    "source_urls": [
+      "https://www.redwoodresearch.org/blog/simulated-control-evaluations",
+      "https://arxiv.org/abs/2610.31593"
+    ],
+    "canonical_url": "https://auditcommons.org/news/redwood-simulated-control-evaluations/",
+    "affiliation_disclosure": "Audit Commons read Redwood Research's October 24 post and the arXiv abstract of the paper. We have not run the evaluations, inspected the simulator, or checked the paper's tables.",
+    "body_file": "bodies/redwood-simulated-control-evaluations.html",
+    "related_slugs": [
+      "news/metr-redwood-openai-monitoring-red-team",
+      "news/metr-per-action-monitor-gaps",
+      "guides/how-to-read-an-agent-eval-report"
+    ]
+  },
+  {
+    "slug": "news/aisi-reprobait-managed-access",
+    "title": "AISI Finds Coding Agents Rebuilt Selected Functions of Simpler Biological AI Tools, but Not the Most Complex",
+    "summary": "A UK AI Security Institute and SecureBio study found that coding agents given a tool's description and its training data matched selected metrics of two simpler biological AI tools but did not rebuild RFdiffusion3. AISI concludes that withholding code alone does not make a release safe.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-26",
+    "kind": "news",
+    "topics": [
+      "UK AI Security Institute",
+      "Biosecurity",
+      "Managed access",
+      "Coding agents",
+      "Model evaluation"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/can-ai-coding-agents-rebuild-biological-ai-tools-from-a-paper",
+      "https://arxiv.org/abs/2610.19810"
+    ],
+    "canonical_url": "https://auditcommons.org/news/aisi-reprobait-managed-access/",
+    "affiliation_disclosure": "Audit Commons read AISI's October 26 post and the paper's abstract, limitations, and conclusion. This brief omits run budgets, technical methods, and biological detail, and we have not reproduced any result.",
+    "body_file": "bodies/aisi-reprobait-managed-access.html",
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "news/caisi-glm-5-3-cyber-assessment",
+      "news/aisi-evaluation-security-controls"
+    ]
+  },
+  {
+    "slug": "news/ari-ai-research-automation-disclosure",
+    "title": "ARI Proposes Confidential Federal Reports on AI Research Automation, With Four-Business-Day Notices",
+    "summary": "Americans for Responsible Innovation, an advocacy group, proposed on October 26, 2026 that Congress require confidential quarterly reports on how far frontier developers automate AI research, plus notices within four business days of material shifts. It is a proposal only; the post cites no bill or rule.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-26",
+    "kind": "news",
+    "topics": [
+      "AI R&D automation",
+      "Disclosure",
+      "Frontier AI",
+      "Governance",
+      "Human oversight"
+    ],
+    "source_urls": [
+      "https://ari.us/policy-bytes/keeping-pace-with-the-frontier-an-early-warning-system-for-accelerated-ai-rd-automation/",
+      "https://ari.us/wp-content/uploads/2026/08/26.08.06-Frontier-AI-Framework-FINAL.pdf",
+      "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+    ],
+    "canonical_url": "https://auditcommons.org/news/ari-ai-research-automation-disclosure/",
+    "affiliation_disclosure": "Audit Commons read ARI's October 26 post, the AI research disclosure section of its August blueprint, and the Anthropic measurement page it cites. We did not search congressional records for related bills.",
+    "body_file": "bodies/ari-ai-research-automation-disclosure.html",
+    "related_slugs": [
+      "news/cantwell-independent-audit-framework",
+      "news/pennsylvania-frontier-ai-audit-bills-hearing",
+      "news/us-frontier-oversight-ftc-demands-task-force-charter"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-10-27",
+    "title": "Resource catalog update: SciΠvot, agent-claimcheck, V³AST-Bench, and Concordat",
+    "summary": "Four additions bring the catalog to 223 entries: a benchmark of research judgment built from human corrections to LLM research agents, a toolkit that checks agents' success claims against recorded evidence, a coding-agent safety benchmark, and a library that enforces action protocols at run time.",
+    "author": "Audit Commons",
+    "published": "2026-10-27",
+    "updated": "2026-10-27",
+    "event_date": "2026-10-27",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Benchmarks",
+      "Audit evidence",
+      "Agent security"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/44",
+      "https://github.com/yzhao062/awesome-auditable-ai/issues/45",
+      "https://arxiv.org/abs/2610.21082",
+      "https://github.com/AutoResearch-Factory/SciPIvot",
+      "https://huggingface.co/datasets/sun1245/SciPIvot",
+      "https://github.com/B0yko/agent-claimcheck",
+      "https://arxiv.org/abs/2610.35188",
+      "https://github.com/Alibaba-AAIG/VAST-Bench",
+      "https://arxiv.org/abs/2610.37461",
+      "https://github.com/miladsikaroudi/concordat"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-10-27/",
+    "affiliation_disclosure": "SciΠvot's first author submitted its entry, agent-claimcheck's author suggested it, and the list maintainer selected V³AST-Bench and Concordat. None of the four is affiliated with Audit Commons. The summaries follow each project's paper or repository. Catalog inclusion does not certify any method or result.",
+    "body_file": "bodies/catalog-2026-10-27.html",
     "related_slugs": []
   }
 ]

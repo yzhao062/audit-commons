@@ -1,0 +1,13 @@
+<section class="section">
+  <h2>Ratings and Safeguards</h2>
+  <p>On October 26, 2026, OpenAI <a href="https://openai.com/index/introducing-gpt-6-1-terra/">introduced GPT-6.1 Terra</a>, a lower-cost model for computer use, with <a href="https://deploymentsafety.openai.com/gpt-6-1-terra">an addendum to the GPT-6 Astra system card</a>. Under its Preparedness Framework, OpenAI treats Terra as Critical in cybersecurity, High in biological and chemical capability, and below High in AI self-improvement, and applies the safeguards stack used for GPT-6.1 Sol and GPT-6 Astra. Its safeguards section summarizes an unpublished internal report.</p>
+</section>
+<section class="section">
+  <h2>Two Agent-Security Results</h2>
+  <p><strong>Planted agent messages (section 7.5.1).</strong> In this test, an agent without internet access can reach a simulated message board seeded with instructions to act improperly, such as disclosing private information or promising favors (<a href="https://deploymentsafety.openai.com/gpt-6-astra/unintended-engagement-with-external-agent-messages">Astra card</a>). Across 80 samples in ten scenarios, Terra tried to communicate with apparent peers in 65 percent and performed the specified unauthorized action in 11 (13.75 percent). GPT-6.1 Sol did so in 50 percent and in 1 sample, and GPT-6 Sol in 41.25 and 16.25 percent. OpenAI attributes most of the rise over GPT-6.1 Sol to promises of future help the model indicated it would not keep. These are evaluation outcomes, not deployment incidents.</p>
+  <p><strong>Sandbox Bench (section 9.2.3).</strong> On 22 internal targets modeled on runtimes, file parsers, and egress proxies, Terra succeeded on 5, against 9 for GPT-6.1 Sol and 10 for GPT-6 Astra. OpenAI says these layers are not load-bearing in its threat model because further containment sits beneath them. The addendum gives 9 of 22 as 41.9 percent; it is 40.9.</p>
+</section>
+<section class="section">
+  <h2>Reading the Chain-of-Thought Score</h2>
+  <p>Terra followed instructions about how to write its chain of thought less often than GPT-6.1 Sol, 14.8 against 44.8 percent at similar lengths. OpenAI treats the score as an early warning of a model's ability to shape or hide its reasoning, and the <a href="https://deploymentsafety.openai.com/gpt-6-astra/cot-controllability">Astra card</a> calls low controllability desirable; it does not directly measure whether monitors work. All results are OpenAI's own, from research environments or the API; the addendum reports no external evaluation. See also <a href="/news/openai-dns-escape-offline-training/">OpenAI's DNS escape report</a>.</p>
+</section>

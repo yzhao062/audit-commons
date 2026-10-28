@@ -4881,5 +4881,114 @@
       "Paper",
       "Dataset"
     ]
+  },
+  {
+    "id": "concordat",
+    "name": "Concordat: Typed Sessions for LLM Agents",
+    "category": "Tools",
+    "format": "Paper",
+    "summary": "Pre-alpha Python library that runs an LLM agent under a declared finite-state protocol, offering only the tools legal in the current state and rejecting other calls before side effects. In the author's τ-bench airline test with customers pressing to skip confirmation, the enforced agent made no unconfirmed changes; the standard agent did.",
+    "url": "https://arxiv.org/abs/2610.37461",
+    "owner": "Milad Sikaroudi",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.37461"
+    ],
+    "checked": "2026-10-27",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md#runtime-monitoring-and-guardrails",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/miladsikaroudi/concordat"
+      }
+    ],
+    "formats": [
+      "Paper",
+      "Tool"
+    ]
+  },
+  {
+    "id": "sci-vot",
+    "name": "SciΠvot: Benchmarking Principal-Investigator Judgment at Pivotal Moments of Scientific AutoResearch Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Benchmark of 248 cases where senior researchers corrected LLM research agents across 26 projects in six fields. Given the project record at medium reasoning effort, four of five frontier models chose the human-corrected plan less often than chance. The project records require accepting Hugging Face terms with a name and affiliation.",
+    "url": "https://arxiv.org/abs/2610.21082",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.21082"
+    ],
+    "checked": "2026-10-27",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/AutoResearch-Factory/SciPIvot"
+      },
+      {
+        "label": "Data",
+        "url": "https://huggingface.co/datasets/sun1245/SciPIvot"
+      },
+      {
+        "label": "Project",
+        "url": "https://autoresearch-factory.github.io/SciPIvot/"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Dataset",
+      "Paper"
+    ]
+  },
+  {
+    "id": "v-ast-bench",
+    "name": "V³AST-Bench: Verifiable, Valid, and Versatile Safety Evaluation for Coding Agents",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Coding-agent safety benchmark of 212 risk tasks in 18 categories, each paired with a capability twin task as a control. Container environments check harm through executable tests of state, records, and artifacts. Results for 51 model and harness combinations are author-reported and limited to coding-agent tests in repositories, shells, and simulated services.",
+    "url": "https://arxiv.org/abs/2610.35188",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.35188"
+    ],
+    "checked": "2026-10-27",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/Alibaba-AAIG/VAST-Bench"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper"
+    ]
+  },
+  {
+    "id": "agent-claimcheck",
+    "name": "agent-claimcheck",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Python tool that checks agent success claims in agent-trace/v1 traces against recorded tool receipts and caller-supplied state probes. Rules, a trained classifier, and an optional LLM judge feed one gate that returns verified, false success, or unverifiable, and unverifiable traces go to a human review queue. Its 300-trace benchmark is synthetic and was co-designed with the rules.",
+    "url": "https://github.com/B0yko/agent-claimcheck",
+    "owner": "Andrii Boiko",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/B0yko/agent-claimcheck"
+    ],
+    "checked": "2026-10-27",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
   }
 ]

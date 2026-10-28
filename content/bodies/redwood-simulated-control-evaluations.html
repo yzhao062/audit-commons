@@ -1,0 +1,12 @@
+<section class="section">
+  <h2>Testing Monitors Without Running the Attack</h2>
+  <p>Control evaluations measure whether monitors stop a model that is deliberately trying to cause harm, such as inserting a vulnerability or exfiltrating credentials. They usually run in purpose-built settings where attacks can be executed. In an <a href="https://www.redwoodresearch.org/blog/simulated-control-evaluations">October 24, 2026 post</a> and a <a href="https://arxiv.org/abs/2610.31593">paper posted October 22</a>, Redwood Research proposes simulated control evaluations. Starting from transcripts of an agent working in a developer's real codebase, an attacking model continues the task while pursuing a harmful side objective. Its tool calls are never executed: a simulator model writes plausible outputs, and a judge model estimates whether the attack would have succeeded.</p>
+</section>
+<section class="section">
+  <h2>How Fidelity Was Checked</h2>
+  <p>The team ran the same evaluations in LinuxArena, where execution supplies ground truth, and in a simulated copy. With independently sampled task sets, simulation predicted safety, the chance of catching an attack before an undetected success, with a root mean squared error of 3.6 percentage points across five monitors at a 5 percent audit budget, against 10.1 for the simpler BashArena setting. It explained 78 to 85 percent of the variance between environments in attack success, monitor scores, and safety. Because the simulator answers turn by turn, the method can test interactive protocols such as resampling, which edited transcripts cannot.</p>
+</section>
+<section class="section">
+  <h2>What Remains Unvalidated</h2>
+  <p>Fidelity can be checked only where real execution is possible, so applying the method to a production deployment requires extrapolation. Redwood has no deployment-like transcripts with executed attacks, and its checks on its own recorded work sessions contained no attacks. New task sets drawn from the LinuxArena pool do not test unseen environments. The method assumes a trusted simulator, and Redwood has not built simulators for long-horizon, multi-agent attacks. Our editorial view: when a monitor result is reported, ask whether the actions were executed or simulated. See also <a href="/news/metr-redwood-openai-monitoring-red-team/">METR and Redwood's red-team of OpenAI monitoring</a>.</p>
+</section>

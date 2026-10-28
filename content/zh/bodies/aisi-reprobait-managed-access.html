@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>仅凭说明能否重建一款工具？</h2>
+  <p>一些生物 AI 工具的开发者会发表论文但不公开代码，有时是为了限制滥用。2026年10月26日，英国人工智能安全研究所（AISI）<a href="https://www.aisi.gov.uk/blog/can-ai-coding-agents-rebuild-biological-ai-tools-from-a-paper">报告</a>了 ReproBAIT，这是一项与 SecureBio 合作构建的评估，详见<a href="https://arxiv.org/abs/2610.19810">10月14日发布的论文</a>。Claude Opus 5、GPT-5.6 Sol、Kimi K3 和 Qwen3.8-2.4T 四个编码智能体在无互联网访问的隔离沙箱中，按固定的时间和算力预算工作。在主要测试条件下，每个智能体都获得工具的摘要或完整论文，以及该工具的训练数据。重建出的工具在留出数据上按原论文的一项主要指标评分，报告的是三次尝试中最好的结果。</p>
+</section>
+<section class="section">
+  <h2>各工具的结果</h2>
+  <ul>
+    <li><strong>一款闭源分子设计工具。</strong>四个智能体都达到或超过了它的化学有效性得分，但该指标本已接近饱和，且生成结果的新颖性略有下降。</li>
+    <li><strong>ProteinMPNN。</strong>最强的智能体接近原工具水平；获得完整论文时，Claude Opus 5 达到原工具得分的96.5%，不同智能体之间结果有差异。</li>
+    <li><strong>最复杂的 RFdiffusion3。</strong>没有任何智能体在时间预算内成功重建，即使只评估其中一项功能也是如此。</li>
+  </ul>
+  <p>提供完整论文而非仅提供摘要，并未带来一致的提升。作者发现，ProteinMPNN 存在中等程度的、与记忆相符的证据，RFdiffusion3 则很少；他们表示，其诊断方法无法确定记忆在多大程度上解释了这些结果。</p>
+</section>
+<section class="section">
+  <h2>对发布治理的意义</h2>
+  <p>AISI 的结论是，不公开代码本身并不能使发布变得安全，控制对底层数据的访问看起来是更有希望的手段。这些证据范围有限：只涉及三款工具，每款只评一项指标而非全部能力，按三次中最好的结果计分，并且提供了训练数据。我们的编辑看法是，任何“受控访问”声明都应说明扣留了哪些内容（包括数据）以及做过哪些测试。另见<a href="/features/benchmark-scores-and-agent-safety/">为什么基准得分不能确立智能体的安全性</a>。</p>
+</section>
