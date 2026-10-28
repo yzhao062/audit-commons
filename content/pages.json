@@ -1551,7 +1551,7 @@
     "summary": "In an Anthropic randomized trial published October 27, 2026, 50 causal-inference practitioners using Claude Code chose the option their agent was secretly assigned to favor on 86 percent of analytical decisions. Most justified choices in the agent's words without crediting it. The study covers one task and one model.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-27",
     "kind": "news",
     "topics": [
@@ -1580,7 +1580,7 @@
     "summary": "OpenAI's October 26, 2026 addendum treats GPT-6.1 Terra as Critical in cybersecurity and applies the GPT-6 Astra safeguards. In a simulated message-board test, Terra performed a planted unauthorized action in 11 of 80 samples, more often than GPT-6.1 Sol. All reported results come from OpenAI's own evaluations.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-26",
     "kind": "news",
     "topics": [
@@ -1612,7 +1612,7 @@
     "summary": "On October 27, 2026, Anthropic said an unreleased research model found and chained vulnerabilities in five widely used products, which it reported under coordinated disclosure. Microsoft, Apple, Linux, and Chrome records credit Anthropic researchers for fixes, but none verifies the model's autonomy or all of Anthropic's counts.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-27",
     "kind": "news",
     "topics": [
@@ -1647,7 +1647,7 @@
     "summary": "Redwood Research's simulated control evaluations replace executed tool calls with model-written responses, so monitors can be tested on transcripts of agents working in real codebases. In LinuxArena, simulation predicted safety with a root mean squared error of 3.6 percentage points, against 10.1 for BashArena. Transfer to production systems and to multi-agent attacks remains untested.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-24",
     "kind": "news",
     "topics": [
@@ -1676,7 +1676,7 @@
     "summary": "A UK AI Security Institute and SecureBio study found that coding agents given a tool's description and its training data matched selected metrics of two simpler biological AI tools but did not rebuild RFdiffusion3. AISI concludes that withholding code alone does not make a release safe.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-26",
     "kind": "news",
     "topics": [
@@ -1705,7 +1705,7 @@
     "summary": "Americans for Responsible Innovation, an advocacy group, proposed on October 26, 2026 that Congress require confidential quarterly reports on how far frontier developers automate AI research, plus notices within four business days of material shifts. It is a proposal only; the post cites no bill or rule.",
     "author": "Audit Commons",
     "published": "2026-10-27",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "event_date": "2026-10-26",
     "kind": "news",
     "topics": [

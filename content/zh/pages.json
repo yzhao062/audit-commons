@@ -746,7 +746,7 @@
     ],
     "body_file": "zh/bodies/anthropic-expert-deference-agent-judgment.html",
     "affiliation_disclosure": "Audit Commons 阅读了 Anthropic 10月27日的文章及所链接的论文。我们没有看到研究数据、会话录像或已登记的分析计划，也没有复现任何分析。",
-    "source_sha256": "06af6b5e92183d8b5ee8fdcc1457f7aca31e1d35c6faad932ad19622a510f168"
+    "source_sha256": "ef2764f7789d2ab3c3c2ccd4d97fcc66f02307e644c1eaad2c932d3a7cf7e465"
   },
   "news/gpt-6-1-terra-safety-addendum": {
     "title": "OpenAI 在网络安全方面按“严重”级对待 GPT-6.1 Terra，并报告其更常回应植入的智能体消息",
@@ -761,7 +761,7 @@
     ],
     "body_file": "zh/bodies/gpt-6-1-terra-safety-addendum.html",
     "affiliation_disclosure": "Audit Commons 阅读了 OpenAI 10月26日的附录及其链接的 GPT-6 Astra 系统卡相关章节；openai.com 对自动访问返回 HTTP 403，因此我们通过互联网档案馆的副本阅读了发布公告。我们没有看到 OpenAI 的内部防护报告，也没有运行任何评估。",
-    "source_sha256": "7bbb6da9ecee0f3846ab20d81b3dec5b7c1a3751d482bcf2a1a2d417f0730377"
+    "source_sha256": "d3dcdc8d399cf263419e6fcc9911b1e4874c207fe9fbae598b8b48d83ed9c980"
   },
   "news/anthropic-autonomous-vulnerability-discovery": {
     "title": "Anthropic 称一款未发布模型针对 Chrome、Safari、Android、Windows 和 Linux 构建了漏洞利用链",
@@ -775,7 +775,7 @@
     ],
     "body_file": "zh/bodies/anthropic-autonomous-vulnerability-discovery.html",
     "affiliation_disclosure": "Audit Commons 阅读了 Anthropic 10月27日的文章，并核查了该文链接或致谢其研究人员的厂商记录：Microsoft 安全更新指南条目、Apple 的 iOS 26.5.2 说明、Linux 内核修复，以及六篇 Chrome 稳定版发布说明。我们没有测试任何漏洞。",
-    "source_sha256": "efb9ce7d1b6b19a09143cd727492bdc74814219a219b484ef7f5dfea077a9721"
+    "source_sha256": "26b9681c8c4480acfe831ca09aad1d74f630510dd1185c143267230858fcb4f3"
   },
   "news/redwood-simulated-control-evaluations": {
     "title": "Redwood Research 用模拟工具响应测试智能体监测器，保真度仅在 LinuxArena 中得到检验",
@@ -789,7 +789,7 @@
     ],
     "body_file": "zh/bodies/redwood-simulated-control-evaluations.html",
     "affiliation_disclosure": "Audit Commons 阅读了 Redwood Research 10月24日的文章和该论文的 arXiv 摘要。我们没有运行这些评估，没有检查模拟器，也没有核对论文中的表格。",
-    "source_sha256": "02ac614e10f724d5d1e449c4689e1e52aa10ad98b96363419efc5faad5d13537"
+    "source_sha256": "62bd96f5c6547bff835d64bbddc343568ce2668c06f722c626647c84c0a7a14e"
   },
   "news/aisi-reprobait-managed-access": {
     "title": "AISI 发现编码智能体能重建较简单生物 AI 工具的部分功能，但未能重建最复杂的工具",
@@ -803,7 +803,7 @@
     ],
     "body_file": "zh/bodies/aisi-reprobait-managed-access.html",
     "affiliation_disclosure": "Audit Commons 阅读了 AISI 10月26日的文章，以及该论文的摘要、局限和结论部分。本文略去运行预算、技术方法和生物学细节，我们也没有复现任何结果。",
-    "source_sha256": "8ac1918ae64b04cf525eb831691bdb8d653ca12493b6832c0e4c623336c7f607"
+    "source_sha256": "b7341952d7c3362960c5f8e5de96e11f5e98532352807c6c8b80ddd88bc2c50a"
   },
   "news/ari-ai-research-automation-disclosure": {
     "title": "ARI 提议建立关于 AI 研究自动化的联邦保密报告制度，并设四个工作日通报期",
@@ -817,7 +817,7 @@
     ],
     "body_file": "zh/bodies/ari-ai-research-automation-disclosure.html",
     "affiliation_disclosure": "Audit Commons 阅读了 ARI 10月26日的文章、其8月蓝图中关于 AI 研发披露的部分，以及文中引用的 Anthropic 度量页面。我们没有检索国会记录中的相关法案。",
-    "source_sha256": "0a3cf3ec86bdc2c77468a023e3fb1c00b2b16c8dabe5ca7f24c81c7ffd9084cf"
+    "source_sha256": "9a7c6b97106937bb5581fed02bbd53bf006e98d569cc0120b30749a6113af64f"
   },
   "updates/catalog-2026-10-27": {
     "title": "资源目录更新：SciΠvot、agent-claimcheck、V³AST-Bench 与 Concordat",

@@ -87,7 +87,8 @@ Run this phase inside the Awesome checkout or integration clone.
    `content/zh/media.json` per [docs/media.md](../../docs/media.md). The build calls `editorial_media.bind_media`
    to reject missing or logo leads in real content; `scripts/test_news_media.py` tests regression fixtures.
    Conduct manual visual review to reject title cards, generic decoration, or pure text-box diagrams.
-   Disclose AI generation in both languages.
+   Use real source figures, screenshots, or photographs; generated illustrations need the user's explicit
+   approval and disclosure in both languages, otherwise report the missing real image.
 3. **Validation and preview:** Run the validation suite (`build.py`, `check.py`, `check_localization.py`,
    `check_navigation.py`, `check_reading_lists.py`, `test_news_media.py`). For content or media modifications,
    preview locally with `scripts/browser_check.py` and inspect rendered desktop and mobile cards.

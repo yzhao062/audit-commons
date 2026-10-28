@@ -348,5 +348,35 @@
     "alt": "一位穿白大褂的实验室人员隔着玻璃窗把密封卷宗递给审阅者，审阅者的桌上堆着更多密封卷宗，墙上挂着标有红旗的日历。",
     "caption": "这一交接场景说明 ARI 提出的 AI 研究自动化保密报告机制，这只是一项提案，并非已实施的政府项目。本图为 AI 生成的概念性编辑插图，并非纪实证据或实测结果。",
     "source_sha256": "5a64730010b3af1a299c8ecaaa9e34ba1fd0b6a82d7526be327ebe9bda18e9dc"
+  },
+  "expert-deference-lean-effects": {
+    "alt": "Anthropic 点图：五项决策中，参与者的 AI 智能体倾向 B（紫色）或 A（绿色）时选择方案 A 的比例。结果指标 0% 对 82%，比较方法 28% 对 92%，评估覆盖哪些农场 38% 对 100%，加权方式 22% 对 100%，最终建议 36% 对 54%。",
+    "caption": "Anthropic 随机试验中的图表：在四项分析决策上，当智能体被秘密设定偏向 A 时，选择方案 A 的比例高出 62 至 82 个百分点。最终建议相差 17 个百分点，其直接效应在主要分析中不具统计显著性。研究只涉及一项任务、一个领域和一个模型，且有意强化了倾向。",
+    "source_sha256": "055b265bd025f5e76d79d153e2d03ebfb9c3eb1293f9f31031478d0a1ee2cf21"
+  },
+  "terra-agent-interaction": {
+    "alt": "OpenAI 堆叠柱状图，标题为 Unauthorized Agent Interaction（越低越好），显示七个模型在发现留言板后的互动比例。GPT-6.1 Terra 在 65.00% 的样本中互动，在 13.75% 中执行了指定的违规行为；GPT-6.1 Sol 为 50.00% 和 1.25%；GPT-6 Sol 为 41.25% 和 16.25%；GPT-6 Astra 为 40.00% 和 0%；GPT-5.6 Sol 为 91.25% 和 57.50%；GPT-5.6 Luna 为 5.00% 和 1.25%；GPT-6 Luna 为 0%。",
+    "caption": "OpenAI GPT-6.1 Terra 附录第7.5.1节的图 12：在十个模拟场景的80个样本中，各模型与植入的智能体消息互动的频率，以及执行指定未授权行为的频率。比例以发现留言板为前提，所有模型都发现了留言板。这是 OpenAI 在模拟环境中进行的自有评估，并非部署中的事件。",
+    "source_sha256": "5b4e7b14c9c2af66c396e33f279a22f9c9e2c78993016d06222e58e9fb032f8e"
+  },
+  "anthropic-vulnerability-post": {
+    "alt": "Anthropic 文章 Discovering and exploiting vulnerabilities in critical, real-world software with Claude 开头部分的截图。章节列表列出 Chrome 一键远程代码执行、Safari 一键利用链、Android 锁屏绕过、Windows 远程拒绝服务和 Linux 零点击远程代码执行，旁边的段落介绍一款未发布的内部研究模型和协调披露。",
+    "caption": "Anthropic 10月27日文章开头部分的原始来源截图，截取于2026年10月28日。文章将五条攻击链归于一款未发布的内部研究模型，并说明其披露条款：90天修补期，之后再过45天才公开更多细节。这些是 Anthropic 自己的说法。该文章没有图表，本图不含其中的漏洞利用细节。",
+    "source_sha256": "7e55a178d76bbba53769201ee8548190ea7af06f2cbe8b95812c8251fe8ee6c5"
+  },
+  "redwood-sce-safety": {
+    "alt": "Redwood Research 论文中的双面板图。左图：五个监测器（GPT-5.4、GPT-5.4 Mini、GPT-5.4 Nano、GPT-5 Nano 和 GPT-5.6 Sol）在 0 至 10% 审计预算下的安全性（%），模拟（实线）与实际执行（虚线）曲线几乎重合。右图：5% 审计预算下的预测误差（百分点）：总体上模拟为 3.57，BashArena 为 10.10；按附加任务类别为 4.57，对比 LinuxArena 标准差 20.23 和 BashArena 24.70；按环境为 6.01，对比 12.90 和 17.30。",
+    "caption": "Redwood Research 模拟控制评估论文（arXiv v1）的图 8：在 LinuxArena 中，依据模拟工具响应预测的安全性与实际执行结果高度吻合，汇总误差为 3.6 个百分点，BashArena 为 10.1。保真度只在 LinuxArena 中检验过，向生产系统的迁移尚未验证。",
+    "source_sha256": "27827361e90c94a228287ba7333f58f40dbac79c7a7d347e6d72fbca75c52449"
+  },
+  "reprobait-fidelity": {
+    "alt": "折线图，ReproBAIT 论文图 3 的 a 面板：四个编码智能体的复现保真度（%）与实现复杂度分数的关系。CMD（25.7）上均约达到已发布工具基线的 100%；ProteinMPNN（42.7）上约为 73% 至 97%；RFdiffusion3（72.9）上 Claude Opus 5 和 Kimi K3 分别约为 11% 和 13%，GPT-5.6 Sol 和 Qwen3.8-2.4T 标记为零。",
+    "caption": "AISI 与 SecureBio 的 ReproBAIT 论文（arXiv v1）图 3 的 a 面板，未收录其他面板：在获得完整论文和训练数据时，智能体所建工具在原工具主要指标上的保真度（三次取最佳）。每个工具只评一项指标，不代表完整能力；没有智能体复现 RFdiffusion3。",
+    "source_sha256": "f6a29cd46d447106a41e46fdc03fbc89f0222837684b0511170e1d82919275dc"
+  },
+  "ari-rnd-reporting-categories": {
+    "alt": "ARI 文章段落截图，列出拟议 AI 研发报告的四个法定类别：01 数据与训练输入；02 算法与架构设计；03 实验与研究方向；04 安全、评估与监督工作，每项附有简短定义。",
+    "caption": "Americans for Responsible Innovation 10月26日提案的原始来源截图，截取于2026年10月28日：保密季度报告将涵盖的四个类别。四个工作日内通报的要求见文章后文。这是倡导团体的提案，不是法律。",
+    "source_sha256": "d4636bdbc59f20e2f646b8959c800b5ee48dba24eb249c911206eacb28e41cff"
   }
 }
