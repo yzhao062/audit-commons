@@ -1,0 +1,23 @@
+<section class="section">
+  <h2>Meta 披露的内容</h2>
+  <p>在<a href="https://muse.ai/blog/securing-muse">2026年11月2日发表于 Muse 博客的文章</a>中，David Singleton 表示，漏洞赏金计划自4月起以非公开方式覆盖 Muse，并自9月8日产品发布起向公众开放。文章称，截至目前共收到逾630份提交，确认64项有效发现，支付赏金约120万美元。这些均为 Meta 自报数据，文章未按严重程度或时间段作进一步细分。</p>
+</section>
+<section class="section">
+  <h2>Meta 详述的两份报告</h2>
+  <p>金额最高的一笔赏金为30万美元，在产品发布前四个月支付。据该文章，一名研究人员利用身份验证检查中的缺陷，演示了如何访问员工和工程师测试 Muse 时使用的预发布虚拟机中的对话和令牌。Meta 称，当时产品尚处于早期内部测试阶段，公司随即关停服务并立即处理了该问题，此后又取消了对本地机器的全部信任。这是 Meta 对研究人员在预发布系统上所作演示的说明，并非已确认的影响公众用户的数据泄露事件。文章没有说明是否有其他人利用过该缺陷，也没有说明可访问的数据范围。</p>
+  <p>另一笔9万美元的赏金针对一次间接提示注入。某网页模仿 Muse 浏览工具的状态消息，在用户要求 Muse 总结该网页时，促使智能体执行了一些本应被拦截的操作。Meta 称已增加检测信号，并调整了 Muse 处理可疑工具输出的方式。在 Meta 自己的测试中，其分类器现在能够标记原始攻击及其100种变体。文章没有说明这些变体的构造方式，也没有报告误报情况或针对该集合之外攻击的结果。</p>
+  <p>文章还列出了关于一次性验证码脱敏、Android 应用凭据问题以及 Mac 应用权限提升的报告。总体而言，文章描述了五份获得赏金的报告，而有效发现共有64项。</p>
+</section>
+<section class="section">
+  <h2>这些数字不能说明什么</h2>
+  <p>编辑部认为，赏金总额反映的是已报告、经确认并获得支付的问题，而不是尚存多少缺陷。文章没有引用对修复措施的独立测试，也没有声称已实现完整覆盖。Meta 的<a href="https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse">发布时安全说明</a>本身也表示，Muse“并非不会受到攻击”，提示注入“仍是业界尚未解决的问题”。该文章与<a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">9月8日的发布公告</a>介绍了 Muse Secure VM 和 Sentinel 智能体等控制措施，这些同样是厂商自身的描述。</p>
+  <p>文章没有提及<a href="/news/meta-muse-security-warning/">9月报道的云端漏洞</a>，其中也没有任何内容将该报道与这笔30万美元的发现联系起来。</p>
+</section>
+<section class="section">
+  <h2>与模型安全报告相互独立</h2>
+  <p>这是一份产品安全披露。它与<a href="https://research.meta.ai/static/muse-wonder-model-card">《Muse Wonder 模型卡》</a>相互独立，也不同于 Meta 在 <a href="https://research.meta.ai/blog/muse-wonder">Wonder 文章</a>中称“即将发布”的完整安全报告，<a href="/news/meta-muse-wonder-safety-disclosure/">我们已在10月报道过相关内容</a>。那些材料关注模型评估与风险阈值，而11月2日的文章并未提及 Wonder。两类数字不能相互替代。</p>
+</section>
+<section class="section">
+  <h2>审计时应追问的问题</h2>
+  <p>编辑部建议索取文章未提供的信息：按严重程度和日期划分的发现、是否有缺陷在研究之外被利用、暴露的令牌如何处理，以及在留出攻击集上的复测结果和误报率。具体方法可参阅<a href="/guides/audit-an-agent-action/">《审计智能体行动》</a>。</p>
+</section>

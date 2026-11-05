@@ -378,5 +378,20 @@
     "alt": "ARI 文章段落截图，列出拟议 AI 研发报告的四个法定类别：01 数据与训练输入；02 算法与架构设计；03 实验与研究方向；04 安全、评估与监督工作，每项附有简短定义。",
     "caption": "Americans for Responsible Innovation 10月26日提案的原始来源截图，截取于2026年10月28日：保密季度报告将涵盖的四个类别。四个工作日内通报的要求见文章后文。这是倡导团体的提案，不是法律。",
     "source_sha256": "d4636bdbc59f20e2f646b8959c800b5ee48dba24eb249c911206eacb28e41cff"
+  },
+  "nist-campus-agent-identity-tenets": {
+    "alt": "开满白花的树木环绕草坪，常绿树和红叶树立于一栋浅色多层建筑前，天空湛蓝。",
+    "caption": "春季的 NIST 盖瑟斯堡园区。档案照片，摄影：J. Stoughton/NIST；NIST 原始文件的元数据显示拍摄日期为 2018 年 4 月 18 日。该图并未呈现 2026 年 10 月 27 日的博客文章或任何智能体身份相关工作。",
+    "source_sha256": "819dcc6c378ccf41395cecabaa0ddb6bf614c7b838e5101b44e89a1f1fb0071f"
+  },
+  "occ-constitution-center-2024": {
+    "alt": "街角的一座大型办公楼：两根棕褐色墩柱夹着中间凹进的深色玻璃部分，两侧是玻璃幕墙翼楼，上方是晴朗的蓝天；人行道旁种着树，街上有一辆白色皮卡。",
+    "caption": "华盛顿特区宪法中心（Constitution Center），摄于2024年6月21日。OCC 将这座大楼列为其总部。这是历史资料照片，并未呈现2026年11月的框架文件、任何检查或任何银行。",
+    "source_sha256": "4a21be0e94a334fdb1521f2b31b79bb1fe51c61c440d1f88f6c4625547c4f0fe"
+  },
+  "meta-muse-bug-bounty-disclosure-f8-2019": {
+    "alt": "Mark Zuckerberg 身穿灰色毛衣，于 2019 年 4 月 30 日在 F8 开发者大会的舞台上发言，背后是蓝色灯光幕。",
+    "caption": "Mark Zuckerberg 于 2019 年 4 月 30 日在 F8 大会上发言。这是 Meta 首席执行官在一场无关活动中的历史资料照片，并未展示 Muse、Muse 漏洞赏金计划或本文所述的报告。",
+    "source_sha256": "c8aa62473e049ac7e65c0389dc66473b8a51a47cd25ddeef758ada02c326c00b"
   }
 }

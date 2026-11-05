@@ -1,0 +1,26 @@
+<section class="section">
+  <h2>初始设计原则，而非标准</h2>
+  <p>2026年10月27日，NIST 的 Harold Booth、Bill Fisher、Ryan Galluzzo 与 MITRE 的 Tom Clancy 发表了<a href="https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems">《Design Tenets for Agent Identity Management Systems》</a>，这是 NIST Cybersecurity Insights 博客智能体身份系列的第二篇文章。<a href="https://content.govdelivery.com/accounts/USNIST/bulletins/4317b97">11月3日的 NCCoE News 通讯</a>推介了这篇文章，但该通讯并非其首发渠道。</p>
+  <p>作者称这十项设计原则（tenets）是“初始集合”（initial set）和“起点”（starting point），其内容来自公众对<a href="/news/nist-nccoe-agent-identity-concept-paper/">二月概念文件</a>所属的国家网络安全卓越中心（NCCoE）项目的意见，以及与利益相关方的交流。NIST 的页面现已在该项目名称中使用“超级智能”（Super Intelligence）一词。这是一篇博客文章，并非最终标准，也不是 NIST 特别出版物。文章没有设定期限或符合性测试，并要求各组织根据风险应用这些原则。文章还称，“并非所有这些设计原则都能以当前的标准和技术状况立即实现”。</p>
+  <p>这些原则将作为 NCCoE 演示工作的“指引”（guideposts）。<a href="https://pages.nist.gov/nccoe-ai-identity/">项目资源中心</a>将 SP 1800 系列实践指南列为最终交付成果，并继续通过电子邮件接收意见。其<a href="https://pages.nist.gov/nccoe-ai-identity/summary-of-comments.html">对 600 多份概念文件反馈的总结</a>称，下一步将发布项目描述草案。</p>
+</section>
+<section class="section">
+  <h2>十项原则的内容</h2>
+  <ul>
+    <li><strong>独立身份。</strong>原则 01（Distinct Agent Identification）要求智能体具备唯一且可通过密码学验证的身份，与人类用户和服务账户相区分，并拥有自身的生命周期。</li>
+    <li><strong>逐级收窄权限。</strong>原则 02（Agent Linking, Delegation &amp; Attenuation）通过密码学方式将智能体与向其分派任务的实体关联起来，权限范围逐级衰减，使下游实体“绝不能主张超过上级的权限”。原则 03（Least &amp; Zero Standing Privilege）要求智能体在空闲时不保留任何持久权利。原则 04（Short-Lived, Dynamic &amp; Revocable Authorization）要求访问权限有时限且可撤销。</li>
+    <li><strong>在智能体推理之外执行控制。</strong>原则 07（Architectural Separation of Policy from Reasoning）将智能体尝试做什么与其被允许做什么分开，并补充说“仅靠护栏并不足够”。原则 08（Deterministic Access Decisions）将确定性能力保留为访问决策的主要机制，概率性信息可以作为输入。</li>
+    <li><strong>人工审查。</strong>原则 05（Human-in-the-Loop Triggers）要求组织设定触发人工审查的风险阈值，向审查者提供充分信息，并考虑同意疲劳。该原则并未规定批准必须绑定到某一具体行动。文章下的一条<a href="https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems#comment-167756">公开评论</a>提议加入这一内容，评论者是一家身份验证公司的创始人；这并非 NIST 的原文。</li>
+    <li><strong>授权声明与证据。</strong>原则 06（Mandates and Constraints）允许任务发起方创建经签名的声明，说明预期结果和约束条件，并可由下游服务验证。原则 09（Continuous Monitoring）涉及针对智能体的异常行为检测。原则 10（Immutable Evidence）要求就智能体身份、委托意图和最终行动保存可检测篡改、仅可追加的证据，并存放在独立于智能体的日志基础设施中。</li>
+  </ul>
+</section>
+<section class="section">
+  <h2>与工作组草案的比较</h2>
+  <p>另一份 IETF 文件在协议层面涉及类似内容。WIMSE 工作组于11月2日发布了 <a href="https://datatracker.ietf.org/doc/draft-ietf-wimse-aims/">draft-ietf-wimse-aims-01</a>，题为“AI Identity Management System”。这是一份工作组文件，其文件头标明的拟定状态为 Informational（信息性）；与所有互联网草案一样，它只能作为“进行中的工作”（work in progress）引用。NIST 的意见总结将此前的 -00 版本列为新兴工作之一，并说明列入不代表认可。设计原则文章没有引用该草案，<a href="https://www.ietf.org/archive/id/draft-ietf-wimse-aims-01.txt">-01 文本</a>也没有引用 NIST。以下比较是我们自己的解读；我们没有找到两者之间已发布的对应关系。</p>
+  <p>该草案在两点上更为具体。第 10.8 节规定，智能体“绝不能（MUST NOT）将本地界面确认本身视为充分授权”，并要求此类确认绑定到可验证的授权许可。第 11 节列出审计事件的最低字段，并称审计记录“必须（MUST）可检测篡改”，但共同作者 Brian Campbell 针对 -00 版本提交的<a href="https://github.com/ietf-wg-wimse/draft-ietf-wimse-aims/issues/161">一个尚未关闭的议题</a>反对这一要求。两份文件都尚未确定审计者可以要求什么。</p>
+</section>
+<section class="section">
+  <h2>给审计者的问题</h2>
+  <p>我们的编辑部问题，针对一次高影响的智能体行动：运营方能否依据智能体无法改动的记录说明，是哪个智能体采取了行动，每一跳由谁委托了什么权限，哪一项确定性策略决策允许了该行动，人工审查者看到并批准了什么，以及随后发生了什么？这些原则描述的是这一目标，并不表明任何部署已经达到。</p>
+  <p>另见<a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST 探讨 AI 智能体的身份标识与授权机制</a>、<a href="/guides/audit-an-agent-action/">审计智能体行动</a>，以及十月份<a href="/news/ietf-agent-execution-evidence-drafts/">四份关于智能体记录的 IETF 个人草案</a>。</p>
+</section>

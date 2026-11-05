@@ -1,0 +1,23 @@
+<section class="section">
+  <h2>What Meta Reported</h2>
+  <p>In a <a href="https://muse.ai/blog/securing-muse">November 2, 2026 post on the Muse blog</a>, David Singleton says the bug bounty program has covered Muse privately since April and publicly since the product's September 8 launch. The post reports more than 630 submissions, 64 valid findings, and about $1.2 million in payouts to date. These are Meta's own figures, and the post gives no breakdown by severity or by period.</p>
+</section>
+<section class="section">
+  <h2>Two Reports in Detail</h2>
+  <p>The largest award, $300,000, was paid four months before launch. According to the post, a researcher demonstrated access to conversations and tokens in pre-release virtual machines used by employees and engineers testing Muse, through a flaw in an authentication check. Meta says the product was in early internal testing, that it shut the service down and addressed the issue immediately, and that it went on to remove all trust in the local machine. This is Meta's account of a researcher demonstration on a pre-release system, not a confirmed breach affecting public users. The post does not say whether anyone else used the flaw or how much data was reachable.</p>
+  <p>A $90,000 award covered an indirect prompt injection. A web page imitated status messages from Muse's browsing tool and, when a user asked Muse to summarize it, got the agent to execute some actions that should have been caught. Meta says it added detection signals and changed how Muse handles suspicious tool output. In Meta's own testing, its classifiers now flag the original attack and 100 variations of it. The post does not explain how those variations were made, and it reports neither false positives nor results on attacks outside that set.</p>
+  <p>The post also lists reports on one-time passcode redaction, an Android app credential issue, and privilege escalation in the Mac app. In all, it describes five paid reports, against 64 valid findings.</p>
+</section>
+<section class="section">
+  <h2>What the Figures Do Not Show</h2>
+  <p>Our editorial reading is that a bounty total shows what was reported, validated, and paid, not how many flaws remain. The post cites no independent test of the fixes and does not claim complete coverage. Meta's <a href="https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse">launch safety post</a> itself says Muse "isn't immune to attack" and that prompt injection "remains an open problem in the industry." That post and the <a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">September 8 announcement</a> describe controls such as Muse Secure VM and the Sentinel agent, which are also vendor descriptions.</p>
+  <p>The post does not mention the <a href="/news/meta-muse-security-warning/">cloud flaw reported in September</a>, and nothing in it ties that report to the $300,000 finding.</p>
+</section>
+<section class="section">
+  <h2>Separate From the Model Safety Report</h2>
+  <p>This is a product security disclosure. It is separate from the <a href="https://research.meta.ai/static/muse-wonder-model-card">Muse Wonder model card</a> and from the fuller safety report that Meta's <a href="https://research.meta.ai/blog/muse-wonder">Wonder post</a> says "will be available soon," which <a href="/news/meta-muse-wonder-safety-disclosure/">we covered in October</a>. That material concerns model evaluations and risk thresholds, and the November 2 post does not mention Wonder. Neither set of figures can stand in for the other.</p>
+</section>
+<section class="section">
+  <h2>Questions for an Audit</h2>
+  <p>Our editorial recommendation is to request what the post omits: findings by severity and date, whether any flaw was used outside research, how exposed tokens were handled, and retest results on held-out attacks with false positive rates. For a worked method, see <a href="/guides/audit-an-agent-action/">Audit an Agent Action</a>.</p>
+</section>

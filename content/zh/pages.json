@@ -706,7 +706,7 @@
     ],
     "affiliation_disclosure": "Audit Commons 阅读了四份草案的 Datatracker 页面、Datatracker 元数据和 IETF 档案中的 -00 全文，并阅读了 SCITT 草案作者 GitHub 仓库的 README。我们未运行任何实现，未核实任何运营方是否采用这些格式，也未审阅两份评估草案所引用的配套方法学草案。",
     "body_file": "zh/bodies/ietf-agent-execution-evidence-drafts.html",
-    "source_sha256": "228eb7342ba2233a4f6c0f7a91263e4f8b021b118acce85012476f32ef2f8b8d"
+    "source_sha256": "d82eb73a0499c1767191c00379b9eb7555ee6db3d0bf345764d1a295d10ddcbe"
   },
   "news/pennsylvania-frontier-ai-audit-bills-hearing": {
     "title": "宾夕法尼亚州众议院委员会就前沿 AI 独立审计与事件报告法案举行听证会",
@@ -831,5 +831,47 @@
     "affiliation_disclosure": "SciΠvot 的条目由其第一作者提交，agent-claimcheck 由其作者推荐，V³AST-Bench 和 Concordat 由列表维护者选出。四者均与 Audit Commons 无关联。摘要依据各项目的论文或代码仓库撰写。收录进目录不代表认证其中的任何方法或结果。",
     "body_file": "zh/bodies/catalog-2026-10-27.html",
     "source_sha256": "4f87e96372ba6c8898b671a1dea19ee54cf35125d175671aa061a8deea817cba"
+  },
+  "news/nist-agent-identity-design-tenets": {
+    "title": "NIST 提出十项智能体身份系统初始设计原则",
+    "summary": "NIST 于2026年10月27日发表博客文章，就智能体身份、委托与证据提出十项初始设计原则。这些原则在11月3日的 NCCoE 通讯中得到推介，是一个起点和 NCCoE 演示工作的指引，并非最终标准或具有约束力的要求。",
+    "topics": [
+      "NIST",
+      "智能体身份",
+      "授权机制",
+      "审计证据",
+      "IETF"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 2026年11月5日可访问的 NIST 文章（其元数据列出10月28日的修改记录）、NCCoE 通讯、项目资源中心页面、-01 草案全文与 Datatracker 元数据，以及所链接的 GitHub 议题。NCCoE 项目页面对我们的请求返回访问错误，因此项目状态以资源中心页面为准。文中比较是我们的编辑解读，并非 NIST 或 IETF 的对应映射。我们未测试任何实现，也未核实任何运营方是否遵循这些原则。",
+    "body_file": "zh/bodies/nist-agent-identity-design-tenets.html",
+    "source_sha256": "f0848621c8b939e45b0549d7e4a5f387d0a0c7c553843664b1a9d7e51fa8ee9b"
+  },
+  "news/occ-bank-ai-supervisory-framework": {
+    "title": "OCC 为检查人员提供超级智能框架，未对银行提出新要求",
+    "summary": "2026年11月4日发布的 OCC 第2026-54号公告，为检查人员评估银行对超级智能的使用提供参考。超级智能是该机构对此前称为 AI 的技术的用语，也涵盖智能体。公告将 SI 纳入既有风险类别，依据后果和人工监督确定审查力度，并称不为银行设定新的期望或可强制执行的标准。",
+    "topics": [
+      "OCC",
+      "银行监管",
+      "超级智能",
+      "AI 智能体",
+      "人工监督",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 OCC 第2026-54号公告及其链接的22页框架 PDF。我们未看到检查人员培训材料、OCC 的非公开指示或任何银行检查，也未评估 OCC 将如何应用该框架。",
+    "body_file": "zh/bodies/occ-bank-ai-supervisory-framework.html",
+    "source_sha256": "1fc4fcc1ad543b54f59c3a3adfe56effbe2ed12378c17f738528002fc5812cad"
+  },
+  "news/meta-muse-bug-bounty-disclosure": {
+    "title": "Meta 披露 Muse 漏洞赏金计划：64 项有效发现，支付约 120 万美元",
+    "summary": "11月2日的 Muse 博客文章称，该计划收到逾630份提交，确认64项有效发现，支付赏金约120万美元。这些均为 Meta 自报数据，文章未引用对修复措施的独立测试。",
+    "topics": [
+      "智能体安全",
+      "提示注入",
+      "漏洞披露",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 仅汇总 Meta 公开资料，尚未测试 Muse，也未独立核实上述数据。本文略去了漏洞利用细节。",
+    "body_file": "zh/bodies/meta-muse-bug-bounty-disclosure.html",
+    "source_sha256": "e6d54685aff6beb9c8afad1d9af2db06c5dcc37ec3e6babfebe0f83552df5ac9"
   }
 }

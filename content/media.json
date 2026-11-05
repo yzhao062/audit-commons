@@ -1264,6 +1264,55 @@
       "retrieved": "2026-10-28",
       "sha256": "e051cc53da41b3fdf5612c17831ecea43079416c993b892648166a686a72fa9d",
       "changes": "Screenshot captured by Audit Commons with headless Chromium at a 1440-pixel viewport and 2x scale, clipped to the category list and its lead-in; no other edits."
+    },
+    "nist-campus-agent-identity-tenets": {
+      "src": "/assets/media/nist-campus.png",
+      "kind": "photo",
+      "width": 480,
+      "height": 320,
+      "alt": "White-blossomed trees frame a grass lawn, with evergreen and red-leafed trees in front of a pale multistory building under a blue sky.",
+      "caption": "The NIST Gaithersburg campus in the spring. Archive photograph by J. Stoughton/NIST; metadata in NIST's original file dates it to April 18, 2018. It does not depict the October 27, 2026 blog post or any agent identity work.",
+      "credit": "J. Stoughton/NIST",
+      "source_url": "https://www.nist.gov/comms/gaithersburg-campus-photos",
+      "download_url": "https://www.nist.gov/sites/default/files/styles/480_x_480_limit/public/images/2023/05/16/gaithersburg_campus.png?itok=0-1ADTte",
+      "license": "NIST public information",
+      "license_url": "https://www.nist.gov/copyrights-disclaimers",
+      "retrieved": "2026-09-16",
+      "sha256": "bb25669408b1bcb43743d7e784b4d8fa972c0b75558d6ee3d51c34156118591a",
+      "changes": "Same unmodified bytes as the nist-campus asset, a 480-pixel NIST gallery derivative retrieved September 16, 2026; displayed at responsive sizes. Rechecked November 5, 2026: the recorded derivative URL returned 404; the NIST image gallery still shows the image credited to NIST; visual and pixel comparison matched it to DSC_9049_processed.jpg on the Gaithersburg Campus Photos page, credited J. Stoughton/NIST, whose EXIF capture date is April 18, 2018."
+    },
+    "occ-constitution-center-2024": {
+      "source_url": "https://commons.wikimedia.org/wiki/File:Constitution_Center_-_Washington_DC_(53840482180).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Constitution_Center_-_Washington_DC_%2853840482180%29.jpg/1280px-Constitution_Center_-_Washington_DC_%2853840482180%29.jpg",
+      "src": "/assets/media/occ-constitution-center-2024.jpg",
+      "kind": "photo",
+      "alt": "Large office building at a street corner: two tan piers flank a recessed dark-glass section between glass-walled wings under a clear blue sky, with trees along the sidewalk and a white pickup truck on the street.",
+      "caption": "Constitution Center in Washington, DC, June 21, 2024. The OCC lists this building as its headquarters. Archive photograph; it does not depict the November 2026 framework, an examination, or any bank.",
+      "credit": "ajay_suresh / Wikimedia Commons",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "changes": "Wikimedia-served 1280-pixel thumbnail of the 4,814 by 2,708 original, downloaded without further modification.",
+      "notice_file": "/assets/media/licenses/occ-constitution-center-2024.txt",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7e2151dd419546a88aaf79beb0555f5b295866ab07c2679f4a9739ad7a6d5844",
+      "retrieved": "2026-11-05"
+    },
+    "meta-muse-bug-bounty-disclosure-f8-2019": {
+      "src": "/assets/media/mark-zuckerberg-f8-2019.jpg",
+      "kind": "photo",
+      "width": 1280,
+      "height": 854,
+      "alt": "Mark Zuckerberg, in a gray sweater, speaking onstage at the F8 developer conference on April 30, 2019, in front of a blue light display.",
+      "caption": "Mark Zuckerberg speaking at F8 on April 30, 2019. Archive photograph of Meta's chief executive from an unrelated event; it does not depict Muse, the Muse bug bounty program, or the reports described here.",
+      "credit": "Anthony Quintano / Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Mark_Zuckerberg_F8_2019_Keynote_(47774202191).jpg",
+      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Mark_Zuckerberg_F8_2019_Keynote_%2847774202191%29.jpg/1280px-Mark_Zuckerberg_F8_2019_Keynote_%2847774202191%29.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "retrieved": "2026-09-27",
+      "sha256": "3ca440dada47aa3b116ae7cf160fe526d288aa31e287e0a92a4bd271960b35a5",
+      "changes": "Unmodified Wikimedia-generated 1280-pixel thumbnail; displayed at responsive sizes."
     }
   },
   "articles": {
@@ -1319,7 +1368,10 @@
     "news/anthropic-autonomous-vulnerability-discovery": "anthropic-vulnerability-post",
     "news/redwood-simulated-control-evaluations": "redwood-sce-safety",
     "news/aisi-reprobait-managed-access": "reprobait-fidelity",
-    "news/ari-ai-research-automation-disclosure": "ari-rnd-reporting-categories"
+    "news/ari-ai-research-automation-disclosure": "ari-rnd-reporting-categories",
+    "news/nist-agent-identity-design-tenets": "nist-campus-agent-identity-tenets",
+    "news/occ-bank-ai-supervisory-framework": "occ-constitution-center-2024",
+    "news/meta-muse-bug-bounty-disclosure": "meta-muse-bug-bounty-disclosure-f8-2019"
   },
   "resources": {
     "nist-ai-rmf": "nist",

@@ -20,3 +20,10 @@
   </ul>
   <p>另见<a href="/guides/audit-an-agent-action/">审计智能体行动</a>、<a href="/features/benchmark-scores-and-agent-safety/">为什么基准得分不能确立智能体的安全性</a>和 <a href="/news/nist-nccoe-agent-identity-concept-paper/">NIST 探讨 AI 智能体的身份标识与授权机制</a>。</p>
 </section>
+<section class="section">
+  <h2>相关工作补记（2026年11月5日）</h2>
+  <p>上文汇总的范围仍限于10月19日至23日提交的新 -00 草案。AER-1 不在此列：该草案的 -00 版本日期为9月23日，因此其10月22日的修订版 -26 并非新提交的草案。Audit Commons 现将其作为相关工作加以跟踪。</p>
+  <p><a href="https://datatracker.ietf.org/doc/draft-zambo-aer1/26/">draft-zambo-aer1-26</a> 由 Brennan Zambo 提交，提出一种针对单次智能体工具调用的可移植回执。回执包含规范化的输出字节（canonical bytes）及其 SHA-256 承诺值，验证方可以检查其格式并重新计算哈希。通过这些检查所能说明的内容很有限。草案称，该承诺“绑定的是所记录的字节，而非现实世界”，因此通过检查并不表明输出内容真实。草案没有定义签发方认证或签名方案，并警告“任何人都可以为任意工具名称、任意来源类别（provenance class）和任意字节生成格式正确的回执”，因此要证明调用由谁执行，还需要单独的信任根或其他证据。完整性同样需要外部证据：生成方必须为其收到的每一次调用签发回执，但这一规则无法涵盖从未到达生成方的调用；草案也承认，重建后的较短哈希链仍能通过验证，除非对照外部承诺进行核对。</p>
+  <p>作者报告称已部署参考实现，并公开了一份<a href="https://zambo.dev/aer1/corpus.json">一致性测试语料库</a>。一致性是指在该语料库上与参考运行器的判定结果相同，这并不表明某一部署记录了每一次外部调用。草案还列出了一些第三方验证方。本补记依据两份草案正文、其 Datatracker 记录和语料库清单；Audit Commons 未运行该实现或语料库，也未核实草案中的实现情况报告。</p>
+  <p>同一作者的另一份草案 <a href="https://datatracker.ietf.org/doc/draft-zambo-aer1-wimse-mapping/02/">draft-zambo-aer1-wimse-mapping-02</a>（11月1日）提出，将 AER-1 回执作为一种候选格式，用于 IETF WIMSE 工作组草案 AI Identity Management System（AIMS）第11节所要求的审计记录。AER-1 和这份映射草案都是个人提交。Datatracker 对两者均未列出流（stream）和预期状态，但两份草案文首都标注信息性（Informational）。两者均未被工作组采纳，也都不是 IETF 标准。</p>
+</section>

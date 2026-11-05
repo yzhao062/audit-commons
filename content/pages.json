@@ -1462,7 +1462,7 @@
     "summary": "Between October 19 and 23, 2026, authors posted four individual, version -00 Internet-Drafts on the IETF Datatracker. Two propose signed records of AI agent runs and delegation chains, and two define terms, test profiles, and log fields for agent security evaluations. None has working group adoption or IETF endorsement, and the two agent-record drafts report a prototype or no tested implementation.",
     "author": "Audit Commons",
     "published": "2026-10-24",
-    "updated": "2026-10-24",
+    "updated": "2026-11-05",
     "event_date": "2026-10-19",
     "kind": "news",
     "topics": [
@@ -1477,7 +1477,9 @@
       "https://datatracker.ietf.org/doc/draft-thaha-scitt-agent-execution-evidence/",
       "https://datatracker.ietf.org/doc/draft-watts-agent-continuity-evidence/",
       "https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-profiles/",
-      "https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-terminology/"
+      "https://datatracker.ietf.org/doc/draft-hcf-bpm-agent-security-benchmark-terminology/",
+      "https://datatracker.ietf.org/doc/draft-zambo-aer1/26/",
+      "https://datatracker.ietf.org/doc/draft-zambo-aer1-wimse-mapping/02/"
     ],
     "canonical_url": "https://auditcommons.org/news/ietf-agent-execution-evidence-drafts/",
     "affiliation_disclosure": "Audit Commons read the Datatracker pages, the Datatracker metadata, and the full -00 texts in the IETF archive for all four drafts, plus the README of the SCITT authors' GitHub repository. We did not run any implementation, did not verify that any operator uses these formats, and did not review the companion methodology draft that the evaluation drafts cite.",
@@ -1761,5 +1763,101 @@
     "affiliation_disclosure": "SciΠvot's first author submitted its entry, agent-claimcheck's author suggested it, and the list maintainer selected V³AST-Bench and Concordat. None of the four is affiliated with Audit Commons. The summaries follow each project's paper or repository. Catalog inclusion does not certify any method or result.",
     "body_file": "bodies/catalog-2026-10-27.html",
     "related_slugs": []
+  },
+  {
+    "slug": "news/nist-agent-identity-design-tenets",
+    "title": "NIST Proposes Ten Initial Design Tenets for Agent Identity Systems",
+    "summary": "An October 27 NIST blog post proposes ten initial design tenets for agent identity, delegation, and evidence. Highlighted in the November 3 NCCoE bulletin, they are a starting point and guideposts for NCCoE demonstrations, not a final standard or a binding requirement.",
+    "author": "Audit Commons",
+    "published": "2026-11-05",
+    "updated": "2026-11-05",
+    "event_date": "2026-10-27",
+    "kind": "news",
+    "topics": [
+      "NIST",
+      "Agent identity",
+      "Authorization",
+      "Audit evidence",
+      "IETF"
+    ],
+    "source_urls": [
+      "https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems",
+      "https://content.govdelivery.com/accounts/USNIST/bulletins/4317b97",
+      "https://pages.nist.gov/nccoe-ai-identity/",
+      "https://pages.nist.gov/nccoe-ai-identity/summary-of-comments.html",
+      "https://datatracker.ietf.org/doc/draft-ietf-wimse-aims/",
+      "https://github.com/ietf-wg-wimse/draft-ietf-wimse-aims/issues/161"
+    ],
+    "canonical_url": "https://auditcommons.org/news/nist-agent-identity-design-tenets/",
+    "affiliation_disclosure": "Audit Commons read the NIST post as available on November 5, 2026 (its metadata lists an October 28 modification), the NCCoE bulletin, the project hub pages, the -01 draft text and Datatracker metadata, and the linked GitHub issue. The NCCoE project page returned an access error to our request, so project status comes from the hub. The comparison is our editorial reading, not a NIST or IETF mapping. We did not test any implementation or verify that any operator follows the tenets.",
+    "body_file": "bodies/nist-agent-identity-design-tenets.html",
+    "related_slugs": [
+      "news/nist-nccoe-agent-identity-concept-paper",
+      "guides/audit-an-agent-action",
+      "news/ietf-agent-execution-evidence-drafts"
+    ]
+  },
+  {
+    "slug": "news/occ-bank-ai-supervisory-framework",
+    "title": "OCC Gives Examiners a Super Intelligence Framework, Not New Requirements for Banks",
+    "summary": "OCC Bulletin 2026-54, issued November 4, 2026, gives examiners a resource for evaluating banks' use of super intelligence, its term for technologies previously called AI, including agents. It keeps SI within existing risk categories, ties scrutiny to consequences and oversight, and says it sets no new expectations or enforceable standards for banks.",
+    "author": "Audit Commons",
+    "published": "2026-11-05",
+    "updated": "2026-11-05",
+    "event_date": "2026-11-04",
+    "kind": "news",
+    "topics": [
+      "OCC",
+      "Bank supervision",
+      "Super Intelligence",
+      "AI agents",
+      "Human oversight",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-54.html",
+      "https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-97a.pdf",
+      "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-13.html",
+      "https://www.occ.gov/about/who-we-are/locations/index-locations.html"
+    ],
+    "canonical_url": "https://auditcommons.org/news/occ-bank-ai-supervisory-framework/",
+    "affiliation_disclosure": "Audit Commons read OCC Bulletin 2026-54 and the linked 22-page framework PDF. We have not seen examiner training, nonpublic OCC instructions, or any bank examination, and we have not assessed how the OCC will apply the framework.",
+    "body_file": "bodies/occ-bank-ai-supervisory-framework.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "news/anthropic-expert-deference-agent-judgment",
+      "news/aicpa-ai-financial-audit-practice-aid"
+    ]
+  },
+  {
+    "slug": "news/meta-muse-bug-bounty-disclosure",
+    "title": "Meta Reports 64 Valid Findings and About $1.2 Million in Muse Bug Bounty Payouts",
+    "summary": "A November 2 Muse blog post reports more than 630 submissions, 64 valid findings, and about $1.2 million in payouts. These are Meta's figures; the post cites no independent test of the fixes.",
+    "author": "Audit Commons",
+    "published": "2026-11-05",
+    "updated": "2026-11-05",
+    "event_date": "2026-11-02",
+    "kind": "news",
+    "topics": [
+      "Agent security",
+      "Prompt injection",
+      "Vulnerability disclosure",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://muse.ai/blog/securing-muse",
+      "https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://research.meta.ai/static/muse-wonder-model-card",
+      "https://research.meta.ai/blog/muse-wonder"
+    ],
+    "canonical_url": "https://auditcommons.org/news/meta-muse-bug-bounty-disclosure/",
+    "affiliation_disclosure": "Audit Commons summarizes public Meta materials and has not tested Muse or independently verified these figures. This brief omits exploit details.",
+    "body_file": "bodies/meta-muse-bug-bounty-disclosure.html",
+    "related_slugs": [
+      "news/meta-muse-security-warning",
+      "news/meta-muse-wonder-safety-disclosure",
+      "guides/audit-an-agent-action"
+    ]
   }
 ]

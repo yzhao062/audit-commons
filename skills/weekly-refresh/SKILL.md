@@ -25,6 +25,8 @@ Inspect Git status, recent editorial commits, and existing `content/pages.json`,
 
 Search existing titles, canonical source URLs, paper identifiers, project repositories, and resource IDs before drafting. Distinguish a new event from a correction, a new version of existing work, and an old resource newly cataloged. Retain existing URLs and IDs for the same work.
 
+For a date-bounded standards roundup, check earlier adjacent drafts and companion mappings before writing. When a reader flags related work outside the stated scope, consider a dated follow-up on the original article rather than expanding the historical roundup or labeling it a correction. Treat email and issue submissions as leads: verify the latest revision and adoption status on the official tracker, distinguish author-reported implementation from independently verified behavior, and cite public evidence only.
+
 ## Route candidates before writing
 
 | Candidate or reader need | Destination | Read when applicable |
