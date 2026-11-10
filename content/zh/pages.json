@@ -421,7 +421,7 @@
     ],
     "affiliation_disclosure": "Audit Commons 仅汇总 Meta 公开资料，尚未对相关模型进行独立测试。",
     "body_file": "zh/bodies/meta-muse-wonder-safety-disclosure.html",
-    "source_sha256": "5568c9ec6ac48a0a20276266d0ace0f23961f1c0ff3d5f9dd344a89ba526fb6c"
+    "source_sha256": "f2028d508d2d8e29b5c9ae24c25b19f1820ce0d176d91813ae5f095cbe7876de"
   },
   "news/gemini-argon-monitorability-safety-report": {
     "title": "Google DeepMind 发布 Gemini 4 Argon 安全报告，披露可监测性与沙盒评估控制发现",
@@ -873,5 +873,91 @@
     "affiliation_disclosure": "Audit Commons 仅汇总 Meta 公开资料，尚未测试 Muse，也未独立核实上述数据。本文略去了漏洞利用细节。",
     "body_file": "zh/bodies/meta-muse-bug-bounty-disclosure.html",
     "source_sha256": "e6d54685aff6beb9c8afad1d9af2db06c5dcc37ec3e6babfebe0f83552df5ac9"
+  },
+  "news/metr-anthropic-ai-rd-acceleration-assessment": {
+    "title": "METR 判断 Anthropic 的能力进展速度约为此前的两倍，但 Anthropic 删节了大部分关键证据",
+    "summary": "METR 在2026年11月5日的报告中表示，参与其在 Anthropic 为期11周评估的多数成员判断，Anthropic 在定义明确的任务上提升模型能力的速度，很可能约为其2024年3月至2025年10月期间的两倍，但不确定性很高。Anthropic 删去了 METR 认为最有参考价值的证据中的大部分，读者因此只能在很大程度上依赖 METR 的判断。",
+    "topics": [
+      "METR",
+      "Anthropic",
+      "AI 研发自动化",
+      "独立评估",
+      "评估机构访问权限",
+      "信息披露"
+    ],
+    "body_file": "zh/bodies/metr-anthropic-ai-rd-acceleration-assessment.html",
+    "affiliation_disclosure": "Audit Commons 依据 METR 的公开报告撰写本文，未独立复现其结论。",
+    "source_sha256": "42fcae897358f0a2b7618c2b1993de47a407e751d6dad27c8142a0b19f638f60"
+  },
+  "news/openai-eval-production-behavior-gap": {
+    "title": "OpenAI 发现，智能体在一项安全评估中遵守警告的频率，低于在匹配的 Codex 生产案例中",
+    "summary": "OpenAI 在2026年11月3日的文章中报告，六个模型在其“尊重警告”（Respecting Warnings）评估中的成功率，比在近似匹配的 Codex 生产环境决策中低10.2至37.4个百分点。告诉 GPT-6.1 Sol 它正在接受评估几乎没有影响，而说明正确或错误的目标会使成功率大幅变化。这一结果只涉及一项评估和一个产品。",
+    "topics": [
+      "OpenAI",
+      "模型评估",
+      "评估完整性",
+      "编码智能体",
+      "思维链",
+      "智能体安全"
+    ],
+    "body_file": "zh/bodies/openai-eval-production-behavior-gap.html",
+    "affiliation_disclosure": "Audit Commons 依据 OpenAI 的公开文章撰写本文，未独立复现其结果。",
+    "source_sha256": "2ac2b82e00c807edd85f33869cdc5cb2062f3c09781550de41c965aca0bc7a5f"
+  },
+  "news/anthropic-fable-mythos-5-2-safeguards": {
+    "title": "Anthropic 向所有用户开放 Claude Fable 5.2，Mythos 5.2 仅限经审核用户使用",
+    "summary": "2026年11月9日，Anthropic 向所有用户开放 Claude Fable 5.2，并以分类器拦截高风险网络活动和大多数研究性生物学任务。底层模型相同、防护措施更为宽松的 Mythos 5.2 仅限经审核用户直接访问。不符合继续使用零数据保留条件的客户，其数据将为安全监控保留30天。",
+    "topics": [
+      "Anthropic",
+      "模型发布",
+      "访问控制",
+      "安全监控",
+      "沙箱逃逸",
+      "红队测试"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Anthropic 的公开公告和系统卡（其中转载了外部评估方的声明）撰写本文，未测试任一模型，也未独立复现所报告的结果。",
+    "body_file": "zh/bodies/anthropic-fable-mythos-5-2-safeguards.html",
+    "source_sha256": "1b91b065d6b74fff6b084e2c8c9d3c24413f33940c36620799f393613c7ad865"
+  },
+  "news/cert-in-ai-security-auditing-guidelines": {
+    "title": "CERT-In 指南按风险分层确定 AI 审计独立性，并列出智能体日志检查项",
+    "summary": "CERT-In《AI 安全审计指南》1.0版落款日期为2026年11月4日。指南将 AI 系统分为四个风险层级，以此确定审计的独立程度，并要求审计人员检查智能体身份、工具权限、审批关卡，以及能够重建执行链的日志。该 PDF 未援引任何使其具有约束力的法定条款。",
+    "topics": [
+      "独立审计",
+      "AI 智能体",
+      "审计证据",
+      "授权机制",
+      "网络安全"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 CERT-In 公开的指南页面、PDF 和指令页面撰写本文，未看到依据该指南开展的任何审计。",
+    "body_file": "zh/bodies/cert-in-ai-security-auditing-guidelines.html",
+    "source_sha256": "1b6072b07a6ba0ea8f6915207b7c07ce7bb0c9caf1c2e064a35c77bf3e2eeeed"
+  },
+  "news/nist-adversarial-ml-agentic-taxonomy-draft": {
+    "title": "NIST 草案新增智能体攻击分类，但不涵盖非预期的智能体失误",
+    "summary": "NIST 特别出版物 2400-102 E2026 初始公开草案于2026年11月9日发布，以 AI 100-2 系列为基础，为针对智能体的攻击新增完整一节和七个索引编号。草案只涵盖对抗性攻击，属于自愿性质，征求意见截止日期为2026年12月18日。",
+    "topics": [
+      "NIST",
+      "智能体安全",
+      "提示注入",
+      "多智能体系统",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 NIST 公开的草案及其2025年版撰写本文，未测试草案所述的任何攻击或缓解措施。",
+    "body_file": "zh/bodies/nist-adversarial-ml-agentic-taxonomy-draft.html",
+    "source_sha256": "8c292786d2875929e2da439ededd90cd5fe27b4491d586afe7d80befbbfeb706"
+  },
+  "updates/catalog-2026-11-09": {
+    "title": "资源目录更新：七个用于记录和核查智能体工作的工具，以及一篇修订论文",
+    "summary": "新增七项资源，使目录增至230项：五个对智能体工作记录进行签名、索引或验证的工具，两个用于检查声明的智能体角色或规范编码智能体审查的工具，以及一条更新至论文修订版的条目，该修订版撤回了此前关于查询预算的建议。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "核验",
+      "编码智能体"
+    ],
+    "affiliation_disclosure": "每个工具均由其作者、维护者或已披露的关联方提交；meilynx-verify 的提交者披露了其 Meilynx 联合创始人身份。它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库及修订后的论文撰写。收录进目录不代表认证任何工具、安全特性或结果。",
+    "body_file": "zh/bodies/catalog-2026-11-09.html",
+    "source_sha256": "5e1b3eaac53d2d1446f685e330f24b9ae29a911a6ad91f12f49eac1321b75a9a"
   }
 }

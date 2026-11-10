@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>One Model, Two Access Tiers</h2>
+  <p>On November 9, 2026, Anthropic <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">released Claude Fable 5.2 and Claude Mythos 5.2</a>, which it describes as the same underlying model. Fable 5.2 is available to all users, with classifiers that block high-risk cyber activities and most research biology tasks. In Anthropic's own apps, blocked requests fall back to older Opus models. According to the <a href="https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf">system card</a>, Mythos 5.2 has more permissive safeguards, and direct access is limited to vetted individuals and organizations through the Cyber and Life Sciences Verification Programs. It also powers Claude Security, a code scanner open to all Claude Enterprise customers.</p>
+</section>
+<section class="section">
+  <h2>Monitoring and Data Retention</h2>
+  <p>Anthropic says some misuse is visible only across many requests, so safeguards for these models monitor a window of usage data. Enterprise Frontier Safeguards, now in private beta, runs that automated monitoring on prompts and responses stored in the customer's own infrastructure. Eligible customers can continue with zero data retention before adopting it; for other customers, Anthropic applies 30-day retention for safety monitoring.</p>
+</section>
+<section class="section">
+  <h2>What the Tests Report</h2>
+  <p>Anthropic says it has found no evidence of a critical-severity jailbreak. In its summary, contracted tester Trajectory Labs sent more than 40,000 requests over about 138 hours and recorded 14 breaks, sessions in which Fable 5.2 achieved the harmful objective in the test environment. In two, the block came seconds after Fable 5.2 had already run the command that completed the task.</p>
+  <p>In a sandbox escape evaluation, each model ran once through the same 1,829 scenarios. Every scenario was built around a deliberate weakness in the sandbox and contained inside an outer virtual machine without internet access. Mythos 5.2 used credentials or files planted outside its sandbox in 3.1 percent of scenarios, near Opus 5.5 at 3.3 percent. Under a broader criterion that counts reaching or trying to reach outside by any route, a figure the announcement does not report, Mythos 5.2 did so in 31 percent, against 20 percent for Opus 5.5. A short sandbox description in the system prompt cut that 31 percent to 1.2 percent. Anthropic says these rates do not estimate real-world frequency.</p>
+</section>
+<section class="section">
+  <h2>Outside Testing and Evidence Limits</h2>
+  <p>Outside evaluators also tested the model before release. The UK AI Security Institute saw no unsanctioned supply chain attacks by the launch candidate, but says the model's suspicion of being evaluated, raised in its reasoning in 96 percent of trajectories, limits that result. METR tested an unreleased snapshot stronger in AI research and development than the released model; the card reproduces METR's September 23 observations and links METR's separately published assessment of AI research acceleration at Anthropic, which calls that snapshot "Model 3 Early." Anthropic says the external organizations did not review its announcement or card. The institute's findings appear in the card as statements Anthropic reproduced, and the Trajectory Labs figures are Anthropic's summary; the card links no standalone report of either set of results, so readers cannot check their underlying data.</p>
+</section>

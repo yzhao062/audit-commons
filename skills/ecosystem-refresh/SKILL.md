@@ -83,15 +83,24 @@ Run this phase inside the Awesome checkout or integration clone.
 1. **Evidence-based discovery:** Dispatch bounded discovery units via `/prun` with Agy workers across the
    requested date window. Follow [weekly-refresh](../weekly-refresh/SKILL.md) evidence standards: cite primary URLs,
    event dates, verified claims, and limits; separate promises from implementations; record no-change if quiet.
-2. **Substantive news media:** Every news article requires a relevant lead image in `content/media.json` and
-   `content/zh/media.json` per [docs/media.md](../../docs/media.md). The build calls `editorial_media.bind_media`
-   to reject missing or logo leads in real content; `scripts/test_news_media.py` tests regression fixtures.
-   Conduct manual visual review to reject title cards, generic decoration, or pure text-box diagrams.
-   Use real source figures, screenshots, or photographs; generated illustrations need the user's explicit
-   approval and disclosure in both languages, otherwise report the missing real image.
+2. **Recognizable news media:** Every news article requires a relevant lead image in `content/media.json` and
+   `content/zh/media.json`, chosen by the [news lead order](../../docs/media.md#news-leads): real photographs of
+   the relevant companies, people, events, or tasks, genuine product or task interfaces, or the subject's authentic
+   official logo with its actual rights and governing terms checked, before paper charts or report-text screenshots.
+   Read the asset and publisher terms, including logo, trademark, and government copyright policies; an official
+   source, an editorial-identification label, or a report download link does not grant reuse rights. If applicable
+   published terms explicitly forbid reuse or require permission that is not recorded, use a verified Creative
+   Commons or public-domain real photograph or another licensed authentic asset. A mark with independently verified
+   copyright-free status and no such restriction needs no separate owner license. The build
+   (`editorial_media.bind_media`) rejects news without a registered image; `scripts/test_news_media.py` covers that
+   gate and an official-logo lead. Visually reject title cards, generic decoration, or pure text-box diagrams.
+   Generated illustrations need the user's explicit approval and disclosure in both languages and are never a
+   workaround for restricted marks. If no licensed real image is found, report the missing real image.
 3. **Validation and preview:** Run the validation suite (`build.py`, `check.py`, `check_localization.py`,
    `check_navigation.py`, `check_reading_lists.py`, `test_news_media.py`). For content or media modifications,
-   preview locally with `scripts/browser_check.py` and inspect rendered desktop and mobile cards.
+   preview locally with `scripts/browser_check.py` and complete the
+   [weekly-refresh news image check](../weekly-refresh/SKILL.md#required-news-image-check) on the rendered homepage,
+   Latest grid, and articles at desktop and mobile widths.
 4. **Refresh record:** Document the refresh in `docs/refreshes/YYYY-MM-DD.md` before staging and review.
 5. **Prepublication gate:** Stage only intended files. Run `/vet both` (evaluating exact staged content across
    two independent reviewers).

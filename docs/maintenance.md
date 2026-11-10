@@ -6,7 +6,7 @@ This is the repeatable workflow for updating Audit Commons. It records decisions
 
 Readers should immediately recognize a place to learn, follow news, and find useful resources. Lead with identifiable stories, dates, sources, explanations, and a browsable library. Keep subscription invitations quiet and secondary to reading. Avoid a product-style hero, repeated calls to action, promotional claims, or giving maintainer projects disproportionate prominence.
 
-Every news article requires a relevant lead image. Use relevant source photographs, author figures, or real screenshots with verified rights. If suitable source imagery is not found, keep searching and report the gap; AI-generated or other generated illustrations require the user's explicit request or approval and disclosure in both language captions. A generic diagram does not substitute for a requested news photograph. Every news lead must carry substantive visual content. Logos, wordmarks, title cards, generic decoration, and pure text-box diagrams do not qualify. The build rejects news logos; editors must visually review relevance and substance. Other article types and resource cards may remain text-only.
+Every news article requires a relevant lead image, with verified rights, that lets readers recognize the subject. Prefer a real photograph of the relevant company, people, event, place, or task, a genuine product or task interface, or the subject's authentic official logo with its actual rights and governing terms checked, as ordered in [Editorial images](media.md#news-leads). Paper charts and report-text screenshots support evidence; they are not default leads. If suitable source imagery with usable terms is not found, keep searching and report the gap; AI-generated or other generated illustrations require the user's explicit request or approval and disclosure in both language captions. A generic diagram does not substitute for a requested news photograph. Title cards, generic decoration, and pure text-box diagrams do not qualify. The build rejects news articles without a registered image; editors must visually review relevance and recognizability. Other article types and resource cards may remain text-only.
 
 ## Where updates belong
 
@@ -86,7 +86,7 @@ Before a full refresh, identify editorial additions outside the upstream snapsho
 
 ## Images: lessons from the first illustrated edition
 
-Follow [Editorial images](media.md) for registry fields and rights. Verify what an image actually depicts, its original date, exact credit, and asset-specific permissions. An institution's logo is not evidence of an affiliation. Label archive photographs with their dates, and present sourced charts or interface scores as illustrative material rather than results measured by Audit Commons.
+Follow [Editorial images](media.md) for registry fields and rights. Verify what an image actually depicts, its original date, exact credit, and asset-specific permissions. Read the asset's own terms and the publisher's logo, trademark, or government copyright policy; an official source, an editorial-identification label, or a report download link does not establish reuse rights. When applicable published terms explicitly forbid reuse or require permission that is not recorded, replace the image with a licensed real photograph or another licensed authentic asset, as described under [Rights](media.md#rights). An institution's logo is not evidence of an affiliation. Label archive photographs with their dates, and present sourced charts or interface scores as illustrative material rather than results measured by Audit Commons.
 
 Store assets locally with their provenance and applicable legal notices. Preserve downloaded bytes: Git line-ending conversion of an SVG changes its SHA-256 even when it looks identical. The media rules in `.gitattributes` prevent this. Do not reformat upstream license files to satisfy whitespace preferences.
 
@@ -94,7 +94,7 @@ Keep SVG validation strict. If an upstream logo/banner contains active content, 
 
 Preserve aspect ratios and legibility. Contain logos and scientific figures instead of cropping them, provide informative alt text and intrinsic dimensions, and avoid enlarging small images. Check light logos against the actual background. Keep full-resolution article images accessible while considering appropriately sized previews for lists.
 
-Screenshots with example scores must keep their explanatory context. They use the generic social-preview fallback, as do SVGs and raster images below the current 600-pixel width threshold. Large raster photographs or figures may supply article previews. Metadata must describe what readers actually see.
+Screenshots with example scores must keep their explanatory context. They use the generic social-preview fallback, as do SVGs and raster images below the current 600-pixel width threshold. Large raster photographs, figures, or logos may supply article previews. Metadata must describe what readers actually see.
 
 Check transfer size as the library grows. The initial September 16 set was about 3.8 MB, with roughly 2.4 MB of media transferred after a full homepage scroll during review. These are historical observations, not a performance target or a current speed measurement. Lazy loading helps initial loading but does not eliminate total transfer; prefer suitable source thumbnails or documented derivatives for future growth.
 
@@ -117,7 +117,7 @@ python -m http.server 8765 --bind 127.0.0.1 --directory _site
 python scripts/browser_check.py --base-url http://127.0.0.1:8765
 ```
 
-Use the actual server port if different. Inspect desktop and narrow mobile layouts, image decoding, captions and credit links, long titles, and overflow. For resource interactions, include combined filters, URL state, keyboard use, and reading without JavaScript. For documentation-only changes, check the diff, referenced paths, and commands; rerunning browser tests is unnecessary unless site behavior changed.
+Use the actual server port if different. Inspect desktop and narrow mobile layouts of the homepage, Latest grid, and changed articles, including image decoding, captions and credit links, long titles, and overflow. For resource interactions, include combined filters, URL state, keyboard use, and reading without JavaScript. For documentation-only changes, check the diff, referenced paths, and commands; rerunning browser tests is unnecessary unless site behavior changed.
 
 For the weekly-refresh prepublication gate, `/vet both` selects two independent reviewers: Claude and Agy when Codex coordinates, or Codex and Agy when Claude coordinates. Dispatch them sequentially, use their available review channels, and disclose an unavailable reviewer. Do not label a self-review as an independent review. Keep review scratch files, browser captures, credentials, and private account details outside published output.
 

@@ -6,7 +6,7 @@ import unittest
 
 from build import build_article_page
 from check import HtmlStructureExtractor
-from editorial_media import bind_media
+from editorial_media import bind_media, render_media
 
 
 class NewsMediaTests(unittest.TestCase):
@@ -29,28 +29,58 @@ class NewsMediaTests(unittest.TestCase):
             root = Path(directory)
             self.assertEqual(bind_media(root, root, [{'slug': 'guide/example', 'kind': 'guide'}], []), [])
 
-    def test_logos_are_rejected_for_news_but_allowed_for_resources(self):
+    def test_official_logo_binds_and_renders_as_news_lead(self):
+        site = {
+            'name': 'Audit Commons', 'tagline': 'News about AI auditing.',
+            'maintainer': {'name': 'Yue Zhao', 'url': 'https://yzhao062.github.io/'},
+        }
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / 'media').mkdir()
-            data = b'<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"/>'
+            data = b'<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80"><rect width="300" height="80"/></svg>'
             (root / 'media/logo.svg').write_bytes(data)
             media = {
-                'src': '/assets/media/logo.svg', 'kind': 'logo', 'width': 10, 'height': 10,
-                'alt': 'Project logo', 'caption': 'Project logo.', 'credit': 'Project',
-                'source_url': 'https://example.org/', 'download_url': 'https://example.org/logo.svg',
-                'license': 'Editorial identification', 'license_url': 'https://example.org/',
+                'src': '/assets/media/logo.svg', 'kind': 'logo', 'width': 300, 'height': 80,
+                'alt': 'Example Lab logo', 'caption': 'Official Example Lab logo, shown for identification.',
+                'credit': 'Example Lab', 'source_url': 'https://example.org/brand/',
+                'download_url': 'https://example.org/logo.svg',
+                'license': 'Trademark; editorial identification', 'license_url': 'https://example.org/terms/',
                 'sha256': sha256(data).hexdigest(), 'changes': 'Unmodified.',
             }
-            manifest = {'assets': {'logo': media}, 'articles': {'news/example': 'logo'}, 'resources': {}}
+            manifest = {'assets': {'logo': media}, 'articles': {'news/example': 'logo'},
+                        'resources': {'example': 'logo'}}
             (root / 'media.json').write_text(json.dumps(manifest), encoding='utf-8')
-            with self.assertRaisesRegex(ValueError, 'a logo cannot serve as a substantive news image'):
-                bind_media(root, root, [{'slug': 'news/example', 'kind': 'news'}], [])
-            manifest.update(articles={}, resources={'example': 'logo'})
-            (root / 'media.json').write_text(json.dumps(manifest), encoding='utf-8')
+            page = {'slug': 'news/example', 'kind': 'news', 'title': 'Example News',
+                    'summary': 'Example summary.', 'published': '2026-11-09'}
             resources = [{'id': 'example'}]
-            bind_media(root, root, [], resources)
-            self.assertEqual(resources[0]['_media']['kind'], 'logo')
+            self.assertEqual(bind_media(root, root, [page], resources), [(root / 'media/logo.svg').resolve()])
+            self.assertEqual((page['_media']['kind'], resources[0]['_media']['kind']), ('logo', 'logo'))
+
+            for context in ('lead', 'index', 'compact'):
+                with self.subTest(context=context):
+                    parsed = HtmlStructureExtractor()
+                    parsed.feed(render_media(page, context, '/news/example/'))
+                    self.assertEqual([image['src'] for image in parsed.images], [media['src']])
+                    self.assertIn('/news/example/', {href for href, _ in parsed.links})
+            for locale in ('en', 'zh'):
+                with self.subTest(locale=locale):
+                    output = build_article_page(page, site, '<p>Example.</p>', 'https://auditcommons.org', locale=locale)
+                    parsed = HtmlStructureExtractor()
+                    parsed.feed(output)
+                    image = next(image for image in parsed.images if image['src'] == media['src'])
+                    self.assertEqual((image['alt'], image['width'], image['height']), (media['alt'], '300', '80'))
+                    self.assertLessEqual({media['source_url'], media['license_url']}, {href for href, _ in parsed.links})
+                    article = next(json.loads(raw) for raw in parsed.json_ld_scripts
+                                   if json.loads(raw).get('@type') == 'NewsArticle')
+                    self.assertEqual(article['image']['url'], 'https://auditcommons.org' + media['src'])
+                    self.assertEqual(article['image']['creditText'], media['credit'])
+
+            active = b'<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80"><script/></svg>'
+            (root / 'media/logo.svg').write_bytes(active)
+            media['sha256'] = sha256(active).hexdigest()
+            (root / 'media.json').write_text(json.dumps(manifest), encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'active SVG content'):
+                bind_media(root, root, [dict(page)], [])
 
     def test_pending_rights_are_visible_without_a_structured_license_claim(self):
         site = {

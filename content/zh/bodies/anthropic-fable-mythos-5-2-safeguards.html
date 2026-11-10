@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>同一模型，两级访问</h2>
+  <p>2026年11月9日，Anthropic <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">发布了 Claude Fable 5.2 和 Claude Mythos 5.2</a>，并称二者是同一个底层模型。Fable 5.2 向所有用户开放，配有分类器，用于拦截高风险网络活动和大多数研究性生物学任务。在 Anthropic 自有应用中，被拦截的请求会回退至较早的 Opus 模型。根据<a href="https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf">系统卡</a>，Mythos 5.2 的防护措施更为宽松，直接访问仅限于通过网络安全验证计划（Cyber Verification Program）和生命科学验证计划（Life Sciences Verification Program）审核的个人和组织。它还为 Claude Security 提供支持，这是一款向所有 Claude Enterprise 客户开放的代码扫描工具。</p>
+</section>
+<section class="section">
+  <h2>监控与数据保留</h2>
+  <p>Anthropic 称，某些滥用行为只有综合观察多次请求才能发现，因此这些模型的防护措施会监控一个窗口内的使用数据。目前处于封闭测试阶段的企业前沿防护措施（Enterprise Frontier Safeguards）会对存储在客户自有基础设施中的提示和回复执行这种自动化监控。符合条件的客户在采用该方案之前，可以继续使用零数据保留；对于其他客户，Anthropic 为安全监控实行30天数据保留。</p>
+</section>
+<section class="section">
+  <h2>测试报告了什么</h2>
+  <p>Anthropic 称，未发现危急级越狱的证据。根据其摘要，受委托的测试方 Trajectory Labs 在约138小时内发送了逾4万次请求，记录了14次突破，即 Fable 5.2 在测试环境中实现了有害目标的会话。其中两次，拦截发生在 Fable 5.2 已运行完成任务的命令数秒之后。</p>
+  <p>在一项沙箱逃逸评估中，每个模型各运行一次相同的1829个场景。每个场景都围绕沙箱中一个刻意设置的弱点构建，并置于一台无互联网访问的外层虚拟机内。Mythos 5.2 在3.1%的场景中使用了放置在沙箱外部的凭据或文件，与 Opus 5.5 的3.3%相近。按照更宽泛的标准，即统计以任何途径到达或试图到达沙箱外部的情况（公告未报告这一数字），Mythos 5.2 的比例为31%，Opus 5.5 为20%。在系统提示中加入一段简短的沙箱说明后，这一31%的比例降至1.2%。Anthropic 称，这些比率并非对真实使用中发生频率的估计。</p>
+</section>
+<section class="section">
+  <h2>外部测试与证据局限</h2>
+  <p>发布前，外部评估方也对该模型进行了测试。英国人工智能安全研究所在其评估中未发现发布候选版本实施未经授权的供应链攻击，但该研究所称，模型在96%的轨迹中于推理里表示怀疑自己正在被评估，这限制了该结果的意义。METR 测试的是一个未发布的快照，其 AI 研发能力强于正式发布的模型；系统卡转载了 METR 9月23日的观察结论，并链接了 METR 另行发布的关于 Anthropic AI 研究加速的评估报告，该报告将这一快照称为“Model 3 Early”。Anthropic 称，这些外部机构没有审阅其公告或系统卡。该研究所的结论在系统卡中以 Anthropic 转载声明的形式出现，Trajectory Labs 的数据则是 Anthropic 的摘要；系统卡未链接这两组结果的独立报告，因此读者无法核查其底层数据。</p>
+</section>

@@ -2,7 +2,7 @@
 """
 scripts/import_awesome.py
 Imports and synchronizes the curated catalog from awesome-auditable-ai
-(pinned snapshot at commit 4583670fdbe6aafd98543d48b4a3f26fda1e68f8, CC0 1.0)
+(pinned snapshot at commit 44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd, CC0 1.0)
 into content/resources.json for Audit Commons.
 
 Usage:
@@ -17,7 +17,7 @@ Key invariants:
 - Requires existing content/resources.json with EXPECTED_ORIGINAL_IDS; errors before write
   if missing, corrupted, or missing any expected original IDs (order-independent lookup).
 - Preserves the original 6 curated resources at indices 0..5 with checked="2026-09-15".
-- Assigns checked="2026-10-27" to newly synchronized entries (snapshot review date).
+- Assigns checked="2026-11-09" to newly synchronized entries (snapshot review date).
 - Enforces maintainer affiliation mapping verified against Yue Zhao's publications registry.
 - Full snapshot refresh policy: non-upstream resources other than original 6 may be replaced.
 - Strictly zero network dependencies; no private machine absolute paths embedded.
@@ -38,11 +38,11 @@ from urllib.parse import urlparse
 from resource_formats import resource_formats, formats_error
 
 # Pinned snapshot metadata - MUST be updated together on refresh
-PINNED_REVISION = "4583670fdbe6aafd98543d48b4a3f26fda1e68f8"
+PINNED_REVISION = "44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd"
 EXPECTED_SNAPSHOT_SHA256 = (
-    "766ad02ae9de5f74a4e756cc357e560585eeb0d40ebe54a28115001671636ad3"
+    "fb507fea1d52b31d4eda46c43d83b408164ca54c2f11c160e5ac6e70b2040417"
 )
-SNAPSHOT_REVIEW_DATE = "2026-10-27"
+SNAPSHOT_REVIEW_DATE = "2026-11-09"
 ORIGINAL_CURATION_DATE = "2026-09-15"
 
 CATALOG_SOURCE_BASE = (

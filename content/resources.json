@@ -1209,19 +1209,19 @@
   },
   {
     "id": "where-does-the-noise-come-from-a-variance-componen",
-    "name": "Where Does the Noise Come From? A Variance-Components Decomposition of Non-Determinism in LLM Brand Answers",
+    "name": "Query Language Sensitivity in Automated Sentiment Scores of LLM Responses",
     "category": "Evaluation",
     "format": "Paper",
-    "summary": "Decomposes run-to-run variance in LLM brand responses across resampling, paraphrase, model, and query language over 12,933 responses, then converts the components into a query-budget allocation; reported components are point estimates with confidence intervals pending.",
+    "summary": "Analyzes classifier-derived sentiment scores for 12,933 stored LLM brand responses and shows that its variance decomposition is highly sensitive to including English answers. The revised version does not identify a causal English effect, adds no human validation, and removes the earlier brand-ranking and query-budget recommendations.",
     "url": "https://arxiv.org/abs/2607.13304",
     "owner": "Authors listed in the paper",
     "relationship": "External resource",
     "source_urls": [
       "https://arxiv.org/abs/2607.13304"
     ],
-    "checked": "2026-09-16",
+    "checked": "2026-11-09",
     "source_section": "Reliability and Robustness",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2ac4b36328e9d84dbfb7a99c64fbe507dae28288/README.md#reliability-and-robustness",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#reliability-and-robustness",
     "venue": "Preprint 2026",
     "formats": [
       "Paper"
@@ -4987,6 +4987,139 @@
     "checked": "2026-10-27",
     "source_section": "Tools and Platforms",
     "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/4583670fdbe6aafd98543d48b4a3f26fda1e68f8/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agent-role-contracts",
+    "name": "Agent Role Contracts",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Offline checker that validates declared agent roles, task scopes, review separation, and handoffs before work is dispatched, and names the failing check, such as a task that requests writes outside its declared authority. A pass means only that the declarations are consistent: it grants no execution authority, and the runtime must still enforce permissions and reviewer independence. MIT-licensed, 2026-present.",
+    "url": "https://github.com/suirindo/agent-role-contracts",
+    "owner": "suirindo contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/suirindo/agent-role-contracts"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "ponder",
+    "name": "Ponder",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Zero-dependency Node.js CLI that walks coding agents through a seven-step review (predict, units, grade, deliberate, delta, judge, decide) across four reviewer roles and records each pass in an append-only JSONL ledger. It refuses to stop while declared review units remain ungraded; its convergence verdicts are advisory, and a stop that overrides them is recorded with a reason. A verify command reconciles the derived review state with the ledger. MIT-licensed, 2026-present.",
+    "url": "https://github.com/Quinnod345/ponder",
+    "owner": "Quinnod345 contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Quinnod345/ponder"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "tracekit",
+    "name": "Tracekit",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Signer process outside the agent that allows, denies, or holds each intercepted tool call until a person approves its exact arguments, and signs every call, decision, approval, and result into a per-run Ed25519 hash chain exported as a bundle that verifies offline. Coding-agent hooks, framework adapters, and an MCP gateway report to it; calls that bypass them are not recorded. In the default dev mode the signer runs as the agent's own user, so a compromised agent can reach the signing key unless the deployment isolates the signer and key. MIT-licensed, 2026-present.",
+    "url": "https://github.com/Cygnux-Labs/Tracekit",
+    "owner": "Cygnux-Labs contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Cygnux-Labs/Tracekit"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "sealedrun",
+    "name": "SealedRun",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Recorder that signs captured agent steps (LLM, MCP, and A2A calls through its proxy, plus SDK self-reports) into a hash chain with hybrid Ed25519 and ML-DSA-65 signatures, holding the signing keys outside the agent. Chain heads can be anchored with Sigstore Rekor and RFC 3161 timestamp authorities, and evidence bundles verify offline, including delegation-scope and human-approval checks. Steps that never reach the recorder leave no record, and a self-reported step remains the agent's own account. Apache-2.0, 2026-present.",
+    "url": "https://github.com/sealedrun/sealedrun",
+    "owner": "sealedrun contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/sealedrun/sealedrun"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "deja-vu",
+    "name": "deja-vu",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "CLI that locally indexes the session transcripts coding agents store on disk and hands that history back to agents over MCP and hooks. For post-hoc review, deja review takes files changed in the working tree, a local commit, or a revision range, by default only the first ten in path order, and lists at most three indexed sessions that edited or mentioned each; a match is file evidence, not proof of authorship. A separate deja secrets command reports credentials found in the stored transcripts, grouped by session. MIT-licensed, 2026-present.",
+    "url": "https://github.com/vshulcz/deja-vu",
+    "owner": "vshulcz contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/vshulcz/deja-vu"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "meilynx-verify",
+    "name": "meilynx-verify",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Single-file offline verifier for exported Meilynx AI audit logs, checked against a public format spec. It recomputes each record's hash, confirms the SHA-256 chain back to its genesis value, checks Ed25519 record signatures and RFC 3161 chain-head timestamps, and reports the first break. Intact records and anchors do not show that the chain is complete. Apache-2.0, 2026-present.",
+    "url": "https://github.com/Meilynx/meilynx-verify",
+    "owner": "Meilynx contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Meilynx/meilynx-verify"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "mnema",
+    "name": "mnema",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Command-line tool and MCP server that keep a coding agent's decisions in an append-only, hash-chained record with Ed25519-signed checkpoints, committed to the repository and checked offline by mnema verify and a second reader in Python. It is tamper-evident, not tamper-proof: an edited entry fails verification, but cutting the newest events together with their checkpoint is not detected. Apache-2.0, 2026-present.",
+    "url": "https://github.com/mnema-work/mnema",
+    "owner": "mnema-work contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/mnema-work/mnema"
+    ],
+    "checked": "2026-11-09",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md#audit-trails-and-decision-records",
     "formats": [
       "Tool"
     ]

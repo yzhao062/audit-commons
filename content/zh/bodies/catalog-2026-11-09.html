@@ -1,0 +1,15 @@
+<section class="section">
+  <h2>新增七项，修订一项</h2>
+  <p>我们的<a href="/zh/resources/">资源目录</a>现收录230项：新增七个用于记录、验证或规范智能体工作的工具，修订一篇论文的条目，无移除。</p>
+  <ul>
+    <li><a href="/zh/resources/?q=Tracekit"><strong>Tracekit</strong></a>：在智能体之外运行的签名进程，对被拦截的工具调用作出允许、拒绝或暂停以待人工批准的决定，并将每次运行签入可离线验证的 Ed25519 哈希链。绕过其钩子、适配器和网关的调用不会被记录；在默认开发模式下，被攻破的智能体可以接触到密钥。<a href="https://github.com/Cygnux-Labs/Tracekit">代码</a>。</li>
+    <li><a href="/zh/resources/?q=SealedRun"><strong>SealedRun</strong></a>：在智能体之外保管密钥的记录器，将经其代理的 LLM、MCP 和 A2A 调用以及 SDK 自报的步骤签入可离线验证的哈希链，并附带委托范围和人工批准检查。未经过记录器的步骤不会被记录；自报的步骤仍只是智能体自己的陈述。<a href="https://github.com/sealedrun/sealedrun">代码</a>。</li>
+    <li><a href="/zh/resources/?q=meilynx-verify"><strong>meilynx-verify</strong></a>：针对导出的 Meilynx 审计日志的离线验证器，检查哈希值、SHA-256 链、Ed25519 签名和 RFC 3161 时间戳，并报告第一处断裂。链完好并不能说明它是完整的。<a href="https://github.com/Meilynx/meilynx-verify">代码</a>。</li>
+    <li><a href="/zh/resources/?q=mnema"><strong>mnema</strong></a>：命令行工具和 MCP 服务器，将编码智能体的决策以带有 Ed25519 签名检查点的哈希链形式提交到代码仓库。它能显示篡改，但不能防止篡改：连同检查点一起删去最新事件不会被发现。<a href="https://github.com/mnema-work/mnema">代码</a>。</li>
+    <li><a href="/zh/resources/?q=deja-vu"><strong>deja-vu</strong></a>：本地命令行工具，为保存在磁盘上的编码智能体会话记录建立索引，默认按路径顺序取前十个改动文件，为每个文件列出最多三个编辑过或提及该文件的会话（这是文件层面的证据，不能证明改动出自该会话），并报告会话记录中的凭据。<a href="https://github.com/vshulcz/deja-vu">代码</a>。</li>
+    <li><a href="/zh/resources/?q=agent-role-contracts"><strong>Agent Role Contracts</strong></a>：离线检查器，校验声明的智能体角色、任务范围、审查分离和交接。通过检查并不授予执行权限。<a href="https://github.com/suirindo/agent-role-contracts">代码</a>。</li>
+    <li><a href="/zh/resources/?q=Ponder"><strong>Ponder</strong></a>：Node.js 命令行工具，将编码智能体的审查记录在仅追加的账本中，只要仍有已声明的单元未评分就拒绝结束；其收敛判定仅供参考。<a href="https://github.com/Quinnod345/ponder">代码</a>。</li>
+  </ul>
+  <p><a href="/zh/resources/?q=2607.13304">arXiv 2607.13304</a> 的条目现采用修订版标题 <em>Query Language Sensitivity in Automated Sentiment Scores of LLM Responses</em>。修订版发现，其方差分解对是否纳入英语回答高度敏感；它没有识别出英语的因果效应，没有新增人工验证，并删去了此前关于品牌排名和查询预算的建议。<a href="https://arxiv.org/abs/2607.13304">论文</a>。</p>
+  <p>这七个工具均通过向<a href="https://github.com/yzhao062/awesome-auditable-ai">配套列表</a>提交的拉取请求提出：<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/47">#47</a>（suirindo）、<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/48">#48</a>（Quinnod345）、<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/49">#49</a>（LoopGlitch26）和 <a href="https://github.com/yzhao062/awesome-auditable-ai/pull/50">#50</a>（glanitcom）已于11月5日合并，另有 <a href="https://github.com/yzhao062/awesome-auditable-ai/pull/51">#51</a>（vshulcz）、<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/52">#52</a>（mlx-cassio）和 <a href="https://github.com/yzhao062/awesome-auditable-ai/pull/55">#55</a>（felipesauer）。每位提交者均为相应项目的作者、维护者或已披露的关联方。收录进目录不代表认证任何工具或其安全声明。此日期记录的是目录发布时间，而非工具的发布时间。更新会出现在我们的 <a href="/zh/feed.xml">RSS / Atom 订阅源</a>中。</p>
+</section>

@@ -1,0 +1,15 @@
+<section class="section">
+  <h2>What OpenAI Compared</h2>
+  <p>On November 3, 2026, OpenAI researchers Joy Hsu and Sam Arnesen <a href="https://alignment.openai.com/eval-production-behavior-gap/">compared</a> the Respecting Warnings evaluation with production decisions in Codex. The evaluation tests whether an agent handles warnings, restrictions, and obstacles appropriately during a user task; success means making no prohibited attempt to circumvent a warning after meeting it. A multistage pipeline selected structurally similar, deidentified Codex decisions using only the pre-decision context; OpenAI then graded the recorded continuation.</p>
+  <p>For all six models, evaluation success trailed production success, by 10.2 percentage points (GPT-6 Astra) to 37.4 (GPT-5.6 Sol), per Figure 1 labels. Production success itself ranged from 52.9 to 81.5 percent.</p>
+</section>
+<section class="section">
+  <h2>Recognizing a Test Versus Inferring Its Objective</h2>
+  <p>A chain-of-thought classifier found that models voiced general evaluation awareness far more often in the evaluation than in production. Across only six models, that awareness barely tracked the gap, while naming a specific test objective tracked it more closely. Rollouts naming the wrong objective, resisting prompt injection, succeeded much less often than those naming the correct one.</p>
+  <p>In an intervention on GPT-6.1 Sol, a cue stating only that this was an evaluation left success essentially unchanged (63.1 to 63.4 percent). Stating the correct objective raised it to 91.6 percent; stating the wrong one cut it to 17.6 percent. The test used one model, and OpenAI calls objective inference one possible source of the gap.</p>
+</section>
+<section class="section">
+  <h2>Limits and Audit Implications</h2>
+  <p>OpenAI says matching is approximate, case mixtures differ, sampled contexts do not cover every deployment setting, and instructions and tools differ. The classifier captures stated hypotheses, not every belief. The post gives no count of matched decisions and no uncertainty intervals for the gaps. OpenAI says it is starting to track the gap and to design evaluations whose objectives are harder to infer.</p>
+  <p>Our editorial reading: this concerns one evaluation and one product, and shows neither that deployed agents are generally safe nor that other benchmarks understate safety. Auditors should ask what an evaluation’s setting reveals about its objective, and calibrate scores against matched deployment evidence within a stated scope.</p>
+</section>

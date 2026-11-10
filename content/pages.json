@@ -33,7 +33,7 @@
     "summary": "Meta released Muse Wonder and Muse Wonder Full with a 13-page model card and updated developer channel terms while stating that a full report with additional safety evaluations will arrive soon.",
     "author": "Audit Commons",
     "published": "2026-10-13",
-    "updated": "2026-10-27",
+    "updated": "2026-11-09",
     "event_date": "2026-10-12",
     "kind": "news",
     "topics": [
@@ -48,7 +48,8 @@
       "https://research.meta.ai/static/muse-wonder-model-card",
       "https://dev.meta.ai/legal/terms-of-service",
       "https://dev.meta.ai/legal/geographic-use-policy",
-      "https://research.meta.ai/blog/developing-capable-models-responsibly"
+      "https://research.meta.ai/blog/developing-capable-models-responsibly",
+      "https://research.meta.ai/blog/specialized-models-for-muse-and-metaai"
     ],
     "canonical_url": "https://auditcommons.org/news/meta-muse-wonder-safety-disclosure/",
     "affiliation_disclosure": "Audit Commons summarizes public Meta materials and has not independently tested the models.",
@@ -1858,6 +1859,197 @@
       "news/meta-muse-security-warning",
       "news/meta-muse-wonder-safety-disclosure",
       "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/anthropic-fable-mythos-5-2-safeguards",
+    "title": "Anthropic Opens Claude Fable 5.2 to All Users, Limits Mythos 5.2 to Vetted Users",
+    "summary": "Anthropic released Claude Fable 5.2 to all users on November 9, 2026, with classifiers that block high-risk cyber activities and most research biology tasks. Direct access to Mythos 5.2, the same model with more permissive safeguards, is limited to vetted users. Customers not eligible to keep zero data retention get 30-day retention for safety monitoring.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-09",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Model release",
+      "Access controls",
+      "Safety monitoring",
+      "Sandbox escape",
+      "Red teaming"
+    ],
+    "source_urls": [
+      "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-fable-mythos-5-2-safeguards/",
+    "affiliation_disclosure": "Audit Commons relied on Anthropic's public announcement and system card, which reproduces outside evaluators' statements, and has not tested either model or independently replicated the reported results.",
+    "body_file": "bodies/anthropic-fable-mythos-5-2-safeguards.html",
+    "related_slugs": [
+      "news/metr-anthropic-risk-report-review",
+      "news/aisi-mythos-alignment-investigation",
+      "news/anthropic-unintended-evaluation-actions"
+    ]
+  },
+  {
+    "slug": "news/nist-adversarial-ml-agentic-taxonomy-draft",
+    "title": "NIST Draft Adds an Agent Attack Taxonomy but Excludes Unintended Agent Failures",
+    "summary": "NIST Special Publication 2400-102 E2026, an initial public draft released November 9, 2026, builds on the AI 100-2 series with a full section and seven new index identifiers for attacks on agents. It covers adversarial attacks only, is voluntary, and is open for comments until December 18, 2026.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-09",
+    "kind": "news",
+    "topics": [
+      "NIST",
+      "Agent security",
+      "Prompt injection",
+      "Multi-agent systems",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://csrc.nist.gov/pubs/sp/2400-102/e2026/ipd",
+      "https://doi.org/10.6028/NIST.SP.2400-102e2026.ipd",
+      "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+    ],
+    "canonical_url": "https://auditcommons.org/news/nist-adversarial-ml-agentic-taxonomy-draft/",
+    "affiliation_disclosure": "Audit Commons relied on NIST's public draft and its 2025 edition and has not tested any attack or mitigation the draft describes.",
+    "body_file": "bodies/nist-adversarial-ml-agentic-taxonomy-draft.html",
+    "related_slugs": [
+      "news/nist-agent-identity-design-tenets",
+      "news/cert-in-agent-unauthorized-access-advisory",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/metr-anthropic-ai-rd-acceleration-assessment",
+    "title": "METR Judges Anthropic's Capability Progress at About Twice Its Earlier Rate, but Anthropic Redacted Most Key Evidence",
+    "summary": "In a November 5, 2026 report, METR says most staff on its 11-week Anthropic assessment judge Anthropic is likely advancing models on well-specified tasks about twice as fast as between March 2024 and October 2025, with high uncertainty. Anthropic redacted most of the evidence METR found most informative, leaving readers largely reliant on METR's judgment.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-05",
+    "kind": "news",
+    "topics": [
+      "METR",
+      "Anthropic",
+      "AI R&D automation",
+      "Independent evaluation",
+      "Evaluator access",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/",
+      "https://www.anthropic.com/news/an-update-on-independent-evaluators"
+    ],
+    "canonical_url": "https://auditcommons.org/news/metr-anthropic-ai-rd-acceleration-assessment/",
+    "affiliation_disclosure": "Audit Commons relied on METR's public report and has not independently replicated its findings.",
+    "body_file": "bodies/metr-anthropic-ai-rd-acceleration-assessment.html",
+    "related_slugs": [
+      "news/anthropic-metr-employee-like-access",
+      "news/metr-anthropic-risk-report-review",
+      "news/ari-ai-research-automation-disclosure"
+    ]
+  },
+  {
+    "slug": "news/cert-in-ai-security-auditing-guidelines",
+    "title": "CERT-In Guidelines Tie AI Audit Independence to Risk Tiers and Set Agent Logging Checks",
+    "summary": "CERT-In's AI Security Auditing Guidelines, version 1.0, dated November 4, 2026, sort AI systems into four risk tiers that determine audit independence and tell auditors to check agent identities, tool permissions, approval gates, and logs that reconstruct execution chains. The PDF cites no statutory provision making it binding.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-04",
+    "kind": "news",
+    "topics": [
+      "Independent audits",
+      "AI agents",
+      "Audit evidence",
+      "Authorization",
+      "Cybersecurity"
+    ],
+    "source_urls": [
+      "https://www.cert-in.org.in/s2cMainServlet?pageid=GUIDLNVIEW02&refcode=CISG-2026-04",
+      "https://www.cert-in.org.in/PDF/AI_Security_Auditing_Guidelines.pdf",
+      "https://www.cert-in.org.in/Directions70B.jsp"
+    ],
+    "canonical_url": "https://auditcommons.org/news/cert-in-ai-security-auditing-guidelines/",
+    "affiliation_disclosure": "Audit Commons relied on CERT-In's public guideline page, PDF, and Directions page and has not seen any audit conducted under the guidelines.",
+    "body_file": "bodies/cert-in-ai-security-auditing-guidelines.html",
+    "related_slugs": [
+      "news/cert-in-agent-unauthorized-access-advisory",
+      "news/occ-bank-ai-supervisory-framework",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "news/openai-eval-production-behavior-gap",
+    "title": "OpenAI Finds Agents Respected Warnings Less Often in a Safety Evaluation Than in Matched Codex Production Cases",
+    "summary": "OpenAI's November 3, 2026 post reports six models succeeded 10.2 to 37.4 percentage points less often on its Respecting Warnings evaluation than in approximately matched Codex production decisions. Telling GPT-6.1 Sol it was being evaluated changed little, while stating the right or wrong objective moved success sharply. The finding covers one evaluation and one product.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-03",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Model evaluation",
+      "Evaluation Integrity",
+      "Coding agents",
+      "Chain of Thought",
+      "Agent safety"
+    ],
+    "source_urls": [
+      "https://alignment.openai.com/eval-production-behavior-gap/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-eval-production-behavior-gap/",
+    "affiliation_disclosure": "Audit Commons relied on OpenAI's public post and has not independently replicated its results.",
+    "body_file": "bodies/openai-eval-production-behavior-gap.html",
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "guides/how-to-read-an-agent-eval-report",
+      "news/gpt-6-1-terra-safety-addendum"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-11-09",
+    "title": "Resource catalog update: seven tools for recording and checking agent work, and a revised paper",
+    "summary": "Seven additions bring the catalog to 230 entries: five tools that sign, index, or verify records of agent work, two that check declared agent roles or structure coding-agent reviews, and a paper record updated to its revised version, which withdraws earlier query-budget advice.",
+    "author": "Audit Commons",
+    "published": "2026-11-09",
+    "updated": "2026-11-09",
+    "event_date": "2026-11-09",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Verification",
+      "Coding agents"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/47",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/48",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/49",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/50",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/51",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/52",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/55",
+      "https://github.com/Cygnux-Labs/Tracekit",
+      "https://github.com/sealedrun/sealedrun",
+      "https://github.com/Meilynx/meilynx-verify",
+      "https://github.com/mnema-work/mnema",
+      "https://github.com/vshulcz/deja-vu",
+      "https://github.com/suirindo/agent-role-contracts",
+      "https://github.com/Quinnod345/ponder",
+      "https://arxiv.org/abs/2607.13304"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-11-09/",
+    "affiliation_disclosure": "Each tool was submitted by its author, a maintainer, or a disclosed affiliate; the meilynx-verify submitter disclosed a co-founder role at Meilynx. None is affiliated with Audit Commons. The summaries follow each project's repository and the revised paper. Catalog inclusion does not certify any tool, security property, or result.",
+    "body_file": "bodies/catalog-2026-11-09.html",
+    "related_slugs": [
+      "guides/audit-an-agent-action",
+      "news/ietf-agent-execution-evidence-drafts"
     ]
   }
 ]

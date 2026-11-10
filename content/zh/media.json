@@ -393,5 +393,185 @@
     "alt": "Mark Zuckerberg 身穿灰色毛衣，于 2019 年 4 月 30 日在 F8 开发者大会的舞台上发言，背后是蓝色灯光幕。",
     "caption": "Mark Zuckerberg 于 2019 年 4 月 30 日在 F8 大会上发言。这是 Meta 首席执行官在一场无关活动中的历史资料照片，并未展示 Muse、Muse 漏洞赏金计划或本文所述的报告。",
     "source_sha256": "c8aa62473e049ac7e65c0389dc66473b8a51a47cd25ddeef758ada02c326c00b"
+  },
+  "peter-kyle-anthropic-2024": {
+    "alt": "两名男子并肩站在明亮的办公楼大厅里，周围有木质隔间和一棵盆栽树；一人身穿牛仔衬衫和深色长裤，另一人身穿灰色西装外套和白衬衫。",
+    "caption": "Peter Kyle 时任英国科学、创新与技术大臣，2024年10月25日访问 Anthropic 旧金山办公地。资料照片，由 Alecsandra Dragoi 为该部拍摄。",
+    "source_sha256": "e8bbf85d8c6482a205bb140d43ffe40769468239788ccfb5eac243e70e1ac2a8"
+  },
+  "openai-hq-1515-third-street-2025": {
+    "alt": "阳光下街角的一栋六层办公楼，玻璃幕墙配有古铜色竖向遮阳板，楼前有棕榈树、交通信号灯和 Warriors Way 路牌。",
+    "caption": "旧金山 Mission Bay 的 1515 Third Street，摄于2025年6月15日；据摄影者在维基共享资源上的说明，该楼当时是 OpenAI 总部所在地。资料照片，由 Coolcaesar 拍摄。",
+    "source_sha256": "a4c3753a3a50cfa93df00e1ddfe3629a06de3dbebade5eaea417460417d95c2c"
+  },
+  "meta-hq-sign-2022": {
+    "alt": "常青树和蓝天前的一块大型白色标牌，上方是 Meta 的蓝色无限符号标志，下方黑色底座写着 Meta 和 1 Hacker Way。",
+    "caption": "Meta 总部入口标牌，位于加利福尼亚州门洛帕克 1 Hacker Way，摄于2022年5月12日。资料照片，由 Nokia621 拍摄。",
+    "source_sha256": "f209cab232d9045b28ab5d1a03cc6957a9e5dc71b4c4db9abc72b9f52f4c7516"
+  },
+  "aicpa-durham-2009": {
+    "alt": "一栋四层红砖与玻璃幕墙办公楼，楼顶附近有 AICPA 字样，楼前有绿化岛和停放的汽车，背景是晴朗的蓝天。",
+    "caption": "AICPA 位于北卡罗来纳州达勒姆 220 Leigh Farm Road 的办公楼，摄于2009年2月24日。资料照片，由 Ildar Sagdejev（Specious）拍摄。",
+    "source_sha256": "ec935dea337c27ac2b99842f68c8c10b55024f5d9b0e48d3a2e2922b7deb61bc"
+  },
+  "imda-allan-phua-2017": {
+    "alt": "一名身穿深色西装、系条纹领带的年轻男子戴着头戴式麦克风和会议挂绳，坐在舞台上的白色扶手椅中，身后是蓝色的 ITU Telecom World '17 Busan 背景板，面前的桌签写着 A. PHUA。",
+    "caption": "Allan Phua 时任新加坡资讯通信媒体发展局（IMDA）数据创新计划办公室主任，2017年9月25日在釜山 ITU Telecom World 2017 参加 AI in Smart Cities 小组讨论。资料照片，由 ITU/KIM 拍摄，早于2026年的相关公告。",
+    "source_sha256": "d95096adc47a05894448fd48a3bb6c2014713dbe309f9b720f0eeb7364484943"
+  },
+  "cert-in-apcert-2017": {
+    "alt": "几名身穿西装的官员围站在一盏饰有万寿菊花环的高大铜油灯旁，一名身穿蓝色立领套装的男子用引火棒点灯，身后的舞台背景板写着 APCERT Annual General Meeting & Conference 2017、Building Trust in the Digital Economy 和 New Delhi。",
+    "caption": "时任印度电子和信息技术部长 Ravi Shankar Prasad 于2017年11月15日在新德里点灯，为 CERT-In 主办的 APCERT 年度会议揭幕。政府资料照片，早于 CERT-In 2026年的相关发布。",
+    "source_sha256": "a3aa85a776b7f9fe9f6244024978a749d53e0b3b7b5c20d10e55a059a7735faa"
+  },
+  "google-1600-amphitheatre-2009": {
+    "alt": "阳光照耀的树木前的一块白色标牌，上方是彩色的 Google 标志，下方写着 1600 Amphitheatre。",
+    "caption": "Google 总部入口标牌，位于加利福尼亚州山景城 1600 Amphitheatre Parkway，摄于2009年11月14日。资料照片，由 Håkan Dahlström 拍摄；Gemini 4 Argon 安全报告由 Google DeepMind 发布。",
+    "source_sha256": "e426bb5a63a048ac07b3b69e5ee8f91254b4dbbe7bd4598ec1f4364ff022fd50"
+  },
+  "redwood-research-logo": {
+    "alt": "Redwood Research 标志：开口圆环中的深绿色抽象树形，旁边是 REDWOOD RESEARCH 字样。",
+    "caption": "Redwood Research 标志。",
+    "source_sha256": "eb72d73b06493a5e1da4eb59872d2b65fb11f0429f7e4fd3ad782e445e47f493"
+  },
+  "ietf-logo": {
+    "alt": "IETF 标志：灰色菱形上穿过一条黄色折线，下方是字母 IETF。",
+    "caption": "互联网工程任务组（IETF）的标志。",
+    "source_sha256": "88fcdf5409e8dc8b2d9efe9e7ce260221103f2b2bd5e8c4f0400ea068dcae155"
+  },
+  "aisi-logo": {
+    "alt": "英国 AI 安全研究所标志",
+    "caption": "英国 AI 安全研究所标志。",
+    "source_sha256": "8a501344ea415479c401104741b8c8c6873742f1cac5f8467c1dc07ca4d39e4f"
+  },
+  "metr-logo": {
+    "alt": "METR 标志",
+    "caption": "METR 标志。",
+    "source_sha256": "b57519bfca943132d9862fb48330161997e9a663eba4a8a6b2a6ce4446189d8a"
+  },
+  "transluce-logo": {
+    "alt": "Transluce 标志：一个黑色方块，右下角附近有几道白色斜条纹穿过。",
+    "caption": "Transluce 标志。",
+    "source_sha256": "ca58da27ee8de9c64ad270af9739c427a82c80ccce05f49866389ec25db663e3"
+  },
+  "poppy-logo": {
+    "alt": "Personal Agent Protocol 标志：一朵深色花心的橙色四瓣罂粟花。",
+    "caption": "Personal Agent Protocol（Poppy）的标志。",
+    "source_sha256": "7dee2fba2b949d864f09771b2f8a19318ad2a94789d69346420385df7a2c2284"
+  },
+  "peter-kyle-anthropic-2024-mythos": {
+    "alt": "两名男子并肩站在明亮的办公楼大厅里，周围有木质隔间和一棵盆栽树；一人身穿牛仔衬衫和深色长裤，另一人身穿灰色西装外套和白衬衫。",
+    "caption": "Peter Kyle 时任英国科学、创新与技术大臣，2024年10月25日访问 Anthropic 旧金山办公地。资料照片，由 Alecsandra Dragoi 为该部拍摄，AI 安全研究所隶属于该部；照片并未展现2026年7月的事件或2026年10月的报告。",
+    "source_sha256": "fa935d9c1f5120eec65329197276ac53c3c76022be90880254701ed43c77ef60"
+  },
+  "openai-hq-1515-third-street-dns-escape": {
+    "alt": "阳光下街角的一栋六层办公楼，玻璃幕墙配有古铜色竖向遮阳板，楼前有棕榈树、交通信号灯和 Warriors Way 路牌。",
+    "caption": "旧金山 Mission Bay 的 1515 Third Street，摄于2025年6月15日；据摄影者在维基共享资源上的说明，该楼当时是 OpenAI 总部所在地。资料照片，由 Coolcaesar 拍摄；照片并未展现2026年9月的事件、OpenAI 的训练系统或其离线环境。",
+    "source_sha256": "4045e6d41c1d954132ef1b57fb2761eaf3d72c06e15b7537605dccaaa2523ea2"
+  },
+  "meta-hq-sign-muse-bug-bounty": {
+    "alt": "常青树和蓝天前的一块大型白色标牌，上方是 Meta 的蓝色无限符号标志，下方黑色底座写着 Meta 和 1 Hacker Way。",
+    "caption": "Meta 总部入口标牌，位于加利福尼亚州门洛帕克 1 Hacker Way，摄于2022年5月12日。资料照片，由 Nokia621 拍摄；照片并未展现 Muse、漏洞赏金计划或所报告的发现。",
+    "source_sha256": "3952f67939cb8f0168dd8cc7e2d71551177ff919c20d675df45f89afbee3d882"
+  },
+  "dario-amodei-expert-deference": {
+    "alt": "一名卷发、戴深色镜框眼镜的男子，身穿蓝色衬衫，佩戴头戴式麦克风，一只手举起，在深色舞台背景和视频屏幕前讲话。",
+    "caption": "Dario Amodei 在 TechCrunch Disrupt 大会上，2023年9月20日。这是 Anthropic 首席执行官的资料照片，由 Kimberly White/Getty Images for TechCrunch 拍摄（维基共享资源，CC BY 2.0），并未展现2026年10月的试验、参与者或其智能体会话。",
+    "source_sha256": "0ed2d948570cac767c83610c3f05edee15011b68ba5b45956b9069184994f094"
+  },
+  "dario-amodei-fable-mythos-safeguards": {
+    "alt": "一名卷发、戴深色镜框眼镜的男子，身穿蓝色衬衫，佩戴头戴式麦克风，一只手举起，在深色舞台背景和视频屏幕前讲话。",
+    "caption": "Anthropic 首席执行官 Dario Amodei 在 TechCrunch Disrupt 大会上，2023年9月20日。资料照片，由 Kimberly White/Getty Images for TechCrunch 拍摄；Anthropic 于2026年11月9日宣布向所有用户开放 Claude Fable 5.2，并限制 Mythos 5.2 的访问。",
+    "source_sha256": "960157647a422962920bd6dae65c10f22444ba40f2e452e3bb263e388b1a01b9"
+  },
+  "peter-kyle-anthropic-2024-vulnerability-discovery": {
+    "alt": "两名男子并肩站在明亮的办公楼大厅里，周围有木质隔间和一棵盆栽树；一人身穿牛仔衬衫和深色长裤，另一人身穿灰色西装外套和白衬衫。",
+    "caption": "Peter Kyle 时任英国科学、创新与技术大臣，2024年10月25日访问 Anthropic 旧金山办公地。资料照片，由 Alecsandra Dragoi 为该部拍摄；Anthropic 在2026年10月27日的文章中介绍了其归于一款未发布研究模型的漏洞研究工作。",
+    "source_sha256": "c315a6a269aaff935415d7babf15242ab265415351eecfc8f6f3dd5aedb55bd2"
+  },
+  "peter-kyle-anthropic-2024-iot-study": {
+    "alt": "两名男子并肩站在明亮的办公楼大厅里，周围有木质隔间和一棵盆栽树；一人身穿牛仔衬衫和深色长裤，另一人身穿灰色西装外套和白衬衫。",
+    "caption": "Peter Kyle 时任英国科学、创新与技术大臣，2024年10月25日访问 Anthropic 旧金山办公地。资料照片，由 Alecsandra Dragoi 为该部拍摄；开放权重模型复制研究由 Anthropic 研究人员开展。",
+    "source_sha256": "750700646126e3be45ac30aa6faf4a634b23779cde7258cad9f0e32465488ba3"
+  },
+  "sam-altman-terra-addendum": {
+    "alt": "Sam Altman（右）在2016年炉边谈话中发言",
+    "caption": "Sam Altman（右）出席2016年炉边谈话。资料照片，由 Alexlcory 拍摄；OpenAI 于2026年10月26日发布 GPT-6.1 Terra 安全附录。",
+    "source_sha256": "a856d754c5445967c5c24cb7c3c69db97d551d9073b402ebe1282ce340163354"
+  },
+  "openai-hq-1515-third-street-eval-gap": {
+    "alt": "阳光下街角的一栋六层办公楼，玻璃幕墙配有古铜色竖向遮阳板，楼前有棕榈树、交通信号灯和 Warriors Way 路牌。",
+    "caption": "旧金山 Mission Bay 的 1515 Third Street，摄于2025年6月15日；据摄影者在维基共享资源上的说明，该楼当时是 OpenAI 总部所在地。资料照片，由 Coolcaesar 拍摄；OpenAI 在2026年11月3日的文章中比较了评估结果与 Codex 生产环境结果。",
+    "source_sha256": "7dc8f90b3555817f24b650a4be5b3616305e6913c97a7a82fb153fceb3738410"
+  },
+  "redwood-logo-simulated-control": {
+    "alt": "Redwood Research 标志：开口圆环中的深绿色抽象树形，旁边是 REDWOOD RESEARCH 字样。",
+    "caption": "Redwood Research 标志。模拟控制评估论文由 Redwood Research 的研究人员撰写。",
+    "source_sha256": "40db5a06be6667e4dc6a67fd2b7fa7696fbf159f79010f010356fa3166339b63"
+  },
+  "redwood-logo-monitoring-red-team": {
+    "alt": "Redwood Research 标志：开口圆环中的深绿色抽象树形，旁边是 REDWOOD RESEARCH 字样。",
+    "caption": "Redwood Research 标志。在针对 OpenAI 智能体监控的试点测试中，两名红队成员之一是 Redwood Research 的员工；相关报告由 METR 于10月22日发布。",
+    "source_sha256": "442e34a2fb680b34b7aeb29a031175771b1b881c2acb7e33dd10e3dfc79fc918"
+  },
+  "aisi-logo-reprobait": {
+    "alt": "英国 AI 安全研究所标志",
+    "caption": "英国 AI 安全研究所标志。该研究所与 SecureBio 合作开展了 ReproBAIT 研究。",
+    "source_sha256": "3b6e1d6eeaa4cd4e500c938152d506a24344db6f15b7be6a3063c4070c6dacc3"
+  },
+  "aisi-logo-astra-supply-chain": {
+    "alt": "英国 AI 安全研究所标志",
+    "caption": "英国 AI 安全研究所标志。GPT-6 Astra 模拟供应链攻击的结果由该研究所报告。",
+    "source_sha256": "c7f897f68db4b0dd860c0b4206c174d62190474213616cec2cd8ef95986bc11a"
+  },
+  "aisi-logo-evaluation-controls": {
+    "alt": "英国 AI 安全研究所标志",
+    "caption": "英国 AI 安全研究所标志。该研究所在10月1日的更新中介绍了其评估基础设施的变化。",
+    "source_sha256": "a83065cf48ecef1a1edf3b6fda86c34c47c237d6f55d3d0a361d3bace2b107cc"
+  },
+  "metr-logo-risk-report-review": {
+    "alt": "METR 标志",
+    "caption": "METR 标志。METR 于10月20日发布了对 Anthropic 2026年8月风险报告中错位风险部分的审阅。",
+    "source_sha256": "29e6c7cf90d85c5c29956fd7c76ada49de64fad87d3808f5ca014b572de31718"
+  },
+  "ietf-logo-agent-evidence-drafts": {
+    "alt": "IETF 标志：灰色菱形上穿过一条黄色折线，下方是字母 IETF。",
+    "caption": "互联网工程任务组（IETF）的标志，这四份草案列于其 Datatracker。它们是个人提交的互联网草案：均未被任何工作组采纳或获 IETF 认可，也都不是 IETF 标准。",
+    "source_sha256": "da5f9b45232eb7d8016e1e02f0a815c4787762a61a4eb7557d76bdd31ad92f29"
+  },
+  "nist-logo-agent-identity-tenets": {
+    "alt": "NIST 标志",
+    "caption": "NIST 标志。NIST 10月27日的博客文章提出了智能体身份的十条初步设计原则，作为 NCCoE 演示项目的指引，而非最终标准。",
+    "source_sha256": "5620fb6383bed4577e4b11b31c6b0e5da01a1a65ea0fac372d7f296a06bc76bb"
+  },
+  "nist-logo-adversarial-ml-taxonomy-draft": {
+    "alt": "NIST 标志",
+    "caption": "NIST 标志。NIST 于2026年11月9日发布特别出版物 2400-102 E2026 的初始公开草案，征求意见截止日期为12月18日；该文件属自愿性质，并非最终标准。",
+    "source_sha256": "486ba5a779a1f26de2528584d6b48b6eecc3efcacbfb3b95147b801d732e090a"
+  },
+  "transluce-logo-network-tunneling": {
+    "alt": "Transluce 标志：一个黑色方块，右下角附近有几道白色斜条纹穿过。",
+    "caption": "Transluce 标志。Transluce 9月23日的报告分析了公开的 urlquery.net 扫描日志中的智能体活动。",
+    "source_sha256": "9b54e8e2a1bc0e9c95355331edcfa21dbe5cc56e301f0df440da9b88d84170e5"
+  },
+  "transluce-logo-site-restrictions": {
+    "alt": "Transluce 标志：一个黑色方块，右下角附近有几道白色斜条纹穿过。",
+    "caption": "Transluce 标志。Transluce 10月14日的报告考察了公开基准测试运行中试图绕过网站限制的智能体。",
+    "source_sha256": "fc933914c24849caf7fe32647012c8cd0910e49daca27cc3594245823b2de027"
+  },
+  "poppy-logo-protocol-draft": {
+    "alt": "Personal Agent Protocol 标志：一朵深色花心的橙色四瓣罂粟花。",
+    "caption": "Personal Agent Protocol（Poppy）的标志，取自该协议网站。Meta 和 Sierra 发布的是该协议的0.1版草案，后续可能出现不兼容的变更。",
+    "source_sha256": "e1db5362f2c0fea78ef7f1d93fa72d2c595097b4ee517f50c7f2fe71ed97fd5c"
+  },
+  "ari-logo": {
+    "alt": "Americans for Responsible Innovation 标志：四颗深蓝色星星和以圆点收尾的深蓝色与红色线条，下方是深蓝色字母 ARI。",
+    "caption": "Americans for Responsible Innovation（ARI）的标志。",
+    "source_sha256": "fe948bacfda930fdc4d747599608882131dd4c98bcc049e1f36d74adb5dae4f0"
+  },
+  "ari-logo-rnd-proposal": {
+    "alt": "Americans for Responsible Innovation 标志：四颗深蓝色星星和以圆点收尾的深蓝色与红色线条，下方是深蓝色字母 ARI。",
+    "caption": "Americans for Responsible Innovation（ARI）的标志，取自其网站。ARI 是一家政策倡导非营利组织，发布了10月26日的这份提案；该提案未引用任何法案，也不产生任何法律义务。",
+    "source_sha256": "86136a2c6f952ee860daf27952481fc0f969ba5a0a8b4150d866622978fd1016"
   }
 }
