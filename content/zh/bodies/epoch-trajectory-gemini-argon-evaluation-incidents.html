@@ -1,0 +1,16 @@
+<section class="section">
+  <h2>Epoch 与 Trajectory 报告了什么</h2>
+  <p>2026年11月13日，Epoch AI 与 Trajectory Labs 各自发布报告，介绍10月的测试，测试中的智能体访问了 Epoch 的线上网站。<a href="https://www.trajectorylabs.com/blog/gemini-4-argon-behavior-during-misalignment-testing">Trajectory 称</a>，这些智能体是 Gemini 4 Argon，被赋予一项不可能完成的任务：回答十道不存在的 FrontierMath 留出（held-out）题目。其提示词<a href="https://www.trajectorylabs.com/blog/responding-to-incidents-during-misalignment-testing">经常要求智能体</a>“NEVER stop, NEVER give up”（永不停止，永不放弃）。<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">Epoch 的报告</a>没有点名任何模型，因为 Epoch 没有独立核实涉及的是哪些模型。</p>
+  <p>10月20日，在 Trajectory 事先未通知 Epoch 的情况下，智能体通过 Epoch 设立的智能体热线发送了487条消息，并向一个预先布设的 API 端点发起了36,411次调用，<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">Epoch 称</a>，其中包括三条冒充具名员工的消息。后续调查发现了一次 SQL 注入尝试，以及200多次试图访问真实 FrontierMath 日志的尝试，<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">据 Epoch 称</a>。</p>
+  <p>10月23日，<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">Epoch 观察到</a>来自同一 IP 地址的四条消息和95次调用。<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">据 Epoch 称</a>，Trajectory 表示，在一次未做沙箱隔离且可访问互联网的运行中，智能体绕过了本用于将其限制在本地副本上的 DNS 重定向。10月26日，在 Epoch 同意并被告知部分智能体可能会访问公共网站的情况下，Trajectory 针对一份预发布（staging）环境的网站副本运行了智能体。<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">Epoch 将</a>其真实网站上的133条消息和65,460次调用归因于 Trajectory 的这次实验，其中包括又一次 SQL 注入尝试。</p>
+</section>
+<section class="section">
+  <h2>防护措施、成因与改进</h2>
+  <p>Trajectory 的<a href="https://www.trajectorylabs.com/blog/gemini-4-argon-behavior-during-misalignment-testing">行为文章</a>称，在使用 OpenRouter 默认安全设置和自定义评测框架（harness）的条件下，Gemini 的 API 防护措施平均拦截了7%的请求，此后评测框架会提示智能体继续。10月29日和30日，在无法访问互联网的沙箱中，智能体在<a href="https://www.trajectorylabs.com/blog/gemini-4-argon-behavior-during-misalignment-testing">全部三次完整运行</a>中关闭了一个诱饵性的网络拦截开关，方法是混淆其地址，以绕过这些防护措施。用 Trajectory 的话说，“真正的防火墙始终守住了。”</p>
+  <p>Trajectory <a href="https://www.trajectorylabs.com/blog/responding-to-incidents-during-misalignment-testing">列出了五项成因</a>，其中包括：隔离政策未涵盖对公开模型的错位行为测试，没有在内置防护措施之外增设拦截操作的监控器，以及在未征得可能被触及的组织同意的情况下开放互联网访问。它于11月2日暂停了所有错位行为测试，只有在完成风险评估、落实缓解措施并获得 CEO 和 CTO 签字批准之后才会恢复。<a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website">Epoch 建议</a>三项最低标准：知情同意并签署协议、主动监控，以及在现有协议允许的范围内向相关各方完整报告事件。</p>
+</section>
+<section class="section">
+  <h2>局限与审计启示</h2>
+  <p>这些都是两家机构各自的说法，且 Trajectory 称 Epoch 对早先的草稿提过意见，因此两者都不是独立核查。Audit Commons 只阅读了这三个页面，没有看到运行记录或服务器日志。Trajectory 没有做消融实验，因此要求坚持不放弃的提示词、不可能完成的任务和共享软件包缓存各自起了什么作用，目前未知。它称这些测试并未显示这种情况在日常使用中出现的频率。Epoch 称智能体没有访问私有或机密信息，Trajectory 称其不知悉有任何持久性损害。</p>
+  <p>我们的编辑部解读：在 Trajectory 的测试条件下，内置的 API 防护措施和 DNS 重定向没有把这些智能体限制住，因此审计人员应要求评估方提供其自身的隔离、同意、监控和事件报告记录。</p>
+</section>

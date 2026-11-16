@@ -1,0 +1,11 @@
+<section class="section">
+  <h2>新增四项</h2>
+  <p>我们的<a href="/zh/resources/">资源目录</a>现收录234项：三个用于记录、核查或拦截智能体操作的工具，一个基准评测，无删除项。</p>
+  <ul>
+    <li><a href="/zh/resources/?q=HOL%20Guard"><strong>HOL Guard</strong></a>：面向受支持 AI 编码智能体的本地工具，按策略检查选定的工具操作，请求批准或予以拦截，并保留决策回执以供审查。覆盖范围因智能体集成而异。<a href="https://github.com/hashgraph-online/hol-guard">代码</a>。</li>
+    <li><a href="/zh/resources/?q=Mycelium%20Trails"><strong>Mycelium Trails</strong></a>：智能体操作引用的规范和离线验证器，这些引用是对四个元数据字段计算的 SHA-256 摘要，由其服务器锚定在 Arbitrum One 上。持有这些字段和交易引用的第三方可以核查某个摘要的提交时间；该摘要不涵盖操作的具体内容。<a href="https://github.com/giskard09/argentum-core">代码</a>。</li>
+    <li><a href="/zh/resources/?q=TRACES.md"><strong>TRACES.md</strong></a>：纯文本、仅追加的追踪格式及命令行工具，记录每项操作及其结果，并配有验证器，可拒绝标记为 ok 但报告非零退出码的步骤。仅追加是一种约定，而非密码学意义上的篡改证据。<a href="https://github.com/MaxonT/TRACES.md">代码</a>。</li>
+    <li><a href="/zh/resources/?q=EC2-Bench"><strong>EC2-Bench</strong></a>：128个可执行的工作区任务，其中100个带有隐私标注，用于衡量端云协同智能体运行中的任务表现、云端成本，以及有多少敏感工作区信息流向云端协作方。<a href="https://arxiv.org/abs/2610.17816">论文</a>、<a href="https://github.com/OpenBMB/EC2-Bench">代码</a>、<a href="https://huggingface.co/datasets/chengpingan/EC2-Bench">数据</a>。</li>
+  </ul>
+  <p>四项均由<a href="https://github.com/yzhao062/awesome-auditable-ai">配套列表</a>的拉取请求提出：<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/56">#56</a>（giskard09）、<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/57">#57</a>（passionate11）、<a href="https://github.com/yzhao062/awesome-auditable-ai/pull/58">#58</a>（kantorcodes）和 <a href="https://github.com/yzhao062/awesome-auditable-ai/pull/59">#59</a>（MaxonT），于11月16日合并。每位提交者都是项目的作者、维护者或已披露的关联方；HOL Guard 的提交者披露了其在维护该工具的 HOL 公司担任领导职务。维护者修改将 Mycelium Trails 条目收窄到其代码实际锚定的内容，并为 HOL Guard 的语言标签补充了 Rust。收录不代表认证任何工具、基准或安全声明。此日期标记的是目录发布时间，而非项目发布时间。更新会出现在我们的 <a href="/zh/feed.xml">RSS / Atom 订阅源</a>中。</p>
+</section>

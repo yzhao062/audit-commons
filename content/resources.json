@@ -5123,5 +5123,104 @@
     "formats": [
       "Tool"
     ]
+  },
+  {
+    "id": "hol-guard",
+    "name": "HOL Guard",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "Open-source local security tool for supported AI coding agents that checks selected tool actions, requests approval or blocks them according to policy, and records decision receipts for review. Coverage varies by agent integration, and an optional hosted tier is separate from the local tool. Apache-2.0, 2026-present.",
+    "url": "https://github.com/hashgraph-online/hol-guard",
+    "owner": "hashgraph-online contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/hashgraph-online/hol-guard"
+    ],
+    "checked": "2026-11-16",
+    "source_section": "Runtime Monitoring and Guardrails",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/a2e3603cfe3526f34224c3bc22e95e16bba081ef/README.md#runtime-monitoring-and-guardrails",
+    "links": [
+      {
+        "label": "Project",
+        "url": "https://hol.org/guard"
+      }
+    ],
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "mycelium-trails",
+    "name": "Mycelium Trails",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Specifications and offline reference verifiers for content-addressed agent-action references (action_ref, a SHA-256 digest of four RFC 8785 canonical JSON metadata fields), with delegation-chain and decision-binding profiles and public conformance vectors. Its server anchors these digests on Arbitrum One, so a third party holding the four fields and the transaction reference can check that a digest was committed by that block; the digest does not cover action payloads. Apache-2.0, 2026-present.",
+    "url": "https://github.com/giskard09/argentum-core",
+    "owner": "giskard09 contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/giskard09/argentum-core"
+    ],
+    "checked": "2026-11-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/a2e3603cfe3526f34224c3bc22e95e16bba081ef/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "traces-md",
+    "name": "TRACES.md",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Plain-text, append-only per-task trace format with a CLI that records each operation's tool, action, and result, failures included, and a validator that exits non-zero when a step marked ok reports a non-zero exit code. Append-only is a format convention, not cryptographic tamper evidence. MIT-licensed, 2026-present.",
+    "url": "https://github.com/MaxonT/TRACES.md",
+    "owner": "MaxonT contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/MaxonT/TRACES.md"
+    ],
+    "checked": "2026-11-16",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/a2e3603cfe3526f34224c3bc22e95e16bba081ef/README.md#audit-trails-and-decision-records",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "empowering-edge-agents",
+    "name": "Empowering Edge Agents: A Systematic Analysis of Edge-Cloud Collaboration in LLM Agent Execution",
+    "category": "Evaluation",
+    "format": "Benchmark",
+    "summary": "Introduces EC2-Bench, 128 executable digital-workspace tasks, 100 of them with privacy annotations, that jointly measure task performance, cloud cost, and how much sensitive workspace information reaches a cloud collaborator during long-horizon agent execution. An LLM judge scores privacy exposure, which the authors check against human labels.",
+    "url": "https://arxiv.org/abs/2610.17816",
+    "owner": "Authors listed in the paper",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://arxiv.org/abs/2610.17816"
+    ],
+    "checked": "2026-11-16",
+    "source_section": "Datasets and Benchmarks",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/a2e3603cfe3526f34224c3bc22e95e16bba081ef/README.md#datasets-and-benchmarks",
+    "venue": "Preprint 2026",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/OpenBMB/EC2-Bench"
+      },
+      {
+        "label": "Data",
+        "url": "https://huggingface.co/datasets/chengpingan/EC2-Bench"
+      },
+      {
+        "label": "Project",
+        "url": "https://passionate11.github.io/ec2-bench-project-page/"
+      }
+    ],
+    "formats": [
+      "Benchmark",
+      "Paper",
+      "Dataset"
+    ]
   }
 ]

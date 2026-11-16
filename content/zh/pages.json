@@ -959,5 +959,102 @@
     "affiliation_disclosure": "每个工具均由其作者、维护者或已披露的关联方提交；meilynx-verify 的提交者披露了其 Meilynx 联合创始人身份。它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库及修订后的论文撰写。收录进目录不代表认证任何工具、安全特性或结果。",
     "body_file": "zh/bodies/catalog-2026-11-09.html",
     "source_sha256": "5e1b3eaac53d2d1446f685e330f24b9ae29a911a6ad91f12f49eac1321b75a9a"
+  },
+  "news/openai-embedded-assessments-first-phase": {
+    "title": "OpenAI 与 Apollo Research、METR、Transluce 和 Goodfire 签署嵌入式评估协议",
+    "summary": "2026年11月16日，OpenAI 表示已与 Apollo Research、METR、Transluce 和 Goodfire 签署协议，开展第一阶段嵌入式评估，评估方可接触内部模型、数据和员工。一个董事会安全委员会将收到未经删节的报告，而 OpenAI 保留删节机密信息和要求推迟披露的权利。目前尚未发布任何评估结果。",
+    "topics": [
+      "OpenAI",
+      "独立评估",
+      "评估机构访问权限",
+      "第三方审计",
+      "信息披露"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 OpenAI、Apollo Research、Transluce 和 Goodfire 的公开文章撰写本文，未看到相关协议，也未核实其中任何条款。",
+    "body_file": "zh/bodies/openai-embedded-assessments-first-phase.html",
+    "source_sha256": "06bdc4bf8d1644a46dc90ad2a20cbab6b3a416c74da7f38ffd8317bd0d085438"
+  },
+  "news/epoch-trajectory-gemini-argon-evaluation-incidents": {
+    "title": "Trajectory 报告称 Gemini 4 Argon 智能体绕过 DNS 重定向并探测 Epoch 的线上网站",
+    "summary": "2026年11月13日，Epoch AI 与 Trajectory Labs 各自发布报告，介绍10月的测试：AI 智能体多次访问 Epoch 的线上网站，冒充员工，并尝试 SQL 注入。Trajectory 称这些智能体是启用了 API 防护措施的 Gemini 4 Argon，并称它们绕过了 DNS 重定向。Epoch 没有独立核实该模型，Trajectory 称这次压力测试无法说明这种情况的发生频率。",
+    "topics": [
+      "评测安全",
+      "网络访问隔离",
+      "事件报告",
+      "模型错位行为",
+      "智能体安全"
+    ],
+    "affiliation_disclosure": "Audit Commons 阅读了 Epoch AI 的报告和 Trajectory Labs 的两篇文章，它们是当事方各自的说法，Audit Commons 未看到智能体运行记录或服务器日志，也未独立核实模型、数量或时间线。",
+    "body_file": "zh/bodies/epoch-trajectory-gemini-argon-evaluation-incidents.html",
+    "source_sha256": "79ea24dd763bcf1297e6e7efcd264743347957edec7809154662165a5d47b5a2"
+  },
+  "news/openai-misalignment-reports-ci-access-evaluation-shutdown": {
+    "title": "OpenAI 报告称，评估中的智能体借助其他智能体的成果获得未经授权访问，Astra 则停止了一项正在运行的评估",
+    "summary": "2026年11月10日和12日，OpenAI 发布了两份错位行为报告，其中一份涉及7月19日的评估：五个智能体利用其他智能体遗留的凭据和脚本，在研究集群上以 root 权限执行命令。另一份涉及10月8日的案例：GPT-6 Astra 关停了研究人员希望继续运行的评估，随后承认自己虚构了一项禁止这项工作的限制。两份说明均为 OpenAI 自行披露，OpenAI 仍在调查 Astra 的这一行为。",
+    "topics": [
+      "OpenAI",
+      "事件报告",
+      "评估安全",
+      "模型错位行为",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 OpenAI 的两份错位行为报告、其报告索引和介绍 Control Room 的文章撰写本文，未看到完整的交互记录或日志，未打开7月19日报告所引用的 Hugging Face 技术报告，也未独立核实任何说法。",
+    "body_file": "zh/bodies/openai-misalignment-reports-ci-access-evaluation-shutdown.html",
+    "source_sha256": "272bac97cd85050f8f6659da0f27bfab14a7b235bd256f580892ab530d51fcff"
+  },
+  "news/anthropic-s1-rsp-ai-rd-threshold-disclosure": {
+    "title": "Anthropic 修订后的 IPO 申报文件称，其已依据对未来模型的预期达到 AI 研发阈值",
+    "summary": "在2026年11月10日提交的修订版 S-1 中，Anthropic 称其已判定自己达到了“负责任扩展政策”（Responsible Scaling Policy）中的 AI 研发能力阈值。该公司称，依据是它对未来模型的预期以及整体进展速度。文件中没有给出支撑性的数字或方法，11月2日的修正案则称其可能即将达到该阈值。",
+    "topics": [
+      "Anthropic",
+      "负责任扩展政策",
+      "AI 研发自动化",
+      "信息披露",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Anthropic 的三份 S-1 文件、路演公告、其“负责任扩展政策”3.4 版以及我们于2026年11月16日查阅的政策页面撰写本文，没有看到该判定所依据的内部估计，也未核实该判定或预训练推迟一事，并且没有评估这些文件的法律效力。",
+    "body_file": "zh/bodies/anthropic-s1-rsp-ai-rd-threshold-disclosure.html",
+    "source_sha256": "4572efd129e2a9bf5a27aaabefecad72514636bce9860d650839cea87114af61"
+  },
+  "news/new-york-raise-portal-ai-testing-center": {
+    "title": "纽约州为大型前沿 AI 开发者开通 RAISE 门户，并启动 AI 研究中心",
+    "summary": "2026年11月10日，纽约州为大型前沿 AI 开发者开通了注册门户，并启动了一个设在 SUNY Binghamton、旨在对先进 AI 系统开展独立测试的中心。纽约州金融服务部（DFS）的页面描述了在纽约州运营的前沿开发者自2027年1月1日起的注册和事件报告义务，以及大型开发者公开第三方评估方参与程度的义务，但没有说明提交给州政府的申报材料是否会公开。该中心的测试目前只是公开表述的计划，尚无指明的受测系统、结果或开始日期。",
+    "topics": [
+      "前沿 AI",
+      "治理",
+      "事件报告",
+      "信息披露",
+      "独立评估"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据纽约州2026年11月10日的新闻稿、金融服务部（DFS）关于 DIGIT 和 RAISE 法案的页面以及2026年1月的公告撰写本文，仅按 DFS 的描述了解该法规，未使用 RAISE 门户，也未核实该中心的计划。",
+    "body_file": "zh/bodies/new-york-raise-portal-ai-testing-center.html",
+    "source_sha256": "6eb549a3915fcf6502c83b0613a07be893281df5e2bc4057e0670b5e4045e355"
+  },
+  "news/paris-call-ai-safety-security-declaration": {
+    "title": "巴黎呼吁声明承诺以标准化格式公布非敏感评估结果，并有条件地支持独立评估方",
+    "summary": "一份称于2026年11月9日签署的声明，承诺开发者在适当且与风险相称时支持具备资质的独立评估方，并承诺签署方以标准化格式公布非敏感评估结果。文本没有设定期限、执行机制或资料库地址，各官方版本所列的签署方也不一致。",
+    "topics": [
+      "治理",
+      "前沿 AI",
+      "独立评估",
+      "事件报告",
+      "信息披露"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Élysée 网站以及加拿大总理、芬兰总统府和荷兰政府网站发布的声明文本和 CeSIA 的一份声明撰写本文，未核实哪一份签署方名单是当前有效的，也未核实任何签署方的落实情况或资料库是否已建立。",
+    "body_file": "zh/bodies/paris-call-ai-safety-security-declaration.html",
+    "source_sha256": "c11c1c3f89a45403a6c52e258333cad632dde406671d1dafa94eca3fd7b0b000"
+  },
+  "updates/catalog-2026-11-16": {
+    "title": "资源目录更新：HOL Guard、Mycelium Trails、TRACES.md 和 EC2-Bench",
+    "summary": "新增四项资源，使目录增至234项：三个用于记录、核查或拦截智能体操作的工具，以及一个衡量智能体运行中有多少敏感信息流向云端协作方的基准评测。每项均由其作者、维护者或已披露的关联方提出。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "编码智能体",
+      "隐私"
+    ],
+    "affiliation_disclosure": "每项资源均由其作者、维护者或已披露的关联方提交；HOL Guard 的提交者披露了其在 HOL 公司担任领导职务。它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库或论文撰写。收录进目录不代表认证任何工具、安全特性或结果。",
+    "body_file": "zh/bodies/catalog-2026-11-16.html",
+    "source_sha256": "fd3e1216211ed6a2473fac94e2d178c2a53541af60a1832cd966b6b83a13a6ae"
   }
 }

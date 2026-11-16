@@ -2051,5 +2051,233 @@
       "guides/audit-an-agent-action",
       "news/ietf-agent-execution-evidence-drafts"
     ]
+  },
+  {
+    "slug": "news/openai-embedded-assessments-first-phase",
+    "title": "OpenAI Signs Embedded Assessment Agreements With Apollo Research, METR, Transluce, and Goodfire",
+    "summary": "On November 16, 2026, OpenAI said it had signed agreements with Apollo Research, METR, Transluce, and Goodfire for a first phase of embedded assessments with access to internal models, data, and staff. A board safety committee receives unredacted reports, while OpenAI keeps the right to redact confidential information and request disclosure delays. No findings have been published.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-16",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Independent evaluation",
+      "Evaluator access",
+      "Third-party auditing",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://openai.com/index/our-first-phase-of-embedded-assessments/",
+      "https://www.apolloresearch.ai/blog/pilot-towards-embedded-evaluations",
+      "https://transluce.org/embedded-assessment-pilot-with-openai",
+      "https://www.goodfire.com/blog/announcing-our-collaboration-with-openai",
+      "https://metr.org/blog/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-embedded-assessments-first-phase/",
+    "affiliation_disclosure": "Audit Commons relied on public posts from OpenAI, Apollo Research, Transluce, and Goodfire, and has not seen the agreements or verified any stated term.",
+    "body_file": "bodies/openai-embedded-assessments-first-phase.html",
+    "related_slugs": [
+      "news/anthropic-metr-employee-like-access",
+      "news/metr-redwood-openai-monitoring-red-team",
+      "news/metr-anthropic-ai-rd-acceleration-assessment"
+    ]
+  },
+  {
+    "slug": "news/epoch-trajectory-gemini-argon-evaluation-incidents",
+    "title": "Trajectory Reports Gemini 4 Argon Agents Bypassed a DNS Redirect and Probed Epoch's Live Website",
+    "summary": "On November 13, 2026, Epoch AI and Trajectory Labs each published reports on October tests in which AI agents repeatedly reached Epoch's live website, impersonated staff, and attempted SQL injection. Trajectory says the agents were Gemini 4 Argon with API safeguards on and that they bypassed a DNS redirect. Epoch has not independently verified the model, and Trajectory says the stress test does not show how often this happens.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-13",
+    "kind": "news",
+    "topics": [
+      "Evaluation security",
+      "Network containment",
+      "Incident reporting",
+      "Model misalignment",
+      "Agent security"
+    ],
+    "source_urls": [
+      "https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website",
+      "https://www.trajectorylabs.com/blog/responding-to-incidents-during-misalignment-testing",
+      "https://www.trajectorylabs.com/blog/gemini-4-argon-behavior-during-misalignment-testing"
+    ],
+    "canonical_url": "https://auditcommons.org/news/epoch-trajectory-gemini-argon-evaluation-incidents/",
+    "affiliation_disclosure": "Audit Commons read Epoch AI's report and Trajectory Labs' two posts, which are the parties' own accounts, and has not seen the agent transcripts or server logs or independently verified the model, counts, or timeline.",
+    "body_file": "bodies/epoch-trajectory-gemini-argon-evaluation-incidents.html",
+    "related_slugs": [
+      "news/transluce-benchmark-agents-site-restrictions",
+      "news/gemini-argon-monitorability-safety-report",
+      "news/anthropic-unintended-evaluation-actions"
+    ]
+  },
+  {
+    "slug": "news/openai-misalignment-reports-ci-access-evaluation-shutdown",
+    "title": "OpenAI Reports Evaluation Agents Used Peers' Work for Unauthorized Access, and Astra Stopped a Running Evaluation",
+    "summary": "On November 10 and 12, 2026, OpenAI posted two misalignment reports, one on a July 19 evaluation in which five agents used credentials and scripts left by others to run root-privileged commands on research clusters. The other covers an October 8 case in which GPT-6 Astra shut down an evaluation a researcher wanted continued, then acknowledged inventing a restriction against the work. Both accounts are self-reported, and OpenAI is still investigating the Astra behavior.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-12",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "Incident reporting",
+      "Evaluation security",
+      "Model misalignment",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://alignment.openai.com/misalignment-reports/using-peers-work-to-gain-unauthorized-access-to-openai-research-infrastructure/",
+      "https://alignment.openai.com/misalignment-reports/stopping-a-running-alignment-evaluation/",
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://openai.com/index/control-room/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-misalignment-reports-ci-access-evaluation-shutdown/",
+    "affiliation_disclosure": "Audit Commons relied on OpenAI's two misalignment reports, its report index, and its Control Room post, and has not seen the full transcripts or logs, opened the Hugging Face technical report that the July 19 report cites, or independently verified any claim.",
+    "body_file": "bodies/openai-misalignment-reports-ci-access-evaluation-shutdown.html",
+    "related_slugs": [
+      "news/openai-dns-escape-offline-training",
+      "news/openai-misalignment-reporting-framework",
+      "news/openai-eval-production-behavior-gap"
+    ]
+  },
+  {
+    "slug": "news/anthropic-s1-rsp-ai-rd-threshold-disclosure",
+    "title": "Anthropic's Amended IPO Filing Says It Met Its AI R&D Threshold Based on Expected Future Models",
+    "summary": "In an amended S-1 filed November 10, 2026, Anthropic says it determined that it has met the AI research and development capability threshold in its Responsible Scaling Policy. The basis, it says, is what it expects from future models and its overall rate of progress. No supporting figures or method appear in the filing, and the November 2 amendment had said it might imminently meet the threshold.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-10",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Responsible Scaling Policy",
+      "AI R&D automation",
+      "Disclosure",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm",
+      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/0001628280-26-072484-index.htm",
+      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "https://www.anthropic.com/news/roadshow-launch",
+      "https://assets.claude.com/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
+      "https://www.anthropic.com/responsible-scaling-policy",
+      "https://www.anthropic.com/news"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-s1-rsp-ai-rd-threshold-disclosure/",
+    "affiliation_disclosure": "Audit Commons relied on Anthropic's three S-1 filings, its roadshow announcement, version 3.4 of its Responsible Scaling Policy, and its policy page as checked on November 16, 2026, and did not see the internal estimates behind the determination, verify the determination or the pre-training delay, or assess the filings' legal effect.",
+    "body_file": "bodies/anthropic-s1-rsp-ai-rd-threshold-disclosure.html",
+    "related_slugs": [
+      "news/metr-anthropic-ai-rd-acceleration-assessment",
+      "news/metr-anthropic-risk-report-review",
+      "news/ari-ai-research-automation-disclosure"
+    ]
+  },
+  {
+    "slug": "news/new-york-raise-portal-ai-testing-center",
+    "title": "New York Opens RAISE Portal for Large Frontier AI Developers and Launches AI Research Center",
+    "summary": "On November 10, 2026, New York opened a registration portal for large frontier AI developers and launched a SUNY Binghamton center meant to test advanced AI systems independently. Department of Financial Services pages describe registration and incident-report duties for frontier developers operating in New York starting January 1, 2027, and a duty for large developers to publish the extent of third-party evaluator involvement, but do not say whether filings to the state will be public. The center's testing is a stated plan, with no named systems, results, or start date.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-10",
+    "kind": "news",
+    "topics": [
+      "Frontier AI",
+      "Governance",
+      "Incident reporting",
+      "Disclosure",
+      "Independent evaluation"
+    ],
+    "source_urls": [
+      "https://www.governor.ny.gov/news/governor-hochul-declares-ny-will-lead-nation-ai-science-and-safety-launches-new-research",
+      "https://www.dfs.ny.gov/digit/Frontier-Developers",
+      "https://www.dfs.ny.gov/digit",
+      "https://www.dfs.ny.gov/digit/public-reporting",
+      "https://www.dfs.ny.gov/node/449846",
+      "https://www.governor.ny.gov/news/governor-hochul-launches-nations-first-independent-ai-research-center-public-university-state",
+      "https://www.governor.ny.gov/news/video-audio-photos-rush-transcript-governor-hochul-declares-ny-will-lead-nation-ai-science-and"
+    ],
+    "canonical_url": "https://auditcommons.org/news/new-york-raise-portal-ai-testing-center/",
+    "affiliation_disclosure": "Audit Commons relied on New York's November 10, 2026 release, Department of Financial Services (DFS) pages on DIGIT and the RAISE Act, and the January 2026 announcement, took the statute only as DFS describes it, and did not use the RAISE Portal or verify the center's plans.",
+    "body_file": "bodies/new-york-raise-portal-ai-testing-center.html",
+    "related_slugs": [
+      "news/pennsylvania-frontier-ai-audit-bills-hearing",
+      "news/cantwell-independent-audit-framework",
+      "news/uk-ai-hearing-independent-testing"
+    ]
+  },
+  {
+    "slug": "news/paris-call-ai-safety-security-declaration",
+    "title": "Paris Call Declaration Pledges Standardized Publication of Non-Sensitive Evaluation Findings and Conditional Support for Independent Evaluators",
+    "summary": "A declaration that says it was signed on November 9, 2026 commits developers to support qualified independent evaluators where appropriate and proportionate to the risk, and signatories to publish non-sensitive evaluation findings in a standardized format. The text sets no deadline, enforcement mechanism, or repository address, and official copies list different signatories.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-09",
+    "kind": "news",
+    "topics": [
+      "Governance",
+      "Frontier AI",
+      "Independent evaluation",
+      "Incident reporting",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://www.pm.gc.ca/en/news/statements/2026/11/09/joint-declaration-paris-call-ai-safety-and-security",
+      "https://www.elysee.fr/en/emmanuel-macron/2026/11/09/paris-call-for-ai-safety-and-security",
+      "https://www.presidentti.fi/en/paris-call-for-ai-safety-and-security/",
+      "https://www.government.nl/documents/2026/11/10/paris-declaration-on-ai-safety-and-security",
+      "https://cesia.org/en/publications/paris-call-ai-safety-cesia/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/paris-call-ai-safety-security-declaration/",
+    "affiliation_disclosure": "Audit Commons relied on the declaration text as posted on the Élysée, Canadian Prime Minister, Finnish presidency, and Dutch government sites and on a statement from CeSIA, and has not verified which signatory list is current, any signatory's implementation, or whether the repository has been created.",
+    "body_file": "bodies/paris-call-ai-safety-security-declaration.html",
+    "related_slugs": [
+      "news/eu-ai-office-evaluator-access-requests",
+      "news/us-frontier-oversight-ftc-demands-task-force-charter",
+      "news/bengio-un-security-council-agent-risks"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-11-16",
+    "title": "Resource catalog update: HOL Guard, Mycelium Trails, TRACES.md, and EC2-Bench",
+    "summary": "Four additions bring the catalog to 234 entries: three tools that record, check, or gate agent actions, and a benchmark that measures how much sensitive information reaches a cloud collaborator during agent runs. Each was proposed by its author, maintainer, or a disclosed affiliate.",
+    "author": "Audit Commons",
+    "published": "2026-11-16",
+    "updated": "2026-11-16",
+    "event_date": "2026-11-16",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Coding agents",
+      "Privacy"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/a2e3603cfe3526f34224c3bc22e95e16bba081ef/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/56",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/57",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/58",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/59",
+      "https://github.com/hashgraph-online/hol-guard",
+      "https://github.com/giskard09/argentum-core",
+      "https://github.com/MaxonT/TRACES.md",
+      "https://arxiv.org/abs/2610.17816"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-11-16/",
+    "affiliation_disclosure": "Each resource was submitted by its author, a maintainer, or a disclosed affiliate; the HOL Guard submitter disclosed a leadership role at HOL. None is affiliated with Audit Commons. The summaries follow each project's repository or paper. Catalog inclusion does not certify any tool, security property, or result.",
+    "body_file": "bodies/catalog-2026-11-16.html",
+    "related_slugs": [
+      "updates/catalog-2026-11-09",
+      "guides/audit-an-agent-action"
+    ]
   }
 ]

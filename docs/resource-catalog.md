@@ -9,9 +9,9 @@ This document records the provenance, licensing, schema contract, and synchroniz
 The Resource Catalog imports curated entries from the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository.
 
 - **Upstream Repository**: [`https://github.com/yzhao062/awesome-auditable-ai`](https://github.com/yzhao062/awesome-auditable-ai)
-- **Pinned Commit Revision**: `44cc3f6a70895eb4d3c131ff7ac82af24b2b8acd`
-- **Normalized LF UTF-8 SHA256**: `fb507fea1d52b31d4eda46c43d83b408164ca54c2f11c160e5ac6e70b2040417`
-- **Snapshot Review Date**: `2026-11-09`
+- **Pinned Commit Revision**: `a2e3603cfe3526f34224c3bc22e95e16bba081ef`
+- **Normalized LF UTF-8 SHA256**: `591344eba7106cad4caf6f31d7fdefae345519aac3469e6d38ba119efaa72f9b`
+- **Snapshot Review Date**: `2026-11-16`
 - **Upstream License**: Creative Commons Zero v1.0 Universal (CC0 1.0) Public Domain Dedication ([`awesome-LICENSE`](https://creativecommons.org/publicdomain/zero/1.0/))
 - **Site-Wide License Status**: Site-wide license selection for Audit Commons remains **pending**. Upstream catalog metadata is imported under CC0 1.0 attribution, but Audit Commons does not inherit another site's license or bind unpublished sections.
 
@@ -24,6 +24,8 @@ All four summaries are editorial rewrites of the importer output: the V³AST-Ben
 A scoped sync on November 9 adds seven tools and revises one paper record. Agent Role Contracts, `Ponder`, Tracekit, and SealedRun come from community PRs #47 through #50, which the companion list merged on November 5; deja-vu, meilynx-verify, and mnema come from PRs #51, #52, and #55. Each was submitted by the project's author, its maintainers, or a disclosed affiliate; the meilynx-verify submitter disclosed a co-founder role at Meilynx. None is affiliated with Audit Commons. All seven keep the External resource relationship and the importer's default owner labels, with Tool as their only format. The arXiv 2607.13304 record keeps its stable ID, `where-does-the-noise-come-from-a-variance-componen`, and takes the version 2 title, *Query Language Sensitivity in Automated Sentiment Scores of LLM Responses*. Its summary now follows the corrected analysis, which finds the variance decomposition highly sensitive to including English answers, identifies no causal English effect, adds no human validation, and removes the earlier brand-ranking and query-budget recommendations. Only these eight records receive the `2026-11-09` review date and the new snapshot revision. The other 222 prior records remain unchanged, including dates, pinned sources, links, disclosures, and translations, and `mcp-granite` and `agent-collusion` are preserved, for 230 records with no removals. A bilingual digest records the batch in both Atom feeds.
 
 All eight summaries are editorial rewrites of the importer output, and each tool summary keeps its project's stated limit. Tracekit does not record calls that bypass its hooks, adapters, and gateway, and its default dev mode leaves the key reachable by the agent's user. SealedRun captures only steps that reach its recorder, and self-reported steps remain the agent's account. A deja-vu review match is file evidence, not proof of authorship. An intact meilynx-verify chain does not show completeness. Removing the newest events together with their checkpoint goes undetected by mnema. An Agent Role Contracts pass grants no execution authority, and `Ponder`'s convergence verdicts are advisory. The 2607.13304 summary names the English-inclusion finding instead of the upstream "causal language effect" wording. These rewrites must survive future scoped syncs.
+
+A scoped sync on November 16 adds four records from community PRs #56 through #59, which the companion list merged that day at `a2e3603`: HOL Guard, Mycelium Trails, TRACES.md, and EC2-Bench. Each was submitted by the project's author or maintainer; the HOL Guard submitter disclosed a leadership role at HOL, which maintains it. None is affiliated with Audit Commons. The three tools keep the External resource relationship, the importer's default owner labels, and Tool as their only format; EC2-Bench is a Benchmark with Paper and Dataset memberships from its arXiv and Hugging Face links. All four summaries are editorial rewrites that keep each project's limit: HOL Guard's coverage varies by agent integration, a Mycelium Trails digest covers four metadata fields rather than action payloads, TRACES.md's append-only property is a convention rather than tamper evidence, and EC2-Bench scores privacy exposure with an LLM judge. Only these four records receive the `2026-11-16` review date and the new snapshot revision. The other 230 records remain unchanged, including `mcp-granite`, `agent-collusion`, and the stable ID of the arXiv 2607.13304 record, which a full import would replace, for 234 records with no removals. A bilingual digest records the batch in both Atom feeds.
 
 ## 2. Provenance, Affiliation & Review Disclosure
 
@@ -69,7 +71,7 @@ In accordance with [`CONTRIBUTING.md`](../CONTRIBUTING.md), transparent affiliat
   11. `agent-risk`: Paper and package for assessing changes to deployed agents from existing logs (arXiv:2610.16280).
   12. `the-autonomy-tax`: Paper on agent failures caused by prompt-injection defense training (EMNLP 2026, arXiv:2603.19423).
   13. `weclawarena`: Sandbox and benchmark for cross-user agent collaboration and security (EMNLP Findings 2026, arXiv:2608.03499).
-- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**217** records).
+- **External Resources (`"relationship": "External resource"`)**: All independent research papers, open-source platforms, benchmarks, datasets, and standards are classified as External resources (**221** records).
 
 ### Attribution Policy
 - For academic research papers without a single institutional author, the `owner` field neutrally records `"Authors listed in the paper"` rather than inventing speculative or partial author rosters.
@@ -92,7 +94,7 @@ Every record in `content/resources.json` conforms to the following schema contra
 | `summary` | string | Required | Factual, concise summary | Plain text stripped of Markdown markup |
 | `url` | string | Required | Canonical primary URL | Valid HTTP/HTTPS URL |
 | `owner` | string | Required | Publisher or neutral attribution | Institution, organization, or `"Authors listed in the paper"` |
-| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (13 items) or `"External resource"` (217 items) |
+| `relationship` | string | Required | Affiliation disclosure | `"Maintainer project"` (13 items) or `"External resource"` (221 items) |
 | `source_urls` | string[] | Required | Primary source URLs | Non-empty array of valid URLs |
 | `checked` | string | Required | Record-specific review date | `YYYY-MM-DD`; retain the prior date when the record is unchanged |
 | `source_section` | string | Optional | Upstream section heading | Exact section heading name from source snapshot |
@@ -104,11 +106,11 @@ Every record in `content/resources.json` conforms to the following schema contra
 
 ## 4. Coverage & Deduplication Statistics
 
-Across 9 substantive sections, the snapshot contains 231 raw entries. Importing it with the original 6 curated resources produces 228 unique records. The published catalog contains 230 records because scoped syncs also preserve two independent editorial additions.
+Across 9 substantive sections, the snapshot contains 235 raw entries. Importing it with the original 6 curated resources produces 232 unique records. The published catalog contains 234 records because scoped syncs also preserve two independent editorial additions.
 
 ### Deduplication & Baseline Preservation
 1. **Original 6 Preservation**: The 6 baseline entries are identified by explicit IDs (`nist-ai-rmf`, `inspect-aisi`, `agentdojo`, `awesome-auditable-ai`, `catchbench`, `auditable-agents`) and preserved at indices `0..5` of `content/resources.json` to keep homepage featured resources intact.
-2. **Upstream Matching against Original 6**: 4 entries in the 231 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
+2. **Upstream Matching against Original 6**: 4 entries in the 235 raw items duplicated original resources and were enriched in-place rather than inserted as duplicates:
    - `NIST AI 100-1, AI Risk Management Framework` &rarr; enriched `nist-ai-rmf`
    - `Inspect` &rarr; enriched `inspect-aisi`
    - `AgentDojo` &rarr; enriched `agentdojo`
@@ -121,25 +123,25 @@ Across 9 substantive sections, the snapshot contains 231 raw entries. Importing 
    - `τ-bench` (Reliability and Robustness &harr; Datasets and Benchmarks)
 
 ### Exact Counts
-- **Total Raw Items Parsed**: 231
+- **Total Raw Items Parsed**: 235
 - **Preserved Original Entries**: 6
 - **Deduplicated vs Original Entries**: 4
 - **Deduplicated Cross-Listed Entries**: 5
-- **Unique Snapshot Entries beyond the Baseline**: 222
-- **Import-Only Catalog**: 228
+- **Unique Snapshot Entries beyond the Baseline**: 226
+- **Import-Only Catalog**: 232
 - **Preserved Independent Editorial Additions**: 2
-- **Added in This Sync**: 7
-- **Updated in This Sync**: 1
+- **Added in This Sync**: 4
+- **Updated in This Sync**: 0
 - **Removed in This Sync**: 0
-- **Unchanged Existing Records**: 222
-- **Total Resources in Catalog**: **230**
+- **Unchanged Existing Records**: 230
+- **Total Resources in Catalog**: **234**
 
 ### Breakdown by Relationship (`relationship`)
 | Relationship | Count | Description |
 |---|---|---|
-| `External resource` | 217 | Independent academic research, industry tools, benchmarks, and standards |
+| `External resource` | 221 | Independent academic research, industry tools, benchmarks, and standards |
 | `Maintainer project` | 13 | Resources authored, co-authored, or maintained by Yue Zhao |
-| **Total** | **230** | |
+| **Total** | **234** | |
 
 ### Breakdown by Primary Format (`format`)
 
@@ -147,45 +149,45 @@ These mutually exclusive primary labels preserve the original classification. Th
 | Format | Count | Semantic Definition |
 |---|---|---|
 | `Paper` | 99 | Standalone research papers, diagnostic studies, and surveys |
-| `Tool` | 60 | Software libraries, runtime platforms, debuggers, scanners, or guardrails |
-| `Benchmark` | 47 | Evaluative testbeds, benchmark suites, and testing environments |
+| `Tool` | 63 | Software libraries, runtime platforms, debuggers, scanners, or guardrails |
+| `Benchmark` | 48 | Evaluative testbeds, benchmark suites, and testing environments |
 | `Standard` | 20 | Formal specifications, protocols, regulatory articles, and risk frameworks |
 | `Collection` | 3 | Curated catalogs, ecosystems, or reading list collections |
 | `Dataset` | 1 | Standalone corpora and annotated trajectory datasets |
-| **Total** | **230** | |
+| **Total** | **234** | |
 
 ### Tab Memberships (`formats`)
 
-Paper: 153; Tool: 61; Benchmark: 48; Dataset: 10; Standard: 20; Collection: 3. The All tab contains 230 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
+Paper: 154; Tool: 64; Benchmark: 49; Dataset: 11; Standard: 20; Collection: 3. The All tab contains 234 unique resources. A paper with a released dataset appears in both tabs, with one card per tab.
 
 The importer merges format memberships from cross-listed records. A linked paper or arXiv abstract adds Paper membership. Dataset requires a specifically identified dataset link or a Hugging Face dataset URL. It does not classify a code repository as a tool or dataset merely because it has code. Plain-text mentions and venue names alone do not add Dataset membership. Inline summary links enter the same membership inference as other secondary links, so review their classification before publication. Legacy records without `formats` use their single `format`, or Collection if both fields are absent.
 
-The MAST dataset link was added during editorial review on September 16, 2026, following the [authors' repository](https://github.com/multi-agent-systems-failure-taxonomy/MAST) to [MAST-Data](https://huggingface.co/datasets/mcemri/MAST-Data). It supplements the pinned catalog record. Ten records carry Dataset membership: Who&When, MAST-Data, TRAIL, AEGIS (attribution), PALADIN, GAIA, PACT, Terminal Wrench, WeClawArena, and SciΠvot. A dataset label indicates an identified artifact, not unrestricted access, licensing approval, or independent validation of its contents.
+The MAST dataset link was added during editorial review on September 16, 2026, following the [authors' repository](https://github.com/multi-agent-systems-failure-taxonomy/MAST) to [MAST-Data](https://huggingface.co/datasets/mcemri/MAST-Data). It supplements the pinned catalog record. Eleven records carry Dataset membership: Who&When, MAST-Data, TRAIL, AEGIS (attribution), PALADIN, GAIA, PACT, Terminal Wrench, WeClawArena, SciΠvot, and EC2-Bench. A dataset label indicates an identified artifact, not unrestricted access, licensing approval, or independent validation of its contents.
 
 ### Breakdown by Category (`category`)
 | Category | Count | Topic Focus |
 |---|---|---|
-| `Evaluation` | 75 | Benchmarks, failure attribution, and reliability measurement |
-| `Governance` | 59 | Audit trails, decision records, specifications, and regulatory frameworks |
+| `Evaluation` | 76 | Benchmarks, failure attribution, and reliability measurement |
+| `Governance` | 61 | Audit trails, decision records, specifications, and regulatory frameworks |
 | `Tools` | 44 | Tracing platforms, telemetry instrumentation, and runtime execution |
-| `Security` | 42 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
+| `Security` | 43 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
 | `Reading` | 10 | Surveys, foundational literature, and curated reading lists |
-| **Total** | **230** | |
+| **Total** | **234** | |
 
 ### Breakdown by Section (`source_section`)
 | Section | Count |
 |---|---|
 | Tools and Platforms | 33 |
-| Runtime Monitoring and Guardrails | 31 |
-| Datasets and Benchmarks | 33 |
+| Runtime Monitoring and Guardrails | 32 |
+| Datasets and Benchmarks | 34 |
 | Failure Attribution and Diagnosis | 26 |
 | Standards and Governance | 27 |
 | Security Auditing and Scanners | 24 |
-| Audit Trails and Decision Records | 32 |
+| Audit Trails and Decision Records | 34 |
 | Reliability and Robustness | 14 |
 | Surveys and Foundations | 9 |
 | The Auditable Agents Ecosystem | 1 |
-| **Total** | **230** |
+| **Total** | **234** |
 
 The two editorial additions use existing topic headings in `source_section`. Those headings describe their classification; they do not imply inclusion in the pinned README.
 
@@ -228,7 +230,7 @@ python scripts/build.py
 # 2. Run full schema, link, and accessibility validation
 python scripts/check.py
 ```
-All 230 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
+All 234 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
 
 The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization, except in the four October 27 summaries and the eight November 9 summaries, which are editorial rewrites.
 

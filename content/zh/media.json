@@ -573,5 +573,35 @@
     "alt": "Americans for Responsible Innovation 标志：四颗深蓝色星星和以圆点收尾的深蓝色与红色线条，下方是深蓝色字母 ARI。",
     "caption": "Americans for Responsible Innovation（ARI）的标志，取自其网站。ARI 是一家政策倡导非营利组织，发布了10月26日的这份提案；该提案未引用任何法案，也不产生任何法律义务。",
     "source_sha256": "86136a2c6f952ee860daf27952481fc0f969ba5a0a8b4150d866622978fd1016"
+  },
+  "sam-altman-ted-2025": {
+    "alt": "一名深色短发略显蓬乱的男子，身穿灰色圆领毛衣，佩戴小型头戴式麦克风，坐在舞台上，背景是模糊的黄绿色。",
+    "caption": "OpenAI 首席执行官 Sam Altman 在 TED 演讲，2025年4月11日。资料照片，由 Steve Jurvetson 拍摄（维基共享资源裁切版，CC BY 2.0）；OpenAI 于2026年11月16日宣布第一阶段嵌入式评估。",
+    "source_sha256": "0ddfd07393767a9e84626834af672b0295501ebb7ad920cf2ac92a607509db3f"
+  },
+  "greg-brockman-disrupt-2019": {
+    "alt": "一名深色短发男子，身穿深藏青色V领毛衣，佩戴头戴式麦克风，双手交握坐在白色扶手椅上，背景印有 TechCrunch Disrupt 标志。",
+    "caption": "OpenAI 联合创始人 Greg Brockman 在 TechCrunch Disrupt 旧金山大会上，2019年10月3日。资料照片，由 Steve Jennings/Getty Images for TechCrunch 拍摄（CC BY 2.0）；OpenAI 于2026年11月10日和12日发布了这两份事件报告。",
+    "source_sha256": "f6ba432b4b56eb80128eccda6e2448b1a019b86138b10c7181a396147f633776"
+  },
+  "demis-hassabis-nobel-2024": {
+    "alt": "一名光头、戴眼镜、身穿深色西装的男子在木质讲台后讲话，讲台上挂着瑞典皇家科学院的蓝色标牌，上方是明亮的青色屏幕。",
+    "caption": "Gemini 的开发方 Google DeepMind 的首席执行官 Demis Hassabis 在斯德哥尔摩大学举行的2024年诺贝尔讲座上，2024年12月8日。资料照片，由 Jay Dixit 拍摄（维基共享资源，CC BY-SA 4.0）；Trajectory Labs 称其智能体运行的是 Gemini 4 Argon，Epoch AI 未独立证实这一点。",
+    "source_sha256": "1e2b84d1bfa00e5b98fd9b852c6912101488f37f784086d07ac329f9018b55fd"
+  },
+  "sec-headquarters-2024": {
+    "alt": "一座弧形玻璃办公楼，两侧石柱上刻有“U.S. Securities and Exchange Commission”字样和该机构徽章，楼前立着三面旗帜，前景是一排红色共享单车。",
+    "caption": "位于华盛顿特区 100 F Street NE 的美国证券交易委员会（SEC）总部，摄于2024年9月22日。资料照片，由 Another Believer 拍摄（维基共享资源，CC BY-SA 4.0）；Anthropic 于2026年11月10日向 SEC 提交了 S-1 表格第2号修正案。",
+    "source_sha256": "b84d719d93e142006c96841ada22a01cc360075e90c2d64b9297f3fce5fcecd6"
+  },
+  "elysee-palace-2019": {
+    "alt": "隔着铺满碎石的庭院望见爱丽舍宫的石砌正立面，屋顶飘扬着法国国旗，柱廊入口处站着卫兵，访客在隔离绳之间行走。",
+    "caption": "巴黎爱丽舍宫，法国总统府所在地，摄于2019年9月28日前总统雅克·希拉克的纪念活动期间。资料照片，由 Leynadmar 拍摄（维基共享资源，CC BY-SA 4.0）；爱丽舍宫于2026年11月9日发布了《巴黎呼吁》。",
+    "source_sha256": "c9f39a33b3ff86365c11eafed770f85c82e76d1415f9fe07a8792fb79f95813b"
+  },
+  "hochul-mta-2025": {
+    "alt": "一名身穿带州徽深蓝色外套的女子在标有“Keeping New Yorkers Safe”字样的讲台前讲话，身旁站着三名官员，背后是一面显示地铁站画面的监控屏幕墙。",
+    "caption": "纽约州州长 Kathy Hochul 与交通和警务官员在大都会运输署（MTA）总部情况室举行新闻发布会，摄于2025年10月9日。资料照片，由 Marc A. Hermann / 大都会运输署拍摄（CC BY 4.0）；Hochul 办公室于2026年11月10日宣布设立新的 AI 研究中心并开通 RAISE 门户。",
+    "source_sha256": "d9c3a9639d1675f1c7be59ba5a6267dc26375e592fff964470990fe116d5fcdc"
   }
 }
