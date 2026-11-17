@@ -450,6 +450,7 @@ def validate_output_directory(
         "updates/catchbench-0-1-2/index.html",
         "about/index.html",
         "latest/index.html",
+        "blog/index.html",
         "features/index.html",
         "learn/index.html",
         "404.html",

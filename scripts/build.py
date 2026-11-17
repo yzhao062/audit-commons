@@ -61,6 +61,7 @@ MARKER_SIGNATURE = "Audit Commons Static Site Generator Ownership Marker\nversio
 
 REQUIRED_NAV_ITEMS = [
     ("Latest", "/latest/"),
+    ("Blog", "/blog/"),
     ("Learn", "/learn/"),
     ("Resources", "/resources/"),
     ("ICLR Workshop", "/workshops/a3-iclr-2027/"),
@@ -68,7 +69,8 @@ REQUIRED_NAV_ITEMS = [
 ]
 
 NAV_SLUG_PREFIXES: dict[str, list[str]] = {
-    "latest":    ["latest", "news/", "news", "updates/", "updates", "features/", "features"],
+    "latest":    ["latest", "news/", "news", "updates/", "updates"],
+    "blog":      ["blog", "features/", "features"],
     "learn":     ["learn", "guides/", "start-here"],
     "resources": ["resources"],
     "about":     ["about"],
@@ -383,7 +385,7 @@ def render_html_page(
         <h2>内容栏目</h2>
         <ul>
           <li><a href="/zh/latest/">最新内容</a></li>
-          <li><a href="/zh/latest/?kind=feature">深度解读</a></li>
+          <li><a href="/zh/blog/">博客</a></li>
           <li><a href="/zh/learn/">学习指南</a></li>
           <li><a href="/zh/resources/">资源目录</a></li>
           <li><a href="/zh/about/">关于本站</a></li>
@@ -420,7 +422,7 @@ def render_html_page(
         <h2>Editorial Sections</h2>
         <ul>
           <li><a href="/latest/">Latest additions</a></li>
-          <li><a href="/latest/?kind=feature">Analysis</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/learn/">Learn</a></li>
           <li><a href="/resources/">Resources</a></li>
           <li><a href="/about/">About</a></li>
@@ -1139,15 +1141,32 @@ def build_features_index(
     description = "深入探讨 AI 审计研究、实践与政策的专题解读与分析。" if locale == "zh" else "In-depth editorial analysis on AI auditing research, practice, and policy."
     empty_msg = "暂无已发布的深度解读文章。" if locale == "zh" else "No analysis articles published yet."
     contextual_note = (
-        f'<p class="topic-legacy-note"><a href="{route_href("latest", locale)}?kind=feature">&larr; 在最新发布中按深度解读筛选</a></p>'
+        f'<p class="topic-legacy-note"><a href="{route_href("blog", locale)}">&larr; 浏览博客</a></p>'
         if locale == "zh"
-        else f'<p class="topic-legacy-note"><a href="{route_href("latest", locale)}?kind=feature">&larr; View all Analysis articles in Latest</a></p>'
+        else f'<p class="topic-legacy-note"><a href="{route_href("blog", locale)}">&larr; Browse the Blog</a></p>'
     )
     return _render_article_list_index(
         site_data=site_data, pages=features, base_url=base_url,
         title=title, description=description, eyebrow=eyebrow,
         slug="features", empty_msg=empty_msg, locale=locale, has_zh=has_zh,
         contextual_note=contextual_note,
+    )
+
+
+def build_blog_index(
+    site_data: Dict[str, Any],
+    pages: List[Dict[str, Any]],
+    base_url: str,
+    locale: str = "en",
+    has_zh: bool = True,
+) -> str:
+    return _render_article_list_index(
+        site_data=site_data, pages=[p for p in pages if p.get("kind") == "feature"],
+        base_url=base_url, title="博客" if locale == "zh" else "Blog",
+        eyebrow="Audit Commons", slug="blog",
+        description="研究深度解读与分析。" if locale == "zh" else "Research explainers and analysis on AI auditing.",
+        empty_msg="暂无已发布的文章。" if locale == "zh" else "No posts published yet.",
+        locale=locale, has_zh=has_zh,
     )
 
 
@@ -1446,6 +1465,7 @@ def _render_article_list_index(
         if p_event and p_event != p.get("published", ""):
             event_bit = f'<span class="date">{announced_prefix}<time datetime="{escape(p_event)}">{display_date(p_event, locale)}</time></span> '
         disclosure_bit = f'<p class="catalog-attribution">{escape(p["affiliation_disclosure"])}</p>' if p.get("kind") == "release" and p.get("affiliation_disclosure") else ""
+        author_bit = f'<span class="author">{escape(p.get("author", "Audit Commons"))}</span>' if slug == "blog" else ""
         card = f"""
         <article class="article-card{' has-media' if p.get('_media') else ''}" data-kind="{escape(p.get('kind', ''))}">
           {render_media(p, 'index', route_href(p_slug, locale), priority=not cards_html)}
@@ -1456,6 +1476,7 @@ def _render_article_list_index(
           </div>
           <p class="article-summary">{p_summary}</p>
           <div class="article-card-meta">
+            {author_bit}
             <span class="date">{published_prefix}<time datetime="{p_pub}">{display_date(p_pub, locale)}</time></span>{event_bit}
             <div class="tags">{p_topics}</div>
           </div>
@@ -1552,7 +1573,7 @@ def build_article_page(
     if locale == "zh":
         section_name, section_slug = {
             "news": ("最新", "latest"), "release": ("最新", "latest"),
-            "feature": ("最新", "latest"), "guide": ("学习", "learn"),
+            "feature": ("博客", "blog"), "guide": ("学习", "learn"),
             "introduction": ("学习", "learn"), "about": ("关于", "about"),
         }[kind]
         home_label = "首页"
@@ -1560,7 +1581,7 @@ def build_article_page(
     else:
         section_name, section_slug = {
             "news": ("Latest", "latest"), "release": ("Latest", "latest"),
-            "feature": ("Latest", "latest"), "guide": ("Learn", "learn"),
+            "feature": ("Blog", "blog"), "guide": ("Learn", "learn"),
             "introduction": ("Learn", "learn"), "about": ("About", "about"),
         }[kind]
         home_label = "Home"
@@ -1775,7 +1796,7 @@ def build_404_page(site_data: Dict[str, Any], base_url: str, locale: str = "en",
         <ul class="error-nav-list">
           <li><a href="/zh/">首页</a>：网站发布主页</li>
           <li><a href="/zh/latest/">最新</a>：最新文章与新闻简讯</li>
-          <li><a href="/zh/latest/?kind=feature">深度解读</a>：研究深度解读与分析</li>
+          <li><a href="/zh/blog/">博客</a>：研究深度解读与分析</li>
           <li><a href="/zh/learn/">学习</a>：入门导读、实践指南与实操示例</li>
           <li><a href="/zh/resources/">资源</a>：基准评测、测试沙盒与规范标准目录</li>
           <li><a href="/zh/about/">关于</a>：刊发范围、维护者披露与贡献说明</li>
@@ -1802,7 +1823,7 @@ def build_404_page(site_data: Dict[str, Any], base_url: str, locale: str = "en",
         <ul class="error-nav-list">
           <li><a href="/">Home</a>: The publication front page</li>
           <li><a href="/latest/">Latest</a>: Recent articles and news briefs</li>
-          <li><a href="/latest/?kind=feature">Analysis</a>: Research explainers and analysis</li>
+          <li><a href="/blog/">Blog</a>: Research explainers and analysis</li>
           <li><a href="/learn/">Learn</a>: Introductions, guides, and worked examples</li>
           <li><a href="/resources/">Resources</a>: Searchable directory of benchmarks, sandboxes, and specifications</li>
           <li><a href="/about/">About</a>: Scope, maintainer disclosures, and contributions</li>
@@ -2141,7 +2162,7 @@ def build_site(
             raise ValueError(f"Page record #{idx} missing required 'slug'")
         if not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*(?:/[a-z0-9]+(?:-[a-z0-9]+)*)*", slug):
             raise ValueError(f"Invalid page slug: {slug!r}")
-        if slug.split('/')[0] in {'assets', 'resources', 'index', '404', 'zh'} or slug in {'guides', 'updates', 'latest', 'features', 'learn'}:
+        if slug.split('/')[0] in {'assets', 'resources', 'index', '404', 'zh'} or slug in {'guides', 'updates', 'latest', 'blog', 'features', 'learn'}:
             raise ValueError(f"Page slug collides with a generated route: {slug}")
         if slug in seen_slugs:
             raise ValueError(f"Duplicate slug detected in pages.json: '{slug}'")
@@ -2276,13 +2297,17 @@ def build_site(
     features_dir.mkdir(parents=True, exist_ok=True)
     (features_dir / "index.html").write_text(features_html, encoding="utf-8")
 
+    blog_dir = output_dir / "blog"
+    blog_dir.mkdir(parents=True, exist_ok=True)
+    (blog_dir / "index.html").write_text(build_blog_index(site_data, pages, effective_base_url, has_zh=has_zh), encoding="utf-8")
+
     learn_html_page = build_learn_index(site_data, pages, effective_base_url, locale="en", has_zh=has_zh, has_selections=(reading_lists is not None))
     learn_dir = output_dir / "learn"
     learn_dir.mkdir(parents=True, exist_ok=True)
     (learn_dir / "index.html").write_text(learn_html_page, encoding="utf-8")
 
     # 10. Render English Individual Content Pages
-    all_sitemap_routes = ["", "resources", "guides", "updates", "latest", "features", "learn"]
+    all_sitemap_routes = ["", "resources", "guides", "updates", "latest", "blog", "features", "learn"]
     for page in pages:
         slug = page["slug"].strip("/")
         body_file = content_dir / page["body_file"]
@@ -2402,6 +2427,11 @@ def build_site(
         (zh_features_dir / "index.html").write_text(zh_features_html, encoding="utf-8")
         all_sitemap_routes.append("zh/features")
 
+        zh_blog_dir = zh_dir / "blog"
+        zh_blog_dir.mkdir(parents=True, exist_ok=True)
+        (zh_blog_dir / "index.html").write_text(build_blog_index(site_data, zh_pages, effective_base_url, locale="zh"), encoding="utf-8")
+        all_sitemap_routes.append("zh/blog")
+
         zh_learn_html = build_learn_index(site_data, zh_pages, effective_base_url, locale="zh", has_selections=(reading_lists is not None))
         zh_learn_dir = zh_dir / "learn"
         zh_learn_dir.mkdir(parents=True, exist_ok=True)
@@ -2445,7 +2475,7 @@ def build_site(
             route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'guide' or p['slug'].startswith('guides/')), default=latest_date)
         elif clean == "updates":
             route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'release' or p['slug'].startswith('updates/')), default=latest_date)
-        elif clean == "features":
+        elif clean in {"blog", "features"}:
             route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') == 'feature' or p['slug'].startswith('features/')), default=latest_date)
         elif clean == "learn":
             route_dates[route] = max((article_dates[p['slug']] for p in pages if p.get('kind') in ('guide', 'introduction') or p['slug'].startswith('guides/')), default=latest_date)

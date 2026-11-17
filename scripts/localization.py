@@ -31,6 +31,7 @@ LOCALE_OG = {
 
 REQUIRED_NAV_ITEMS_ZH = [
     ("最新", "/zh/latest/"),
+    ("博客", "/zh/blog/"),
     ("学习", "/zh/learn/"),
     ("资源", "/zh/resources/"),
     ("ICLR 工作坊", "/workshops/a3-iclr-2027/"),

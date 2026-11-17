@@ -3,22 +3,22 @@
 scripts/check_navigation.py - Dedicated Acceptance Suite for Site Navigation & Latest Filtering.
 
 Verifies:
-1. 5-item Main Navigation:
-   - English: Latest, Learn, Resources, ICLR Workshop, About across portal pages
-   - Chinese (/zh/): 最新, 学习, 资源, ICLR 工作坊, 关于 across portal pages
+1. 6-item Main Navigation:
+   - English: Latest, Blog, Learn, Resources, ICLR Workshop, About across portal pages
+   - Chinese (/zh/): 最新, 博客, 学习, 资源, ICLR 工作坊, 关于 across portal pages
    - "Features" / "专栏" is NEVER present as a primary navigation item
 2. Active Navigation Highlighting:
-   - /latest/, /news/*, /updates/*, /features/, /features/* activate Latest
+   - /latest/, /news/*, /updates/* activate Latest; /blog/, /features/* activate Blog
    - /learn/, /guides/*, /start-here/ activate Learn
    - /resources/ activates Resources
    - /about/ activates About
 3. Deep Article Breadcrumbs:
-   - Feature articles route to Latest (English) and 最新 (Chinese)
+   - Feature articles route to Blog (English) and 博客 (Chinese)
    - News and Release articles route to Latest / 最新
    - Guides and Intro articles route to Learn / 学习
 4. Legacy Features Index:
    - /features/ and /zh/features/ exist and are not redirected
-   - Contains contextual link to /latest/?kind=feature (or /zh/latest/?kind=feature)
+   - Contains contextual link to /blog/ (or /zh/blog/)
    - Features terminology replaced with Analysis / 深度解读 in UI & eyebrow
 5. Article Card Contracts:
    - Every article card possesses valid data-kind attribute
@@ -28,9 +28,9 @@ Verifies:
    - Filter categories: all, news, feature, guide, release with aria-pressed
    - Status element #latest-count with role="status" and aria-live="polite"
 7. Discovery & Footer Terminology:
-   - Features replaced with Analysis (English) and 深度解读 (Chinese) in footers & 404 pages
+   - Blog (English) and 博客 (Chinese) in footers & 404 pages
 8. Localization Invariants:
-   - REQUIRED_NAV_ITEMS_ZH contains exactly 5 items
+   - REQUIRED_NAV_ITEMS_ZH contains exactly 6 items
    - KIND_LABELS_ZH["feature"] == "深度解读"
 """
 
@@ -167,18 +167,18 @@ def run_checks() -> int:
 
     print("Checking localization & build constants...")
     report.check()
-    if len(localization.REQUIRED_NAV_ITEMS_ZH) != 5:
-        report.error(f"REQUIRED_NAV_ITEMS_ZH must have 5 items, got {len(localization.REQUIRED_NAV_ITEMS_ZH)}: {localization.REQUIRED_NAV_ITEMS_ZH}")
+    if len(localization.REQUIRED_NAV_ITEMS_ZH) != 6:
+        report.error(f"REQUIRED_NAV_ITEMS_ZH must have 6 items, got {len(localization.REQUIRED_NAV_ITEMS_ZH)}: {localization.REQUIRED_NAV_ITEMS_ZH}")
     zh_targets = [t for _, t in localization.REQUIRED_NAV_ITEMS_ZH]
-    expected_zh_targets = ["/zh/latest/", "/zh/learn/", "/zh/resources/", "/workshops/a3-iclr-2027/", "/zh/about/"]
+    expected_zh_targets = ["/zh/latest/", "/zh/blog/", "/zh/learn/", "/zh/resources/", "/workshops/a3-iclr-2027/", "/zh/about/"]
     if zh_targets != expected_zh_targets:
         report.error(f"REQUIRED_NAV_ITEMS_ZH targets mismatch: expected {expected_zh_targets}, got {zh_targets}")
 
     report.check()
-    if len(build.REQUIRED_NAV_ITEMS) != 5:
-        report.error(f"REQUIRED_NAV_ITEMS must have 5 items, got {len(build.REQUIRED_NAV_ITEMS)}: {build.REQUIRED_NAV_ITEMS}")
+    if len(build.REQUIRED_NAV_ITEMS) != 6:
+        report.error(f"REQUIRED_NAV_ITEMS must have 6 items, got {len(build.REQUIRED_NAV_ITEMS)}: {build.REQUIRED_NAV_ITEMS}")
     en_targets = [t for _, t in build.REQUIRED_NAV_ITEMS]
-    expected_en_targets = ["/latest/", "/learn/", "/resources/", "/workshops/a3-iclr-2027/", "/about/"]
+    expected_en_targets = ["/latest/", "/blog/", "/learn/", "/resources/", "/workshops/a3-iclr-2027/", "/about/"]
     if en_targets != expected_en_targets:
         report.error(f"REQUIRED_NAV_ITEMS targets mismatch: expected {expected_en_targets}, got {en_targets}")
 
@@ -217,7 +217,7 @@ def run_checks() -> int:
         expected_nav_hrefs = expected_zh_targets if is_zh else expected_en_targets
 
         if nav_hrefs != expected_nav_hrefs:
-            report.error(f"{rel}: Nav links do not match expected 5 items: expected {expected_nav_hrefs}, got {nav_hrefs}")
+            report.error(f"{rel}: Nav links do not match expected 6 items: expected {expected_nav_hrefs}, got {nav_hrefs}")
 
         # Check Features / 专栏 is never in main nav
         report.check()
@@ -225,13 +225,10 @@ def run_checks() -> int:
             if "features" in href or label in ("Features", "专栏", "深度专栏"):
                 report.error(f"{rel}: Main nav contains Features item: href={href}, label={label}")
 
-        # Check footer links replace Features with Analysis / 深度解读
         report.check()
-        for href, label in parser.footer_links:
-            if "features" in href:
-                expected_label = "深度解读" if is_zh else "Analysis"
-                if label != expected_label:
-                    report.error(f"{rel}: Footer features link has outdated label '{label}', expected '{expected_label}'")
+        expected_blog_link = ("/zh/blog/", "博客") if is_zh else ("/blog/", "Blog")
+        if expected_blog_link not in parser.footer_links:
+            report.error(f"{rel}: Footer missing Blog link {expected_blog_link}")
 
     # The reusable renderer accepts partial fixtures; the published path must be complete.
     for locale_prefix in ("", "zh/"):
@@ -250,14 +247,16 @@ def run_checks() -> int:
     print("Checking active navigation highlighting...")
     route_expected_active = [
         # (route_path, expected_active_target)
+        ("blog/index.html", "/blog/"),
+        ("zh/blog/index.html", "/zh/blog/"),
         ("latest/index.html", "/latest/"),
         ("zh/latest/index.html", "/zh/latest/"),
-        ("features/index.html", "/latest/"),
-        ("zh/features/index.html", "/zh/latest/"),
+        ("features/index.html", "/blog/"),
+        ("zh/features/index.html", "/zh/blog/"),
         ("news/frontier-pacing-ceo-statements/index.html", "/latest/"),
         ("zh/news/frontier-pacing-ceo-statements/index.html", "/zh/latest/"),
-        ("features/benchmark-scores-and-agent-safety/index.html", "/latest/"),
-        ("zh/features/benchmark-scores-and-agent-safety/index.html", "/zh/latest/"),
+        ("features/benchmark-scores-and-agent-safety/index.html", "/blog/"),
+        ("zh/features/benchmark-scores-and-agent-safety/index.html", "/zh/blog/"),
         ("updates/catchbench-0-1-2/index.html", "/latest/"),
         ("zh/updates/catchbench-0-1-2/index.html", "/zh/latest/"),
         ("learn/index.html", "/learn/"),
@@ -287,8 +286,8 @@ def run_checks() -> int:
     # 4. Deep Article Breadcrumb Tests
     print("Checking deep article breadcrumbs...")
     breadcrumb_cases = [
-        ("features/benchmark-scores-and-agent-safety/index.html", "/latest/", "Latest"),
-        ("zh/features/benchmark-scores-and-agent-safety/index.html", "/zh/latest/", "最新"),
+        ("features/benchmark-scores-and-agent-safety/index.html", "/blog/", "Blog"),
+        ("zh/features/benchmark-scores-and-agent-safety/index.html", "/zh/blog/", "博客"),
         ("news/frontier-pacing-ceo-statements/index.html", "/latest/", "Latest"),
         ("zh/news/frontier-pacing-ceo-statements/index.html", "/zh/latest/", "最新"),
         ("updates/catchbench-0-1-2/index.html", "/latest/", "Latest"),
@@ -317,8 +316,8 @@ def run_checks() -> int:
     # 5. Legacy Features Index & Contextual Link
     print("Checking legacy features index...")
     for rel_path, expected_contextual_link in [
-        ("features/index.html", "/latest/?kind=feature"),
-        ("zh/features/index.html", "/zh/latest/?kind=feature"),
+        ("features/index.html", "/blog/"),
+        ("zh/features/index.html", "/zh/blog/"),
     ]:
         file_path = SITE_DIR / rel_path
         report.check()
@@ -332,6 +331,8 @@ def run_checks() -> int:
     # 6. Article Cards & data-kind
     print("Checking article cards data-kind attribute...")
     card_routes = [
+        "blog/index.html",
+        "zh/blog/index.html",
         "latest/index.html",
         "zh/latest/index.html",
         "features/index.html",

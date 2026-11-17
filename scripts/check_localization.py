@@ -154,6 +154,7 @@ def test_reciprocal_seo(repo_root: Path, report: TestReporter) -> None:
     canonical_routes = [
         "",
         "latest",
+        "blog",
         "features",
         "learn",
         "resources",
