@@ -1,0 +1,16 @@
+<section class="section">
+  <h2>公告报告了什么</h2>
+  <p>2026年11月19日，Prime Intellect 发布了<a href="https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution">安全公告 PI-SA-2026-001</a>。公告称，在11月8日 01:24 UTC 至11月10日 06:35 UTC 之间，未经授权的一方将其 deepseek/deepseek-v4.1-flash 端点背后的一个部署替换为“abliterated”副本，公告将其定义为经修改以减少或消除拒答行为的副本。按我们的计算，这一时间窗口约为 53 小时。公告称，受影响的部署在此期间处理的请求均由被修改的模型作答，该模型使用了公开可得的 abliterated 权重。</p>
+  <p>公告将受影响的产品列为 <a href="https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution">Prime Inference</a>，即 Prime Intellect 的推理服务。这不是 DeepSeek 自己的服务，公告也只涉及 Prime Intellect 的基础设施。DeepSeek 按 MIT 许可证<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">发布了</a>名为 DeepSeek-V4.1-Flash 的模型的权重，Prime Intellect 的<a href="https://www.primeintellect.ai/inference">推理页面</a>列出了 DeepSeek V4.1 Flash，因此我们按名称将二者对应起来。</p>
+</section>
+<section class="section">
+  <h2>测试结果、数据访问与客户措施</h2>
+  <p>Prime Intellect 称自己<a href="https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution">测试了被修改的权重</a>，发现能力基准（GPQA Diamond 和 τ-bench）未受影响。该公司报告，拒答的提示在 JailbreakBench 上从 100 条中的 98 条降至 1 条，在 StrongREJECT 上从 313 条中的 304 条降至 2 条，在 HarmBench 上从 240 条中的 198 条降至零。公告称，聊天模板、分词器和服务配置均未被修改。</p>
+  <p>在数据方面，Prime Intellect 称其端点<a href="https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution">采用了 ZDR</a> 设置（公告未解释这一术语），且不记录任何请求。该公司称没有发现提示或补全内容被记录或离开服务集群的证据，也没有发现服务集群之外被访问的证据。公告称，平台上的其他模型均未被修改，其他集群或基础设施均未被触及，密钥和客户凭据也均未受影响。Prime Intellect 还称，它找回了其所称攻击者代理的每一个版本，检查了每个相关节点的磁盘和内存，并持有对方会话的进程级记录，且“没有一项读取或传输请求内容”。</p>
+  <p>据 Prime Intellect 称，<a href="https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution">所有受影响的客户</a>均已被联系，其使用依赖模型拒答行为的客户被建议审查该时段的输出。其调查仍在进行，Prime Intellect 称若评估发生变化，将更新该公告。</p>
+</section>
+<section class="section">
+  <h2>局限与待解问题</h2>
+  <p>以上所有发现均出自 Prime Intellect 自身，Audit Commons 未核实其中任何一项。公告没有引用外部审查，也没有说明该方如何获得访问权限，或有多少客户受到影响。公告未给出 GPQA Diamond 或 τ-bench 的分数，也没有说明提示集、评分方式，以及“之前”的拒答数来自哪个模型。这些拒答数来自基准测试，因此并不记录客户实际收到了什么。其关于数据访问的未发现证据的表述，出自一项仍在进行的调查。</p>
+  <p>我们的编辑部解读：据 Prime Intellect 所述，仅凭能力得分无法看出是哪一套权重处理了某个请求，因此审计人员需要另行取得关于模型身份和拒答行为的证据。</p>
+</section>

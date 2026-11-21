@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>Redwood 测试了什么</h2>
+  <p>2026年11月20日，Redwood Research 发表了一篇<a href="https://www.redwoodresearch.org/blog/auditors-struggle-to-catch-sabotage-in">博客文章</a>，介绍一篇<a href="https://arxiv.org/abs/2611.21832">于11月16日发布到 arXiv、并于11月18日修订的论文</a>。<a href="https://arxiv.org/html/2611.21832v2">论文列出</a>的作者单位为 Redwood Research、Georgia Institute of Technology 和 Equistamp，另有一位独立作者。</p>
+  <p>这项研究是一场<a href="https://arxiv.org/html/2611.21832v2">红队/蓝队对抗</a>，考察审计人员能否在 AI 安全研究的完整日志（trace，下称“记录”）中发现破坏行为。一名人类研究者扮演错位的 AI，从零开始开展10个新项目：每个项目先不加破坏地做一遍，大多数项目再做一遍带有破坏的版本，破坏意在改变主要结论，且研究者已知良性结果。由此得到22条记录，其中10条为良性记录、12条为被破坏记录，共植入33种破坏机制。25名人类审计人员共完成104次审计，每次有90分钟的有效工作时间。其中93次采用主要审计方案，提供完整日志、由 AI 生成的审计报告，以及不设上限、可用于重新运行实验的算力；最初11次审计的日志较不完整，只有一份 AI 审计报告，也没有预先配置好的计算环境。9个 AI 模型在不运行实验的条件下审计了同样的记录。</p>
+</section>
+<section class="section">
+  <h2>审计人员发现了什么</h2>
+  <p><a href="https://www.redwoodresearch.org/blog/auditors-struggle-to-catch-sabotage-in">据作者称</a>，人类审计人员给出的破坏概率只能微弱地区分被破坏记录与良性记录：AUROC 为0.59，并不显著优于随机水平。这里的 AUROC 是指：随机抽取一次针对被破坏记录的审计，其给出的破坏概率高于随机抽取的一次针对良性记录的审计的概率（两者相同时计为一半），因此0.5相当于猜测。人类审计人员<a href="https://arxiv.org/html/2611.21832v2">完全识别了17%</a>他们遇到的被植入机制，另有74%则完全漏掉。</p>
+  <p>在9个 AI 模型中，Claude Fable 5.1 完全识别了约32%的机制，人类为17%；<a href="https://arxiv.org/html/2611.21832v2">论文报告</a>的 AUROC 为：Fable 5.1 为0.731，GPT-6 Astra 为0.743，人类为0.588。据作者所述，最强的模型在识别机制方面很可能优于人类，在区分被破坏记录与良性记录方面则有可能优于人类，但每项差异的配对95%区间都包含零。汇总所有人类和 AI 的报告后，33种机制中仍有13种从未被完全识别。</p>
+  <p>对于破坏者评为最难被发现的两种攻击，<a href="https://arxiv.org/html/2611.21832v2">没有任何人类或 AI 审计者识别出任何机制</a>，不过作者提醒，这只是在一个经过挑选的小样本中观察到的零值。</p>
+</section>
+<section class="section">
+  <h2>证据的局限</h2>
+  <p>以上均为作者自己的结果，Audit Commons 未看到这些记录，也未核对评分。作者列出的局限包括：<a href="https://www.redwoodresearch.org/blog/auditors-struggle-to-catch-sabotage-in">全部22条记录均出自同一名研究者</a>，置信区间很宽（人类 AUROC 的区间为0.37至0.77），破坏者已知良性结果，项目规模较小，以及审计人员的 AI 安全经验少于真实审计人员可能具备的水平。由于破坏者<a href="https://arxiv.org/html/2611.21832v2">必须对每条记录实施攻击</a>，该研究也没有直接检验能够自行选择攻击哪些实验的对手。</p>
+  <p><a href="https://arxiv.org/html/2611.21832v2">人类与 AI 的设置并不相同</a>：人类可以参考提供的 AI 审计报告、运行实验并获得反馈，而最强的 AI 审计者发布于人类可使用的 AI 工具的截止日期（2026年6月1日）之后，且不能运行实验。Redwood 通过论文中链接的申请表提供这些记录和实验，并要求获取者不要广泛分享；博客文章和 arXiv 摘要页均未链接公开的代码库。</p>
+  <p>我们的编辑部解读：声称已审计研究记录的说法，应当报告审计人员面对已知被植入破坏时的表现，因为在这项研究中，完整日志和额外算力并未让人类审计人员获得可靠的检出能力。</p>
+</section>

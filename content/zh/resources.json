@@ -934,5 +934,17 @@
   "empowering-edge-agents": {
     "summary": "提出 EC2-Bench，包含128个可执行的数字工作区任务，其中100个带有隐私标注，可同时衡量长程智能体执行过程中的任务表现、云端成本，以及有多少敏感工作区信息流向云端协作方。隐私暴露由一个 LLM 评审打分，作者用人工标注对其进行了核验。",
     "source_sha256": "482909b541659713540ed6d80a26e3ad62804d54b9d42d12666a3c46cc17cfb0"
+  },
+  "ironheights": {
+    "summary": "本地静态扫描器，在安装前为 AI 智能体技能（适用于 OpenClaw、Claude Code、Codex 和 Cursor 的 SKILL.md 文件夹）以及 MCP 服务器配置和工具定义评分，标记指令覆盖、隐藏文本、读取凭据、数据外传和持久化等模式，并记录已批准的技能，使之后的改动显示为漂移。它还可作为 MCP 服务器和 GitHub Action 运行。其 README 报告在 MaliciousSkillBench 上检出516个恶意技能中的263个（51.0%），并说明未发现问题并不证明安全。采用 Apache-2.0 许可，2026 年至今。",
+    "source_sha256": "f3617a3b80807ff4207dae59324b2761be1b329587dc13fe26b3a5e7c7616c2d"
+  },
+  "agent-qa": {
+    "summary": "面向网页、Android 和 iOS 的 GUI 测试智能体，记录每一步的计划操作、所提供的知识简报、结果和截图，以及控制台、网络和无障碍证据，并将失败归入测试缺陷、应用缺陷、环境、偶发失败或模型错误等原因，以供运行后诊断。这些记录只覆盖 agent-qa 自身的运行，而非任意智能体。以源码可得的 FSL-1.1-ALv2 许可发布，每个版本在两年后转为 Apache-2.0；2026 年至今。",
+    "source_sha256": "90b6ccea1282f369c7fd070653f6dd63651e629240df72ccfb58352435472e3e"
+  },
+  "agentrecount": {
+    "summary": "仅使用标准库的命令行工具，依据用户自己的 CSV 或 JSON 数据表重新计算 AI 智能体报告中的数值声明，并以 Markdown 和 JSON 给出四种结论之一，从“holds as stated”（如所述成立）到“not reproduced or not testable”（无法复现或无法检验）。使用前须由人或编码智能体把每项声明的所述数值、时间段、分子以及所需的分母写入声明 CSV；该工具本身不读取报告。采用 MIT 许可，2026 年至今。",
+    "source_sha256": "62768f7728772246ab451e98697fba39fef7ea1889790744490f00653988f117"
   }
 }

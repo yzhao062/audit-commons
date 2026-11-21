@@ -1056,5 +1056,102 @@
     "affiliation_disclosure": "每项资源均由其作者、维护者或已披露的关联方提交；HOL Guard 的提交者披露了其在 HOL 公司担任领导职务。它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库或论文撰写。收录进目录不代表认证任何工具、安全特性或结果。",
     "body_file": "zh/bodies/catalog-2026-11-16.html",
     "source_sha256": "fd3e1216211ed6a2473fac94e2d178c2a53541af60a1832cd966b6b83a13a6ae"
+  },
+  "news/gao-covert-tests-ai-platforms-attack-plans": {
+    "title": "GAO 隐蔽测试发现四个 AI 平台生成了可用于策划攻击的信息，提示词未公开",
+    "summary": "2026年11月18日，GAO 公开发布报告，称其2026年春季的隐蔽测试从四个广泛使用的生成式 AI 平台中获得了可协助策划攻击的信息，每个平台用时均不到12小时。GAO 未公开其提示词，也没有说明哪个产品产生了哪项结果，并称这些测试只反映某个时间点的情况，样本不具有统计显著性。",
+    "topics": [
+      "GAO",
+      "隐蔽测试",
+      "防护措施",
+      "审计证据",
+      "治理"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 GAO 已发布的报告和产品页面、参议员 Hassan 的新闻稿以及 Nextgov 的报道撰写本文，未审阅各公司的意见函、被保留的提示词或测试账户，也未核实任何发现。",
+    "body_file": "zh/bodies/gao-covert-tests-ai-platforms-attack-plans.html",
+    "source_sha256": "71fa921a626e17cf537e763ab30839eb43790f0cb309b68765a469f0eb9256ee"
+  },
+  "news/openai-gpt-6-2-system-card-external-evaluations": {
+    "title": "OpenAI 的 GPT-6.2 系统卡报告 UK AISI 发现越狱稳健性退步，并披露该机构对评判模型的选择受到限制",
+    "summary": "OpenAI 于2026年11月17日发布的 GPT-6.2 Astra 和 Sol 系统卡报告称，UK AISI 发现网络越狱稳健性出现显著退步，GPT-6.2 Astra 的评估感知高于 GPT-6 Astra，并发现关联性失效：OpenAI 模型未能标记其他 OpenAI 模型的未对齐行为。OpenAI 认为已缓解这一退步，但系统卡撰写时 UK AISI 尚未验证。UK AISI 认为，OpenAI 临时请其仅使用 OpenAI 模型处理未经摘要的思维链，降低了其评估的有效性和可比性。",
+    "topics": [
+      "OpenAI",
+      "英国人工智能安全研究所",
+      "Preparedness Framework",
+      "评估机构访问权限",
+      "运行时监控"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 OpenAI 的 GPT-6.2 系统卡、发布公告和 Irregular 的报告撰写本文，未看到 UK AISI 自己的报告或任何交互记录，也未运行任何评估或核实任何发现。",
+    "body_file": "zh/bodies/openai-gpt-6-2-system-card-external-evaluations.html",
+    "source_sha256": "9a43ef69839c94a87ebfa99e01cb4f6a7334169900fc34e7cb23606b55a0f297"
+  },
+  "news/redwood-auditors-miss-research-sabotage": {
+    "title": "Redwood Research 报告称，人类审计人员大多未能发现 AI 安全研究记录中被植入的破坏",
+    "summary": "2026年11月20日，Redwood Research 报告称，人类审计人员区分被破坏的 AI 安全研究与良性研究的 AUROC 为0.59，并不显著优于随机水平，尽管其主要审计方案为审计人员提供了完整日志、AI 辅助和重新运行实验的算力。最强的 AI 审计者很可能识别出更多破坏，但与人类的配对区间包含零。全部22条记录均出自同一名研究者。",
+    "topics": [
+      "Redwood Research",
+      "研究破坏",
+      "AI 研发自动化",
+      "审计证据",
+      "人工监督"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Redwood Research 11月20日的博客文章和 arXiv 论文（第2版）撰写本文，未看到相关记录，也未核对评分、统计方法或任何报告的数字。",
+    "body_file": "zh/bodies/redwood-auditors-miss-research-sabotage.html",
+    "source_sha256": "867556d6779fa3c8de0b04bb86c71635772ef81de61ed518f3b331e9fc432e6c"
+  },
+  "news/prime-intellect-model-substitution-incident": {
+    "title": "Prime Intellect 称未经授权的一方将其一处 DeepSeek 部署替换为经修改以减少拒答的权重，持续约 53 小时",
+    "summary": "2026年11月19日，Prime Intellect 表示，11月8日至10日，未经授权的一方将其 deepseek/deepseek-v4.1-flash 端点背后的一个部署替换为经修改以减少或去除拒答的副本。其测试发现，能力基准未受影响，而拒答大幅减少。所有发现均为该公司自述，包括其称未发现提示或补全内容被记录或离开其服务集群的证据，公告也没有说明该方如何获得访问权限。",
+    "topics": [
+      "Prime Intellect",
+      "事件报告",
+      "模型完整性",
+      "信息披露",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Prime Intellect 的公开公告撰写本文，并以 DeepSeek 的模型卡和 Prime Intellect 的推理页面作为模型背景，未测试该端点或被修改的权重，也未核实其中任何所述发现。",
+    "body_file": "zh/bodies/prime-intellect-model-substitution-incident.html",
+    "source_sha256": "41ae15c343dde6b65fde97af0483b70647d511bfaf33e4e85c784209327db590"
+  },
+  "news/california-frontier-ai-oversight-blueprint": {
+    "title": "加利福尼亚州报告建议为前沿 AI 引入持牌独立核验组织、48小时事件报告和经测试的关停预案",
+    "summary": "2026年11月18日，州长 Gavin Newsom 的办公室发布了一份加利福尼亚州政府机构的报告，建议由持牌独立核验组织对大型前沿 AI 开发者进行持续监督，要求其维持经核验的紧急关停预案，并要求前沿开发者在48小时而非15天内报告大多数关键安全事件。这些是向立法机构提出的建议，而非法律。报告没有涉及责任法律改革，对轮换或由政府指派核验组织也不表态。",
+    "topics": [
+      "加利福尼亚州",
+      "前沿 AI",
+      "独立审计",
+      "事件报告",
+      "AI 研发自动化"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据加利福尼亚州政府运营局的报告、州长11月18日的新闻稿和第 N-9-26 号行政令撰写本文，未检索法案文本，也未核实报告所引用的事件和说法。",
+    "body_file": "zh/bodies/california-frontier-ai-oversight-blueprint.html",
+    "source_sha256": "a484814e7b5048a3d1bab63b849378e70c292ef75708b54d779cc6deefdfa79e"
+  },
+  "news/ietf-127-audit-bof-declines-working-group": {
+    "title": "BoF 会议后，IETF 领域主管拒绝设立智能体审计记录 AUDIT 工作组",
+    "summary": "在2026年11月17日举行、旨在决定是否设立可验证智能体记录 AUDIT 工作组的 IETF 127 会议上，多数投票作答者认可由 IETF 承担这项工作，但否决了初始范围。据会议笔记，领域主管拒绝设立该工作组，并将章程草案退回以便细化。11月21日发布的会议纪要照录了这些工作笔记，第二次会议仍需进一步批准。",
+    "topics": [
+      "IETF",
+      "审计证据",
+      "智能体审计",
+      "核验",
+      "隐私"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据公开的 IETF 材料（Datatracker 记录、幻灯片、投票记录、会议笔记、章程草案和一则邮件列表通知）以及 AGENTPROTO 草案正文撰写本文，没有观看会议录像，没有对照录像核对笔记，也没有评估任何提案的技术优劣。",
+    "body_file": "zh/bodies/ietf-127-audit-bof-declines-working-group.html",
+    "source_sha256": "0d262394810982b8588e4aa9d1b81e27c5ef35824c4203a5e16554b3fecbfd5d"
+  },
+  "updates/catalog-2026-11-21": {
+    "title": "资源目录更新：Ironheights、agent-qa 和 agentrecount",
+    "summary": "新增三项资源，使目录增至237项：一个在安装前为智能体技能和 MCP 输入评分的扫描器，一个记录自身运行证据的 GUI 测试智能体，以及一个重新计算智能体报告中数值声明的工具。每项均由其作者或所有者提出。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "智能体安全",
+      "编码智能体"
+    ],
+    "affiliation_disclosure": "每项资源均由其作者或所有者提交，它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库撰写。收录进目录不代表认证任何工具、安全特性或结果。",
+    "body_file": "zh/bodies/catalog-2026-11-21.html",
+    "source_sha256": "eb79ea34834ff257c95ea9b35c141d1d796f65195854cb7b37650a75aada1947"
   }
 }

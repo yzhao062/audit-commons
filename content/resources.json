@@ -5222,5 +5222,68 @@
       "Paper",
       "Dataset"
     ]
+  },
+  {
+    "id": "ironheights",
+    "name": "Ironheights",
+    "category": "Security",
+    "format": "Tool",
+    "summary": "Local static scanner that grades AI agent skills (SKILL.md folders for OpenClaw, Claude Code, Codex, and Cursor) and MCP server configurations and tool definitions before install, flags patterns such as instruction overrides, hidden text, credential reads, exfiltration, and persistence, and records approved skills so that later changes show up as drift. It also runs as an MCP server and a GitHub Action. Its README reports detecting 263 of 516 malicious skills (51.0%) on MaliciousSkillBench and states that an absence of findings is not proof of safety. Apache-2.0, 2026-present.",
+    "url": "https://github.com/Frank-Masciopinto/ironheights",
+    "owner": "Frank-Masciopinto contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/Frank-Masciopinto/ironheights"
+    ],
+    "checked": "2026-11-21",
+    "source_section": "Security Auditing and Scanners",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/64cd66553771d4b5f5c2aeb7491ed515b3c929a3/README.md#security-auditing-and-scanners",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agent-qa",
+    "name": "agent-qa",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "GUI-testing agent for web, Android, and iOS that records each step's planned action, served knowledge brief, outcome, and screenshots, with console, network, and accessibility evidence, and sorts failures into causes such as test bug, app bug, environment, flake, or model error for post-run diagnosis. The records cover agent-qa's own runs, not arbitrary agents. Source-available under FSL-1.1-ALv2, under which each release becomes Apache-2.0 after two years; 2026-present.",
+    "url": "https://github.com/vostride/agent-qa",
+    "owner": "vostride contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/vostride/agent-qa"
+    ],
+    "checked": "2026-11-21",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/64cd66553771d4b5f5c2aeb7491ed515b3c929a3/README.md#tools-and-platforms",
+    "links": [
+      {
+        "label": "Project",
+        "url": "https://vostride.com"
+      }
+    ],
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "agentrecount",
+    "name": "agentrecount",
+    "category": "Tools",
+    "format": "Tool",
+    "summary": "Standard-library command-line tool that recomputes numeric claims from an AI agent's report against the user's own CSV or JSON tables and reports one of four verdicts, from \"holds as stated\" to \"not reproduced or not testable\", as Markdown and JSON. A person or coding agent must first write each claim's stated value, period, numerator, and any required denominator into a claims CSV; the tool does not read the report itself. MIT-licensed, 2026-present.",
+    "url": "https://github.com/arsentev-ai/agentrecount",
+    "owner": "arsentev-ai contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/arsentev-ai/agentrecount"
+    ],
+    "checked": "2026-11-21",
+    "source_section": "Tools and Platforms",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/64cd66553771d4b5f5c2aeb7491ed515b3c929a3/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
   }
 ]

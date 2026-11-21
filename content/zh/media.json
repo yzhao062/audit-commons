@@ -603,5 +603,35 @@
     "alt": "一名身穿带州徽深蓝色外套的女子在标有“Keeping New Yorkers Safe”字样的讲台前讲话，身旁站着三名官员，背后是一面显示地铁站画面的监控屏幕墙。",
     "caption": "纽约州州长 Kathy Hochul 与交通和警务官员在大都会运输署（MTA）总部情况室举行新闻发布会，摄于2025年10月9日。资料照片，由 Marc A. Hermann / 大都会运输署拍摄（CC BY 4.0）；Hochul 办公室于2026年11月10日宣布设立新的 AI 研究中心并开通 RAISE 门户。",
     "source_sha256": "d9c3a9639d1675f1c7be59ba5a6267dc26375e592fff964470990fe116d5fcdc"
+  },
+  "gao-headquarters-2024": {
+    "alt": "华盛顿特区街角一栋约七层高的浅色石材办公大楼，人行道旁有树木、红绿灯和停放的汽车，天空晴朗湛蓝。",
+    "caption": "美国政府问责局（GAO）位于华盛顿特区的总部大楼，摄于2024年6月21日。资料照片，由 Ajay Suresh 拍摄（CC BY 2.0）；GAO 于2026年11月18日公开发布了对四个 AI 平台进行隐蔽测试的报告。",
+    "source_sha256": "5e9398483b1abbe06bebbb5ae8949b0981fe8bc04127893e4795c912a98de7d2"
+  },
+  "peter-kyle-openai-2024": {
+    "alt": "一名灰发男子身穿深色西装外套和白衬衫，手持红色文件夹，在一处设有宽大楼梯和木条墙面的大楼门厅里，与一名身穿棕褐色外套、面带笑容的女子交谈。",
+    "caption": "时任英国科学、创新和技术大臣 Peter Kyle（其所在部门下设人工智能安全研究所）于2024年10月24日访问位于旧金山的 OpenAI。资料照片，由 Alecsandra Dragoi / DSIT 拍摄（CC BY 2.0）；OpenAI 于2026年11月17日发布了 GPT-6.2 系统卡。",
+    "source_sha256": "89b935fcd481f9e6604ecb966af10c56edb6e28e453bbb673354a1f002ce04ec"
+  },
+  "redwood-logo-research-sabotage": {
+    "alt": "Redwood Research 标志：开口圆环中的深绿色抽象树形，旁边是 REDWOOD RESEARCH 字样。",
+    "caption": "Redwood Research 标志。Redwood Research 于2026年11月20日发表博文，介绍其研究：考察人类和 AI 审计人员能否在研究记录中发现被植入的破坏。",
+    "source_sha256": "a2e411ae3b9ff6f24ee4a0746f5e8c6d863a3cf65863e25b782aaf46c3ba4f8b"
+  },
+  "ietf-125-plenary-2026": {
+    "alt": "从观众席看去的会议厅：一名身穿红衣的发言人站在印有 IETF 字样的讲台后，台上两侧长桌坐着小组成员，中间过道上一名男子站在落地麦克风前。",
+    "caption": "2026年3月18日，在中国深圳举行的 IETF 125 全体会议的与会者。资料照片，由 Suzanne Lee/Panos Pictures 为 IETF 拍摄（CC BY 4.0）；AUDIT 会议于2026年11月17日在旧金山举行的 IETF 127 上召开。",
+    "source_sha256": "83e2227cc76e718079adc37f7f90cbc663448312b7f249f30f17ba553b81e4cf"
+  },
+  "california-capitol-2018": {
+    "alt": "白色新古典主义风格的加利福尼亚州议会大厦，正面立柱和圆顶在蓝色暮色中亮着暖色灯光，前方是两侧树木环绕的大片草坪。",
+    "caption": "暮色中位于萨克拉门托的加利福尼亚州议会大厦，摄于2018年8月。资料照片，由 Daniel Lawrence Lu 拍摄（CC BY-SA 4.0）；州长 Gavin Newsom 办公室于2026年11月18日发布了关于前沿 AI 监督的州报告。",
+    "source_sha256": "79b00c780094c8f860cbe3ff74e9d87900d22b2b9d815810329f71888367260f"
+  },
+  "prime-intellect-logo": {
+    "alt": "Prime Intellect 标志：黑色翼形图案，旁边是方块字体的 PRIME 和斜体衬线字体的 Intellect。",
+    "caption": "Prime Intellect 标志。Prime Intellect 于2026年11月19日发布了关于 deepseek/deepseek-v4.1-flash 部署被替换的安全公告。",
+    "source_sha256": "663e0ad39cb98e9afe749db29922e634013029a0866d0fc3356ffa107353a2a1"
   }
 }

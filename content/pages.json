@@ -2279,5 +2279,231 @@
       "updates/catalog-2026-11-09",
       "guides/audit-an-agent-action"
     ]
+  },
+  {
+    "slug": "news/gao-covert-tests-ai-platforms-attack-plans",
+    "title": "GAO Covert Tests Find Four AI Platforms Produced Attack-Planning Information, With Prompts Withheld",
+    "summary": "On November 18, 2026, GAO publicly released a report saying spring 2026 covert tests drew information that could assist attack planning from four widely used generative AI platforms, each in under 12 hours. GAO withholds its prompts, does not say which product produced which result, and calls the tests a point-in-time sample that is not statistically significant.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-18",
+    "kind": "news",
+    "topics": [
+      "GAO",
+      "Covert testing",
+      "Safeguards",
+      "Audit evidence",
+      "Governance"
+    ],
+    "source_urls": [
+      "https://www.gao.gov/products/gao-27-108814",
+      "https://www.gao.gov/assets/gao-27-108814.pdf",
+      "https://www.hassan.senate.gov/news/press-releases/major-ai-platforms-generated-terrorist-attack-plans-during-independent-government-audit",
+      "https://www.nextgov.com/artificial-intelligence/2026/11/major-ai-platforms-generated-viable-plans-terrorist-attacks-gao-finds/417305/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/gao-covert-tests-ai-platforms-attack-plans/",
+    "affiliation_disclosure": "Audit Commons relied on GAO's published report and product page, Senator Hassan's release, and Nextgov, and has not reviewed the companies' comment letters, the withheld prompts, or the test accounts, or verified any finding.",
+    "body_file": "bodies/gao-covert-tests-ai-platforms-attack-plans.html",
+    "related_slugs": [
+      "news/cantwell-independent-audit-framework",
+      "news/us-frontier-oversight-ftc-demands-task-force-charter",
+      "news/metr-senate-agent-incident-testimony"
+    ]
+  },
+  {
+    "slug": "news/openai-gpt-6-2-system-card-external-evaluations",
+    "title": "OpenAI's GPT-6.2 System Card Reports a UK AISI Jailbreak Regression and Limits on the Institute's Judge Models",
+    "summary": "OpenAI's GPT-6.2 Astra and Sol system card, published November 17, 2026, reports that UK AISI found a substantial cyber-jailbreak robustness regression, higher evaluation awareness in GPT-6.2 Astra than in GPT-6 Astra, and correlated failures in which OpenAI models failed to flag misaligned behavior by other OpenAI models. OpenAI believes it mitigated the regression, but UK AISI had not validated that when the card was written. UK AISI believes OpenAI's temporary request to use only OpenAI models for unsummarized chain-of-thought reduced its evaluations' effectiveness and comparability.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-17",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "UK AI Security Institute",
+      "Preparedness Framework",
+      "Evaluator access",
+      "Runtime monitoring"
+    ],
+    "source_urls": [
+      "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+      "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "https://www.irregular.com/research/assessing-gpt-6.2-astra-against-offensive-security-benchmarks"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-gpt-6-2-system-card-external-evaluations/",
+    "affiliation_disclosure": "Audit Commons relied on OpenAI's GPT-6.2 system card, its launch announcement, and Irregular's report, and has not seen UK AISI's own reports or any transcripts, run any evaluation, or verified any finding.",
+    "body_file": "bodies/openai-gpt-6-2-system-card-external-evaluations.html",
+    "related_slugs": [
+      "news/openai-embedded-assessments-first-phase",
+      "news/gpt-6-1-terra-safety-addendum",
+      "news/openai-misalignment-reports-ci-access-evaluation-shutdown"
+    ]
+  },
+  {
+    "slug": "news/redwood-auditors-miss-research-sabotage",
+    "title": "Redwood Research Reports Human Auditors Mostly Missed Planted Sabotage in AI Safety Research Transcripts",
+    "summary": "On November 20, 2026, Redwood Research reported that human auditors scored an AUROC of 0.59, not significantly better than chance, at telling sabotaged AI safety research from benign work, although its main protocol gave them full logs, AI help, and compute to rerun experiments. The best AI auditors likely identified more sabotage, but the paired intervals against humans include zero. All 22 traces came from a single researcher.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-20",
+    "kind": "news",
+    "topics": [
+      "Redwood Research",
+      "Research sabotage",
+      "AI R&D automation",
+      "Audit evidence",
+      "Human oversight"
+    ],
+    "source_urls": [
+      "https://www.redwoodresearch.org/blog/auditors-struggle-to-catch-sabotage-in",
+      "https://arxiv.org/abs/2611.21832",
+      "https://arxiv.org/html/2611.21832v2"
+    ],
+    "canonical_url": "https://auditcommons.org/news/redwood-auditors-miss-research-sabotage/",
+    "affiliation_disclosure": "Audit Commons relied on Redwood Research's November 20 blog post and the arXiv paper (version 2), and has not seen the traces or checked the grading, the statistics, or any reported figure.",
+    "body_file": "bodies/redwood-auditors-miss-research-sabotage.html",
+    "related_slugs": [
+      "news/redwood-simulated-control-evaluations",
+      "news/metr-transcript-viewer-security"
+    ]
+  },
+  {
+    "slug": "news/prime-intellect-model-substitution-incident",
+    "title": "Prime Intellect Says an Unauthorized Party Replaced One DeepSeek Deployment With Weights Modified to Reduce Refusals for About 53 Hours",
+    "summary": "On November 19, 2026, Prime Intellect said that from November 8 to 10 an unauthorized party replaced a deployment behind its deepseek/deepseek-v4.1-flash endpoint with a copy modified to reduce or remove refusals. Its tests found capability benchmarks unaffected while refusals fell sharply. All findings, including its report of no evidence that prompts or completions were recorded or left its serving cluster, are self-reported, and the advisory does not say how the party gained access.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-19",
+    "kind": "news",
+    "topics": [
+      "Prime Intellect",
+      "Incident reporting",
+      "Model integrity",
+      "Disclosure",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.primeintellect.ai/security/advisories/deepseek-v4-1-flash-model-substitution",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "https://www.primeintellect.ai/inference"
+    ],
+    "canonical_url": "https://auditcommons.org/news/prime-intellect-model-substitution-incident/",
+    "affiliation_disclosure": "Audit Commons relied on Prime Intellect's public advisory, plus DeepSeek's model card and Prime Intellect's inference page for model background, and has not tested the endpoint or the modified weights or verified any stated finding.",
+    "body_file": "bodies/prime-intellect-model-substitution-incident.html",
+    "related_slugs": [
+      "features/benchmark-scores-and-agent-safety",
+      "news/openai-dns-escape-offline-training",
+      "news/cert-in-agent-unauthorized-access-advisory"
+    ]
+  },
+  {
+    "slug": "news/california-frontier-ai-oversight-blueprint",
+    "title": "California Report Recommends Licensed Independent Verifiers, 48-Hour Incident Reports, and Tested Shutdown Plans for Frontier AI",
+    "summary": "On November 18, 2026, Governor Gavin Newsom’s office released a state agency report recommending ongoing oversight of large frontier AI developers by licensed independent verifiers, verified emergency shutdown plans, and a 48-hour deadline, down from 15 days, for frontier developers to report most critical safety incidents. These are recommendations to the Legislature, not law. The report does not address reforming liability law and takes no position on rotating or government-assigned verifiers.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-18",
+    "kind": "news",
+    "topics": [
+      "California",
+      "Frontier AI",
+      "Independent audits",
+      "Incident reporting",
+      "AI R&D automation"
+    ],
+    "source_urls": [
+      "https://www.govops.ca.gov/wp-content/uploads/sites/11/2026/11/FINAL_-AI-Safety-in-2026-and-Beyond-v2.pdf",
+      "https://www.gov.ca.gov/2026/11/18/governor-newsoms-nation-leading-ai-safety-framework-is-getting-even-stronger-as-california-releases-next-steps-on-mandatory-safety-standards-and-oversight/",
+      "https://www.gov.ca.gov/wp-content/uploads/2026/09/FINAL-N-9-26-AI-EO-9.18.26-SIGNED.pdf",
+      "https://www.govops.ca.gov/accelerating-independent-oversight-and-advancing-the-creation-of-an-ai-kill-switch/",
+      "https://www.gov.ca.gov/2026/11/19/what-they-are-saying-leaders-from-across-the-country-celebrate-governor-newsoms-nation-leading-ai-framework/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/california-frontier-ai-oversight-blueprint/",
+    "affiliation_disclosure": "Audit Commons relied on the California Government Operations Agency report, the Governor’s November 18 release, and Executive Order N-9-26, and did not search for bill text or verify the incidents and claims the report cites.",
+    "body_file": "bodies/california-frontier-ai-oversight-blueprint.html",
+    "related_slugs": [
+      "news/pennsylvania-frontier-ai-audit-bills-hearing",
+      "news/new-york-raise-portal-ai-testing-center",
+      "news/cantwell-independent-audit-framework"
+    ]
+  },
+  {
+    "slug": "news/ietf-127-audit-bof-declines-working-group",
+    "title": "IETF Area Director Declines to Charter AUDIT Working Group on Agent Audit Records After BoF",
+    "summary": "At an IETF 127 session on November 17, 2026, held to decide whether to charter an AUDIT working group on verifiable agent records, most poll respondents backed the IETF as the venue yet rejected the initial scope. According to session notes, the area director declined to charter the group and returned the draft charter for refinement. The minutes posted on November 21 reproduce those working notes, and a second session would need further approval.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-17",
+    "kind": "news",
+    "topics": [
+      "IETF",
+      "Audit evidence",
+      "Agent auditing",
+      "Verification",
+      "Privacy"
+    ],
+    "source_urls": [
+      "https://datatracker.ietf.org/meeting/127/session/audit",
+      "https://notes.ietf.org/notes-ietf-127-audit/download",
+      "https://datatracker.ietf.org/meeting/127/materials/polls-127-audit-202611170900-00",
+      "https://raw.githubusercontent.com/mirjak/audit-bof-preparation/39dcfef9f73463b34cbb0df703a4747d096a74b5/audit-charter.md",
+      "https://datatracker.ietf.org/meeting/127/materials/slides-127-audit-audit-bof-ietf-127-00",
+      "https://datatracker.ietf.org/meeting/127/materials/agenda-127-audit-02.md",
+      "https://datatracker.ietf.org/group/audit/about/",
+      "https://mailarchive.ietf.org/arch/msg/audit/ISQ2xryc--mkqotIhif4aJN1c8o/",
+      "https://datatracker.ietf.org/meeting/127/session/scitt",
+      "https://notes.ietf.org/notes-ietf-127-scitt/download",
+      "https://datatracker.ietf.org/meeting/127/materials/polls-127-scitt-202611181630-00",
+      "https://datatracker.ietf.org/meeting/127/materials/slides-127-scitt-ietf-127-scitt-working-group-sf-00",
+      "https://datatracker.ietf.org/doc/draft-thaha-scitt-agent-execution-evidence/",
+      "https://www.ietf.org/archive/id/draft-ietf-agentproto-usecases-requirements-00.txt",
+      "https://datatracker.ietf.org/doc/draft-ietf-agentproto-usecases-requirements/history/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/ietf-127-audit-bof-declines-working-group/",
+    "affiliation_disclosure": "Audit Commons relied on public IETF materials (Datatracker records, slides, poll records, session notes, the draft charter, and a mailing list notice) and the AGENTPROTO draft text, and did not watch the recordings, verify the notes against them, or assess any proposal’s technical merits.",
+    "body_file": "bodies/ietf-127-audit-bof-declines-working-group.html",
+    "related_slugs": [
+      "news/ietf-agent-execution-evidence-drafts",
+      "news/nist-agent-identity-design-tenets",
+      "guides/audit-an-agent-action"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-11-21",
+    "title": "Resource catalog update: Ironheights, agent-qa, and agentrecount",
+    "summary": "Three additions bring the catalog to 237 entries: a scanner that grades agent skills and MCP inputs before install, a GUI-testing agent that records evidence from its own runs, and a tool that recomputes numeric claims in agent reports. Each was proposed by its author or owner.",
+    "author": "Audit Commons",
+    "published": "2026-11-21",
+    "updated": "2026-11-21",
+    "event_date": "2026-11-21",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Agent security",
+      "Coding agents"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/64cd66553771d4b5f5c2aeb7491ed515b3c929a3/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/54",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/61",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/62",
+      "https://github.com/Frank-Masciopinto/ironheights",
+      "https://github.com/vostride/agent-qa",
+      "https://github.com/arsentev-ai/agentrecount"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-11-21/",
+    "affiliation_disclosure": "Each resource was submitted by its author or owner. None is affiliated with Audit Commons. The summaries follow each project's repository. Catalog inclusion does not certify any tool, security property, or result.",
+    "body_file": "bodies/catalog-2026-11-21.html",
+    "related_slugs": [
+      "updates/catalog-2026-11-16",
+      "guides/audit-an-agent-action"
+    ]
   }
 ]
