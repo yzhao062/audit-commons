@@ -121,7 +121,7 @@ Use the actual server port if different. Inspect desktop and narrow mobile layou
 
 For the weekly-refresh prepublication gate, `/vet both` selects two independent reviewers: Claude and Agy when Codex coordinates, or Codex and Agy when Claude coordinates. Dispatch them sequentially, use their available review channels, and disclose an unavailable reviewer. Do not label a self-review as an independent review. Keep review scratch files, browser captures, credentials, and private account details outside published output.
 
-Before release, inspect both staged and unstaged changes, stage only intended paths, and run `git diff --check` plus `git diff --cached --check`. Show the exact commit and push commands and obtain explicit authorization when it has not already been given for that scope. Verify the actual branch, upstream, and remote; do not assume the local branch is named `main`. Reconcile remote advances without force-pushing unrelated work.
+Before release, inspect both staged and unstaged changes, stage only intended paths, and run `git diff --check` plus `git diff --cached --check`. Commit without asking. Before a push, show the exact command, its target, and the commits it sends, and obtain explicit authorization when it has not already been given for that scope. Verify the actual branch, upstream, and remote; do not assume the local branch is named `main`. Reconcile remote advances without force-pushing unrelated work.
 
 A push to remote `main` triggers the current Pages deployment. Confirm the workflow's result, then check the changed public routes, images and credit links, canonical URLs, sitemap, and feed as relevant. A local build or a successful push alone does not demonstrate that the intended revision is live.
 

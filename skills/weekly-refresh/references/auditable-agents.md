@@ -2,7 +2,7 @@
 
 The Auditable Agents ecosystem site at https://auditable-agents.github.io/ lives in the sibling checkout `auditable-agents.github.io`. It is a separate repository, not part of Audit Commons. Its [maintainer guide](../../../../auditable-agents.github.io/README.md) governs card format, status labels, and ordering; this reference adds the weekly procedure. The pass covers new talks, media coverage, and papers.
 
-The user has authorized recurring read-only discovery and local edits to that site as part of the weekly refresh. This is not authorization to publish, commit, push, send mail, or create a schedule.
+The user has authorized recurring read-only discovery and local edits to that site as part of the weekly refresh. Local commits need no authorization. This is not authorization to publish, push, send mail, or create a schedule.
 
 ## Preserve Existing Content
 
@@ -46,5 +46,5 @@ These simple cards do not follow the Audit Commons article image, media registry
 
 - Open every new link and confirm it supports the stated claim. Review the scoped diff against the baseline, confirm anchor IDs are unique, and rerun the preservation check.
 - For layout changes, check the page in a browser at desktop and narrow widths and in each theme the page supports.
-- Run the existing `/vet` gate before publication. Commit or push only with current-scope authorization and exact scoped commands. No future automatic push has been granted, and this pass creates no scheduler.
+- Run the existing `/vet` gate before publication. Push only with current-scope authorization, after showing the exact scoped command, its target, and the commits it sends. No future automatic push has been granted, and this pass creates no scheduler.
 - In an unchanged week, do not modify the site. Record the no-change or partial-coverage outcome privately in the weekly report.

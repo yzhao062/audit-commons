@@ -56,9 +56,10 @@ Run this phase inside the Awesome checkout or integration clone.
    exact HEAD commit SHA, using Claude when Codex coordinates or Codex when Claude coordinates. Confirm automated link audit and inventory checks pass (`tools/inventory.py`,
    `tools/check_links.py`).
 5. **Authorized merge:** Verify the actual remote, branch, and upstream. Before execution, show the exact
-   `gh pr merge <number> --merge --match-head-commit <reviewed-sha>` command and any scoped `git add`,
-   `git commit`, and `git push <remote> <branch>` commands. Apply current human authorization; ask only
-   when it does not cover the scope. Merge approved PRs pinned to the reviewed HEAD commit SHA.
+   `gh pr merge <number> --merge --match-head-commit <reviewed-sha>` command and any scoped
+   `git push <remote> <branch>` command with the commits it sends. Local staging and commits need no
+   approval. Apply current human authorization; ask only when it does not cover the scope. Merge
+   approved PRs pinned to the reviewed HEAD commit SHA.
    Refresh derived inventory claims and social-card assets with `tools/recount.py` and
    `assets/render_social.py` as needed. If batching merges followed by maintainer corrections is
    explicitly authorized, review the combined result and repair counts promptly. Verify final `main` CI.
@@ -104,7 +105,8 @@ Run this phase inside the Awesome checkout or integration clone.
 4. **Refresh record:** Document the refresh in `docs/refreshes/YYYY-MM-DD.md` before staging and review.
 5. **Prepublication gate:** Stage only intended files. Run `/vet both` (evaluating exact staged content across
    two independent reviewers).
-6. **Authorized deployment:** Verify the actual remote, branch, and upstream. Before execution, show the exact
-   scoped `git add`, `git commit`, and `git push <remote> <branch>` commands. Apply existing publication
-   authorization or request approval for the new scope. Commit, push, and verify live routes on
-   `auditcommons.org` and `auditcommons.org/zh/` along with the Atom feed and sitemap.
+6. **Authorized deployment:** Verify the actual remote, branch, and upstream. Commit the reviewed batch
+   without asking. Before the push, show the exact scoped `git push <remote> <branch>` command and the
+   commits it sends. Apply existing publication authorization or request approval for the new scope.
+   Push and verify live routes on `auditcommons.org` and `auditcommons.org/zh/` along with the Atom
+   feed and sitemap.
