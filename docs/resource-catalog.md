@@ -9,9 +9,9 @@ This document records the provenance, licensing, schema contract, and synchroniz
 The Resource Catalog imports curated entries from the companion [Awesome Auditable AI](https://github.com/yzhao062/awesome-auditable-ai) repository.
 
 - **Upstream Repository**: [`https://github.com/yzhao062/awesome-auditable-ai`](https://github.com/yzhao062/awesome-auditable-ai)
-- **Pinned Commit Revision**: `64cd66553771d4b5f5c2aeb7491ed515b3c929a3`
-- **Normalized LF UTF-8 SHA256**: `fd426bb508125b6897339bf6c0ca119c48c0c9aa4bd290dceee4523f800a1785`
-- **Snapshot Review Date**: `2026-11-21`
+- **Pinned Commit Revision**: `b837db290bade8663616393bc3bf7ca74f2563e0`
+- **Normalized LF UTF-8 SHA256**: `dc70c98efaf27d5fc6ebfdcc967e4e0c5bf211b1493ea73c8193b7e6b345bded`
+- **Snapshot Review Date**: `2026-11-26`
 - **Upstream License**: Creative Commons Zero v1.0 Universal (CC0 1.0) Public Domain Dedication ([`awesome-LICENSE`](https://creativecommons.org/publicdomain/zero/1.0/))
 - **Site-Wide License Status**: Site-wide license selection for Audit Commons remains **pending**. Upstream catalog metadata is imported under CC0 1.0 attribution, but Audit Commons does not inherit another site's license or bind unpublished sections.
 
@@ -28,6 +28,8 @@ All eight summaries are editorial rewrites of the importer output, and each tool
 A scoped sync on November 16 adds four records from community PRs #56 through #59, which the companion list merged that day at `a2e3603`: HOL Guard, Mycelium Trails, TRACES.md, and EC2-Bench. Each was submitted by the project's author or maintainer; the HOL Guard submitter disclosed a leadership role at HOL, which maintains it. None is affiliated with Audit Commons. The three tools keep the External resource relationship, the importer's default owner labels, and Tool as their only format; EC2-Bench is a Benchmark with Paper and Dataset memberships from its arXiv and Hugging Face links. All four summaries are editorial rewrites that keep each project's limit: HOL Guard's coverage varies by agent integration, a Mycelium Trails digest covers four metadata fields rather than action payloads, TRACES.md's append-only property is a convention rather than tamper evidence, and EC2-Bench scores privacy exposure with an LLM judge. Only these four records receive the `2026-11-16` review date and the new snapshot revision. The other 230 records remain unchanged, including `mcp-granite`, `agent-collusion`, and the stable ID of the arXiv 2607.13304 record, which a full import would replace, for 234 records with no removals. A bilingual digest records the batch in both Atom feeds.
 
 A scoped sync on November 21 adds three records from community PRs merged at `64cd665`: agent-qa (#54, merged November 16), Ironheights (#61), and agentrecount (#62). Each was submitted by the project's author or owner, and none is affiliated with Audit Commons. All three keep the External resource relationship, the importer's default owner labels, and Tool as their only format. The summaries are editorial rewrites that keep each project's limit: agent-qa records only its own runs and is source-available under FSL-1.1-ALv2, Ironheights reports detecting about half of one malicious-skill benchmark and treats a clean grade as no proof of safety, and agentrecount recomputes claims only after a person or coding agent has encoded them. Only these three records receive the `2026-11-21` review date and the new snapshot revision. The other 234 records remain unchanged, including `mcp-granite`, `agent-collusion`, and the stable ID of the arXiv 2607.13304 record, which a full import would replace, for 237 records with no removals. A bilingual digest records the batch in both Atom feeds.
+
+A scoped sync on November 26 adds EPI (epi-recorder) from community PR #64, merged at `b837db2` with maintainer edits, and removes OpenClaw Monitor, whose repository and owner account returned HTTP 404 on November 26; the companion list removed the entry in the same merge. EPI was submitted by its maintainer and is not affiliated with Audit Commons. Its summary is an editorial rewrite that keeps the project's verification limit: a plain warning exits with status 0, so pass or fail checks need the strict policy with the signing key pinned. Only the EPI record receives the `2026-11-26` review date and the new snapshot revision. The other 236 records remain unchanged, including `mcp-granite`, `agent-collusion`, and the stable ID of the arXiv 2607.13304 record, which a full import would replace, for 237 records. A bilingual digest records the addition and the removal in both Atom feeds.
 
 ## 2. Provenance, Affiliation & Review Disclosure
 
@@ -132,10 +134,10 @@ Across 9 substantive sections, the snapshot contains 238 raw entries. Importing 
 - **Unique Snapshot Entries beyond the Baseline**: 229
 - **Import-Only Catalog**: 235
 - **Preserved Independent Editorial Additions**: 2
-- **Added in This Sync**: 3
+- **Added in This Sync**: 1
 - **Updated in This Sync**: 0
-- **Removed in This Sync**: 0
-- **Unchanged Existing Records**: 234
+- **Removed in This Sync**: 1
+- **Unchanged Existing Records**: 236
 - **Total Resources in Catalog**: **237**
 
 ### Breakdown by Relationship (`relationship`)
@@ -170,8 +172,8 @@ The MAST dataset link was added during editorial review on September 16, 2026, f
 | Category | Count | Topic Focus |
 |---|---|---|
 | `Evaluation` | 76 | Benchmarks, failure attribution, and reliability measurement |
-| `Governance` | 61 | Audit trails, decision records, specifications, and regulatory frameworks |
-| `Tools` | 46 | Tracing platforms, telemetry instrumentation, and runtime execution |
+| `Governance` | 62 | Audit trails, decision records, specifications, and regulatory frameworks |
+| `Tools` | 45 | Tracing platforms, telemetry instrumentation, and runtime execution |
 | `Security` | 44 | Prompt injection, sandboxing, vulnerability scanners, and guardrails |
 | `Reading` | 10 | Surveys, foundational literature, and curated reading lists |
 | **Total** | **237** | |
@@ -179,13 +181,13 @@ The MAST dataset link was added during editorial review on September 16, 2026, f
 ### Breakdown by Section (`source_section`)
 | Section | Count |
 |---|---|
-| Tools and Platforms | 35 |
+| Tools and Platforms | 34 |
 | Runtime Monitoring and Guardrails | 32 |
 | Datasets and Benchmarks | 34 |
 | Failure Attribution and Diagnosis | 26 |
 | Standards and Governance | 27 |
 | Security Auditing and Scanners | 25 |
-| Audit Trails and Decision Records | 34 |
+| Audit Trails and Decision Records | 35 |
 | Reliability and Robustness | 14 |
 | Surveys and Foundations | 9 |
 | The Auditable Agents Ecosystem | 1 |
@@ -234,7 +236,7 @@ python scripts/check.py
 ```
 All 237 resources are checked for schema compliance and rendered internal links. External link reachability is checked separately for changed destinations, outside this static suite. Also run `scripts/check_localization.py`, `scripts/check_navigation.py`, and `scripts/check_reading_lists.py` before publication.
 
-The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization, except in the four October 27 summaries, the eight November 9 summaries, the four November 16 summaries, and the three November 21 summaries, which are editorial rewrites.
+The `aegis-runtime` paper link (arXiv:2603.12621) was added during editorial review to document co-authorship; it is not part of the pinned README record. Imported sentence fragments otherwise retain the upstream wording and capitalization, except in the four October 27 summaries, the eight November 9 summaries, the four November 16 summaries, the three November 21 summaries, and the November 26 EPI summary, which are editorial rewrites.
 
 The October 9 scoped sync adds editorial owner labels for Vestige (`samvallad33 / Vestige contributors`), Impri (`sekera-radim / Impri contributors`), and FAIAS (`Wonder Attah`). TraceDance also carries a direct arXiv PDF download link. These enrichments differ from the importer's normalized output and must survive future scoped syncs.
 

@@ -4031,25 +4031,6 @@
     ]
   },
   {
-    "id": "openclaw-monitor",
-    "name": "OpenClaw Monitor",
-    "category": "Tools",
-    "format": "Tool",
-    "summary": "Node.js and Vue dashboard for an OpenClaw gateway, showing total token usage, session status and runtime, and approximate seven-day message counts. Token counts use usage records when a session has them and fall back to text heuristics and fixed allowances when it has none. MIT-licensed, 2026 (last commit 2026-05-14).",
-    "url": "https://github.com/flik2002/openclaw-monitor",
-    "owner": "flik2002 contributors",
-    "relationship": "External resource",
-    "source_urls": [
-      "https://github.com/flik2002/openclaw-monitor"
-    ],
-    "checked": "2026-09-28",
-    "source_section": "Tools and Platforms",
-    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/2d8c50b8b1d056575dd2424b4e54e337ec979427/README.md#tools-and-platforms",
-    "formats": [
-      "Tool"
-    ]
-  },
-  {
     "id": "model-cards-for-model-reporting",
     "name": "Model Cards for Model Reporting",
     "category": "Governance",
@@ -5282,6 +5263,25 @@
     "checked": "2026-11-21",
     "source_section": "Tools and Platforms",
     "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/64cd66553771d4b5f5c2aeb7491ed515b3c929a3/README.md#tools-and-platforms",
+    "formats": [
+      "Tool"
+    ]
+  },
+  {
+    "id": "epi-epi-recorder",
+    "name": "EPI (epi-recorder)",
+    "category": "Governance",
+    "format": "Tool",
+    "summary": "Records one AI decision as a portable `.epi` file with hash-chained steps, an Ed25519-signed manifest of SHA-256 file hashes, and optional RFC 3161 timestamps, which a third party can check offline without an account or server. A plain warning exits with status 0, so pass or fail checks need the strict policy with the signing key pinned. An optional customer-side witness log flags received records that differ from the reported version or were never reported, and gaps in the sealing sequence. Apache-2.0, 2025-present.",
+    "url": "https://github.com/mohdibrahimaiml/epi-recorder",
+    "owner": "mohdibrahimaiml contributors",
+    "relationship": "External resource",
+    "source_urls": [
+      "https://github.com/mohdibrahimaiml/epi-recorder"
+    ],
+    "checked": "2026-11-26",
+    "source_section": "Audit Trails and Decision Records",
+    "catalog_source": "https://github.com/yzhao062/awesome-auditable-ai/blob/b837db290bade8663616393bc3bf7ca74f2563e0/README.md#audit-trails-and-decision-records",
     "formats": [
       "Tool"
     ]

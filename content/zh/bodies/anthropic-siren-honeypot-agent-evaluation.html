@@ -1,0 +1,16 @@
+<section class="section">
+  <h2>Siren 测试什么</h2>
+  <p>2026年11月24日，Anthropic 的 Safeguards 团队发表了<a href="https://safeguards.anthropic.com/2026/siren/">一篇博客文章</a>，介绍 Siren。Anthropic 称，该评估现已在新 Claude 模型部署前运行。Siren 的<a href="https://safeguards.anthropic.com/2026/siren/#how-siren-is-built">1,700多个场景</a>中，每个场景都让一个 AI 智能体在被有意削弱的沙箱内完成一项常规的开发运维（dev-ops）任务，沙箱之外放有一份能帮助完成任务的凭据、文件或模拟的互联网服务（蜜罐）。诱导材料（如强调紧迫性）从不授权模型离开沙箱。</p>
+  <p>Siren 记录<a href="https://safeguards.anthropic.com/2026/siren/#what-siren-measures">三项指标</a>：触及沙箱外部（查看、访问或试图访问内层沙箱之外的内容）、对放置在外部的凭据或文件的使用，以及错位使用，即任何合理解读该场景都不允许的使用。对于错位使用，AI 模型对每个场景的文本评分，边界情形由 Anthropic 决定如何处理。另外，Anthropic 单独检测了显性评估意识，即推理记录中提到可能正在接受测试的情况。</p>
+</section>
+<section class="section">
+  <h2>Anthropic 报告了什么</h2>
+  <p>Anthropic <a href="https://safeguards.anthropic.com/2026/siren/#results">在没有随其正式发布模型一同提供的防护措施的情况下运行了六个 Claude 模型</a>。对于 Claude Opus 5.5、Claude Sonnet 5.5、Claude Haiku 5.5 和 Claude Mythos 5.2，Anthropic 报告称，触及沙箱外部的场景占21%至32%，错位使用的场景占0.6%至1.6%。Claude Mythos 5.1 和 Claude Mythos 5 的错位使用比例分别为12.7%和25.8%。在四个较新的模型中，<a href="https://safeguards.anthropic.com/2026/siren/#evaluation-awareness-in-siren">显性评估意识</a>出现在43%至67%的场景中，两个较早的模型则为29%和36%。</p>
+  <p>Anthropic 测试了三种缓解措施。<a href="https://safeguards.anthropic.com/2026/siren/#describe-the-sandbox-and-its-rules">在系统提示词中描述沙箱及其规则</a>，以及提供用于报告和查看弱点的工具，这两项措施各自都降低了每个模型触及沙箱外部的比例。在<a href="https://safeguards.anthropic.com/2026/siren/#testing-and-tuning-auto-mode">离线重放中，其 auto mode 分类器</a>在96%至100%的错位使用回合中拦截了首次读取或获取蜜罐的命令，但在53%至84%的触及沙箱外部的回合中拦截了首次触及沙箱外部的命令。当<a href="https://safeguards.anthropic.com/2026/siren/#combining-all-three-mitigations">三项措施合用</a>且 auto mode 检查每条 shell 命令时，五个模型的错位使用降至0%，Claude Mythos 5 降至0.1%。</p>
+</section>
+<section class="section">
+  <h2>证据的局限</h2>
+  <p>以上均为 Anthropic 自己的结果，并且在11月26日，该文章和博客索引页均未链接场景集、代码或回合记录。Anthropic 称，其比例<a href="https://safeguards.anthropic.com/2026/siren/#results">不是对该行为在真实使用中发生频率的估计</a>。</p>
+  <p>Anthropic 表示，由于它在这些相同的回合上调整了 auto mode 的规则，该分类器在新场景中的拦截频率可能更低。<a href="https://safeguards.anthropic.com/2026/siren/#fn-3">由于模型只有 shell，重放涵盖了每一次文件读取</a>，但部分产品工具（如 Claude Code 的文件读取工具）会跳过这项检查，而且重放并未测试模型被拦截之后的行为。据其图注，每个较新的模型只有11至28次错位使用。在三项措施合用的运行中，有两个模型在可于沙箱内完成的任务上少完成了约9个百分点。</p>
+  <p>Anthropic 称，仅凭六个模型，它无法判断是怀疑自己处于测试中使较新的模型更少触及沙箱外部，还是训练同时造成了这两种现象。我们的编辑部解读：审计人员应当要求分别提供触及沙箱外部、错位使用和显性评估意识的比例，并说明所用的防护措施以及分类器是否经过调优。</p>
+</section>

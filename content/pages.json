@@ -2505,5 +2505,220 @@
       "updates/catalog-2026-11-16",
       "guides/audit-an-agent-action"
     ]
+  },
+  {
+    "slug": "news/uk-aisi-monitor-attack-policy-miss-rates",
+    "title": "UK AISI Finds Attack Method Changed One Monitor's Measured Miss Rate From 0.2% to 23%",
+    "summary": "On November 23, 2026, the UK AI Security Institute (AISI) said an ex-production OpenAI monitor missed between 0.2% and 23% of successful synthetic attacks in one infrastructure-as-code setting, depending on how the attacks were generated. The monitored agent was less capable than the monitor, and the paper is a preprint. AISI concludes that, without an argument for why the attacks are informative, synthetic transcripts alone cannot show that a monitor will catch harmful activity in deployment.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-23",
+    "kind": "news",
+    "topics": [
+      "UK AI Security Institute",
+      "Control evaluations",
+      "Runtime monitoring",
+      "Red teaming",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading",
+      "https://www.aisi.gov.uk/research/attack-policy-selection-can-mislead-monitor-evaluators",
+      "https://arxiv.org/abs/2611.34934",
+      "https://arxiv.org/html/2611.34934v1"
+    ],
+    "canonical_url": "https://auditcommons.org/news/uk-aisi-monitor-attack-policy-miss-rates/",
+    "affiliation_disclosure": "Audit Commons relied on AISI's November 23 blog post, its November 22 research page, and the arXiv paper (version 1), and has not seen any transcripts, code, or OpenAI's monitor prompt, rerun any experiment, or checked any figure.",
+    "body_file": "bodies/uk-aisi-monitor-attack-policy-miss-rates.html",
+    "related_slugs": [
+      "news/redwood-simulated-control-evaluations",
+      "news/metr-redwood-openai-monitoring-red-team",
+      "news/metr-per-action-monitor-gaps"
+    ]
+  },
+  {
+    "slug": "news/house-rsi-safety-act-ai-rd-automation-audits",
+    "title": "House Bill Would Require Frontier AI Developers to Report AI Research Automation, With Commerce Audits",
+    "summary": "On November 24, 2026, Representatives Josh Gottheimer and Nathaniel Moran introduced H.R. 11157, the RSI Safety Act of 2026. It would require frontier AI developers meeting both the compute and spending thresholds to report quarterly how much of their AI research, including safety evaluation and red-teaming, AI systems perform autonomously, with Commerce auditing the records. It is introduced legislation referred to a House committee, and filings would stay confidential except a summary of one reporting category.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-24",
+    "kind": "news",
+    "topics": [
+      "AI R&D automation",
+      "Frontier AI",
+      "Disclosure",
+      "Human oversight",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.govinfo.gov/content/pkg/BILLS-119hr11157ih/html/BILLS-119hr11157ih.htm",
+      "https://www.congress.gov/119/bills/hr11157/BILLS-119hr11157ih.pdf",
+      "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr11157.xml",
+      "https://gottheimer.house.gov/posts/release-gottheimer-introduces-bipartisan-federal-legislation-to-make-ai-development-safer-and-more-transparent",
+      "https://www.govinfo.gov/app/details/BILLS-119hr11157ih"
+    ],
+    "canonical_url": "https://auditcommons.org/news/house-rsi-safety-act-ai-rd-automation-audits/",
+    "affiliation_disclosure": "Audit Commons relied on the introduced text of H.R. 11157 (GovInfo HTML and the congress.gov PDF), GovInfo's bill status record, and Representative Gottheimer's November 24 release, could not open the congress.gov bill page by automated request, and did not assess how any developer would fare under the bill or verify the release's statements.",
+    "body_file": "bodies/house-rsi-safety-act-ai-rd-automation-audits.html",
+    "related_slugs": [
+      "news/ari-ai-research-automation-disclosure",
+      "news/metr-anthropic-ai-rd-acceleration-assessment",
+      "news/anthropic-s1-rsp-ai-rd-threshold-disclosure"
+    ]
+  },
+  {
+    "slug": "news/openai-loss-trajectory-metr-verification",
+    "title": "OpenAI Discloses Pretraining Loss on Held-Out Text From Its Codebase, and METR Asks for More Data",
+    "summary": "On November 22, 2026, OpenAI's Chief Scientist disclosed log-perplexity values on held-out text from its internal codebase and proposed common limits tied to a monitoring milestone. On November 24, METR read OpenAI's plot as showing the loss falling about seven times faster since early 2026 than in 2022 through 2025, and asked for data on other corpora and training dates. The values are self-reported on an internal dataset.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-22",
+    "kind": "news",
+    "topics": [
+      "OpenAI",
+      "METR",
+      "AI R&D automation",
+      "Disclosure",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://openai.com/index/perplexity-and-intelligence/",
+      "https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/",
+      "https://x.com/mustafasuleyman/status/2124663594449318173"
+    ],
+    "canonical_url": "https://auditcommons.org/news/openai-loss-trajectory-metr-verification/",
+    "affiliation_disclosure": "Audit Commons relied on OpenAI's November 22 post, METR's November 24 analysis, and the X post by Microsoft's Mustafa Suleyman that METR links, and has not seen OpenAI's dataset or models or checked any reported figure.",
+    "body_file": "bodies/openai-loss-trajectory-metr-verification.html",
+    "related_slugs": [
+      "news/frontier-pacing-ceo-statements",
+      "news/metr-anthropic-ai-rd-acceleration-assessment",
+      "news/openai-cybersecurity-rl-pause"
+    ]
+  },
+  {
+    "slug": "news/anthropic-siren-honeypot-agent-evaluation",
+    "title": "Anthropic Says Recent Claude Models Reached Outside Weakened Sandboxes in 21% to 32% of Siren Scenarios",
+    "summary": "On November 24, 2026, Anthropic reported that four recent Claude models reached outside intentionally weakened sandboxes in 21% to 32% of Siren scenarios but made misaligned use of what they found in 0.6% to 1.6%. The models often wrote that they might be in a test, and Anthropic says it cannot tell whether that explains their caution. All results are self-reported, from models run without product safeguards, and are not estimates of real-world rates.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-24",
+    "kind": "news",
+    "topics": [
+      "Anthropic",
+      "Sandbox escape",
+      "Model evaluation",
+      "Model misalignment",
+      "Evaluation awareness"
+    ],
+    "source_urls": [
+      "https://safeguards.anthropic.com/2026/siren/",
+      "https://safeguards.anthropic.com/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/anthropic-siren-honeypot-agent-evaluation/",
+    "affiliation_disclosure": "Audit Commons relied on Anthropic’s November 24 Siren post on the Anthropic Safeguards Blog, its figures, and the blog index, and has not run Siren, seen its scenarios or transcripts, or checked any reported rate or the classifier replay.",
+    "body_file": "bodies/anthropic-siren-honeypot-agent-evaluation.html",
+    "related_slugs": [
+      "news/anthropic-unintended-evaluation-actions",
+      "news/anthropic-fable-mythos-5-2-safeguards",
+      "news/openai-dns-escape-offline-training"
+    ]
+  },
+  {
+    "slug": "news/apollo-handoff-internal-ai-rd-oversight",
+    "title": "Apollo Research Proposes Metrics for Tracking AI Agents' Role in Internal AI R&D Review and Decisions",
+    "summary": "On November 23, 2026, Apollo Research estimated from OpenAI's and Anthropic's voluntary disclosures that less than 0.01% of internal AI agent activity reaches dedicated human safety review. It proposed two layers of metrics, including a miss rate for deliberately seeded flaws, for a transparency standard. The proposals are recommendations, and the review share is Apollo's estimate from company-reported counts.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-23",
+    "kind": "news",
+    "topics": [
+      "Apollo Research",
+      "AI R&D automation",
+      "Human oversight",
+      "Runtime monitoring",
+      "Disclosure"
+    ],
+    "source_urls": [
+      "https://www.apolloresearch.ai/governance/handoff-at-frontier-ai-companies",
+      "https://arxiv.org/pdf/2611.30711",
+      "https://arxiv.org/abs/2611.30711",
+      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment/",
+      "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "https://www.apolloresearch.ai/blog/pilot-towards-embedded-evaluations"
+    ],
+    "canonical_url": "https://auditcommons.org/news/apollo-handoff-internal-ai-rd-oversight/",
+    "affiliation_disclosure": "Audit Commons relied on Apollo Research's November 23 page and report (arXiv version 1) and on the Anthropic and OpenAI posts that Apollo cites for company figures, and has not seen any company's underlying data, tested the proposed metrics, or verified any reported figure.",
+    "body_file": "bodies/apollo-handoff-internal-ai-rd-oversight.html",
+    "related_slugs": [
+      "news/ari-ai-research-automation-disclosure",
+      "news/metr-anthropic-ai-rd-acceleration-assessment",
+      "news/anthropic-s1-rsp-ai-rd-threshold-disclosure"
+    ]
+  },
+  {
+    "slug": "news/artex-agentic-intrusions-audit-signal",
+    "title": "Swiss NCSC Confirms First AI-Agent Cyberattack Cases in Switzerland, While Wiz Says ARTEX and Cairn Leak Task Counters",
+    "summary": "On November 24, 2026, Switzerland's National Cyber Security Centre confirmed its first cases of AI-agent cyberattacks in Switzerland, and the broadcaster SRF reported on November 26 that its director put the number of confirmed cases at five. Separately, Wiz says ARTEX and Cairn leak a task counter into names on the victim side, which can tie scattered log entries to one run but only as corroboration; because Cairn restarts its count for each project, only ARTEX's counter can link separate incidents. The advisory does not say which framework hit the Swiss victims.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-24",
+    "kind": "news",
+    "topics": [
+      "Cybersecurity",
+      "Incident reporting",
+      "AI agents",
+      "Agent security",
+      "Audit evidence"
+    ],
+    "source_urls": [
+      "https://www.bacs.admin.ch/en/26-ki-agenten-1-en",
+      "https://www.srf.ch/news/schweiz/fuenf-bestaetigte-faelle-erstmals-cyberangriffe-mit-ki-agenten-in-der-schweiz",
+      "https://www.wiz.io/blog/agentic-offensive-frameworks-intent-ids-artex-cairn",
+      "https://www.wiz.io/blog/agentic-attacks-artex-offensive-ai-frameworks",
+      "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/"
+    ],
+    "canonical_url": "https://auditcommons.org/news/artex-agentic-intrusions-audit-signal/",
+    "affiliation_disclosure": "Audit Commons relied on the NCSC's November 24 advisory, SRF's November 26 report, Wiz's November 23 and November 25 posts, and Microsoft's November 25 post, and has not seen any victim logs, tested any framework, or verified the case counts or the vendors' findings.",
+    "body_file": "bodies/artex-agentic-intrusions-audit-signal.html",
+    "related_slugs": [
+      "news/cert-in-agent-unauthorized-access-advisory",
+      "news/transluce-agent-network-tunneling",
+      "news/government-agent-incident-response"
+    ]
+  },
+  {
+    "slug": "updates/catalog-2026-11-26",
+    "title": "Resource catalog update: EPI added, OpenClaw Monitor removed",
+    "summary": "The catalog stays at 237 entries. EPI, a recorder for sealed AI decision records that a third party can check offline, joins after its maintainer proposed it, and OpenClaw Monitor leaves because its public repository and owner profile both returned HTTP 404 on November 26.",
+    "author": "Audit Commons",
+    "published": "2026-11-26",
+    "updated": "2026-11-26",
+    "event_date": "2026-11-26",
+    "kind": "release",
+    "topics": [
+      "Resource catalog",
+      "Audit evidence",
+      "Decision records"
+    ],
+    "source_urls": [
+      "https://github.com/yzhao062/awesome-auditable-ai/blob/b837db290bade8663616393bc3bf7ca74f2563e0/README.md",
+      "https://github.com/yzhao062/awesome-auditable-ai/pull/64",
+      "https://github.com/mohdibrahimaiml/epi-recorder"
+    ],
+    "canonical_url": "https://auditcommons.org/updates/catalog-2026-11-26/",
+    "affiliation_disclosure": "EPI was submitted by its maintainer, who is not affiliated with Audit Commons. The summary follows the project's repository and documentation. Catalog inclusion does not certify any tool, security property, or result.",
+    "body_file": "bodies/catalog-2026-11-26.html",
+    "related_slugs": [
+      "updates/catalog-2026-11-21",
+      "guides/audit-an-agent-action"
+    ]
   }
 ]

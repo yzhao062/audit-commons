@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>OpenAI 披露了什么</h2>
+  <p>2026年11月22日，OpenAI 首席科学家 Jakub Pachocki 发表了<a href="https://openai.com/index/perplexity-and-intelligence/">《Perplexity and Intelligence》</a>，METR 则于11月24日发布了<a href="https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/">对 OpenAI 已发布数据的分析</a>。Pachocki 在文中主张将困惑度（其对数为交叉熵损失，数值越低表示预测越准确）作为比较各模型开发者、并为共同安全标准提供依据的指标。<a href="https://openai.com/index/perplexity-and-intelligence/">OpenAI 称</a>，其主要的留出（held-out）数据集“取自我们的内部代码库”，所报数字“针对固定快照”。</p>
+  <p>Pachocki 称，OpenAI 的损失降到<a href="https://openai.com/index/perplexity-and-intelligence/">0.8以下</a>后，看到了“网络安全和数学等领域变革性能力的涌现”。他预计，在我们进入“~0.68-0.7 对数困惑度区间”时，会出现“进一步的变革性能力”，而 OpenAI 目前可能并未针对这些能力做测试；他还预计会出现“当前占主导地位的对齐审计形式的进一步退化”。</p>
+  <p>Pachocki <a href="https://openai.com/index/perplexity-and-intelligence/">提出</a>“基于困惑度及其他测量的共同上限”，开发者承诺在理解和监测 AI 行为的能力达到“某个具体的里程碑”（例如“CoT 监测器的继任者”）之前，不跨越这些上限。我们在11月26日通读了该文全文，未发现具体数值上限。~0.68-0.7 这一区间仅标示他预期出现新能力的位置。</p>
+</section>
+<section class="section">
+  <h2>METR 的说法与请求</h2>
+  <p>METR 称，OpenAI 发布了自 GPT-3.5 以来13个模型的基础模型对数困惑度，而 METR 对 OpenAI 这张图的解读是，自2026年初以来，损失的<a href="https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/">下降速度约为2022年至2025年期间的7倍</a>。其员工仍在讨论如何将此与 OpenAI 模型的基准测试分数相协调，METR 称这些分数并未出现相当程度的加速。关于这些数据应在多大程度上改变能力预测，METR<a href="https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/">“没有一致看法”</a>，并称这些数据可能高估了真实进展，例如因过拟合所致。</p>
+  <p>METR <a href="https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/">鼓励所有开发者</a>发布此类数据。METR 称，有三类信息“尤其有参考价值”：（i）其他留出语料库上的对数困惑度，这些语料库最终可以“由第三方维护”；（ii）每次预训练运行大致何时结束；（iii）预训练算力、人力开支和实验算力随时间的变化。METR 指出，Microsoft 此后已对其自有模型使用 OpenAI 的数据集做了同样的披露，其<a href="https://x.com/mustafasuleyman/status/2124663594449318173">所链接的 X 帖子</a>称对该数据集的访问权限属于“特例”。</p>
+</section>
+<section class="section">
+  <h2>证据的局限</h2>
+  <p>我们在11月26日通读了这两篇文章，二者均未报告外部方对任何 OpenAI 模型的测量结果，因此这条曲线与 Microsoft 的数字一样，是基于 Audit Commons 未曾见过的文本自行报告的。</p>
+  <p>Pachocki 指出，困惑度<a href="https://openai.com/index/perplexity-and-intelligence/">会漏掉“预训练之外的进展”</a>，其中最突出的是思维链推理。OpenAI <a href="https://openai.com/index/perplexity-and-intelligence/">将</a>2026年的加速“主要”归因于长期研究和算力投入，仅有“较小一部分”归因于自动化，同时指出近期模型中已出现“来自 AI 的有意义的设计贡献”。METR <a href="https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/">表示</a>，预训练结束日期有助于说明 AI 辅助带来的提升究竟贡献了多少。</p>
+  <p>我们的编辑部解读：当外部方能够在实验室无法控制的留出文本上测量模型，并知道每次训练运行何时结束时，基于困惑度的上限会更容易审计。</p>
+</section>

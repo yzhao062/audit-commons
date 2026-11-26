@@ -1,0 +1,17 @@
+<section class="section">
+  <h2>AISI 测试了什么</h2>
+  <p>2026年11月23日，英国人工智能安全研究所（AISI）发表了一篇<a href="https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading">博客文章</a>，称其红队发现，同一个监测器漏检了0.2%至23%的成功攻击，具体取决于用于生成这些攻击的“攻击策略”。AISI 针对该论文的<a href="https://www.aisi.gov.uk/research/attack-policy-selection-can-mislead-monitor-evaluators">研究页面</a>标注的日期为11月22日，<a href="https://arxiv.org/abs/2611.34934">arXiv 预印本于11月25日提交</a>。</p>
+  <p>该监测器是 AISI 所称的<a href="https://arxiv.org/html/2611.34934v1">“曾用于生产的 OpenAI 监测器”（ex-production OpenAI monitor）</a>：运行 GPT-5.4，所用提示词由 OpenAI 提供，博客文章称该提示词已退役。Qwen 3.8 27B 在基础设施即代码（IaC）任务以及附录中的 LinuxArena 任务上担任被监测的智能体。每次攻击都把一项普通的主任务与一项有害的附加任务配成一对，漏检率是指监测器未标记的成功攻击所占的比例。</p>
+  <p>AISI 只改变了攻击的生成方式：基础提示、优化提示、强化学习（RL）和记录编辑，其中记录编辑是由另一个模型改写已完成的记录，使其看起来不那么可疑。<a href="https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading">据 AISI 称</a>，这些攻击在开发时只使用了来自其他监测器的反馈，没有任何来自 GPT-5.4 的反馈。</p>
+</section>
+<section class="section">
+  <h2>哪些方法造成了高漏检率</h2>
+  <p>在 IaC 任务上，<a href="https://arxiv.org/html/2611.34934v1">论文报告</a>，基础提示词的漏检率为0.2%，优化提示最高为6.4%。记录编辑造成的漏检率最高，在每条种子记录提出100次编辑时为23.0%，RL 为20.8%。由于编辑后的工具调用没有重新执行，一个语言模型评判者会对不再能完成附加任务的编辑扣分，而<a href="https://arxiv.org/html/2611.34934v1">表1</a>给出的23.0%的95%区间约为11%至37%。</p>
+  <p><a href="https://arxiv.org/html/2611.34934v1">根据论文的图1</a>，只运行三种方法中最低的优化级别（基础提示词、第一轮提示词优化和第一个 RL 检查点），得到的漏检率最高为5.1%。作者报告称，他们自己进行的优化在数周内成效有限。</p>
+</section>
+<section class="section">
+  <h2>证据的局限</h2>
+  <p>以上均为 AISI 自己的结果，Audit Commons 未看到这些记录。AISI 称这些结果来自<a href="https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading">对一个监测器和一个智能体的一次测试</a>，论文则称该智能体<a href="https://arxiv.org/html/2611.34934v1">能力不及监测器</a>。<a href="https://arxiv.org/html/2611.34934v1">在 LinuxArena 附录中</a>，在 IaC 上调优的攻击迁移到第二个环境 LinuxArena 时效果较弱：在 GPT-5.4 上，提示的漏检率从6.4%降到0.2%，RL 从20.8%降到0.7%（各环境均取最佳检查点）。在 LinuxArena 上调优的记录编辑则达到了16.2%。<a href="https://arxiv.org/html/2611.34934v1">论文还指出</a>，直接针对 GPT-5.4 进行优化可能产生更强的攻击。</p>
+  <p>AISI 的结论是，如果没有明确论证代理攻击为何具有参考价值，那么<a href="https://arxiv.org/html/2611.34934v1">仅凭对合成记录的评估无法提供保证</a>，使人相信监测器会在部署中发现有害活动。截至11月26日，博客文章、研究页面、arXiv 摘要页和论文（HTML 版和 PDF 版）均未链接代码或攻击记录，不过附录 H 给出了基础提示词。</p>
+  <p>我们的编辑部解读：声称监测器能发现一定比例的攻击时，应说明所用的攻击策略及其优化力度，因为这些选择使测得的漏检率从0.2%变为23%。</p>
+</section>

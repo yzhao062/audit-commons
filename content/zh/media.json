@@ -633,5 +633,35 @@
     "alt": "Prime Intellect 标志：黑色翼形图案，旁边是方块字体的 PRIME 和斜体衬线字体的 Intellect。",
     "caption": "Prime Intellect 标志。Prime Intellect 于2026年11月19日发布了关于 deepseek/deepseek-v4.1-flash 部署被替换的安全公告。",
     "source_sha256": "663e0ad39cb98e9afe749db29922e634013029a0866d0fc3356ffa107353a2a1"
+  },
+  "kyle-teo-aisi-partnership-2024": {
+    "alt": "两位官员在木质护墙板装饰的房间里，于白色桌前面带笑容签署文件：左侧女子身穿灰色外套和粉色上衣，右侧男子身穿深色西装、系红色领带，身后是新加坡和英国国旗，壁炉上方有一尊大理石半身像。",
+    "caption": "时任英国科学、创新和技术大臣 Peter Kyle 与新加坡数码发展及新闻部长杨莉明（Josephine Teo）于2024年11月6日签署两国人工智能安全研究所之间的合作协议。资料照片，由 Alecsandra Dragoi / DSIT 拍摄（CC BY 2.0）；英国人工智能安全研究所于2026年11月23日发布了其红队案例研究。",
+    "source_sha256": "5df8ed8ebea4549d5da2323f703bf6fd9fa9a70bf442f1ef53735109cde97974"
+  },
+  "commerce-hoover-building-2025": {
+    "alt": "一面带有美国商务部徽章的白色旗帜和一面美国国旗，在高大的带凹槽石柱前飘扬，下方可见部分刻有“商务部”英文字样的铭文。",
+    "caption": "美国商务部总部 Herbert C. Hoover 大楼外的商务部旗帜，摄于2025年3月26日，地点为华盛顿特区。资料照片，由 G. Edward Johnson 拍摄（CC BY 4.0）；2026年11月24日提出的 H.R. 11157 法案将在商务部设立一个办公室，负责收集开发者的报告并审计其记录。",
+    "source_sha256": "c4b354c3132d7e902926e2d886e342727ed4563213f546d7289921bcba33852a"
+  },
+  "jakub-pachocki-icpc-2012": {
+    "alt": "一名留着棕色短发的年轻男子在白色活动帐篷下微笑，身穿印有 ICPC 2012 World Finals 字样的深蓝色 T 恤，胸前挂着写有 Jakub Pachocki 和 University of Warsaw 的参赛证。",
+    "caption": "现任 OpenAI 首席科学家的 Jakub Pachocki 于2012年5月16日作为华沙大学参赛者出席在华沙举行的 ACM ICPC 全球总决赛。资料照片，由 Izabela Majewska 为 ICPC News 拍摄（CC BY 2.0）；Pachocki 于2026年11月22日发表了 OpenAI 关于困惑度的文章。",
+    "source_sha256": "6669e2e5952a30065fbf45d45eac5720b652033311fcad10cf4c3aaa0675380a"
+  },
+  "jack-clark-oxford-2026": {
+    "alt": "木质装饰演讲厅的全景：一名身穿西装的男子在舞台右侧发言，上方大屏幕显示 AI 模型得分随时间变化的散点图，前景是就座的观众。",
+    "caption": "Anthropic 联合创始人 Jack Clark 于2026年5月20日在牛津 Schwarzman Centre 发表关于 AI 的演讲，身后屏幕显示各模型在一组基准测试上的得分。资料照片，由 Mvolz 拍摄（CC0）；Anthropic 于2026年11月24日发布了其 Siren 蜜罐评估。",
+    "source_sha256": "277430037dbbb2aeb0437b9bd58260bcefc6a1720494753ad11233c9ffc52934"
+  },
+  "apollo-research-logo": {
+    "alt": "Apollo Research 标志：黑色大写字母 APOLLO，最后一个字母 O 为分段圆环，下方是字距较宽的 RESEARCH，背景为浅灰色。",
+    "caption": "Apollo Research 标志。Apollo Research 于2026年11月23日发布了关于将 AI 研究工作移交给内部部署的 AI 智能体的报告。",
+    "source_sha256": "e06125ed40411a5ca357798c0fbdfabe1890247ccc2a48f723fcda3e45748865"
+  },
+  "bacs-ncsc-sign-2025": {
+    "alt": "一块带有瑞士国徽的磨砂玻璃门牌，以四种语言和英语列出瑞士联邦名称，以及两个联邦机构：Bundesamt für Cybersicherheit BACS（英文名称为 National Cyber Security Centre NCSC）和 Eidgenössische Ausgleichskasse EAK。",
+    "caption": "瑞士 Bundesamt für Cybersicherheit（BACS，英文名称为国家网络安全中心 NCSC）的楼宇标牌，摄于2025年5月4日。资料照片，由 Hadi 拍摄（CC0）；NCSC 于2026年11月24日确认了瑞士境内首批 AI 智能体网络攻击案例。",
+    "source_sha256": "60b0bb918b6adbfbf9bb1159b79e27168468c503c8fa0421280fa1303f182493"
   }
 }

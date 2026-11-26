@@ -38,11 +38,11 @@ from urllib.parse import urlparse
 from resource_formats import resource_formats, formats_error
 
 # Pinned snapshot metadata - MUST be updated together on refresh
-PINNED_REVISION = "64cd66553771d4b5f5c2aeb7491ed515b3c929a3"
+PINNED_REVISION = "b837db290bade8663616393bc3bf7ca74f2563e0"
 EXPECTED_SNAPSHOT_SHA256 = (
-    "fd426bb508125b6897339bf6c0ca119c48c0c9aa4bd290dceee4523f800a1785"
+    "dc70c98efaf27d5fc6ebfdcc967e4e0c5bf211b1493ea73c8193b7e6b345bded"
 )
-SNAPSHOT_REVIEW_DATE = "2026-11-21"
+SNAPSHOT_REVIEW_DATE = "2026-11-26"
 ORIGINAL_CURATION_DATE = "2026-09-15"
 
 CATALOG_SOURCE_BASE = (

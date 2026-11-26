@@ -1,0 +1,16 @@
+<section class="section">
+  <h2>瑞士报告了什么</h2>
+  <p>2026年11月24日，瑞士国家网络安全中心（National Cyber Security Centre，NCSC，德语为 Bundesamt für Cybersicherheit，BACS）<a href="https://www.bacs.admin.ch/en/26-ki-agenten-1-en">发布通告</a>称，已首次确认在瑞士发生了借助 AI 智能体实施的网络攻击。攻击者使用的是通告所称的“Agentic Offensive Frameworks”（下称“攻击框架”）。通告称，在 NCSC 所知的全部攻击中，AI 智能体都导致了受害方的 IT 系统被攻陷，受影响的机构至少分属两个行业。</p>
+  <p>11月26日，瑞士广播电视机构 Schweizer Radio und Fernsehen（SRF）<a href="https://www.srf.ch/news/schweiz/fuenf-bestaetigte-faelle-erstmals-cyberangriffe-mit-ki-agenten-in-der-schweiz">报道</a>称，Florian Schütz（SRF 称其为 BACS 主任）向其表示，目前共有5起已确认案例。SRF 称，受影响者包括3家关键基础设施运营方，5起案例中有4起系统被攻陷，目前仍不清楚攻击背后是谁。</p>
+</section>
+<section class="section">
+  <h2>Wiz 称进入受害方日志的内容</h2>
+  <p>11月25日，Wiz Research <a href="https://www.wiz.io/blog/agentic-offensive-frameworks-intent-ids-artex-cairn">发表分析</a>，研究了 ARTEX 和 Cairn 这两种攻击框架。Wiz 称，这些攻击框架为每个子目标分配一个数字任务计数器，即意图编号（Intent ID），并把它放进模型的提示词和工作区。模型随后可以把这个数字复制进它在目标上创建的账户、文件和云资源的名称里。</p>
+  <p>在一起横跨 AWS 和 Azure 的入侵中，Wiz 称其在 AWS 一侧发现了36个意图编号，在 Azure 一侧发现了34个。这些编号全部来自同一个递增序列，据此可把两侧关联到同一次运行，尽管两侧的身份毫无共同之处。<a href="https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/">Microsoft 11月25日的文章</a>就 ARTEX 补充说，如果底层日志没有被收集，威胁狩猎查询结果为空并不能证明没有发生访问。</p>
+</section>
+<section class="section">
+  <h2>证据的局限</h2>
+  <p>Wiz 称这些意图编号信号“有损”（lossy），并称据此判断攻击节奏只是“佐证性信号”（a corroborating signal），不能单独用作归因。Wiz 列出了该信号失效的4种情形：计数增长并不均匀；互不相关的实例会落在相同的编号区间；操作者会重置或并行运行；Cairn 每个新项目都从 i001 重新计数，因此跨事件的节奏判断只适用于 ARTEX 系列。就 ARTEX 而言，Wiz 补充说，该任务计数器能区分实例，而一名操作者可以同时运行多个实例。Wiz <a href="https://www.wiz.io/blog/agentic-attacks-artex-offensive-ai-frameworks">11月23日的文章</a>称，其针对此类活动的检测规则，包括一条针对步骤计数器的规则，“预计容易失效”（expected to be perishable）。</p>
+  <p>通告提到 ARTEX 和 CyberStrikeAI，只是把它们作为可公开访问的 AI 智能体的例子，没有说明瑞士案例中使用的是哪个攻击框架。我们读到的任何来源都没有报告瑞士的日志中出现了意图编号。受害方均未被点名。我们于11月26日查看该通告页面时，页面上没有列出任何指标，尽管通告称 NCSC 会向关键基础设施运营方分享这些指标。据通告，已知的全部攻击都导致了系统被攻陷，而 SRF 报道的是5起中的4起，两个来源都没有说明它们统计的是否为同一批案例。Wiz 称，它<a href="https://www.wiz.io/blog/agentic-attacks-artex-offensive-ai-frameworks">自2026年9月下旬以来</a>已观察到使用 ARTEX 和类似工具的活动。所有数字均为瑞士当局、SRF 和各厂商所报道的内容，Audit Commons 均未做测试。</p>
+  <p>我们的编辑部解读：意图编号可以佐证分散的条目属于同一次 AI 智能体运行，但它是一条容易失效的线索，在任何人点名某个操作者之前，还需要其他证据。</p>
+</section>

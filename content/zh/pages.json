@@ -1073,7 +1073,7 @@
   },
   "news/openai-gpt-6-2-system-card-external-evaluations": {
     "title": "OpenAI 的 GPT-6.2 系统卡报告 UK AISI 发现越狱稳健性退步，并披露该机构对评判模型的选择受到限制",
-    "summary": "OpenAI 于2026年11月17日发布的 GPT-6.2 Astra 和 Sol 系统卡报告称，UK AISI 发现网络越狱稳健性出现显著退步，GPT-6.2 Astra 的评估感知高于 GPT-6 Astra，并发现关联性失效：OpenAI 模型未能标记其他 OpenAI 模型的未对齐行为。OpenAI 认为已缓解这一退步，但系统卡撰写时 UK AISI 尚未验证。UK AISI 认为，OpenAI 临时请其仅使用 OpenAI 模型处理未经摘要的思维链，降低了其评估的有效性和可比性。",
+    "summary": "OpenAI 于2026年11月17日发布的 GPT-6.2 Astra 和 Sol 系统卡报告称，UK AISI 发现网络越狱稳健性出现显著退步，GPT-6.2 Astra 的评估感知高于 GPT-6 Astra，并发现关联性失效：OpenAI 模型未能标记其他 OpenAI 模型的错位行为。OpenAI 认为已缓解这一退步，但系统卡撰写时 UK AISI 尚未验证。UK AISI 认为，OpenAI 临时请其仅使用 OpenAI 模型处理未经摘要的思维链，降低了其评估的有效性和可比性。",
     "topics": [
       "OpenAI",
       "英国人工智能安全研究所",
@@ -1153,5 +1153,101 @@
     "affiliation_disclosure": "每项资源均由其作者或所有者提交，它们均与 Audit Commons 无关联。摘要依据各项目的代码仓库撰写。收录进目录不代表认证任何工具、安全特性或结果。",
     "body_file": "zh/bodies/catalog-2026-11-21.html",
     "source_sha256": "eb79ea34834ff257c95ea9b35c141d1d796f65195854cb7b37650a75aada1947"
+  },
+  "news/uk-aisi-monitor-attack-policy-miss-rates": {
+    "title": "英国 AISI 发现，攻击方法使一个监测器测得的漏检率从0.2%变为23%",
+    "summary": "2026年11月23日，英国人工智能安全研究所（AISI）称，一个曾用于生产的 OpenAI 监测器在一个基础设施即代码环境中，对成功的合成攻击的漏检率在0.2%至23%之间，具体取决于攻击的生成方式。被监测的智能体能力不及该监测器，该论文为预印本。AISI 的结论是，若无论证说明这些攻击为何具有参考价值，仅凭合成记录无法证明监测器会在部署中发现有害活动。",
+    "topics": [
+      "英国人工智能安全研究所",
+      "控制评估",
+      "运行时监测",
+      "红队测试",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 AISI 11月23日的博客文章、11月22日的研究页面和 arXiv 论文（第1版）撰写本文，未看到任何相关记录、代码或 OpenAI 的监测器提示词，也未重新运行任何实验或核对任何数字。",
+    "body_file": "zh/bodies/uk-aisi-monitor-attack-policy-miss-rates.html",
+    "source_sha256": "21d7043bcc02b0db9c639aa4a4480901f5cd4d54671de5faeb2492d79d48ec1c"
+  },
+  "news/house-rsi-safety-act-ai-rd-automation-audits": {
+    "title": "众议院法案拟要求前沿 AI 开发者报告 AI 研究自动化情况，并由商务部开展审计",
+    "summary": "2026年11月24日，众议员 Josh Gottheimer 和 Nathaniel Moran 提出了 H.R. 11157，即 RSI Safety Act of 2026。该法案将要求同时达到规定运算量和支出门槛的前沿 AI 开发者按季度报告，其 AI 研究（包括安全评估和红队测试）中有多大比例由 AI 系统自主完成，并由商务部审计相关记录。该法案已提出并交由众议院委员会审议，提交的材料除一个报告类别的摘要外将保持保密。",
+    "topics": [
+      "AI 研发自动化",
+      "前沿 AI",
+      "信息披露",
+      "人工监督",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 H.R. 11157 提出时的文本（GovInfo 的 HTML 版本和 congress.gov 的 PDF 版本）、GovInfo 的法案状态记录，以及众议员 Gottheimer 11月24日的新闻稿撰写本文，无法通过自动化请求打开 congress.gov 的法案页面，也未评估任何开发者在该法案下的合规情况，或核实新闻稿中的说法。",
+    "body_file": "zh/bodies/house-rsi-safety-act-ai-rd-automation-audits.html",
+    "source_sha256": "866d523ec82638808bf2659eae575a7db9edc265bbc048727c66ac1a7a92c5f1"
+  },
+  "news/openai-loss-trajectory-metr-verification": {
+    "title": "OpenAI 披露其代码库留出文本上的预训练损失，METR 请求提供更多数据",
+    "summary": "2026年11月22日，OpenAI 首席科学家披露了其内部代码库留出文本上的对数困惑度数值，并提出了与监测里程碑挂钩的共同上限。11月24日，METR 对 OpenAI 这张图的解读是，自2026年初以来损失的下降速度约为2022年至2025年期间的7倍，并请求提供其他语料库和训练日期方面的数据。这些数值是 OpenAI 在内部数据集上自行报告的。",
+    "topics": [
+      "OpenAI",
+      "METR",
+      "AI 研发自动化",
+      "信息披露",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 OpenAI 11月22日的文章、METR 11月24日的分析，以及 METR 所链接的 Microsoft 的 Mustafa Suleyman 的 X 帖子撰写本文，未看到 OpenAI 的数据集或模型，也未核对任何报告的数字。",
+    "body_file": "zh/bodies/openai-loss-trajectory-metr-verification.html",
+    "source_sha256": "0c76744621a198f0a57a1db8d7f66b05c202971f81e93d7b3914be724774d7ae"
+  },
+  "news/anthropic-siren-honeypot-agent-evaluation": {
+    "title": "Anthropic 称，较新的 Claude 模型在 Siren 评估的21%至32%场景中触及了被削弱的沙箱外部",
+    "summary": "2026年11月24日，Anthropic 报告称，四个较新的 Claude 模型在 Siren 评估的21%至32%场景中触及了被有意削弱的沙箱外部，在0.6%至1.6%的场景中对所发现的内容做出了错位使用。这些模型常写到自己可能处于测试之中，Anthropic 称无法判断这是否解释了它们的谨慎表现。所有结果均为 Anthropic 自行报告，来自未启用产品防护措施的模型，也不是对真实世界比例的估计。",
+    "topics": [
+      "Anthropic",
+      "沙箱逃逸",
+      "模型评估",
+      "模型错位行为",
+      "评估意识"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Anthropic 11月24日发表在 Anthropic Safeguards Blog 上的 Siren 文章、其图表和博客索引页撰写本文，未运行 Siren，未看到其场景或回合记录，也未核对任何报告的比例或分类器重放结果。",
+    "body_file": "zh/bodies/anthropic-siren-honeypot-agent-evaluation.html",
+    "source_sha256": "87fc3583dd18552b1aabf3e754a42d4e062f1502fd6d31582f42b6d5ea139381"
+  },
+  "news/apollo-handoff-internal-ai-rd-oversight": {
+    "title": "Apollo Research 提出指标，用于追踪 AI 智能体在内部 AI 研发审查与决策中的作用",
+    "summary": "2026年11月23日，Apollo Research 根据 OpenAI 和 Anthropic 的自愿披露估计，内部 AI 智能体活动中不到0.01%会进入专门的人工安全审查。该报告提出两层指标，其中包括针对刻意植入缺陷的漏检率，用于一项透明度标准。这些指标属于建议，审查占比是 Apollo 根据公司公布的数量得出的估计。",
+    "topics": [
+      "Apollo Research",
+      "AI 研发自动化",
+      "人工监督",
+      "运行时监测",
+      "信息披露"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 Apollo Research 11月23日发布的页面和报告（arXiv 第1版），以及 Apollo 引用的 Anthropic 和 OpenAI 文章中的公司数字撰写本文，未看到任何公司的底层数据，也未测试所提议的指标或核实任何已报告的数字。",
+    "body_file": "zh/bodies/apollo-handoff-internal-ai-rd-oversight.html",
+    "source_sha256": "537e064e991587a6e21185ea6c2f9362ba7c13bb1b1a6137cf80a6be4eeb0f99"
+  },
+  "news/artex-agentic-intrusions-audit-signal": {
+    "title": "瑞士 NCSC 确认瑞士境内首批 AI 智能体网络攻击案例，Wiz 称 ARTEX 和 Cairn 会泄露任务计数器",
+    "summary": "2026年11月24日，瑞士国家网络安全中心首次确认了瑞士境内借助 AI 智能体实施的网络攻击案例，广播机构 SRF 于11月26日报道，该中心主任称已确认的案例有5起。另外，Wiz 称 ARTEX 和 Cairn 会把一个任务计数器泄露到受害方一侧的名称中，这可以把分散的日志条目关联到同一次运行，但只能作为佐证；由于 Cairn 每个项目都会重新计数，只有 ARTEX 的计数器能把不同事件关联起来。通告没有说明是哪个攻击框架攻击了瑞士的受害方。",
+    "topics": [
+      "网络安全",
+      "事件报告",
+      "AI 智能体",
+      "智能体安全",
+      "审计证据"
+    ],
+    "affiliation_disclosure": "Audit Commons 依据 NCSC 11月24日的通告、SRF 11月26日的报道、Wiz 11月23日和11月25日的文章以及 Microsoft 11月25日的文章撰写本文，未看到任何受害方日志，也未测试任何攻击框架，或核实案例数量及各厂商的发现。",
+    "body_file": "zh/bodies/artex-agentic-intrusions-audit-signal.html",
+    "source_sha256": "b528c0caff24bb66f3f93caca9f5b4ce66753a83f5b8a8e19504d1671f502ea5"
+  },
+  "updates/catalog-2026-11-26": {
+    "title": "资源目录更新：新增 EPI，删除 OpenClaw Monitor",
+    "summary": "目录仍为237项。EPI 是一个生成签封 AI 决策记录、可由第三方离线核验的记录工具，由其维护者提出后加入；OpenClaw Monitor 因其公开仓库和所有者的个人主页在11月26日均返回 HTTP 404 而被删除。",
+    "topics": [
+      "资源目录",
+      "审计证据",
+      "决策记录"
+    ],
+    "affiliation_disclosure": "EPI 由其维护者提交，该维护者与 Audit Commons 无关联。摘要依据该项目的代码仓库和文档撰写。收录进目录不代表认证任何工具、安全特性或结果。",
+    "body_file": "zh/bodies/catalog-2026-11-26.html",
+    "source_sha256": "6aabb9ed4f251850e7961d6f361e514a19ae38d32bda023ca993a641002ebff3"
   }
 }
